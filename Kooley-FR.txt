@@ -1,0 +1,4 @@
+The system shall provide a weekly calendar where you can select times in which you do not want classes. 
+The system shall provide a list of available GE courses that the student still needs to take.
+The system shall provide a filter for the list of GE courses so they can hide courses that are full or closed.
+

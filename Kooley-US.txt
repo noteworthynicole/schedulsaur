@@ -1,0 +1,4 @@
+As a student-athlete, I want to have classes that start an hour after my practice times, so that I can have a break.
+As a work-study student, I want to have a class schedule that does not conflict with my work hours, so that I can better manage my work and school life.
+As a student in a heavily impacted major, I want to view available major classes based on my completed coursework, so that I can graduate on time.
+
