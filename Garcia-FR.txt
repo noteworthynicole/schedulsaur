@@ -1,0 +1,3 @@
+The system shall provide a list of open major classes with fulfilled prerequisites.
+The system shall provide a list of potential schedules that follow user-specified time constraints.
+The system shall provide a list of untaken major classes that are required to graduate.

@@ -1,0 +1,3 @@
+As a student who wants to change majors, I want to select different majors, so that I can see which classes would transfer over.
+As a busy student, I want to generate a list of all potential schedules, so that I don’t have to waste time sifting through prerequisites to find classes.
+As a student, I want to filter out closed GE’s, so that I can easily add an open GE. 
