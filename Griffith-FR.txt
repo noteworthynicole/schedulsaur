@@ -1,0 +1,3 @@
+The system shall provide class suggestions for the next quarter only if the class is being offered.
+The system shall provide course schedules for the next quarter where no class times overlap.
+The system shall provide class suggestions based on the user's prerequisites.

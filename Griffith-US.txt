@@ -1,0 +1,4 @@
+As a student with late registration, I want to search for any open classes, so I can remain a full-time student.
+As a study abroad student, I want to plan my classes in advance, so I can graduate in 4 years.
+As a student, I want to select the classes I've already taken, to visualize my current progress.
+
