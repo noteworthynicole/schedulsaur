@@ -1,0 +1,5 @@
+The program shall provide the location of suggested classes.
+
+The program shall provide class suggestions only relevant to completing the user’s degree.
+
+The program shall provide suggestions only of available classes.
