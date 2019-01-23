@@ -1,0 +1,7 @@
+1. As a third-year student, I want to view only the classes that I meet 
+   the prerequisites for, so that I know which classes I can take.
+2. As a student, I want to select classes to create a schedule, so that 
+   I can be prepared for next quarter.
+3. As a student with multiple tech elective options, I want to see all 
+   potential class schedules with the different electives, so I have 
+   options that meet my different interests.

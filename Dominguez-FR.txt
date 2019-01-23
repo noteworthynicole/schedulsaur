@@ -1,0 +1,3 @@
+1.The system shall provide a set of options to filter a list of classes.
+2.The system shall provide a set of selectable class schedules.
+3.The system shall display a filtered list of classes.
