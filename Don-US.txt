@@ -1,0 +1,5 @@
+As an incoming freshman, I want a system that will show me my degree progress, so I can stay ahead of the curve during registration.
+
+As a Cal Poly student who hates mornings, I want to find class schedules that start later, so that I can stay awake during class.
+
+As a student in a relatively small major, I want something that will only show me classes relevant to my major, so that registration takes less time.

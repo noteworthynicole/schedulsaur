@@ -1,0 +1,5 @@
+The system shall generate class schedules based on the user’s preferred days of the week.
+
+The system shall display the user’s degree progress.
+
+The system shall provide classes required to complete the user’s supplemental coursework. 
