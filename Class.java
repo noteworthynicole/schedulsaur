@@ -1,10 +1,11 @@
+import java.util.*;
 
 public class Class {
 
 	public String name;
-	public List<Class> prerec;
+	public ArrayList<Class> prerec;
 	
-	public Class(String name, List<Class> prerec){
+	public Class(String name, ArrayList<Class> prerec){
 		this.name = name;
 		this.prerec = prerec;
 	}
