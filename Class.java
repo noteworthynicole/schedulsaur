@@ -10,4 +10,12 @@ public class Class {
 		this.prerec = prerec;
 	}
 	
+	public Class(String name){
+		this.name = name;
+		this.prerec = new ArrayList<Class>();
+	}
+	@Override
+	   public String toString() {
+	      return "Class " + name + " " + Arrays.toString(prerec.toArray());
+	   }
 }

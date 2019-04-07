@@ -14,6 +14,6 @@ token:
 jdk:
  - oraclejdk8
 
-
 script:
  - mvn sonar:sonar
+

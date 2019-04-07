@@ -2,22 +2,31 @@ import java.util.*;
 
 public class Section extends Class{
 	
-	public Section(String name, ArrayList<Class> prerec) {
-		super(name, prerec);
-		// TODO Auto-generated constructor stub
-	}
-	public String name;
-	public List<Class> prerec;
-	public List<Times> times;
+	public String id; 
+	public String type;
+	public Times times;
 	public String prof;
 	public String location;
 	
-	/*public Section(String name,List<Times> times, String prof, String location){
-		this.name = name;
-		this.prerec = prerec;
-		this.times = times;
+	public Section(String name, String id, String type, ArrayList<Class> prerec, String prof, Times times, String location) {
+		super(name, prerec);
+		this.type = type;
 		this.prof = prof;
+		this.times = times;
 		this.location = location;
-	}*/
+	}
+	
+	public Section(String name, String id, String type, String prof, Times times, String location) {
+		super(name);
+		this.type = type;
+		this.prof = prof;
+		this.times = times;
+		this.location = location;
+	}
+	
+	@Override
+	   public String toString() {
+	      return super.toString() + " Section " + id + " " + type + " " + times + " " + prof + " " + location;
+	   }
 
 }
