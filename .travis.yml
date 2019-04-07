@@ -16,5 +16,4 @@ jdk:
 
 
 script:
-- maven build
-- sonar-scanner
+ - mvn sonar:sonar
