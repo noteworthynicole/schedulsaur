@@ -1,0 +1,92 @@
+/* https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp thank u w3schools */
+
+.all {
+    /* TO USE: do var(--name_of_variable) */
+    --schedulsaur_green: #5ea181;
+    --light_grey: #ececec;
+    --middle_grey: #dddddd;
+    --dark_grey: #8b8b8b;
+    --major_class: #ffff99;
+    --support_class: #ffcc99;
+    --ge_class: #b3dfb3;
+}
+
+.top_zone {
+    height: 70px;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: var(--schedulsaur_green);
+    overflow-y: hidden;
+    padding-top: 20px;
+}
+
+.top_zone p {
+    padding: 0px 8px 35px 16px;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+}
+
+.sidebar {
+    height: 100%;
+    width: 190px;
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    background-color: var(--schedulsaur_green);
+    overflow-x: hidden;
+    padding-top: 105px; /* 70 + 35 */
+}
+
+.sidebar a {
+    /* top right bottom left */
+    padding: 0px 8px 35px 16px;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+}
+
+.button {
+    width: 190px;
+    height: 30px;
+    position: absolute;
+    border-style: solid;
+    border-width: 3px;
+    bottom: 30px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#button_left {
+    background-color: #fff;
+    border-color: var(--dark_grey);
+    right: 250px;
+}
+
+#button_left a {
+    color: #5ea181;
+    display: block;
+}
+
+#button_right {
+    background-color: var(--schedulsaur_green);
+    border-color: var(--schedulsaur_green);
+    right: 35px;
+}
+
+#button_right a {
+    color: #fff;
+    display: block;
+}
+
+.main {
+    margin-left: 190px;
+    margin-top: 100px;
+    padding: 0px 10px;
+    /* you can add css below this line */
+}
+
