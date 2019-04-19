@@ -2,4 +2,4 @@ As a student, I want to see how many units I will have to take each quarter to g
 
 As a fourth year, I want to see what classes I have left to graduate, so I can prioritize taking those classes.
 
-As a student planning what classes to take spring quarter, I want to see only the classes offered spring quarter, so I don’t plan to take a class that is not offered at the time.
+As a student planning what classes to take spring quarter, I want to see only the classes offered spring quarter, so I donâ€™t plan to take a class that is not offered at the time.
