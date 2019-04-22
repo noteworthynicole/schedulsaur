@@ -21,19 +21,18 @@ import java.util.*;
  * */
 
 public class Main {
-	@SuppressWarnings("serial")
 	public static void main(String[] args) throws FileNotFoundException{
 		parseParameters(args);
 		Scanner fileScanner = new Scanner(inputFile);
-		Hashtable<String, Section> hashTable = new Hashtable<>();
+		HashMap<String, Section> hashMap = new HashMap<>();
 		try {
 			while (fileScanner.hasNextLine()) {  
 				   String line = fileScanner.nextLine();
 				   String[] array = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
 				   Section currSection = createSection(array);
 				   String currKey = array[0].substring(0, 10);
-				   if(checkLab(hashTable, currSection)) {
-					   hashTable.put(currKey, currSection);
+				   if(checkLab(hashMap, currSection)) {
+					   hashMap.put(currKey, currSection);
 				   }
 				   //last class store as temp variable
 				}
@@ -42,8 +41,8 @@ public class Main {
 		}finally {
 			fileScanner.close();
 		}
-		System.out.println(hashTable);
-		System.out.println("main completed");
+		//System.out.println(hashMap);
+		//System.out.println("main completed");
 	}
 	
 	   private static File inputFile = null;
@@ -54,7 +53,7 @@ public class Main {
 	      { 
 	         if (inputFile != null)
 	         {
-	            System.err.println("too many files specified");
+	            System.out.println("too many files specified");
 	            System.exit(1);
 	         }
 	         else
@@ -83,14 +82,14 @@ public class Main {
 	   //adds to the hashtable if it is a lab section for the same lecture
 	   //Returns true if does not add, needing to add class as separate
 	   //Returns false if it adds, thus not needing to add the class again
-	   private static boolean checkLab(Hashtable<String, Section> hashTable, Section currSection) {
+	   private static boolean checkLab(HashMap<String, Section> hashMap, Section currSection) {
 		   if (currSection.type.equals("Lab")) {
 			   //This grabs the prefix of the class if a lab, goes back one section to attach to lec version
 			   String lecKey = currSection.name.substring(0,8) + 
 					   String.format("%02d", (Integer.valueOf(currSection.name.substring(8)) - 1));
 			   //Here is where the lab is added to where the lecture section 
-			   if(hashTable.containsKey(lecKey)) {
-				   Section currList = hashTable.get(lecKey);
+			   if(hashMap.containsKey(lecKey)) {
+				   Section currList = hashMap.get(lecKey);
 				   currList.addClass(currSection);
 			   }
 			   return false;

@@ -6,7 +6,8 @@ public final class Section extends Class{
 	public String id; 
 	public String type;
 	public Section lab;
-	public List<Times> times;
+	private List<Times> times;
+	public List<Class> prerec;
 	public String prof;
 	public String location;
 	
@@ -15,7 +16,8 @@ public final class Section extends Class{
 		this.id = id;
 		this.type = type;
 		this.prof = prof;
-		this.times = new ArrayList<Times>();
+		this.prerec = prerec;
+		this.times = new ArrayList<>();
 		this.times.add(times);
 		this.location = location;
 	}
@@ -25,7 +27,8 @@ public final class Section extends Class{
 		this.id = id;
 		this.type = type;
 		this.prof = prof;
-		this.times = new ArrayList<Times>();
+		this.prerec = new ArrayList<>();
+		this.times = new ArrayList<>();
 		this.times.add(times);
 		this.location = location;
 	}

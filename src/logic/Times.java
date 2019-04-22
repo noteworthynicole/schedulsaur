@@ -11,14 +11,14 @@ public class Times {
 	public Times(String day, String startTime, String endTime) {
 		if(!startTime.contains("N/A")) {
 			this.startTime = LocalTime.parse(startTime.substring(0, 5));
-			if(startTime.contains("PM") && !(this.startTime.getHour() == 12)) {
+			if(startTime.contains("PM") && this.startTime.getHour() != 12) {
 				this.startTime = this.startTime.plusHours(12);
 			}
 			this.endTime = LocalTime.parse(endTime.substring(0, 5));
-			if(endTime.contains("PM") && !(this.endTime.getHour() == 12)) {
+			if(endTime.contains("PM") && this.endTime.getHour() != 12) {
 				this.endTime = this.endTime.plusHours(12);
 			}
-			System.out.println(startTime + " -> " + this.startTime + " and " + endTime + " -> " + this.endTime);
+			//System.out.println(startTime + " -> " + this.startTime + " and " + endTime + " -> " + this.endTime);
 		}
 		this.day = day;
 	}

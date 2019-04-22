@@ -52,7 +52,7 @@ public class TestTimes {
 	
 	@Test
 	public void testTimesNotOverlapDays() {
-		Times time1 = new Times("TR", "08:10 AM", "11:00 PM");
+		Times time1 = new Times("TR", "10:10 AM", "11:00 PM");
 		Times time2 = new Times("MWF", "09:10 AM", "10:00 PM");
 		assertFalse(time1.overlap(time2));
 	}

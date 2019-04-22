@@ -9,21 +9,21 @@ import logic.Class;
 
 public class TestClass {
 
+	private String csc309 = "CSC-309-01";
+	
 	@Test
 	public void testClassStringNoPreReq() {
-		String name = "CSC-309-01";
-		Class testClass = new Class("CSC-309-01");
-		assertTrue(testClass.toString().contains(name));
+		Class testClass = new Class(csc309);
+		assertTrue(testClass.toString().contains(csc309));
 	}
 	
 	@Test
 	public void testClassStringWithPreReq() {
-		String name = "CSC-309-01";
 		String name2 = "CSC-308-01";
-		ArrayList<Class> prerec = new ArrayList<Class>();
+		ArrayList<Class> prerec = new ArrayList<>();
 		prerec.add(new Class(name2));
-		Class testClass = new Class("CSC-309-01", prerec);
-		assertTrue(testClass.toString().contains(name) && testClass.toString().contains(name2));
+		Class testClass = new Class(csc309, prerec);
+		assertTrue(testClass.toString().contains(csc309) && testClass.toString().contains(name2));
 	}
 	
 }
