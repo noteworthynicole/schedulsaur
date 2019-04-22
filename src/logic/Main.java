@@ -1,6 +1,7 @@
 package logic;
 import java.io.*;
 import java.util.*;
+import java.util.logging.*;
 
 /*
  * General:
@@ -22,6 +23,7 @@ import java.util.*;
 
 public class Main {
 	public static void main(String[] args) throws FileNotFoundException{
+		Logger logger = Logger.getLogger("Main");
 		parseParameters(args);
 		Scanner fileScanner = new Scanner(inputFile);
 		HashMap<String, Section> hashMap = new HashMap<>();
@@ -37,23 +39,24 @@ public class Main {
 				   //last class store as temp variable
 				}
 		}catch(Exception e) {
-			System.err.println(e);
+			logger.log(Level.WARNING, e.toString());
 		}finally {
 			fileScanner.close();
 		}
-		//System.out.println(hashMap);
-		//System.out.println("main completed");
+		logger.log(Level.INFO, hashMap.toString());
+		logger.log(Level.INFO, "main completed");
 	}
 	
 	   private static File inputFile = null;
 
 	   private static void parseParameters(String [] args)
 	   {
+		  Logger logger = Logger.getLogger("param");
 	      for (int i = 0; i < args.length; i++)
 	      { 
 	         if (inputFile != null)
 	         {
-	            System.out.println("too many files specified");
+	        	 logger.log(Level.WARNING, "too many files specified");
 	            System.exit(1);
 	         }
 	         else

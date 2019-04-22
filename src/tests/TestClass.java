@@ -22,8 +22,10 @@ public class TestClass {
 		String name2 = "CSC-308-01";
 		ArrayList<Class> prerec = new ArrayList<>();
 		prerec.add(new Class(name2));
+		prerec.add(new Class(name2));
 		Class testClass = new Class(csc309, prerec);
 		assertTrue(testClass.toString().contains(csc309) && testClass.toString().contains(name2));
 	}
+
 	
 }

@@ -8,6 +8,12 @@ import org.junit.Test;
 import logic.Times;
 
 public class TestTimes {
+	
+	@Test
+	public void testTimesToString() {
+		Times myTime = new Times("TH", "07:10 PM", "09:00 PM");
+		assertTrue(myTime.toString().contains("19"));
+	}
 
 	@Test
 	public void testTimesMorning() {
@@ -19,7 +25,7 @@ public class TestTimes {
 	@Test
 	public void testTimesAfter() {
 		Times myTime = new Times("TR", "04:10 PM", "05:00 PM");
-		LocalTime expTime = LocalTime.of(4, 10);
+		LocalTime expTime = LocalTime.of(4 + 12, 10);
 		assertEquals(expTime, myTime.startTime);
 	}
 	
@@ -33,7 +39,7 @@ public class TestTimes {
 	@Test
 	public void testTimesNoonEnd() {
 		Times myTime = new Times("TR", "11:10 AM", "12:00 PM");
-		LocalTime expTime = LocalTime.of(12, 10);
+		LocalTime expTime = LocalTime.of(12, 00);
 		assertEquals(expTime, myTime.endTime);
 	}
 	

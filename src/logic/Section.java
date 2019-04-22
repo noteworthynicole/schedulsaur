@@ -7,11 +7,11 @@ public final class Section extends Class{
 	public String type;
 	public Section lab;
 	private List<Times> times;
-	public List<Class> prerec;
+	private List<Class> prerec;
 	public String prof;
 	public String location;
 	
-	public Section(String name, String id, String type, ArrayList<Class> prerec, String prof, Times times, String location) {
+	public Section(String name, String id, String type, List<Class> prerec, String prof, Times times, String location) {
 		super(name);
 		this.id = id;
 		this.type = type;
@@ -31,6 +31,10 @@ public final class Section extends Class{
 		this.times = new ArrayList<>();
 		this.times.add(times);
 		this.location = location;
+	}
+	
+	public List<Class> getPrerec(){
+		return prerec;
 	}
 	
 	@Override
