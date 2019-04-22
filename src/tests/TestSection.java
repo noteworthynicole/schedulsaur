@@ -34,7 +34,7 @@ public class TestSection {
 	@Test
 	public void testSecionAddClass() {
 		sec1.addClass(sec2);
-		assertEquals(sec1.lab, sec2);
+		assertEquals(sec1.getLab(), sec2);
 	}
 	
 }

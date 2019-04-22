@@ -3,8 +3,8 @@ import java.util.*;
 
 public class Class {
 
-	public String name;
-	public List<Class> prerec;
+	private String name;
+	private List<Class> prerec;
 	
 	public Class(String name, List<Class> prerec2){
 		this.name = name;
@@ -15,6 +15,11 @@ public class Class {
 		this.name = name;
 		this.prerec = new ArrayList<>();
 	}
+	
+	public String getName() {
+		return name;
+	}
+	
 	@Override
 	   public String toString() {
 		if(!prerec.isEmpty()) {

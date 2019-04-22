@@ -86,10 +86,10 @@ public class Main {
 	   //Returns true if does not add, needing to add class as separate
 	   //Returns false if it adds, thus not needing to add the class again
 	   private static boolean checkLab(HashMap<String, Section> hashMap, Section currSection) {
-		   if (currSection.type.equals("Lab")) {
+		   if (currSection.getType().equals("Lab")) {
 			   //This grabs the prefix of the class if a lab, goes back one section to attach to lec version
-			   String lecKey = currSection.name.substring(0,8) + 
-					   String.format("%02d", (Integer.valueOf(currSection.name.substring(8)) - 1));
+			   String lecKey = currSection.getName().substring(0,8) + 
+					   String.format("%02d", (Integer.valueOf(currSection.getName().substring(8)) - 1));
 			   //Here is where the lab is added to where the lecture section 
 			   if(hashMap.containsKey(lecKey)) {
 				   Section currList = hashMap.get(lecKey);

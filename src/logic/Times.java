@@ -4,9 +4,9 @@ import java.time.LocalTime;
 
 public class Times {
 
-	public LocalTime startTime;
-	public LocalTime endTime;
-	public String day;
+	private LocalTime startTime;
+	private LocalTime endTime;
+	private String day;
 	
 	public Times(String day, String startTime, String endTime) {
 		if(!startTime.contains("N/A")) {
@@ -20,6 +20,14 @@ public class Times {
 			}
 		}
 		this.day = day;
+	}
+	
+	public LocalTime getStartTime() {
+		return startTime;
+	}
+	
+	public LocalTime getEndTime() {
+		return endTime;
 	}
 	
 	@Override

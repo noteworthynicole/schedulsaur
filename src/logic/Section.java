@@ -3,13 +3,13 @@ import java.util.*;
 
 public final class Section extends Class{
 	
-	public String id; 
-	public String type;
-	public Section lab;
+	private String id; 
+	private String type;
+	private Section lab;
 	private List<Times> times;
 	private List<Class> prerec;
-	public String prof;
-	public String location;
+	private String prof;
+	private String location;
 	
 	public Section(String name, String id, String type, List<Class> prerec, String prof, Times times, String location) {
 		super(name);
@@ -35,6 +35,14 @@ public final class Section extends Class{
 	
 	public List<Class> getPrerec(){
 		return prerec;
+	}
+	
+	public Section getLab() {
+		return lab;
+	}
+	
+	public String getType() {
+		return type;
 	}
 	
 	@Override
