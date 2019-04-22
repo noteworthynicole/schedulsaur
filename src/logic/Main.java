@@ -43,7 +43,6 @@ public class Main {
 		}finally {
 			fileScanner.close();
 		}
-		logger.log(Level.INFO, hashMap.toString());
 		logger.log(Level.INFO, "main completed");
 	}
 	

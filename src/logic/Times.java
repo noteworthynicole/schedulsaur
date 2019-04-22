@@ -40,14 +40,12 @@ public class Times {
 			//Compare to returns negative is less, positive if greater
 			//if endtime of this is before the starttime of the other or vice versa they don't overlap
 			//FIX THIS!!
-			if(other.startTime.compareTo(this.endTime) < 1 || this.startTime.compareTo(other.endTime) < 1) {
-				return true;
-			}
-			//need a better way to extract the time ... function to convert the string to an 24hr int?
-			//if this.start is equal to other.start or this.end is equal to other.end -> true
-			//if this.end is before other.start or other.end is before this.start -> false (double check this)
-			return false;
+			return (other.startTime.compareTo(this.endTime) < 1 && other.endTime.compareTo(this.endTime) < 1)
+					|| (this.startTime.compareTo(other.endTime) < 1 && this.endTime.compareTo(other.endTime) < 1);
 		}
+		//need a better way to extract the time ... function to convert the string to an 24hr int?
+		//if this.start is equal to other.start or this.end is equal to other.end -> true
+		//if this.end is before other.start or other.end is before this.start -> false (double check this)
 		return false;
 	}
 }

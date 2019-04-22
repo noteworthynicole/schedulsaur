@@ -4,9 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.*;
 
-import logic.Class;
 import logic.Section;
-import logic.Times;
 
 import org.junit.Test;
 
