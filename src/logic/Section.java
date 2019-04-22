@@ -1,17 +1,18 @@
 package logic;
 import java.util.*;
 
-public class Section extends Class{
+public final class Section extends Class{
 	
 	public String id; 
 	public String type;
-	public Class lab;
+	public Section lab;
 	public List<Times> times;
 	public String prof;
 	public String location;
 	
 	public Section(String name, String id, String type, ArrayList<Class> prerec, String prof, Times times, String location) {
-		super(name, prerec);
+		super(name);
+		this.id = id;
 		this.type = type;
 		this.prof = prof;
 		this.times = new ArrayList<Times>();
@@ -21,6 +22,7 @@ public class Section extends Class{
 	
 	public Section(String name, String id, String type, String prof, Times times, String location) {
 		super(name);
+		this.id = id;
 		this.type = type;
 		this.prof = prof;
 		this.times = new ArrayList<Times>();
@@ -30,7 +32,11 @@ public class Section extends Class{
 	
 	@Override
 	   public String toString() {
+		if(lab == null) {
 	      return super.toString() + " Section " + id + " " + type + " " + times + " " + prof + " " + location;
+		} else {
+			return super.toString() + " Section " + id + " " + type + " " + times + " " + prof + " " + location + ", Lab " + lab.toString(); 
+		}
 	   }
 	
 	public void addClass(Section lab) {
