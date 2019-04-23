@@ -9,6 +9,9 @@ import logic.Times;
 
 public class TestTimes {
 	
+	private Times time1 = new Times("TR", "08:10 AM", "11:00 AM");
+	private Times time2 = new Times("TR", "09:10 AM", "10:00 PM");
+	
 	@Test
 	public void testTimesToString() {
 		Times myTime = new Times("TH", "07:10 PM", "09:00 PM");
@@ -51,23 +54,19 @@ public class TestTimes {
 	
 	@Test
 	public void testTimesOverlapDays() {
-		Times time1 = new Times("TR", "08:10 AM", "11:00 PM");
-		Times time2 = new Times("TR", "09:10 AM", "10:00 PM");
 		assertTrue(time1.overlap(time2));
 	}
 	
 	@Test
 	public void testTimesOverlapDays2() {
-		Times time1 = new Times("TR", "08:40 AM", "11:00 PM");
-		Times time2 = new Times("TR", "09:10 AM", "10:00 PM");
 		assertTrue(time2.overlap(time1));
 	}
 	
 	@Test
 	public void testTimesNotOverlapDays() {
-		Times time1 = new Times("TR", "10:10 AM", "11:00 PM");
-		Times time2 = new Times("MWF", "09:10 AM", "10:00 PM");
-		assertFalse(time1.overlap(time2));
+		Times mytime1 = new Times("TR", "10:10 AM", "11:00 PM");
+		Times mytime2 = new Times("MWF", "09:10 AM", "10:00 PM");
+		assertFalse(mytime1.overlap(mytime2));
 	}
 	
 }
