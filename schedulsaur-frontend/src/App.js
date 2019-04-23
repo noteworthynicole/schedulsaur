@@ -5,21 +5,21 @@ class App extends Component {
   render() {
     return (
       <div class="all">
-          <div class="top_zone">
-            <p> Schedulsaur </p>
+          <div class="header">
+            <div class="logo"> Schedulsaur </div>
           </div>
-          <div class="bot_zone">
+          <div class="app-body">
               <div class="sidebar">
                 {/* Yes, I will make this pretty later. Don't worry about it */}
-                <a href="#">Dashboard</a>
-                <a href="#">Course History</a>
-                <a href="#">Time Availability</a>
-                <a href="#">Desired Courses</a>
-                <a href="#">Create Schedules</a>
-                <a href="#">Saved Schedules</a>
-                <a href="#">Help</a>
-                <a href="#">About</a>
-                <a href="#">Log Out</a>
+                <button class="dashboard-button" key="1">Dashboard</button>
+                <button class="sidebar-button" key="2">Course History</button>
+                <button class="sidebar-button" key="3">Time Availability</button>
+                <button class="sidebar-button" key="4">Desired Courses</button>
+                <button class="sidebar-button" key="5">Create Schedules</button>
+                <button class="sidebar-button" key="6">Saved Schedules</button>
+                <button class="sidebar-button" key="7">Help</button>
+                <button class="sidebar-button" key="8">About</button>
+                <button class="sidebar-button" kay="9">Log Out</button>
               </div>
               <div class="main">
                 {/* PLEASE ONLY PUT STUFF IN THIS DIV (WITH CLASS "main")

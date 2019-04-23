@@ -9,10 +9,13 @@
     --major_class: #ffff99;
     --support_class: #ffcc99;
     --ge_class: #b3dfb3;
+    width: 100%;
+    height: 100%;
+
 }
 
-.top_zone {
-    height: 70px;
+.header {
+    height: 90px;
     width: 100%;
     position: fixed;
     z-index: 1;
@@ -20,14 +23,37 @@
     left: 0;
     background-color: var(--schedulsaur_green);
     overflow-y: hidden;
-    padding-top: 20px;
 }
 
-.top_zone p {
+/*
+I think  using a div will work better for logo text styles
+
+.header p {
     padding: 0px 8px 35px 16px;
+    // text-decoration to be updated at some point? 
     text-decoration: none;
     color: #fff;
     display: block;
+} */
+
+.logo {
+    position: absolute;
+    height: 70px;
+    margin-left: 20px;
+    padding-top: 15px;
+    color: white;
+    font-size: 55px;
+    font-weight: 420;
+
+}
+
+.app-body {
+    position: relative;
+    top: 73px;
+    height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: row;
+    
 }
 
 .sidebar {
@@ -39,7 +65,55 @@
     left: 0;
     background-color: var(--schedulsaur_green);
     overflow-x: hidden;
-    padding-top: 105px; /* 70 + 35 */
+    padding-top: 90px; /* 70 + 35 */
+
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-button {
+    outline: none;
+    cursor: pointer;
+    height: 30px;
+    background-color: var(--schedulsaur_green);
+    border: none;
+    border-top-width: 50%;
+    margin-bottom: 20px;
+    color: white;
+    font-size: 15px;
+
+
+}
+
+.dashboard-button:before{    content : "";
+    display: block;
+    margin: 0 auto;
+    height: 18px;
+    width: 80%;  /* or 100px */
+    border-top:1px solid white;
+} 
+
+.dashboard-button:after{   
+    content : "";
+    display: block;
+    margin: 0 auto;
+    height: 18px;
+    width: 80%;  /* or 100px */
+    border-bottom:1px solid white;
+} 
+
+.sidebar-button {
+    outline: none;
+    cursor: pointer;
+    height: 30px;
+    background-color: var(--schedulsaur_green);
+    border: none;
+    border-top-width: 50%;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    color: white;
+    font-size: 15px;
+    font-weight: 530;
 }
 
 .sidebar a {
@@ -85,8 +159,8 @@
 
 .main {
     margin-left: 190px;
-    margin-top: 100px;
+    margin-top: 17px;
+    width: 100%;
     padding: 0px 10px;
-    /* you can add css below this line */
-}
+} 
 
