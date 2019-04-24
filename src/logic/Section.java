@@ -45,6 +45,10 @@ public final class Section extends Class{
 		return type;
 	}
 	
+	public List<Times> getTimes(){
+		return times;
+	}
+	
 	@Override
 	   public String toString() {
 		if(lab == null) {

@@ -26,15 +26,15 @@ public class Main {
 		Logger logger = Logger.getLogger("Main");
 		parseParameters(args);
 		Scanner fileScanner = new Scanner(inputFile);
-		HashMap<String, Section> hashMap = new HashMap<>();
+		HashMap<String, Section> hashMapInit = new HashMap<>();
 		try {
 			while (fileScanner.hasNextLine()) {  
 				   String line = fileScanner.nextLine();
 				   String[] array = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
 				   Section currSection = createSection(array);
 				   String currKey = array[0].substring(0, 10);
-				   if(checkLab(hashMap, currSection)) {
-					   hashMap.put(currKey, currSection);
+				   if(checkLab(hashMapInit, currSection)) {
+					   hashMapInit.put(currKey, currSection);
 				   }
 				   //last class store as temp variable
 				}
@@ -43,6 +43,30 @@ public class Main {
 		}finally {
 			fileScanner.close();
 		}
+		HashMap<List<Times>, List<Section>> hashMapTime = new HashMap<>();
+		for(String key : hashMapInit.keySet()) {
+			Section currSection = hashMapInit.get(key);
+			//Check to not add classes with nonexistent times
+			if(!currSection.getTimes().get(0).getDay().contains("N/A")) {
+				//The line below never evaluates to true, even though I am feeding in multiple times that should be the same
+				if(hashMapTime.containsKey(currSection.getTimes())) {
+					//add the section to the section list
+					List<Section> currList = hashMapTime.get(currSection.getTimes());
+					currList.add(currSection);
+					System.out.println("added to time");
+				}else {
+					//add the time as a new value 
+					//System.out.println(currSection.getName() + " " + currSection.getTimes());
+					List<Section> currValue = new ArrayList<>();
+					currValue.add(currSection);
+					hashMapTime.put(currSection.getTimes(), currValue);
+				}
+				System.out.println(currSection.getTimes());
+			}
+		}
+		logger.log(Level.INFO, hashMapInit.toString());
+		logger.log(Level.INFO, hashMapTime.toString());
+		System.out.println(hashMapTime.keySet().toString());
 		logger.log(Level.INFO, "main completed");
 	}
 	

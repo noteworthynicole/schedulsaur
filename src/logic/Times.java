@@ -22,6 +22,10 @@ public class Times {
 		this.day = day;
 	}
 	
+	public String getDay() {
+		return day;
+	}
+	
 	public LocalTime getStartTime() {
 		return startTime;
 	}
@@ -32,8 +36,15 @@ public class Times {
 	
 	@Override
 	   public String toString() {
-	      return "Time " + day + " " + startTime + " " + endTime + ")";
+	      return "(Time " + day + " " + startTime + " " + endTime + ")";
 	   }
+
+	@Override
+	public boolean equals(Object other) {
+		return other instanceof Times && this.day.equals(((Times) other).getDay()) 
+				&& this.startTime.equals(((Times) other).getStartTime()) 
+				&& this.endTime.equals(((Times) other).getEndTime());
+	}
 	
 	public boolean overlap(Times other) {
 		if(this.day.contains(other.day) || other.day.contains(this.day)) {

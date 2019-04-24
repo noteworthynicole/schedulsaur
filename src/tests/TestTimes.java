@@ -3,6 +3,7 @@ package tests;
 import static org.junit.Assert.*;
 
 import java.time.LocalTime;
+import java.util.*;
 
 import org.junit.Test;
 import logic.Times;
@@ -67,6 +68,28 @@ public class TestTimes {
 		Times mytime1 = new Times("TR", "10:10 AM", "11:00 PM");
 		Times mytime2 = new Times("MWF", "09:10 AM", "10:00 PM");
 		assertFalse(mytime1.overlap(mytime2));
+	}
+	
+	@Test
+	public void testListTimes() {
+		List<Times> list1 = new ArrayList<>();
+		List<Times> list2 = new ArrayList<>();
+		list1.add(time1);
+		list1.add(time2);
+		list2.add(time1);
+		list2.add(time2);
+		assertEquals(list1, list2);
+	}
+	
+	@Test
+	public void testListTimesNull() {
+		List<Times> list1 = new ArrayList<>();
+		List<Times> list2 = new ArrayList<>();
+		list1.add(time1);
+		list1.add(time2);
+		list2.add(time1);
+		list2.add(time2);
+		assertEquals(list1, list2);
 	}
 	
 }
