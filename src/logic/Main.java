@@ -43,11 +43,11 @@ public class Main {
 		}finally {
 			fileScanner.close();
 		}
-		HashMap<List<Times>, List<Section>> hashMapTime = new HashMap<>();
+		HashMap<DoubleTimes, List<Section>> hashMapTime = new HashMap<>();
 		for(String key : hashMapInit.keySet()) {
 			Section currSection = hashMapInit.get(key);
 			//Check to not add classes with nonexistent times
-			if(!currSection.getTimes().get(0).getDay().contains("N/A")) {
+			if(!currSection.getTimes().getLecDay().contains("N/A")) {
 				//The line below never evaluates to true, even though I am feeding in multiple times that should be the same
 				if(hashMapTime.containsKey(currSection.getTimes())) {
 					//add the section to the section list
@@ -56,12 +56,11 @@ public class Main {
 					System.out.println("added to time");
 				}else {
 					//add the time as a new value 
-					//System.out.println(currSection.getName() + " " + currSection.getTimes());
+					System.out.println(currSection.getName() + " " + currSection.getTimes());
 					List<Section> currValue = new ArrayList<>();
 					currValue.add(currSection);
 					hashMapTime.put(currSection.getTimes(), currValue);
 				}
-				System.out.println(currSection.getTimes());
 			}
 		}
 		logger.log(Level.INFO, hashMapInit.toString());
@@ -99,7 +98,7 @@ public class Main {
 		   //3 - prof name
 		   String prof = line[3];
 		   //4 - day of the week, 5 - start time, 6 - end time
-		   Times time = new Times(line[4], line[5], line[6]); 
+		   DoubleTimes time = new DoubleTimes(line[4], line[5], line[6]); 
 		   //5 - location
 		   String location = line[7];
 		   return new Section(className, id, type, prof, time, location);

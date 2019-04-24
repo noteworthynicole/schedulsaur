@@ -22,6 +22,12 @@ public class Times {
 		this.day = day;
 	}
 	
+	public Times(String day, LocalTime startTime, LocalTime endTime) {
+		this.day = day;
+		this.startTime = startTime;
+		this.endTime = endTime;
+	}
+	
 	public String getDay() {
 		return day;
 	}
