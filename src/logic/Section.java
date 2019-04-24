@@ -44,7 +44,10 @@ public final class Section extends Class{
 	}
 	
 	public Times getLecTimes(){
-		return new Times(times.getLecDay(), times.getLecStartTime(), times.getLecEndTime());
+		if(times != null) {
+			return times.getLecTimes();
+		}
+		return null;
 	}
 	
 	public DoubleTimes getTimes() {
@@ -58,11 +61,17 @@ public final class Section extends Class{
 		} else {
 			return super.toString() + " Section " + id + " " + type + " " + times + " " + prof + " " + location + ", Lab " + lab.toString(); 
 		}
+		/*if(lab == null) {
+			 return "Section " + type + " " + id;
+		}
+		return "Section " + type + " " + id + " " + lab;*/
 	   }
 	
 	public void addClass(Section lab) {
 		this.lab = lab;
-		times.setLabTime(lab.getLecTimes());
+		if(times != null) {
+			times.setLabTime(lab.getLecTimes());
+		}
 	}
 
 }

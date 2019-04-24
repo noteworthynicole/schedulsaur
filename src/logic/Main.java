@@ -43,6 +43,7 @@ public class Main {
 		}finally {
 			fileScanner.close();
 		}
+		
 		HashMap<DoubleTimes, List<Section>> hashMapTime = new HashMap<>();
 		for(String key : hashMapInit.keySet()) {
 			Section currSection = hashMapInit.get(key);
@@ -53,10 +54,8 @@ public class Main {
 					//add the section to the section list
 					List<Section> currList = hashMapTime.get(currSection.getTimes());
 					currList.add(currSection);
-					System.out.println("added to time");
 				}else {
 					//add the time as a new value 
-					System.out.println(currSection.getName() + " " + currSection.getTimes());
 					List<Section> currValue = new ArrayList<>();
 					currValue.add(currSection);
 					hashMapTime.put(currSection.getTimes(), currValue);
@@ -65,7 +64,6 @@ public class Main {
 		}
 		logger.log(Level.INFO, hashMapInit.toString());
 		logger.log(Level.INFO, hashMapTime.toString());
-		System.out.println(hashMapTime.keySet().toString());
 		logger.log(Level.INFO, "main completed");
 	}
 	

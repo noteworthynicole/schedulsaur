@@ -52,6 +52,19 @@ public class Times {
 				&& this.endTime.equals(((Times) other).getEndTime());
 	}
 	
+	@Override
+	public int hashCode() {
+        int result = 31;
+        result = result * day.hashCode();
+        if(startTime != null) {
+        	result = result * (startTime.getHour() + startTime.getMinute());
+        }
+        if(endTime != null) {
+        	result = result * (endTime.getHour() + endTime.getMinute());
+        }
+        return result;
+	}
+	
 	public boolean overlap(Times other) {
 		if(this.day.contains(other.day) || other.day.contains(this.day)) {
 			//Compare to returns negative is less, positive if greater
