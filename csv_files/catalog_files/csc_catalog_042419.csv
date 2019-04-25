@@ -1,0 +1,112 @@
+CSC 101,Fundamentals of Computer Science,4 units,Graded,"F, W, SP",Appropriate Math Placement Level; or MATH 117 with a grade of C- or better; or MATH 118 with a grade of C- or better; or consent of instructor
+CSC 105,Fundamentals of Computer Science I Supplemental Instruction,1 unit,CR/NC,TBDConcurrent: CPE/CSC 101.,
+CSC 108,Accelerated Introduction to Computer Science,4 units,Graded,TBD,"MATH 118 (or equivalent) with a grade of C- or better, significant experience in computer programming, and consent of instructor"
+CSC 123,Introduction to Computing,4 units,Graded,F,Basic computer literacy
+CSC 171,Introduction to Interactive Entertainment,4 units,Graded,TBD,
+CSC 200,Special Problems for Undergraduates,1-2 units,Graded,"F, W, SP",Consent of instructor
+CSC 202,Data Structures,4 units,Graded,"F, W, SP",CPE/CSC 101 with a grade of C- or better; MATH 141 or MATH 221 with a grade of C- or better; or consent of instructor
+CSC 203,Project-Based Object-Oriented Programming and Design,4 units,Graded,"F, W, SP",CPE/CSC 202 with a grade of C- or better or consent of instructor
+CSC 209,Problem Solving with Computers,1 unit,CR/NC,TBD,"CSC/CPE 101 or CSC/CPE 108 with a grade of C- or better, or consent of instructor"
+CSC 225,Introduction to Computer Organization,4 units,Graded,"F, W, SP",CSC/CPE 202
+CSC 231,Programming for Engineering Students,2 units,Graded,"F, W, SP",MATH 142; PHYS 121 or PHYS 131 or PHYS 141
+CSC 232,Computer Programming for Scientists and Engineers,3 units,Graded,"F, W",MATH 118 or equivalent
+CSC 234,C and Unix,3 units,Graded,W,MATH 142
+CSC 235,Fundamentals of Computer Science for Scientists and Engineers I,4 units,Graded,TBD,"MATH 141 or MATH 161 with a grade of C- or better, or consent of instructor"
+CSC 236,Fundamentals of Computer Science for Scientists and Engineers II,4 units,Graded,TBD,"CSC 235 with a grade of C- or better, or consent of instructor"
+CSC 290,Selected Topics,1-4 units,Graded,TBD,Open to undergraduate students and consent of instructor
+CSC 300,Professional Responsibilities,4 units,Graded,"F, W, SP",CSC/CPE 357 and junior standing
+CSC 301,Personal Software Process,4 units,Graded,TBD,"CSC/CPE 102 and CSC/CPE 103, or CSC/CPE 202 and CSC/CPE 203"
+CSC 302,Computers and Society,4 units,Graded,F,"Junior standing; completion of GE Area A with grades of C- or better; completion of GE Area B1 with a grade of C- or better in at least one of the courses; and completion of GE Areas B2, B3, and B4"
+CSC 303,Teaching Computer Science,2 units,Graded,TBD,"CSC/CPE 102 and CSC/CPE 103, with a grade of C- or better or consent of instructor, or CSC/CPE 202 and CSC/CPE 203, with a grade of C- or better or consent of instructor"
+CSC 305,Individual Software Design and Development,4 units,Graded,W,CSC/CPE 357
+CSC 307,Introduction to Software Engineering,4 units,Graded,"F, SP",CSC 141 or CSC 348; and CPE/CSC 357
+CSC 308,Software Engineering I,4 units,Graded,"F, W",CSC 141 or CSC 348
+CSC 309,Software Engineering II,4 units,Graded,"W, SP",CSC 308 and CSC/CPE 357
+CSC 310,Computers for Poets,4 units,Graded,TBD,"Junior standing; completion of GE Area A with grades of C- or better; completion of GE Area B1 with a grade of C- or better in at least one of the courses; and completion of GE Areas B2, B3, and B4"
+CSC 311,Computational Art,4 units,Graded,TBD,"Junior standing; completion of GE Area A with grades of C- or better; completion of GE Area B1 with a grade of C- or better in at least one of the courses; and completion of GE Areas B2, B3, and B4"
+CSC 313,Teaching Computing,4 units,Graded,SP,CPE/CSC 202
+CSC 320,Practical Computer Security for Everyone,4 units,Graded,TBD,"Junior standing; completion of GE Area A with grades of C- or better; completion of GE Area B1 with a grade of C- or better in at least one of the courses; and completion of GE Areas B2, B3, and B4"
+CSC 321,Introduction to Computer Security,4 units,Graded,TBD,CPE/CSC 357
+CSC 323,Cryptography Engineering,4 units,Graded,W,CPE/CSC 357
+CSC 325,Introduction to Privacy: Policy and Technology,4 units,Graded,W,CSC 300
+CSC 344,Music Programming,4 units,Graded,TBD,CSC 141 or CSC 348; and CPE/CSC 357
+CSC 348,Discrete Structures,4 units,Graded,"F, W, SP","CSC/CPE 102 and CSC/CPE 103, with a grade of C- or better or consent of instructor, or CSC/CPE 202 and CSC/CPE 203, with a grade of C- or better or consent of instructor"
+CSC 349,Design and  Analysis of Algorithms,4 units,Graded,"F, SP",CSC 141 and MATH 142; or CSC 348 and MATH 142; or CPE/CSC 102 and CPE/ CSC 103 and MATH 248; or CPE/CSC 202 and CPE/ CSC 203 and MATH 248
+CSC 350,Computing for Interactive Arts Capstone I,2 units,Graded,TBD,ART 384; CSC/CPE 103 or CSC/CPE 202; and junior standing
+CSC 357,Systems Programming,4 units,Graded,"F, W, SP","CSC/CPE 102 and CSC/CPE 103 with a grade of C- or better or consent of instructor, or CSC/CPE 202 and CSC/CPE 203 with a grade of C- or better or consent of instructor; and CSC 225 or CPE/EE 229 or CPE/EE 233"
+CSC 365,Introduction to Database Systems,4 units,Graded,"F, W, SP",CSC 141; or CSC 348; or CPE/CSC 102 and CPE/CSC 103 and MATH 248; or CPE/CSC 202 and CPE/CSC 203 and MATH 248
+CSC 366,"Database Modeling, Design and Implementation",4 units,Graded,SP,CSC 365
+CSC 369,Introduction to Distributed Computing,4 units,Graded,"F, W","CSC/CPE 102 and CSC/CPE 103, or CSC/CPE 202 and CSC/CPE 203; and one of the following: STAT 301, STAT 312, STAT 321 or STAT 350"
+CSC 371,Game Design,4 units,Graded,"W, SP",CSC/CPE 102 and CSC/CPE 103; or CSC/CPE 202 and junior standing
+CSC 377,Introduction to Mixed Reality,4 units,Graded,SP,CPE/CSC 202
+CSC 378,Interactive Entertainment Engineering,4 units,Graded,W,"CPE/CSC 102 and CPE/CSC 103, or CPE/CSC 202 and junior standing"
+CSC 400,Special Problems,1-4 units,Graded,"F, W, SP",Consent of instructor
+CSC 402,Software Requirements Engineering,4 units,Graded,F,CSC 307 or CSC 309
+CSC 405,Software Construction,4 units,Graded,W,CSC 305 and CSC 402
+CSC 406,Senior Project - Software Deployment,4 units,Graded,SP,CSC 405
+CSC 409,Current Topics in Software Engineering,4 units,Graded,TBD,CSC 307 or CSC 309
+CSC 410,Software Evaluation,4 units,Graded,TBD,"CSC 349; STAT 301, STAT 312, STAT 321 or STAT 350"
+CSC 422,Network and Web Security,4 units,Graded,W,CPE 464
+CSC 424,Software Security,4 units,Graded,W,CPE/CSC 307 or CPE/CSC 309; CPE/CSC 321
+CSC 429,Current Topics in Computer Security,4 units,Graded,TBD,CPE/CSC 321 and CPE/CSC 357
+CSC 430,Programming Languages,4 units,Graded,"F, W, SP",CSC 349 and CSC/CPE 357
+CSC 431,Compiler Construction,4 units,Graded,SP,CSC 430
+CSC 435,Introduction to Object Oriented Design Using Graphical User Interfaces,4 units,Graded,TBD,CSC 305
+CSC 436,Mobile Application Development,4 units,Graded,"F, W, SP",CSC/CPE 357
+CSC 437,Dynamic Web Development,4 units,Graded,SP,CPE/CSC 357 with a grade of C- or better and CSC 365 with a grade of C- or better; or consent of instructor
+CSC 445,Theory of Computation I,4 units,Graded,"F, W, SP",CSC 141 or CSC 348
+CSC 448,Bioinformatics Algorithms,4 units,Graded,F,CSC 349
+CSC 450,Computing for Interactive Arts Capstone II,2 units,Graded,TBD,ART/CSC 350
+CSC 453,Introduction to Operating Systems,4 units,Graded,"F, W, SP","CSC/CPE 357, and CSC/CPE 225 or CPE/EE 229 or CPE/EE 233"
+CSC 454,Implementation of Operating Systems,4 units,Graded,TBD,CSC/CPE 453
+CSC 458,Current Topics in Computer Systems,4 units,Graded,TBD,CSC/CPE 357
+CSC 466,Knowledge Discovery from Data,4 units,Graded,"F, SP","CSC 349 and one of the following: STAT 302, STAT 312, STAT 321 or STAT 350"
+CSC 468,Database Management Systems Implementation,4 units,Graded,SP,CSC 365
+CSC 469,Distributed Systems,4 units,Graded,TBD,CSC/CPE 357
+CSC 471,Introduction to Computer Graphics,4 units,Graded,TBD,CPE/CSC 357
+CSC 473,Advanced Rendering Techniques,4 units,Graded,TBD,CSC/CPE 471
+CSC 474,Computer Animation,4 units,Graded,SP,CSC/CPE 471
+CSC 476,Real-Time 3D Computer Graphics Software,4 units,Graded,SP,CSC/CPE 471
+CSC 477,Scientific and Information Visualization,4 units,Graded,F,CSC 349
+CSC 478,Current Topics in Computer Graphics,4 units,Graded,TBD,CSC/CPE 471
+CSC 480,Artificial Intelligence,4 units,Graded,"F, SP",either CSC/CPE 102 and CSC/CPE 103 with a grade of C- or better or consent of instructor; or CSC/CPE 202 with a grade of C- or better and junior standing
+CSC 481,Knowledge Based Systems,4 units,Graded,SP,CSC 480
+CSC 482,Speech and Language Processing,4 units,Graded,"F, W",CSC 466 or CSC 480 or graduate standing
+CSC 483,Current Topics in Human-Computer Interaction,4 units,Graded,TBD,CSC 484
+CSC 484,User-Centered Interface Design and Development,4 units,Graded,"F, W, SP",CSC 307 or CSC 308; junior standing
+CSC 486,Human-Computer Interaction Theory and Design,4 units,Graded,SP,CSC 484
+CSC 487,Deep Learning,4 units,Graded,F,"CSC 349, and MATH 206 or MATH 244"
+CSC 489,Current Topics in Artificial Intelligence,4 units,Graded,SP,CSC 480
+CSC 490,Selected Advanced Topics,1-4 units,Graded,SP,Consent of instructor
+CSC 491,Senior Project I,2 units,Graded,"F, W, SP",CSC 307 or CSC 309; and consent of instructor
+CSC 492,Senior Project II,2 units,Graded,"F, W, SP",CSC 491 and consent of instructor
+CSC 493,Cooperative Education Experience,2 units,CR/NC,"F, W, SP",Sophomore standing and consent of instructor
+CSC 494,Cooperative Education Experience,6 units,CR/NC,"F, W, SP",Sophomore standing and consent of instructor
+CSC 495,Cooperative Education Experience,12 units,CR/NC,"F, W, SP",Sophomore standing and consent of instructor
+CSC 496,Selected Advanced Laboratory,1-4 units,Graded,SP,Consent of instructor
+CSC 497,Research Senior Project I,2 units,Graded,"F, W, SP",CSC 307 or CSC 309; and consent of instructor
+CSC 498,Research Senior Project II,2 units,Graded,"F, W, SP",CSC 497 and consent of instructor
+CSC 500,Directed Study,1-4 units,CR/NC,"F, W, SP",Fully classified graduate standing and consent of instructor
+CSC 508,Software Engineering I,4 units,Graded,TBD,"CSC 307 or CSC 308 and graduate standing, or consent of instructor"
+CSC 509,Software Engineering II,4 units,Graded,SP,"CSC 508 and graduate standing, or consent of instructor"
+CSC 515,Computer Architecture,4 units,Graded,F,"CPE 315 or CPE 333, and graduate standing; or consent of instructor"
+CSC 521,Computer Security,4 units,Graded,TBD,CPE/CSC 321 and graduate standing
+CSC 530,Languages and Translators,4 units,Graded,SP,"CSC 430 and graduate standing, or consent of instructor"
+CSC 540,Theory of Computation II,4 units,Graded,W,"CSC 445 and graduate standing, or consent of instructor"
+CSC 550,Operating Systems,4 units,Graded,TBD,"CSC/CPE 453 and graduate standing, or consent of instructor"
+CSC 560,Database Systems,4 units,Graded,TBD,"CSC 365 and graduate standing, or consent of instructor"
+CSC 564,Computer Networks: Research Topics,4 units,Graded,W,"CSC/CPE 464 and graduate standing, or consent of instructor"
+CSC 566,Topics in Advanced Data Mining,4 units,Graded,SP,CSC 466 or CSC 480 or CSC 582
+CSC 569,Distributed Computing,4 units,Graded,TBD,CSC 141 or CSC 348; and CPE/CSC 357; or graduate standing and consent of instructor
+CSC 570,Current Topics in Computer Science,2-4 units,Graded,"F, W",Graduate standing and evidence of satisfactory preparation in computer science
+CSC 572,Computer Graphics,4 units,Graded,F,"Successful completion of CSC/CPE 471 and graduate standing, or consent of instructor"
+CSC 580,Artificial Intelligence,4 units,Graded,W,"CSC 480 and graduate standing, or consent of instructor"
+CSC 581,Computer Support for Knowledge Management,4 units,Graded,TBD,CSC 480 or CSC 484 or consent of instructor
+CSC 582,Computational Linguistics,4 units,Graded,TBD,CSC 482 and graduate standing
+CSC 590,Thesis Seminar,1 unit,Graded,"F, W, SP",Graduate standing or consent of instructor
+CSC 593,Cooperative Education Experience,2 units,CR/NC,"F, W, SP",Graduate standing and consent of instructor
+CSC 594,Cooperative Education Experience,6 units,CR/NC,"F, W, SP",Graduate standing and consent of instructor
+CSC 595,Cooperative Education Experience,12 units,CR/NC,"F, W, SP",Graduate standing and consent of instructor
+CSC 596,Research in Computer Science I,2 units,Graded,"F, W, SP",Consent of instructor
+CSC 597,Research in Computer Science II,2 units,Graded,"F, W, SP",CSC 596 and consent of instructor
+CSC 599,Thesis,4 units,Graded,"F, W, SP",CSC 590; CSC 498 or CSC 597; selection of thesis committee; graduate standing; and consent of instructor

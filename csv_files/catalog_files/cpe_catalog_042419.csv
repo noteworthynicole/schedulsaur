@@ -1,0 +1,66 @@
+CPE 100,Computer Engineering Orientation,1 unit,CR/NC,F,
+CPE 101,Fundamentals of Computer Science,4 units,Graded,"F, W, SP",Appropriate Math Placement Level; or MATH 117 with a grade of C- or better; or MATH 118 with a grade of C- or better; or consent of instructor
+CPE 105,Fundamentals of Computer Science I Supplemental Instruction,1 unit,CR/NC,TBDConcurrent: CPE/CSC 101.,
+CPE 108,Accelerated Introduction to Computer Science,4 units,Graded,TBD,"MATH 118 (or equivalent) with a grade of C- or better, significant experience in computer programming, and consent of instructor"
+CPE 123,Introduction to Computing,4 units,Graded,F,Basic computer literacy
+CPE 133,Digital Design,4 units,Graded,"F,W,SP,SU",An orientation course in student's major (EE 111 and EE 151; or CPE 100) and CPE/CSC 101
+CPE 200,Special Problems for Undergraduates,1-2 units,Graded,"F,W,SP,SU",Consent of instructor
+CPE 202,Data Structures,4 units,Graded,"F, W, SP",CPE/CSC 101 with a grade of C- or better; MATH 141 or MATH 221 with a grade of C- or better; or consent of instructor
+CPE 203,Project-Based Object-Oriented Programming and Design,4 units,Graded,"F, W, SP",CPE/CSC 202 with a grade of C- or better or consent of instructor
+CPE 233,Computer Design and Assembly Language Programming,4 units,Graded,"F, W, SP",CPE/EE 133
+CPE 290,Selected Topics,1-4 units,Graded,TBD,Open to undergraduate students and consent of instructor
+CPE 315,Computer Architecture,4 units,Graded,"F, W, SP","CSC/CPE 102 and CSC/CPE 103, or CSC/CPE 202 and CSC/CPE 203; and one of the following: CSC 225, CPE/EE 229, or CPE/EE 233"
+CPE 316,Microcontrollers and Embedded Applications,4 units,Graded,"F, SPPrerequisite: CPE 357. ",EE 211
+CPE 321,Introduction to Computer Security,4 units,Graded,"F, W",CPE/CSC 357
+CPE 327,Digital Signals and Systems,3 units,Graded,"F, W","EE 212, MATH 244. Concurrent: CPE 367"
+CPE 328,Discrete Time Signals and Systems,3 units,Graded,"F, W, SP",BMED 355 or EE 228. Concurrent: CPE/EE 368
+CPE 329,Microcontroller-Based Systems Design,4 units,Graded,"F, SP","EE 307 & EE 347, EE 229 & EE 269 or CPE/EE 233"
+CPE 333,Computer Hardware Architecture and Design,4 units,Graded,SP,"CPE 101, CPE 233"
+CPE 336,Microprocessor System Design,4 units,Graded,"F, SP",CPE/EE 233
+CPE 350,Capstone I,4 units,Graded,F,CPE 316 or CPE 329 or CPE 336
+CPE 357,Systems Programming,4 units,Graded,"F, W, SP","CSC/CPE 102 and CSC/CPE 103 with a grade of C- or better or consent of instructor, or CSC/CPE 202 and CSC/CPE 203 with a grade of C- or better or consent of instructor; and CSC 225 or CPE/EE 229 or CPE/EE 233"
+CPE 367,Digital Signals and Systems Laboratory,1 unit,Graded,"F, W",EE 242. Concurrent: CPE 327
+CPE 368,Signals and Systems Laboratory,1 unit,Graded,"F, W, SP",BMED 355 or EE 228. Concurrent: CPE/EE 328
+CPE 400,Special Problems for Undergraduates,1-4 units,Graded,"F,W,SP,SU",Consent of instructor
+CPE 414,Robotic Systems Integration,4 units,Graded,W,EE/CPE 329 or EE/CPE 336 or CSC/CPE 357 or ME 305
+CPE 416,Autonomous Mobile Robotics,4 units,Graded,TBD,CPE/EE 329 or CPE/EE 336 or both CPE 315 and CPE/CSC 357
+CPE 419,Applied Parallel Computing,4 units,Graded,TBDPrerequisite: CPE/CSC 357. ,CSC 141 or CSC 348
+CPE 422,Network and Web Security,4 units,Graded,SP,CPE 464
+CPE 426,Introduction to Hardware Security,4 units,Graded,SP,CPE 315 or CPE 333; and CPE 233
+CPE 428,Computer Vision,4 units,Graded,W,CPE 327 or CPE/CSC 357 or EE 328 or ME 305
+CPE 431,Compiler Construction,4 units,Graded,"F, W, SP",CSC 430
+CPE 432,Digital Control Systems,3 units,Graded,F,EE 302 and EE 342; or CPE 327 and CPE 367. Concurrent: CPE/EE 472
+CPE 439,Introduction to Real-Time Operating Systems,4 units,Graded,F,CPE/EE 329 or CPE/EE 336
+CPE 441,Computer-Aided Design of VLSI Devices,4 units,Graded,F,EE 307 and EE 347
+CPE 442,Real Time Embedded Systems,4 units,Graded,F,CPE/EE 329 or CPE/EE 336 or CPE 316
+CPE 446,Design of Fault-Tolerant Digital Systems,4 units,Graded,F,CPE/EE 329 or CPE/EE 336 or CPE 316
+CPE 447,"Stringed Musical Instrument Acoustics, Mechanics, and Transducer Design",4 units,Graded,W,EE/CPE 329 or EE/CPE 336 or CPE 316 or ME 305
+CPE 450,Capstone II,3 units,Graded,W,CPE 350
+CPE 453,Introduction to Operating Systems,4 units,Graded,"F, W, SP","CSC/CPE 357, and CSC/CPE 225 or CPE/EE 229 or CPE/EE 233"
+CPE 454,Implementation of Operating Systems,4 units,Graded,TBD,CSC/CPE 453
+CPE 458,Current Topics in Computer Systems,4 units,Graded,TBD,CSC/CPE 357
+CPE 461,Senior Project I,3 units,Graded,"F,W,SP,SU",CPE 350
+CPE 462,Senior Project II,2 units,Graded,"F,W,SP,SU",CPE 450
+CPE 464,Introduction to Computer Networks,4 units,Graded,"F, W, SP",CSC/CPE 357
+CPE 465,Advanced Computer Networks,4 units,Graded,TBD,CSC/CPE 453 and CPE 464
+CPE 469,Distributed Systems,4 units,Graded,F,CSC/CPE 357
+CPE 470,Selected Advanced Topics,1-4 units,Graded,TBD,Consent of instructor
+CPE 471,Introduction to Computer Graphics,4 units,Graded,"F, W, SP",CPE/CSC 357
+CPE 472,Digital Control Systems Laboratory,1 unit,Graded,FConcurrent: CPE/EE 432.,
+CPE 476,Real-Time 3D Computer Graphics Software,4 units,Graded,TBD,CSC/CPE 471
+CPE 479,Selected Advanced Laboratory,1-4 units,Graded,TBD,Consent of instructor
+CPE 482,Advanced Topics in Systems for Computer Engineering,4 units,Graded,TBD,CPE 350
+CPE 485,Autonomous Robot Navigation,4 units,Graded,TBD,CPE/CSC 357
+CPE 488,Microelectronics and Electronics Packaging,4 units,Graded,"F, W, SP",EE 112 or EE 113 or EE 201
+CPE 493,Cooperative Education Experience,2 units,CR/NC,"F,W,SP,SU",Sophomore standing and consent of instructor
+CPE 494,Cooperative Education Experience,6 units,CR/NC,"F,W,SP,SU",Sophomore standing and consent of instructor
+CPE 495,Cooperative Education Experience,12 units,CR/NC,"F,W,SP,SU",Sophomore standing and consent of instructor
+CPE 515,Computer Architecture,4 units,Graded,TBD,"CPE 315 or CPE 333, and graduate standing; or consent of instructor"
+CPE 521,Computer Systems,4 units,Graded,SP,"CPE/EE 329 or CPE/EE 336, or equivalent, and graduate standing or consent of instructor"
+CPE 522,Advanced Real-Time Operating Systems Design,4 units,Graded,W,CPE/EE 439
+CPE 523,Digital Systems Design,4 units,Graded,F,"CPE/EE 329 or CPE/EE 336, and graduate standing"
+CPE 532,VLSI Circuit Testing,1 unit,Graded,F,EE 531/CPE 541
+CPE 541,Advanced VLSI Design,4 units,Graded,W,CPE 441/EE 431
+CPE 542,Advanced Real Time Embedded Systems,4 units,Graded,SP,CPE/EE 442
+CPE 564,Computer Networks: Research Topics,4 units,Graded,TBD,"CSC/CPE 464 and graduate standing, or consent of instructor"
+CPE 569,Distributed Computing,4 units,Graded,TBD,CSC 141 or CSC 348; and CPE/CSC 357; or graduate standing and consent of instructor
