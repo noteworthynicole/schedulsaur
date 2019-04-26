@@ -1,7 +1,7 @@
 package logic;
 import java.io.*;
 import java.util.*;
-import java.util.Map.Entry;
+import java.util.Map.*;
 import java.util.logging.*;
 
 /*
@@ -9,60 +9,18 @@ import java.util.logging.*;
  * Need to cross reference with curriculum major to determine
  * 	1) The prerequisites
  * 	2) The number of units
- * 	3) The "category"?
- * 
- * Changes to make:
- * 	1) Create a LIST of classes 
- *  2) If lab, add as a field in the class (last element in the list, very easy to find)
- *  3) Add lab time to the list of class time
- *  4) Then organize classes by times in a HashTable
- *   
- * Code Smells to address:
- *  1) Not sure yet, but we have do it
- * 
+ *  3) The classes to take
  * */
 
 public class Main {
-	public static void main(String[] args) throws FileNotFoundException{
-		Logger logger = Logger.getLogger("Main");
+	
+	public static Logger logger = Logger.getLogger("Main");
+	
+	public static void main(String[] args){
 		parseParameters(args);
-		Scanner fileScanner = new Scanner(inputFile);
-		HashMap<String, Section> hashMapInit = new HashMap<>();
-		try {
-			while (fileScanner.hasNextLine()) {  
-				   String line = fileScanner.nextLine();
-				   String[] array = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-				   Section currSection = createSection(array);
-				   String currKey = array[0].substring(0, 10);
-				   if(checkLab(hashMapInit, currSection)) {
-					   hashMapInit.put(currKey, currSection);
-				   }
-				   //last class store as temp variable
-				}
-		}catch(Exception e) {
-			logger.log(Level.WARNING, e.toString());
-		}finally {
-			fileScanner.close();
-		}
-		
-		HashMap<DoubleTimes, List<Section>> hashMapTime = new HashMap<>();
-		for(Entry<String, Section> entry : hashMapInit.entrySet()) {
-			Section currSection = entry.getValue();
-			//Check to not add classes with nonexistent times
-			if(!currSection.getTimes().getLecDay().contains("N/A")) {
-				//The line below never evaluates to true, even though I am feeding in multiple times that should be the same
-				if(hashMapTime.containsKey(currSection.getTimes())) {
-					//add the section to the section list
-					List<Section> currList = hashMapTime.get(currSection.getTimes());
-					currList.add(currSection);
-				}else {
-					//add the time as a new value 
-					List<Section> currValue = new ArrayList<>();
-					currValue.add(currSection);
-					hashMapTime.put(currSection.getTimes(), currValue);
-				}
-			}
-		}
+		HashMap<String, Section> hashMapInit = parseFileCreateSections();
+		//Likely put a filter here to get rid of classes that are not relevant
+		HashMap<DoubleTimes, List<Section>> hashMapTime = classesByTime(hashMapInit);
 		logger.log(Level.INFO, "main completed");
 	}
 	
@@ -83,6 +41,35 @@ public class Main {
 	            inputFile = new File(args[i]);
 	         }
 	      }
+	   }
+	   
+	   private static HashMap<String, Section> parseFileCreateSections(){
+		   //This function parses through the file and creates sections of both lecture and lab
+		   Scanner fileScanner = null;
+			try {
+				fileScanner = new Scanner(inputFile);
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			HashMap<String, Section> hashMapInit = new HashMap<>();
+			try {
+				while (fileScanner.hasNextLine()) {  
+					   String line = fileScanner.nextLine();
+					   String[] array = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+					   Section currSection = createSection(array);
+					   String currKey = array[0].substring(0, 10);
+					   if(checkLab(hashMapInit, currSection)) {
+						   hashMapInit.put(currKey, currSection);
+					   }
+					   //last class store as temp variable
+					}
+			}catch(Exception e) {
+				logger.log(Level.WARNING, e.toString());
+			}finally {
+				fileScanner.close();
+			}
+			return hashMapInit;
 	   }
 	   
 	   private static Section createSection(String[] line) {
@@ -117,5 +104,27 @@ public class Main {
 			   return false;
 		   }
 		   return true;
+	   }
+	   
+	   private static HashMap<DoubleTimes, List<Section>> classesByTime(HashMap<String, Section> hashMapInit){
+		   HashMap<DoubleTimes, List<Section>> hashMapTime = new HashMap<>();
+			for(Entry<String, Section> entry : hashMapInit.entrySet()) {
+				Section currSection = entry.getValue();
+				//Check to not add classes with nonexistent times
+				if(!currSection.getTimes().getLecDay().contains("N/A")) {
+					//The line below never evaluates to true, even though I am feeding in multiple times that should be the same
+					if(hashMapTime.containsKey(currSection.getTimes())) {
+						//add the section to the section list
+						List<Section> currList = hashMapTime.get(currSection.getTimes());
+						currList.add(currSection);
+					}else {
+						//add the time as a new value 
+						List<Section> currValue = new ArrayList<>();
+						currValue.add(currSection);
+						hashMapTime.put(currSection.getTimes(), currValue);
+					}
+				}
+			}
+		 return hashMapTime;
 	   }
 }

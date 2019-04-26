@@ -5,6 +5,7 @@ public class Class {
 
 	private String name;
 	private List<Class> prerec;
+	private int units = 4;
 	
 	public Class(String name, List<Class> prerec2){
 		this.name = name;
