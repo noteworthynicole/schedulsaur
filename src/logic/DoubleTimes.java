@@ -50,6 +50,17 @@ public class DoubleTimes {
 		this.labTimes = time;
 	}
 	
+	public boolean overlap(DoubleTimes other) {
+		boolean result = this.lecTimes.overlap(other.getLecTimes());
+		if(this.labTimes != null) {
+			result = result || this.labTimes.overlap(other.getLecTimes());
+		}
+		if(other.labTimes != null) {
+			result = result || this.getLabTimes().overlap(this.labTimes);
+		}
+		return result;
+	}
+	
 	@Override 
 	public int hashCode() {
         int result = 31;
