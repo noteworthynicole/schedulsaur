@@ -56,7 +56,8 @@ public class DoubleTimes {
 			result = result || this.labTimes.overlap(other.getLecTimes());
 		}
 		if(other.labTimes != null) {
-			result = result || this.getLabTimes().overlap(this.labTimes);
+			result = result || this.getLabTimes().overlap(this.labTimes) || this.getLabTimes().overlap(this.lecTimes);
+			result = result || this.getLabTimes().overlap(this.lecTimes);
 		}
 		return result;
 	}
