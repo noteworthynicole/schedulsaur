@@ -14,6 +14,13 @@ public class TestTimes {
 	private Times time2 = new Times("TR", "09:10 AM", "10:00 PM");
 	
 	@Test
+	public void testTimesNull() {
+		Times myTime1 = new Times("N/A", LocalTime.of(8, 10), LocalTime.of(10, 0));
+		Times myTime2 = new Times("N/A", "N/A", "N/A");
+		assertNotEquals(myTime1, myTime2);
+	}
+	
+	@Test
 	public void testTimesToString() {
 		Times myTime = new Times("TH", "07:10 PM", "09:00 PM");
 		assertTrue(myTime.toString().contains("19"));
@@ -55,19 +62,19 @@ public class TestTimes {
 	
 	@Test
 	public void testTimesOverlapDays() {
-		assertTrue(time1.overlap(time2));
+		assertFalse(Times.compatible(time1, time2));
 	}
 	
 	@Test
 	public void testTimesOverlapDays2() {
-		assertTrue(time2.overlap(time1));
+		assertFalse(Times.compatible(time1, time2));
 	}
 	
 	@Test
 	public void testTimesNotOverlapDays() {
 		Times mytime1 = new Times("TR", "10:10 AM", "11:00 PM");
 		Times mytime2 = new Times("MWF", "09:10 AM", "10:00 PM");
-		assertFalse(mytime1.overlap(mytime2));
+		assertTrue(Times.compatible(mytime1, mytime2));
 	}
 	
 	@Test

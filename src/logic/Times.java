@@ -65,17 +65,15 @@ public class Times {
         return result;
 	}
 	
-	public boolean overlap(Times other) {
-		if(this.day.contains(other.day) || other.day.contains(this.day)) {
-			//Compare to returns negative is less, positive if greater
-			//if endtime of this is before the starttime of the other or vice versa they don't overlap
-			//FIX THIS!!
-			return (other.startTime.compareTo(this.endTime) < 1 && other.endTime.compareTo(this.endTime) < 1)
-					|| (this.startTime.compareTo(other.endTime) < 1 && this.endTime.compareTo(other.endTime) < 1);
+	public static boolean compatible(Times time1, Times time2) {
+		if(time1 == null || time2 == null) {
+			return true;
 		}
-		//need a better way to extract the time ... function to convert the string to an 24hr int?
-		//if this.start is equal to other.start or this.end is equal to other.end -> true
-		//if this.end is before other.start or other.end is before this.start -> false (double check this)
-		return false;
+		return (localToInt(time1.getEndTime()) <= localToInt(time2.getStartTime()) || 
+				localToInt(time2.getEndTime()) <= localToInt(time2.getStartTime()));
+	}
+	
+	public static int localToInt(LocalTime time) {
+		return (time.getHour() * 60) + time.getMinute();
 	}
 }

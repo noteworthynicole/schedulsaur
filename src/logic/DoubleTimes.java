@@ -41,7 +41,7 @@ public class DoubleTimes {
 			if(this.labTimes != null) {
 				return this.labTimes.equals(((DoubleTimes) other).getLabTimes());
 			}
-			return this.labTimes == null && (((DoubleTimes) other).getLabTimes()) == null;
+			return (((DoubleTimes) other).getLabTimes()) == null;
 		}
 		return false;
 	}
@@ -50,15 +50,11 @@ public class DoubleTimes {
 		this.labTimes = time;
 	}
 	
-	public boolean overlap(DoubleTimes other) {
-		boolean result = this.lecTimes.overlap(other.getLecTimes());
-		if(this.labTimes != null) {
-			result = result || this.labTimes.overlap(other.getLecTimes());
-		}
-		if(other.labTimes != null) {
-			result = result || this.getLabTimes().overlap(this.labTimes) || this.getLabTimes().overlap(this.lecTimes);
-			result = result || this.getLabTimes().overlap(this.lecTimes);
-		}
+	public boolean compatible(DoubleTimes other) {
+		boolean result = Times.compatible(this.lecTimes, other.getLecTimes());
+		result = result && Times.compatible(this.lecTimes, other.getLabTimes());
+		result = result && Times.compatible(this.labTimes, other.getLecTimes());
+		result = result && Times.compatible(this.labTimes, other.getLabTimes());
 		return result;
 	}
 	

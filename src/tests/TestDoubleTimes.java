@@ -91,14 +91,14 @@ public class TestDoubleTimes {
 	public void testDoubleTimes_Overlap_NullLabsTrue() {
 		DoubleTimes myTime1 = new DoubleTimes("MTWF", "11:10 AM", "01:00 PM");
 		DoubleTimes myTime2 = new DoubleTimes("MTWF", "12:10 AM", "01:00 PM");
-		assertTrue(myTime1.overlap(myTime2));
+		assertFalse(myTime1.compatible(myTime2));
 	}
 	
 	@Test
 	public void testDoubleTimes_Overlap_NullLabsFalse() {
 		DoubleTimes myTime1 = new DoubleTimes("MW", "11:10 AM", "01:00 PM");
 		DoubleTimes myTime2 = new DoubleTimes("MW", "01:10 PM", "02:00 PM");
-		assertFalse(myTime1.overlap(myTime2));
+		assertTrue(myTime1.compatible(myTime2));
 	}
 	
 	@Test
@@ -108,6 +108,6 @@ public class TestDoubleTimes {
 		Times myLab = new Times("TH", "07:10 PM", "09:00 PM");
 		myTime1.setLabTime(myLab);
 		myTime2.setLabTime(myLab);
-		assertTrue(myTime1.overlap(myTime2));
+		assertFalse(myTime1.compatible(myTime2));
 	}
 }
