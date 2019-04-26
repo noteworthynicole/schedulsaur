@@ -14,9 +14,9 @@ import java.util.logging.*;
 
 public class Main {
 	
-	public static Logger logger = Logger.getLogger("Main");
+	private static final Logger logger = Logger.getLogger("Main");
 	
-	public static void main(String[] args){
+	public static void main(String[] args) throws FileNotFoundException{
 		parseParameters(args);
 		HashMap<String, Section> hashMapInit = parseFileCreateSections();
 		//Likely put a filter here to get rid of classes that are not relevant
@@ -43,15 +43,9 @@ public class Main {
 	      }
 	   }
 	   
-	   private static HashMap<String, Section> parseFileCreateSections(){
+	   private static HashMap<String, Section> parseFileCreateSections() throws FileNotFoundException{
 		   //This function parses through the file and creates sections of both lecture and lab
-		   Scanner fileScanner = null;
-			try {
-				fileScanner = new Scanner(inputFile);
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+		   Scanner fileScanner = new Scanner(inputFile);
 			HashMap<String, Section> hashMapInit = new HashMap<>();
 			try {
 				while (fileScanner.hasNextLine()) {  
