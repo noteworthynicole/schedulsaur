@@ -1,6 +1,7 @@
 package logic;
 import java.io.*;
 import java.util.*;
+import java.util.Map.Entry;
 import java.util.logging.*;
 
 /*
@@ -45,8 +46,8 @@ public class Main {
 		}
 		
 		HashMap<DoubleTimes, List<Section>> hashMapTime = new HashMap<>();
-		for(String key : hashMapInit.keySet()) {
-			Section currSection = hashMapInit.get(key);
+		for(Entry<String, Section> entry : hashMapInit.entrySet()) {
+			Section currSection = entry.getValue();
 			//Check to not add classes with nonexistent times
 			if(!currSection.getTimes().getLecDay().contains("N/A")) {
 				//The line below never evaluates to true, even though I am feeding in multiple times that should be the same
@@ -62,8 +63,6 @@ public class Main {
 				}
 			}
 		}
-		logger.log(Level.INFO, hashMapInit.toString());
-		logger.log(Level.INFO, hashMapTime.toString());
 		logger.log(Level.INFO, "main completed");
 	}
 	

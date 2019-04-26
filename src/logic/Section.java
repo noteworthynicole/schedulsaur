@@ -58,13 +58,8 @@ public final class Section extends Class{
 	   public String toString() {
 		if(lab == null) {
 	      return super.toString() + " Section " + id + " " + type + " " + times + " " + prof + " " + location;
-		} else {
-			return super.toString() + " Section " + id + " " + type + " " + times + " " + prof + " " + location + ", Lab " + lab.toString(); 
 		}
-		/*if(lab == null) {
-			 return "Section " + type + " " + id;
-		}
-		return "Section " + type + " " + id + " " + lab;*/
+		return super.toString() + " Section " + id + " " + type + " " + times + " " + prof + " " + location + ", Lab " + lab.toString(); 
 	   }
 	
 	public void addClass(Section lab) {
