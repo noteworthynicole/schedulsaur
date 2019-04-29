@@ -121,4 +121,39 @@ public class Main {
 			}
 		 return hashMapTime;
 	   }
+	   
+	   //prototype for dynamic scheduling (to be called AFTER filtering for efficiency)
+	   public static List<List<DoubleTimes>> dynamicProgrammingSchedule(int n, List<DoubleTimes> d){
+		   //n is the number of units
+		   //d is the list of DoubleTimes?
+	        int k = d.size();
+	        List<List<DoubleTimes>> M = new ArrayList<>();
+	        
+	        //I'm not sure if this will give all options, but it should give at least every different time as an option
+	        for(int i=0; i < k; i++) {
+	        	M.add(new ArrayList<>());
+	        	M.get(i).add(d.get(i));
+	        	for(int j=i; j<k+i; j++) {
+	        		if(j < k) {
+	        			if(M.get(i).get(M.get(i).size() - 1).compatible(d.get(j))) {
+	        				M.get(i).add(d.get(j));
+	        				if(M.size() >= n) {
+	        					break; //stop because this is an optimal solution
+	        				}
+	        			}
+	        		}else {//loop back around
+	        			if(M.get(i).get(M.get(i).size() - 1).compatible(d.get(j - i))) {
+	        				//Double check this logic
+	        				M.get(i).add(d.get(j - i));
+	        				if(M.size() >= n) {
+	        					break;
+	        				}
+	        			}
+	        		}
+	        	}
+	        }
+	        
+	        return M;
+	    }
+
 }
