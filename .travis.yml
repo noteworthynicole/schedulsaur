@@ -2,33 +2,6 @@ language: java
 jdk:
 - oraclejdk8
 
-node_js: "0.10"
-install: "npm install"
-script: "npm test"
-
-matrix:
-  include:
-    - language: python
-      python: 
-        - 3.4
-      before_install:
-        - cd backend/
-      install: 
-        - pip install -r requirements.txt
-      script:
-        - python manage.py test
-
-    - language: node_js
-      node_js:
-        - 4.8
-      before_install:
-        - cd daemon/frontend
-      install:
-        - yarn install
-      script:
-        - yarn test
-
-
 addons:
   sonarcloud:
     organization: "noteworthynicole-github"
