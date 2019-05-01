@@ -3,9 +3,9 @@ import java.util.*;
 
 public final class Section extends Class{
 	
-	private String id; 
-	private String type;
-	private Section lab;
+	private String id; //class department, number, and section
+	private String type; //lab or lec
+	private Section lab; //if only lab, this is null
 	private DoubleTimes times;
 	private List<Class> prerec;
 	private String prof;

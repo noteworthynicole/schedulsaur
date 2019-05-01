@@ -21,6 +21,9 @@ public class Main {
 		HashMap<String, Section> hashMapInit = parseFileCreateSections();
 		//Likely put a filter here to get rid of classes that are not relevant
 		HashMap<DoubleTimes, List<Section>> hashMapTime = classesByTime(hashMapInit);
+		//Sort - keyset -> list 
+		//Greedy
+		
 		logger.log(Level.INFO, "main completed");
 	}
 	
@@ -122,8 +125,20 @@ public class Main {
 		 return hashMapTime;
 	   }
 	   
-	   //prototype for dynamic scheduling (to be called AFTER filtering for efficiency)
-	   public static List<List<DoubleTimes>> dynamicProgrammingSchedule(int n, List<DoubleTimes> d){
+	   public void filterClassName(HashMap<String, Section> hashmap, String string){
+		   //Uses mutation to filter out classes by name
+		   Set<String> keys = hashmap.keySet();
+		   for(String key: keys) {
+			   if(key.contains(string)) {
+				   hashmap.remove(key);
+			   }
+		   }
+	   }
+	   
+	   //filter by Times
+	   
+	   //prototype for greedy
+	   public static List<List<DoubleTimes>> greedySchedule(int n, List<DoubleTimes> d){
 		   //n is the number of units
 		   //d is the list of DoubleTimes?
 	        int k = d.size();

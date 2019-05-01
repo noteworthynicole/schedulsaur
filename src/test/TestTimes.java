@@ -77,6 +77,8 @@ public class TestTimes {
 		assertTrue(Times.compatible(mytime1, mytime2));
 	}
 	
+	
+	
 	@Test
 	public void testListTimes() {
 		List<Times> list1 = new ArrayList<>();

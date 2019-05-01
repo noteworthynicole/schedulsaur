@@ -63,17 +63,33 @@ public class Times {
         	result = result * (endTime.getHour() + endTime.getMinute());
         }
         return result;
-	}
+        
+ 	}
 	
 	public static boolean compatible(Times time1, Times time2) {
 		if(time1 == null || time2 == null) {
 			return true;
 		}
-		return (localToInt(time1.getEndTime()) <= localToInt(time2.getStartTime()) || 
+		if(commonDays(time1.getDay(), time2.getDay())) {
+			return (localToInt(time1.getEndTime()) <= localToInt(time2.getStartTime()) || 
 				localToInt(time2.getEndTime()) <= localToInt(time2.getStartTime()));
+		}
+		return true;
 	}
 	
 	public static int localToInt(LocalTime time) {
 		return (time.getHour() * 60) + time.getMinute();
+	}
+	
+	private static boolean commonDays(String day1, String day2) {
+		if(day1.contains("N/A") || day2.contains("N/A")) {
+			return true;
+		}
+		for(int i=0; i<day1.length(); i++) {
+			if(day2.contains(day1.substring(i, i+1))) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
