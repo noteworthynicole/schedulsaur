@@ -1,6 +1,7 @@
+ClassID,ClassName,Units,Credit,Terms,Prereqs
 CPE 100,Computer Engineering Orientation,1 unit,CR/NC,F,
 CPE 101,Fundamentals of Computer Science,4 units,Graded,"F, W, SP",Appropriate Math Placement Level; or MATH 117 with a grade of C- or better; or MATH 118 with a grade of C- or better; or consent of instructor
-CPE 105,Fundamentals of Computer Science I Supplemental Instruction,1 unit,CR/NC,TBDConcurrent: CPE/CSC 101.,
+CPE 105,Fundamentals of Computer Science I Supplemental Instruction,1 unit,CR/NC,TBD,CPE/CSC 101
 CPE 108,Accelerated Introduction to Computer Science,4 units,Graded,TBD,"MATH 118 (or equivalent) with a grade of C- or better, significant experience in computer programming, and consent of instructor"
 CPE 123,Introduction to Computing,4 units,Graded,F,Basic computer literacy
 CPE 133,Digital Design,4 units,Graded,"F,W,SP,SU",An orientation course in student's major (EE 111 and EE 151; or CPE 100) and CPE/CSC 101
@@ -10,7 +11,7 @@ CPE 203,Project-Based Object-Oriented Programming and Design,4 units,Graded,"F,
 CPE 233,Computer Design and Assembly Language Programming,4 units,Graded,"F, W, SP",CPE/EE 133
 CPE 290,Selected Topics,1-4 units,Graded,TBD,Open to undergraduate students and consent of instructor
 CPE 315,Computer Architecture,4 units,Graded,"F, W, SP","CSC/CPE 102 and CSC/CPE 103, or CSC/CPE 202 and CSC/CPE 203; and one of the following: CSC 225, CPE/EE 229, or CPE/EE 233"
-CPE 316,Microcontrollers and Embedded Applications,4 units,Graded,"F, SPPrerequisite: CPE 357. ",EE 211
+CPE 316,Microcontrollers and Embedded Applications,4 units,Graded,"F, SP", "CPE 357, EE 211"
 CPE 321,Introduction to Computer Security,4 units,Graded,"F, W",CPE/CSC 357
 CPE 327,Digital Signals and Systems,3 units,Graded,"F, W","EE 212, MATH 244. Concurrent: CPE 367"
 CPE 328,Discrete Time Signals and Systems,3 units,Graded,"F, W, SP",BMED 355 or EE 228. Concurrent: CPE/EE 368
@@ -24,7 +25,7 @@ CPE 368,Signals and Systems Laboratory,1 unit,Graded,"F, W, SP",BMED 355 or EE
 CPE 400,Special Problems for Undergraduates,1-4 units,Graded,"F,W,SP,SU",Consent of instructor
 CPE 414,Robotic Systems Integration,4 units,Graded,W,EE/CPE 329 or EE/CPE 336 or CSC/CPE 357 or ME 305
 CPE 416,Autonomous Mobile Robotics,4 units,Graded,TBD,CPE/EE 329 or CPE/EE 336 or both CPE 315 and CPE/CSC 357
-CPE 419,Applied Parallel Computing,4 units,Graded,TBDPrerequisite: CPE/CSC 357. ,CSC 141 or CSC 348
+CPE 419,Applied Parallel Computing,4 units,Graded,TBD,"CPE/CSC 357, CSC 141 or CSC 348"
 CPE 422,Network and Web Security,4 units,Graded,SP,CPE 464
 CPE 426,Introduction to Hardware Security,4 units,Graded,SP,CPE 315 or CPE 333; and CPE 233
 CPE 428,Computer Vision,4 units,Graded,W,CPE 327 or CPE/CSC 357 or EE 328 or ME 305
@@ -46,7 +47,7 @@ CPE 465,Advanced Computer Networks,4 units,Graded,TBD,CSC/CPE 453 and CPE 464
 CPE 469,Distributed Systems,4 units,Graded,F,CSC/CPE 357
 CPE 470,Selected Advanced Topics,1-4 units,Graded,TBD,Consent of instructor
 CPE 471,Introduction to Computer Graphics,4 units,Graded,"F, W, SP",CPE/CSC 357
-CPE 472,Digital Control Systems Laboratory,1 unit,Graded,FConcurrent: CPE/EE 432.,
+CPE 472,Digital Control Systems Laboratory,1 unit,Graded,F,CPE/EE 432
 CPE 476,Real-Time 3D Computer Graphics Software,4 units,Graded,TBD,CSC/CPE 471
 CPE 479,Selected Advanced Laboratory,1-4 units,Graded,TBD,Consent of instructor
 CPE 482,Advanced Topics in Systems for Computer Engineering,4 units,Graded,TBD,CPE 350

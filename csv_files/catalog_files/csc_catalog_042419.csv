@@ -1,5 +1,6 @@
+ClassID,ClassName,Units,Credit,Terms,Prereqs
 CSC 101,Fundamentals of Computer Science,4 units,Graded,"F, W, SP",Appropriate Math Placement Level; or MATH 117 with a grade of C- or better; or MATH 118 with a grade of C- or better; or consent of instructor
-CSC 105,Fundamentals of Computer Science I Supplemental Instruction,1 unit,CR/NC,TBDConcurrent: CPE/CSC 101.,
+CSC 105,Fundamentals of Computer Science I Supplemental Instruction,1 unit,CR/NC,TBD,CPE/CSC 101
 CSC 108,Accelerated Introduction to Computer Science,4 units,Graded,TBD,"MATH 118 (or equivalent) with a grade of C- or better, significant experience in computer programming, and consent of instructor"
 CSC 123,Introduction to Computing,4 units,Graded,F,Basic computer literacy
 CSC 171,Introduction to Interactive Entertainment,4 units,Graded,TBD,
