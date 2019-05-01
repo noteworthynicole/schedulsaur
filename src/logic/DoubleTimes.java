@@ -57,6 +57,12 @@ public class DoubleTimes {
 		result = result && Times.compatible(this.labTimes, other.getLabTimes());
 		return result;
 	}
+
+	public compareTo(DoubleTimes other) {
+		LocalTime t1 = getLecStartTime();
+		LocalTime t2 = other.getLecStartTime();
+		return t1.compareTo(t2);
+	}
 	
 	@Override 
 	public int hashCode() {
