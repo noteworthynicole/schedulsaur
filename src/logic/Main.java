@@ -24,7 +24,7 @@ public class Main {
 		//Sort - keyset -> list 
 		//Greedy
 		
-		logger.log(Level.INFO, "main completed");
+		logger.log(Level.INFO, hashMapTime.toString());
 	}
 	
 	   private static File inputFile = null;
@@ -158,20 +158,16 @@ public class Main {
 		   int k = d.size();
 		   List<DoubleTimes> schedule = new ArrayList<>();
 	       	for(int j=i; j<k+i; j++) {
-	    		if(j < k) {
-	    			if((schedule.get(schedule.size() - 1).compatible(d.get(j)))) {
-	    				schedule.add(d.get(j));
-	    				if(schedule.size() >= n) {
-	    					break; //stop because this is an optimal solution
-	    				}
-	    			}
-	    		}else {//loop back around
-	    			if((schedule.get(schedule.size() - 1).compatible(d.get(j - i)))) {
-	    				//Double check this logic
-	    				schedule.add(d.get(j - i));
-	    				if(schedule.size() >= n) {
-	    					break;
-	    				}
+	    		if(j < k && schedule.get(schedule.size() - 1).compatible(d.get(j))) {
+    				schedule.add(d.get(j));
+    				if(schedule.size() >= n) {
+    					return schedule; //stop because this is an optimal solution
+    				}
+	    		}else if(j > k && schedule.get(schedule.size() - 1).compatible(d.get(j - i))){//loop back around
+    				//Double check this logic
+    				schedule.add(d.get(j - i));
+    				if(schedule.size() >= n) {
+    					return schedule;
 	    			}
 	    		}
 	    	}
