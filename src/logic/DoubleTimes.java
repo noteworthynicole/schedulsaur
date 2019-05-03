@@ -58,7 +58,7 @@ public class DoubleTimes {
 		return result;
 	}
 
-	public compareTo(DoubleTimes other) {
+	public int compareTo(DoubleTimes other) {
 		LocalTime t1 = getLecStartTime();
 		LocalTime t2 = other.getLecStartTime();
 		return t1.compareTo(t2);
