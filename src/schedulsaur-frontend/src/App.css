@@ -270,3 +270,79 @@ I think  using a div will work better for logo text styles
    border: 2px solid black;
    border-collapse: collapse;
 }
+
+h1{
+  font-size: 56px;
+  color: var(--schedulsaur_green);
+}
+
+h2{
+  font-size: 36px;
+  color: var(--dark_grey);
+}
+
+a{
+  color:var(--dark_grey);
+}
+
+
+/*Login page only*/
+.loginWrapper{
+    vertical-align: middle;
+    text-align:center;
+    padding-top: 5%;
+}
+
+.login_input{
+  height: 30px;
+  width: 300px;
+  margin: 5px;
+  background-color: var(--light_grey);
+  border-color: var(--dark_grey);
+}
+
+.loginButton {
+    width: 190px;
+    height: 30px;
+    border-style: solid;
+    border-width: 3px;
+    text-align: center;
+    margin: 13px 12px 12px 10px;
+    display:inline-block;
+}
+
+/* Dashboard page for formating */
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 48%;
+  padding: 10px;
+  font-size: 24px;
+  color:var(--dark_grey);
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.bottom_zone {
+    height: 70px;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    background-color: var(--schedulsaur_green);
+    overflow-y: hidden;
+    padding-top: 20px;
+}
+
+.bottom_zone p {
+    padding: 0px 8px 35px 16px;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+}
