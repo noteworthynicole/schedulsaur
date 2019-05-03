@@ -82,7 +82,10 @@ public class Main {
 		   DoubleTimes time = new DoubleTimes(line[4], line[5], line[6]); 
 		   //5 - location
 		   String location = line[7];
-		   return new Section(className, id, type, prof, time, location);
+		   String maxCapacity = line[8];
+		   String enrolled = line[9];
+		   String waitList = line[10];
+		   return new Section(className, id, type, prof, time, location, maxCapacity, enrolled, waitList);
 	   }
 	   
 	   //adds to the hashtable if it is a lab section for the same lecture
@@ -103,7 +106,7 @@ public class Main {
 		   return true;
 	   }
 	   
-	   private static HashMap<DoubleTimes, List<Section>> classesByTime(HashMap<String, Section> hashMapInit){
+	   private static HashMap<DoubleTimes, List<Section>> classesByTime(Map<String, Section> hashMapInit){
 		   HashMap<DoubleTimes, List<Section>> hashMapTime = new HashMap<>();
 			for(Entry<String, Section> entry : hashMapInit.entrySet()) {
 				Section currSection = entry.getValue();
@@ -139,36 +142,39 @@ public class Main {
 	   
 	   //prototype for greedy
 	   public static List<List<DoubleTimes>> greedySchedule(int n, List<DoubleTimes> d){
-		   //n is the number of units
+		   //n is the number of classes (all classes default to 4 units)
 		   //d is the list of DoubleTimes?
 	        int k = d.size();
-	        List<List<DoubleTimes>> M = new ArrayList<>();
-	        
+	        List<List<DoubleTimes>> m = new ArrayList<>();
 	        //I'm not sure if this will give all options, but it should give at least every different time as an option
 	        for(int i=0; i < k; i++) {
-	        	M.add(new ArrayList<>());
-	        	M.get(i).add(d.get(i));
-	        	for(int j=i; j<k+i; j++) {
-	        		if(j < k) {
-	        			if(M.get(i).get(M.get(i).size() - 1).compatible(d.get(j))) {
-	        				M.get(i).add(d.get(j));
-	        				if(M.size() >= n) {
-	        					break; //stop because this is an optimal solution
-	        				}
-	        			}
-	        		}else {//loop back around
-	        			if(M.get(i).get(M.get(i).size() - 1).compatible(d.get(j - i))) {
-	        				//Double check this logic
-	        				M.get(i).add(d.get(j - i));
-	        				if(M.size() >= n) {
-	        					break;
-	        				}
-	        			}
-	        		}
-	        	}
+	        	m.add(greedyHelper(n, i, d));
 	        }
-	        
-	        return M;
+	        return m;
 	    }
+	   
+	   public static List<DoubleTimes> greedyHelper(int n, int i, List<DoubleTimes> d){
+		   int k = d.size();
+		   List<DoubleTimes> schedule = new ArrayList<>();
+	       	for(int j=i; j<k+i; j++) {
+	    		if(j < k) {
+	    			if((schedule.get(schedule.size() - 1).compatible(d.get(j)))) {
+	    				schedule.add(d.get(j));
+	    				if(schedule.size() >= n) {
+	    					break; //stop because this is an optimal solution
+	    				}
+	    			}
+	    		}else {//loop back around
+	    			if((schedule.get(schedule.size() - 1).compatible(d.get(j - i)))) {
+	    				//Double check this logic
+	    				schedule.add(d.get(j - i));
+	    				if(schedule.size() >= n) {
+	    					break;
+	    				}
+	    			}
+	    		}
+	    	}
+	       	return schedule;
+	   }
 
 }

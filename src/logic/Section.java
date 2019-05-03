@@ -10,6 +10,9 @@ public final class Section extends Class{
 	private List<Class> prerec;
 	private String prof;
 	private String location;
+	private int maxCapacity = 0;
+	private int enrolled = 0;
+	private int waitList = 0;
 	
 	public Section(String name, String id, String type, List<Class> prerec, String prof, DoubleTimes times, String location) {
 		super(name);
@@ -21,7 +24,8 @@ public final class Section extends Class{
 		this.location = location;
 	}
 	
-	public Section(String name, String id, String type, String prof, DoubleTimes times, String location) {
+	public Section(String name, String id, String type, String prof, DoubleTimes times, 
+			String location, String maxCapacity, String enrolled, String waitList) {
 		super(name);
 		this.id = id;
 		this.type = type;
@@ -29,6 +33,9 @@ public final class Section extends Class{
 		this.prerec = new ArrayList<>();
 		this.times = times;
 		this.location = location;
+		this.maxCapacity = getInteger(maxCapacity);
+		this.enrolled = getInteger(enrolled);
+		this.waitList = getInteger(waitList);
 	}
 	
 	public List<Class> getPrerec(){
@@ -67,6 +74,18 @@ public final class Section extends Class{
 		if(times != null) {
 			times.setLabTime(lab.getLecTimes());
 		}
+	}
+	
+	public static int getInteger(String s) {
+		int x;
+	    try { 
+	       x = Integer.parseInt(s); 
+	    } catch(NumberFormatException e) { 
+	        return 0; 
+	    } catch(NullPointerException e) {
+	        return 0;
+	    }
+	    return x;
 	}
 
 }

@@ -10,8 +10,8 @@ import org.junit.Test;
 
 public class TestSection {
 
-	private Section sec1 = new Section("name1", "id1", "Lec", "prof1", null, "building1");
-	private Section sec2 = new Section("name2", "id2", "Lab", null, "prof2", null, "building2"); 
+	private Section sec1 = new Section("name1", "id1", "Lec", "prof1", null, "building1", "0", "0", "0");
+	private Section sec2 = new Section("name2", "id2", "Lab", "prof2", null, "building2", "0", "0", "0"); 
 	
 	@Test
 	public void testSecionNoPrereq() {
@@ -35,4 +35,21 @@ public class TestSection {
 		assertEquals(sec1.getLab(), sec2);
 	}
 	
+	@Test
+	public void testgetInteger1() {
+		int act = Section.getInteger("0");
+		assertEquals(0, act);
+	}
+	
+	@Test
+	public void testgetInteger2() {
+		int act = Section.getInteger("10");
+		assertEquals(10, act);
+	}
+	
+	@Test
+	public void testgetInteger3() {
+		int act = Section.getInteger("N/A");
+		assertEquals(0, act);
+	}
 }
