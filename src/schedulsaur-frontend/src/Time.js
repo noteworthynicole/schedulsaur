@@ -4,10 +4,10 @@ import './App.css';
 function colorchange(id) {
 
     var background = document.getElementById(id).style.backgroundColor;
-    if (background == "rgb(255, 145, 0)") {
-        document.getElementById(id).style.background = "rgb(26,255,0)";
+    if (background == "white") {
+        document.getElementById(id).style.background = "#5ea181";
     } else {
-        document.getElementById(id).style.background = "rgb(255,145,0)";
+        document.getElementById(id).style.background = "white";
     }
 
 }
@@ -83,6 +83,67 @@ class App extends Component {
                           <a>View</a>
                       </button>
                     </div>
+                    <div class="li">
+                      <a align="left">
+                        Winter 2018
+                      </a>
+                      <a margin="10px">
+                      </a>
+                      <button class="buttonsaved" align="right">
+                          <a>View</a>
+                      </button>
+                    </div>
+                    <div class="li">
+                      <a align="left">
+                        Winter 2018
+                      </a>
+                      <a margin="10px">
+                      </a>
+                      <button class="buttonsaved" align="right">
+                          <a>View</a>
+                      </button>
+                    </div>
+                    <div class="li">
+                      <a align="left">
+                        Winter 2018
+                      </a>
+                      <a margin="10px">
+                      </a>
+                      <button class="buttonsaved" align="right">
+                          <a>View</a>
+                      </button>
+                    </div>
+                    <div class="li">
+                      <a align="left">
+                        Winter 2018
+                      </a>
+                      <a margin="10px">
+                      </a>
+                      <button class="buttonsaved" align="right">
+                          <a>View</a>
+                      </button>
+                    </div>
+                    <div class="li">
+                      <a align="left">
+                        Winter 2018
+                      </a>
+                      <a margin="10px">
+                      </a>
+                      <button class="buttonsaved" align="right">
+                          <a>View</a>
+                      </button>
+                    </div>
+                    <div class="li">
+                      <a align="left">
+                        Winter 2018
+                      </a>
+                      <a margin="10px">
+                      </a>
+                      <button class="buttonsaved" align="right">
+                          <a>View</a>
+                      </button>
+                    </div>
+                    
                   </div>
     
                   </div>
@@ -92,314 +153,407 @@ class App extends Component {
                     Click all the boxes that correspond to the hours and days that you do not want to have class. Any white boxes will be considered free.
                     </h6>
                     <table id="tsch" align="center">
-                    <tr><div class="calcolumn">
-                      <th class="thsch">
+                    <tr>
+                      <th id="tdsch">
+                      </th>
+                      <th id="thsch">
                       Su
                       </th>
-                      <th class="thsch">
+                      <th id="thsch">
                       M
                       </th>
-                      <th class="thsch">
+                      <th id="thsch">
                       Tu
                       </th>
-                      <th class="thsch">
+                      <th id="thsch">
                       W
                       </th>
-                      <th class="thsch">
+                      <th id="thsch">
                       Th
                       </th>
-                      <th class="thsch">
+                      <th id="thsch">
                       F
                       </th>
-                      <th class="thsch">
+                      <th id="thsch">
                       Sa
                       </th>
-                    </div></tr>
-                    <tr><div class="calcolumn">
-                      <td><a>
+                    </tr>
+                    <tr>
+                      <td id="tdsch">
                       7-8 AM 
-                      </a></td>
-                      <td><button class="calbutton" id="Su78a" onclick="colorchange(id))">
-                      </button></td>
+                      </td>
+                      <td id="tdsch"> <button class="calbutton" id="M78a" onclick="colorchange(id))">
+                      </button> </td>
+                      <td id="tdsch"> 
                       <button class="calbutton" id="M78a" onclick="colorchange(id)">
-                      </button>
+                      </button> </td>
+                      <td id="tdsch"> 
                       <button class="calbutton" id="Tu78a" onclick="colorchange(id)">
-                      </button>
+                      </button> </td>
+                      <td id="tdsch"> 
                       <button class="calbutton" id="W78a" onclick="colorchange(id)">
-                      </button>
+                      </button> </td>
+                      <td id="tdsch"> 
                       <button class="calbutton" id="Th78a" onclick="colorchange(id)">
-                      </button>
+                      </button> </td>
+                      <td id="tdsch"> 
                       <button class="calbutton" id="F78a" onclick="colorchange(id)">
-                      </button>
+                      </button> </td>
+                      <td id="tdsch"> 
                       <button class="calbutton" id="Sa78a" onclick="colorchange(id)">
-                      </button>
-                    </div></tr>
-                    <div class="calcolumn">
-                      <a>
-                      8-9am 
-                      </a>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                    </div>
-                    <div class="calcolumn">
-                      <a>
-                      9-10am 
-                      </a>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                    </div>
-                    <div class="calcolumn">
-                      <a>
-                      10-11am 
-                      </a>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                    </div>
-                    <div class="calcolumn">
-                      <a>
-                      11-12pm 
-                      </a>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                    </div>
-                    <div class="calcolumn">
-                      <a>
-                      12-1pm 
-                      </a>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                    </div>
-                    <div class="calcolumn">
-                      <a>
-                      1-2pm 
-                      </a>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                    </div>
-                    <div class="calcolumn">
-                      <a>
-                      2-3pm 
-                      </a>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                    </div>
-                    <div class="calcolumn">
-                      <a>
-                      3-4pm 
-                      </a>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                    </div>
-                    <div class="calcolumn">
-                      <a>
-                      4-5pm 
-                      </a>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                    </div>
-                    <div class="calcolumn">
-                      <a>
-                      5-6pm 
-                      </a>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                    </div>
-                    <div class="calcolumn">
-                      <a>
-                      6-7pm 
-                      </a>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                    </div>
-                    <div class="calcolumn">
-                      <a>
-                      7-8pm 
-                      </a>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                    </div>
-                    <div class="calcolumn">
-                      <a>
-                      8-9pm 
-                      </a>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                    </div>
-                    <div class="calcolumn">
-                      <a>
-                      9-10pm 
-                      </a>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                      <button class="calbutton" id="M78" onclick="colorchange(id)">
-                      </button>
-                    </div>
+                      </button> </td>
+                    </tr>
+                    <tr>
+                      <td id="tdsch">
+                      8-9 AM 
+                      </td>
+                      <td id="tdsch"> <button class="calbutton" id="M89a" onclick="colorchange(id))">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="M89a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Tu89a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="W89a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Th89a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="F89a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Sa89a" onclick="colorchange(id)">
+                      </button> </td>
+                    </tr>
+                    <tr>
+                      <td id="tdsch">
+                      9-10 AM 
+                      </td>
+                      <td id="tdsch"> <button class="calbutton" id="M78a" onclick="colorchange(id))">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="M78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Tu78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="W78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Th78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="F78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Sa78a" onclick="colorchange(id)">
+                      </button> </td>
+                    </tr>
+                    <tr>
+                      <td id="tdsch">
+                      10-11 AM 
+                      </td>
+                      <td id="tdsch"> <button class="calbutton" id="M78a" onclick="colorchange(id))">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="M78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Tu78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="W78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Th78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="F78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Sa78a" onclick="colorchange(id)">
+                      </button> </td>
+                    </tr>
+                    <tr>
+                      <td id="tdsch">
+                      11-12 PM 
+                      </td>
+                      <td id="tdsch"> <button class="calbutton" id="M78a" onclick="colorchange(id))">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="M78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Tu78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="W78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Th78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="F78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Sa78a" onclick="colorchange(id)">
+                      </button> </td>
+                    </tr>
+                    <tr>
+                      <td id="tdsch">
+                      12-1 PM 
+                      </td>
+                      <td id="tdsch"> <button class="calbutton" id="M78a" onclick="colorchange(id))">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="M78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Tu78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="W78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Th78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="F78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Sa78a" onclick="colorchange(id)">
+                      </button> </td>
+                    </tr>
+                    <tr>
+                      <td id="tdsch">
+                      1-2 PM 
+                      </td>
+                      <td id="tdsch"> <button class="calbutton" id="M78a" onclick="colorchange(id))">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="M78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Tu78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="W78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Th78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="F78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Sa78a" onclick="colorchange(id)">
+                      </button> </td>
+                    </tr>
+                    <tr>
+                      <td id="tdsch">
+                      2-3 PM 
+                      </td>
+                      <td id="tdsch"> <button class="calbutton" id="M78a" onclick="colorchange(id))">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="M78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Tu78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="W78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Th78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="F78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Sa78a" onclick="colorchange(id)">
+                      </button> </td>
+                    </tr>
+                    <tr>
+                      <td id="tdsch">
+                      3-4 PM 
+                      </td>
+                      <td id="tdsch"> <button class="calbutton" id="M78a" onclick="colorchange(id))">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="M78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Tu78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="W78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Th78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="F78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Sa78a" onclick="colorchange(id)">
+                      </button> </td>
+                    </tr>
+                    <tr>
+                      <td id="tdsch">
+                      4-5 PM 
+                      </td>
+                      <td id="tdsch"> <button class="calbutton" id="M78a" onclick="colorchange(id))">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="M78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Tu78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="W78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Th78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="F78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Sa78a" onclick="colorchange(id)">
+                      </button> </td>
+                    </tr>
+                    <tr>
+                      <td id="tdsch">
+                      5-6 PM 
+                      </td>
+                      <td id="tdsch"> <button class="calbutton" id="M78a" onclick="colorchange(id))">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="M78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Tu78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="W78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Th78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="F78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Sa78a" onclick="colorchange(id)">
+                      </button> </td>
+                    </tr>
+                    <tr>
+                      <td id="tdsch">
+                      6-7 PM 
+                      </td>
+                      <td id="tdsch"> <button class="calbutton" id="M78a" onclick="colorchange(id))">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="M78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Tu78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="W78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Th78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="F78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Sa78a" onclick="colorchange(id)">
+                      </button> </td>
+                    </tr>
+                    <tr>
+                      <td id="tdsch">
+                      7-8 PM 
+                      </td>
+                      <td id="tdsch"> <button class="calbutton" id="M78a" onclick="colorchange(id))">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="M78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Tu78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="W78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Th78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="F78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Sa78a" onclick="colorchange(id)">
+                      </button> </td>
+                    </tr>
+                    <tr>
+                      <td id="tdsch">
+                      8-9 PM 
+                      </td>
+                      <td id="tdsch"> <button class="calbutton" id="M78a" onclick="colorchange(id))">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="M78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Tu78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="W78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Th78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="F78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Sa78a" onclick="colorchange(id)">
+                      </button> </td>
+                    </tr>
+                    <tr>
+                      <td id="tdsch">
+                      9-10 PM 
+                      </td>
+                      <td id="tdsch"> <button class="calbutton" id="M78a" onclick="colorchange(id))">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="M78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Tu78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="W78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Th78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="F78a" onclick="colorchange(id)">
+                      </button> </td>
+                      <td id="tdsch"> 
+                      <button class="calbutton" id="Sa78a" onclick="colorchange(id)">
+                      </button> </td>
+                    </tr>
+                    
                     </table>
                   </div>
                 </div>
