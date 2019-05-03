@@ -56,35 +56,51 @@ public class Database {
 	}
 	
 	// get course info for a specific csc/cpe class, returns a string (like from the csv)
-	public static void dbClassInfo(Statement stmt, Class myClass) {
-        ResultSet rs = dbClassQuery(stmt, "*", myClass);
+	public static String dbClassInfo(Statement stmt, Class myClass) {
+		String classID = "N/A";
+		String className = "N/A";
+	    String units = "N/A";
+	    String credit = "N/A";
+	    String terms = "N/A";
+	    String prereqs = "N/A";
         try {
-			while(rs.next()){
-				String classID = myClass.getName();
-				String className = rs.getString(CLASSNAME);
-			    String units = rs.getString(UNITS);
-			    String credit = rs.getString(CREDIT);
-			    String terms = rs.getString(TERMS);
-			    String prereqs = rs.getString(PREREQS);
-			    System.out.println(classID + ", " + className + ", " + units + ", " + credit + ", " + terms + ", " + prereqs);
+        	ResultSet rs = dbClassQuery(stmt, "*", myClass);
+			try {
+				while(rs.next()){
+					classID = myClass.getName();
+					className = rs.getString(CLASSNAME);
+				    units = rs.getString(UNITS);
+				    credit = rs.getString(CREDIT);
+				    terms = rs.getString(TERMS);
+				    prereqs = rs.getString(PREREQS);
+				}
+				rs.close();
 			}
-			rs.close();
+			catch (Exception e) {
+	        	logger.log(Level.WARNING, e.toString());
+			}
 		} 
         catch (Exception e) {
         	logger.log(Level.WARNING, e.toString());
 		}
+        String res = classID + ", " + className + ", " + units + ", " + credit + ", " + terms + ", " + prereqs;
+	    return res;
 	}
 	
 	// get full name for a specific csc/cpe class, returns a string
 	public static String dbClassLongName(Statement stmt, Class myClass) {
-		ResultSet rs = dbClassQuery(stmt, CLASSNAME, myClass);
 		String className = "N/A";
         try {
-			while(rs.next()){
-				className = rs.getString(CLASSNAME);
-			    //System.out.println(className);
+        	ResultSet rs = dbClassQuery(stmt, CLASSNAME, myClass);
+        	try {
+				while(rs.next()){
+					className = rs.getString(CLASSNAME);
+				}
+				rs.close();
 			}
-			rs.close();
+			catch (Exception e) {
+	        	logger.log(Level.WARNING, e.toString());
+			}
 		} 
         catch (Exception e) {
         	logger.log(Level.WARNING, e.toString());
@@ -94,14 +110,18 @@ public class Database {
 	
 	// get # of units for a specific csc/cpe class, returns a string
 	public static String dbClassUnits(Statement stmt, Class myClass) {
-		ResultSet rs = dbClassQuery(stmt, UNITS, myClass);
 		String units = "N/A";
         try {
-			while(rs.next()){
-			    units = rs.getString(UNITS);
-			    //System.out.println(units);
+    		ResultSet rs = dbClassQuery(stmt, UNITS, myClass);
+    		try {
+				while(rs.next()){
+				    units = rs.getString(UNITS);
+				}
+				rs.close();
 			}
-			rs.close();
+			catch (Exception e) {
+	        	logger.log(Level.WARNING, e.toString());
+			}
 		} 
         catch (Exception e) {
         	logger.log(Level.WARNING, e.toString());
@@ -111,14 +131,18 @@ public class Database {
 	
 	// get # of units for a specific csc/cpe class, returns a string
 	public static String dbClassCredit(Statement stmt, Class myClass) {
-		ResultSet rs = dbClassQuery(stmt, CREDIT, myClass);
 		String credit = "N/A";
         try {
-			while(rs.next()){
-			    credit = rs.getString(CREDIT);
-			    //System.out.println(credit);
+    		ResultSet rs = dbClassQuery(stmt, CREDIT, myClass);
+    		try {
+				while(rs.next()){
+				    credit = rs.getString(CREDIT);
+				}
+				rs.close();
 			}
-			rs.close();
+			catch (Exception e) {
+	        	logger.log(Level.WARNING, e.toString());
+			}
 		} 
         catch (Exception e) {
         	logger.log(Level.WARNING, e.toString());
@@ -128,14 +152,18 @@ public class Database {
 	
 	// get # of units for a specific csc/cpe class, returns a string
 	public static String dbClassTerms(Statement stmt, Class myClass) {
-		ResultSet rs = dbClassQuery(stmt, TERMS, myClass);
 		String terms = "N/A";
         try {
-			while(rs.next()){
-			    terms = rs.getString(TERMS);
-			    //System.out.println(terms);
+    		ResultSet rs = dbClassQuery(stmt, TERMS, myClass);
+    		try {
+				while(rs.next()){
+				    terms = rs.getString(TERMS);
+				}
+				rs.close();
 			}
-			rs.close();
+			catch (Exception e) {
+	        	logger.log(Level.WARNING, e.toString());
+			}
 		} 
         catch (Exception e) {
         	logger.log(Level.WARNING, e.toString());
@@ -145,15 +173,18 @@ public class Database {
 	
 	// get prereq list for a specific csc/cpe class, returns a string
 	public static String dbClassPrereqs(Statement stmt, Class myClass) {
-		ResultSet rs = dbClassQuery(stmt, PREREQS, myClass);
 		String prereqs = "N/A";
         try {
-			while(rs.next()){
-			   //Retrieve by column name
-			    prereqs = rs.getString(PREREQS);
-			    //System.out.println(prereqs);
+    		ResultSet rs = dbClassQuery(stmt, PREREQS, myClass);
+    		try {
+				while(rs.next()){
+				    prereqs = rs.getString(PREREQS);
+				}
+				rs.close();
 			}
-			rs.close();
+			catch (Exception e) {
+	        	logger.log(Level.WARNING, e.toString());
+			}
 		} 
         catch (Exception e) {
         	logger.log(Level.WARNING, e.toString());
@@ -187,13 +218,7 @@ public class Database {
 	    }
 		// above here goes before calls
 		
-		Class c = new Class("CSC 101");
-		dbClassInfo(stmt, c);
-		//System.out.println(dbClassLongName(stmt, c));
-		//System.out.println(dbClassUnits(stmt, c));
-		//System.out.println(dbClassCredit(stmt, c));
-		//System.out.println(dbClassTerms(stmt, c));
-		//System.out.println(dbClassPrereqs(stmt, c));
+		// call works like "dbClassInfo(stmt, c)";
 		
 		// below here goes after calls
         try {
