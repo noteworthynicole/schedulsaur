@@ -21,12 +21,25 @@ public class Class {
 		return name;
 	}
 	
+	public int getUnits() {
+		return units;
+	}
+	
+	public void setUnits(int units) {
+		this.units = units;
+	}
+	
 	@Override
-	   public String toString() {
+	public String toString() {
 		if(!prerec.isEmpty()) {
-	      return "Class " + name + " " + Arrays.toString(prerec.toArray());
+			return "Class " + name + " " + Arrays.toString(prerec.toArray());
 		} else {
 			return "Class " + name;
 		}
-	   }
+	}
+		
+	@Override
+    public boolean equals(Object obj) {
+        return obj != null && obj instanceof Class && this.name.equals(((Class)obj).getName()) && this.units == ((Class)obj).getUnits();
+    }
 }

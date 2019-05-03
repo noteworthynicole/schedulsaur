@@ -14,28 +14,17 @@ public final class Section extends Class{
 	private int enrolled = 0;
 	private int waitList = 0;
 	
-	public Section(String name, String id, String type, List<Class> prerec, String prof, DoubleTimes times, String location) {
-		super(name);
-		this.id = id;
-		this.type = type;
-		this.prof = prof;
-		this.prerec = prerec;
-		this.times = times;
-		this.location = location;
-	}
-	
-	public Section(String name, String id, String type, String prof, DoubleTimes times, 
-			String location, String maxCapacity, String enrolled, String waitList) {
-		super(name);
-		this.id = id;
-		this.type = type;
-		this.prof = prof;
+	public Section(DoubleTimes times, List<String> fields) {
+		super(fields.get(0));
+		this.id = fields.get(1);
+		this.type = fields.get(2);
+		this.prof = fields.get(3);
 		this.prerec = new ArrayList<>();
 		this.times = times;
-		this.location = location;
-		this.maxCapacity = getInteger(maxCapacity);
-		this.enrolled = getInteger(enrolled);
-		this.waitList = getInteger(waitList);
+		this.location = fields.get(4);
+		this.maxCapacity = getInteger(fields.get(5));
+		this.enrolled = getInteger(fields.get(6));
+		this.waitList = getInteger(fields.get(7));
 	}
 	
 	public List<Class> getPrerec(){
@@ -61,6 +50,18 @@ public final class Section extends Class{
 		return times;
 	}
 	
+	public int getMaxCapacity() {
+		return maxCapacity;
+	}
+
+	public int getWaitList() {
+		return waitList;
+	}
+
+	public int getEnrolled() {
+		return enrolled;
+	}
+	
 	@Override
 	   public String toString() {
 		if(lab == null) {
@@ -80,10 +81,8 @@ public final class Section extends Class{
 		int x;
 	    try { 
 	       x = Integer.parseInt(s); 
-	    } catch(NumberFormatException e) { 
+	    } catch(Exception e) { 
 	        return 0; 
-	    } catch(NullPointerException e) {
-	        return 0;
 	    }
 	    return x;
 	}

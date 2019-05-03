@@ -71,21 +71,22 @@ public class Main {
 	   
 	   private static Section createSection(String[] line) {
 		   //0 - class department, number, and section
-		   String className = line[0].substring(0, 10);
+		   List<String> fields = new ArrayList<>();
+		   fields.add(line[0].substring(0, 10));
 		   //1 - class id number 
-		   String id = line[1];
+		   fields.add(line[1]);
 		   //2 - class type (lec, lab, act)
-		   String type = line[2];
+		   fields.add(line[2]);
 		   //3 - prof name
-		   String prof = line[3];
+		   fields.add(line[3]);
 		   //4 - day of the week, 5 - start time, 6 - end time
 		   DoubleTimes time = new DoubleTimes(line[4], line[5], line[6]); 
 		   //5 - location
-		   String location = line[7];
-		   String maxCapacity = line[8];
-		   String enrolled = line[9];
-		   String waitList = line[10];
-		   return new Section(className, id, type, prof, time, location, maxCapacity, enrolled, waitList);
+		   fields.add(line[7]);
+		   fields.add(line[8]);
+		   fields.add(line[9]);
+		   fields.add(line[10]);
+		   return new Section(time, fields);
 	   }
 	   
 	   //adds to the hashtable if it is a lab section for the same lecture
