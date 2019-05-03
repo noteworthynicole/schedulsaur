@@ -13,10 +13,7 @@ public class Database {
 	   Connection conn = null;
 		Statement stmt = null;
 		try {
-			java.lang.Class.forName("com.mysql.jdbc.Driver");              //STEP 3: Open a connection
-	        //System.out.println("Connecting to database...");
-	        conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur","teambulbasaur");              //STEP 4: Execute a query
-	        //System.out.println("Creating statement...");
+	        conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur","teambulbasaur");
 	        stmt = conn.createStatement();
 		}
 		catch(SQLException se) {
@@ -74,7 +71,7 @@ public class Database {
 	            String credit = rs.getString("Credit");
 	            String terms = rs.getString("Terms");
 	            String prereqs = rs.getString("Prereqs");
-	            System.out.println(classID + ", " + className + ", " + units + ", " + credit + ", " + terms + ", " + prereqs);
+	            //System.out.println(classID + ", " + className + ", " + units + ", " + credit + ", " + terms + ", " + prereqs);
 	        }
 	        rs.close();
 		}
@@ -109,7 +106,7 @@ public class Database {
 	        while(rs.next()){
 	           //Retrieve by column name
 	           String className = rs.getString("ClassName");
-	           System.out.println(className);
+	           //System.out.println(className);
 	        }
 	        rs.close();
 		}
@@ -144,7 +141,7 @@ public class Database {
 	        while(rs.next()){
 	           //Retrieve by column name
 	           String units = rs.getString("Units");
-	           System.out.println(units);
+	           //System.out.println(units);
 	        }
 	        rs.close();
 		}
@@ -179,7 +176,7 @@ public class Database {
 	        while(rs.next()){
 	           //Retrieve by column name
 	           String credit = rs.getString("Credit");
-	           System.out.println(credit);
+	           //System.out.println(credit);
 	        }
 	        rs.close();
 		}
@@ -214,7 +211,7 @@ public class Database {
 	        while(rs.next()){
 	           //Retrieve by column name
 	           String terms = rs.getString("Terms");
-	           System.out.println(terms);
+	           //System.out.println(terms);
 	        }
 	        rs.close();
 		}
@@ -249,7 +246,7 @@ public class Database {
 	        while(rs.next()){
 	           //Retrieve by column name
 	           String prereqs = rs.getString("Prereqs");
-	           System.out.println(prereqs);
+	           //System.out.println(prereqs);
 	        }
 	        rs.close();
 		}
@@ -275,10 +272,7 @@ public class Database {
 		Connection conn = null;
 		Statement stmt = null;
 		try {
-			java.lang.Class.forName("com.mysql.jdbc.Driver");              //STEP 3: Open a connection
-	        //System.out.println("Connecting to database...");
-	        conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur","teambulbasaur");              //STEP 4: Execute a query
-	        //System.out.println("Creating statement...");
+	        conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur","teambulbasaur");
 	        stmt = conn.createStatement();
 		}
 		catch(SQLException se) {
