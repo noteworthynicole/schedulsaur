@@ -65,26 +65,23 @@ public class Database {
 	    String prereqs = "N/A";
         try {
         	ResultSet rs = dbClassQuery(stmt, "*", myClass);
-			try {
-				while(rs.next()){
-					classID = myClass.getName();
-					className = rs.getString(CLASSNAME);
-				    units = rs.getString(UNITS);
-				    credit = rs.getString(CREDIT);
-				    terms = rs.getString(TERMS);
-				    prereqs = rs.getString(PREREQS);
-				}
-				rs.close();
+    		if(rs == null) {
+    			return (classID + ", " + className + ", " + units + ", " + credit + ", " + terms + ", " + prereqs);
+    		}
+			while(rs.next()){
+				classID = myClass.getName();
+				className = rs.getString(CLASSNAME);
+			    units = rs.getString(UNITS);
+			    credit = rs.getString(CREDIT);
+			    terms = rs.getString(TERMS);
+			    prereqs = rs.getString(PREREQS);
 			}
-			catch (Exception e) {
-	        	logger.log(Level.WARNING, e.toString());
-			}
+			rs.close();
 		} 
         catch (Exception e) {
         	logger.log(Level.WARNING, e.toString());
 		}
-        String res = classID + ", " + className + ", " + units + ", " + credit + ", " + terms + ", " + prereqs;
-	    return res;
+	    return (classID + ", " + className + ", " + units + ", " + credit + ", " + terms + ", " + prereqs);
 	}
 	
 	// get full name for a specific csc/cpe class, returns a string
@@ -92,15 +89,13 @@ public class Database {
 		String className = "N/A";
         try {
         	ResultSet rs = dbClassQuery(stmt, CLASSNAME, myClass);
-        	try {
-				while(rs.next()){
-					className = rs.getString(CLASSNAME);
-				}
-				rs.close();
+    		if(rs == null) {
+    			return className;
+    		}
+			while(rs.next()){
+				className = rs.getString(CLASSNAME);
 			}
-			catch (Exception e) {
-	        	logger.log(Level.WARNING, e.toString());
-			}
+			rs.close();
 		} 
         catch (Exception e) {
         	logger.log(Level.WARNING, e.toString());
@@ -113,15 +108,13 @@ public class Database {
 		String units = "N/A";
         try {
     		ResultSet rs = dbClassQuery(stmt, UNITS, myClass);
-    		try {
-				while(rs.next()){
-				    units = rs.getString(UNITS);
-				}
-				rs.close();
+    		if(rs == null) {
+    			return units;
+    		}
+			while(rs.next()){
+			    units = rs.getString(UNITS);
 			}
-			catch (Exception e) {
-	        	logger.log(Level.WARNING, e.toString());
-			}
+			rs.close();
 		} 
         catch (Exception e) {
         	logger.log(Level.WARNING, e.toString());
@@ -134,15 +127,13 @@ public class Database {
 		String credit = "N/A";
         try {
     		ResultSet rs = dbClassQuery(stmt, CREDIT, myClass);
-    		try {
-				while(rs.next()){
-				    credit = rs.getString(CREDIT);
-				}
-				rs.close();
+    		if(rs == null) {
+    			return credit;
+    		}
+			while(rs.next()){
+			    credit = rs.getString(CREDIT);
 			}
-			catch (Exception e) {
-	        	logger.log(Level.WARNING, e.toString());
-			}
+			rs.close();
 		} 
         catch (Exception e) {
         	logger.log(Level.WARNING, e.toString());
@@ -155,15 +146,13 @@ public class Database {
 		String terms = "N/A";
         try {
     		ResultSet rs = dbClassQuery(stmt, TERMS, myClass);
-    		try {
-				while(rs.next()){
-				    terms = rs.getString(TERMS);
-				}
-				rs.close();
+    		if(rs == null) {
+    			return terms;
+    		}
+			while(rs.next()){
+			    terms = rs.getString(TERMS);
 			}
-			catch (Exception e) {
-	        	logger.log(Level.WARNING, e.toString());
-			}
+			rs.close();
 		} 
         catch (Exception e) {
         	logger.log(Level.WARNING, e.toString());
@@ -176,15 +165,13 @@ public class Database {
 		String prereqs = "N/A";
         try {
     		ResultSet rs = dbClassQuery(stmt, PREREQS, myClass);
-    		try {
-				while(rs.next()){
-				    prereqs = rs.getString(PREREQS);
-				}
-				rs.close();
+    		if(rs == null) {
+    			return prereqs;
+    		}
+			while(rs.next()){
+			    prereqs = rs.getString(PREREQS);
 			}
-			catch (Exception e) {
-	        	logger.log(Level.WARNING, e.toString());
-			}
+			rs.close();
 		} 
         catch (Exception e) {
         	logger.log(Level.WARNING, e.toString());
