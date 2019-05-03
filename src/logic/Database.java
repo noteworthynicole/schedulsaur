@@ -7,6 +7,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Database {
+	
+	// constants i guess
+	private static final String catalog_className = "ClassName";
+	private static final String catalog_Units = "Units";
+	private static final String catalog_Credit = "Credit";
+	private static final String catalog_Terms = "Terms";
+	private static final String catalog_Prereqs = "Prereqs";
+	
 	// ok right now (5/2) everything just prints out stuff, we can do returns later
 	
 	/* course information (name, prereqs, units, etc) */
@@ -16,7 +24,7 @@ public class Database {
 	// get course info for all cpe classes, returns ??
 	
 	// this is because sonarcloud cried at me and doesn't like duplicate code
-	public static ResultSet dbClass_Main(Statement stmt, String toFind, Class myClass) {
+	public static ResultSet dbClassQuery(Statement stmt, String toFind, Class myClass) {
         try {
 			String classID = myClass.getName();
 			// now we do a lookup, but it depends if it's csc/cpe tho
@@ -32,8 +40,7 @@ public class Database {
 			else {
 				// fix this later for other majors I Guess
 			}
-			ResultSet rs = stmt.executeQuery(sql);
-			return rs;
+			return stmt.executeQuery(sql);
         }
 		catch(SQLException se) {
 	         //Handle errors for JDBC
@@ -48,16 +55,16 @@ public class Database {
 	
 	// get course info for a specific csc/cpe class, returns a string (like from the csv)
 	public static void dbClassInfo(Statement stmt, Class myClass) {
-        ResultSet rs = dbClass_Main(stmt, "*", myClass);
+        ResultSet rs = dbClassQuery(stmt, "*", myClass);
         try {
 			while(rs.next()){
 			   //Retrieve by column name
 				String classID = myClass.getName();
-				String className = rs.getString("ClassName");
-			    String units = rs.getString("Units");
-			    String credit = rs.getString("Credit");
-			    String terms = rs.getString("Terms");
-			    String prereqs = rs.getString("Prereqs");
+				String className = rs.getString(catalog_className);
+			    String units = rs.getString(catalog_Units);
+			    String credit = rs.getString(catalog_Credit);
+			    String terms = rs.getString(catalog_Terms);
+			    String prereqs = rs.getString(catalog_Prereqs);
 			    System.out.println(classID + ", " + className + ", " + units + ", " + credit + ", " + terms + ", " + prereqs);
 			}
 			rs.close();
@@ -69,11 +76,11 @@ public class Database {
 	
 	// get full name for a specific csc/cpe class, returns a string
 	public static void dbClassLongName(Statement stmt, Class myClass) {
-		ResultSet rs = dbClass_Main(stmt, "ClassName", myClass);
+		ResultSet rs = dbClassQuery(stmt, catalog_className, myClass);
         try {
 			while(rs.next()){
 			   //Retrieve by column name
-				String className = rs.getString("ClassName");
+				String className = rs.getString(catalog_className);
 			    System.out.println(className);
 			}
 			rs.close();
@@ -85,11 +92,11 @@ public class Database {
 	
 	// get # of units for a specific csc/cpe class, returns a string
 	public static void dbClassUnits(Statement stmt, Class myClass) {
-		ResultSet rs = dbClass_Main(stmt, "Units", myClass);
+		ResultSet rs = dbClassQuery(stmt, catalog_Units, myClass);
         try {
 			while(rs.next()){
 			   //Retrieve by column name
-			    String units = rs.getString("Units");
+			    String units = rs.getString(catalog_Units);
 			    System.out.println(units);
 			}
 			rs.close();
@@ -101,11 +108,11 @@ public class Database {
 	
 	// get # of units for a specific csc/cpe class, returns a string
 	public static void dbClassCredit(Statement stmt, Class myClass) {
-		ResultSet rs = dbClass_Main(stmt, "Credit", myClass);
+		ResultSet rs = dbClassQuery(stmt, catalog_Credit, myClass);
         try {
 			while(rs.next()){
 			   //Retrieve by column name
-			    String credit = rs.getString("Credit");
+			    String credit = rs.getString(catalog_Credit);
 			    System.out.println(credit);
 			}
 			rs.close();
@@ -117,11 +124,11 @@ public class Database {
 	
 	// get # of units for a specific csc/cpe class, returns a string
 	public static void dbClassTerms(Statement stmt, Class myClass) {
-		ResultSet rs = dbClass_Main(stmt, "Terms", myClass);
+		ResultSet rs = dbClassQuery(stmt, catalog_Terms, myClass);
         try {
 			while(rs.next()){
 			   //Retrieve by column name
-			    String terms = rs.getString("Terms");
+			    String terms = rs.getString(catalog_Terms);
 			    System.out.println(terms);
 			}
 			rs.close();
@@ -133,11 +140,11 @@ public class Database {
 	
 	// get prereq list for a specific csc/cpe class, returns a string
 	public static void dbClassPrereqs(Statement stmt, Class myClass) {
-		ResultSet rs = dbClass_Main(stmt, "Prereqs", myClass);
+		ResultSet rs = dbClassQuery(stmt, catalog_Prereqs, myClass);
         try {
 			while(rs.next()){
 			   //Retrieve by column name
-			    String prereqs = rs.getString("Prereqs");
+			    String prereqs = rs.getString(catalog_Prereqs);
 			    System.out.println(prereqs);
 			}
 			rs.close();
