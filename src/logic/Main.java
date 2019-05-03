@@ -3,6 +3,8 @@ import java.io.*;
 import java.util.*;
 import java.util.Map.*;
 import java.util.logging.*;
+import java.util.Collections.*;
+import java.util.stream.*;
 
 /*
  * General:
@@ -137,6 +139,15 @@ public class Main {
 				   hashmap.remove(key);
 			   }
 		   }
+	   }
+
+	   // Sort Times for Greedy Algorithm - Untested
+	   public static List<DoubleTimes> sortByKey(HashMap<DoubleTimes, List<Seciton>> hashmap) {
+	   	Set<DoubleTimes> keys = hashmap.keySet();
+	   	List<DoubleTimes> d = new ArrayList<>();
+	   	d = keys.stream().collect(Collectors.toList());
+	   	Collections.sort(d, (t1, t2) -> t2.compareTo(t1));
+	   	return d;
 	   }
 	   
 	   //filter by Times
