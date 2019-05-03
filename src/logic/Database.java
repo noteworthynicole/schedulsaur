@@ -5,15 +5,17 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.*;
 
 public class Database {
 	
 	// constants i guess
-	private static final String catalog_className = "ClassName";
-	private static final String catalog_Units = "Units";
-	private static final String catalog_Credit = "Credit";
-	private static final String catalog_Terms = "Terms";
-	private static final String catalog_Prereqs = "Prereqs";
+	private static final String CLASSNAME = "ClassName";
+	private static final String UNITS = "Units";
+	private static final String CREDIT = "Credit";
+	private static final String TERMS = "Terms";
+	private static final String PREREQS = "Prereqs";
+	private static final Logger logger = Logger.getLogger("Database");
 	
 	// ok right now (5/2) everything just prints out stuff, we can do returns later
 	
@@ -44,11 +46,11 @@ public class Database {
         }
 		catch(SQLException se) {
 	         //Handle errors for JDBC
-	         se.printStackTrace();
+			 logger.log(Level.WARNING, se.toString());
 	    }
 		catch(Exception e) {
 	         //Handle errors for Class.forName
-	         e.printStackTrace();
+			logger.log(Level.WARNING, e.toString());
 	    }
         return null;
 	}
@@ -58,100 +60,105 @@ public class Database {
         ResultSet rs = dbClassQuery(stmt, "*", myClass);
         try {
 			while(rs.next()){
-			   //Retrieve by column name
 				String classID = myClass.getName();
-				String className = rs.getString(catalog_className);
-			    String units = rs.getString(catalog_Units);
-			    String credit = rs.getString(catalog_Credit);
-			    String terms = rs.getString(catalog_Terms);
-			    String prereqs = rs.getString(catalog_Prereqs);
+				String className = rs.getString(CLASSNAME);
+			    String units = rs.getString(UNITS);
+			    String credit = rs.getString(CREDIT);
+			    String terms = rs.getString(TERMS);
+			    String prereqs = rs.getString(PREREQS);
 			    System.out.println(classID + ", " + className + ", " + units + ", " + credit + ", " + terms + ", " + prereqs);
 			}
 			rs.close();
 		} 
-        catch (SQLException e) {
-			e.printStackTrace();
+        catch (Exception e) {
+        	logger.log(Level.WARNING, e.toString());
 		}
 	}
 	
 	// get full name for a specific csc/cpe class, returns a string
-	public static void dbClassLongName(Statement stmt, Class myClass) {
-		ResultSet rs = dbClassQuery(stmt, catalog_className, myClass);
+	public static String dbClassLongName(Statement stmt, Class myClass) {
+		ResultSet rs = dbClassQuery(stmt, CLASSNAME, myClass);
+		String className = "N/A";
         try {
 			while(rs.next()){
-			   //Retrieve by column name
-				String className = rs.getString(catalog_className);
-			    System.out.println(className);
+				className = rs.getString(CLASSNAME);
+			    //System.out.println(className);
 			}
 			rs.close();
 		} 
-        catch (SQLException e) {
-			e.printStackTrace();
+        catch (Exception e) {
+        	logger.log(Level.WARNING, e.toString());
 		}
+        return className;
 	}
 	
 	// get # of units for a specific csc/cpe class, returns a string
-	public static void dbClassUnits(Statement stmt, Class myClass) {
-		ResultSet rs = dbClassQuery(stmt, catalog_Units, myClass);
+	public static String dbClassUnits(Statement stmt, Class myClass) {
+		ResultSet rs = dbClassQuery(stmt, UNITS, myClass);
+		String units = "N/A";
         try {
 			while(rs.next()){
-			   //Retrieve by column name
-			    String units = rs.getString(catalog_Units);
-			    System.out.println(units);
+			    units = rs.getString(UNITS);
+			    //System.out.println(units);
 			}
 			rs.close();
 		} 
-        catch (SQLException e) {
-			e.printStackTrace();
+        catch (Exception e) {
+        	logger.log(Level.WARNING, e.toString());
 		}
+        return units;
 	}
 	
 	// get # of units for a specific csc/cpe class, returns a string
-	public static void dbClassCredit(Statement stmt, Class myClass) {
-		ResultSet rs = dbClassQuery(stmt, catalog_Credit, myClass);
+	public static String dbClassCredit(Statement stmt, Class myClass) {
+		ResultSet rs = dbClassQuery(stmt, CREDIT, myClass);
+		String credit = "N/A";
         try {
 			while(rs.next()){
-			   //Retrieve by column name
-			    String credit = rs.getString(catalog_Credit);
-			    System.out.println(credit);
+			    credit = rs.getString(CREDIT);
+			    //System.out.println(credit);
 			}
 			rs.close();
 		} 
-        catch (SQLException e) {
-			e.printStackTrace();
+        catch (Exception e) {
+        	logger.log(Level.WARNING, e.toString());
 		}
+        return credit;
 	}
 	
 	// get # of units for a specific csc/cpe class, returns a string
-	public static void dbClassTerms(Statement stmt, Class myClass) {
-		ResultSet rs = dbClassQuery(stmt, catalog_Terms, myClass);
+	public static String dbClassTerms(Statement stmt, Class myClass) {
+		ResultSet rs = dbClassQuery(stmt, TERMS, myClass);
+		String terms = "N/A";
         try {
 			while(rs.next()){
-			   //Retrieve by column name
-			    String terms = rs.getString(catalog_Terms);
-			    System.out.println(terms);
+			    terms = rs.getString(TERMS);
+			    //System.out.println(terms);
 			}
 			rs.close();
 		} 
-        catch (SQLException e) {
-			e.printStackTrace();
+        catch (Exception e) {
+        	logger.log(Level.WARNING, e.toString());
 		}
+        return terms;
 	}
 	
 	// get prereq list for a specific csc/cpe class, returns a string
-	public static void dbClassPrereqs(Statement stmt, Class myClass) {
-		ResultSet rs = dbClassQuery(stmt, catalog_Prereqs, myClass);
+	public static String dbClassPrereqs(Statement stmt, Class myClass) {
+		ResultSet rs = dbClassQuery(stmt, PREREQS, myClass);
+		String prereqs = "N/A";
         try {
 			while(rs.next()){
 			   //Retrieve by column name
-			    String prereqs = rs.getString(catalog_Prereqs);
-			    System.out.println(prereqs);
+			    prereqs = rs.getString(PREREQS);
+			    //System.out.println(prereqs);
 			}
 			rs.close();
 		} 
-        catch (SQLException e) {
-			e.printStackTrace();
+        catch (Exception e) {
+        	logger.log(Level.WARNING, e.toString());
 		}
+        return prereqs;
 	}
 	
 	/* section information (the other stuff) */
@@ -172,21 +179,21 @@ public class Database {
 		}
 		catch(SQLException se) {
 	         //Handle errors for JDBC
-	         se.printStackTrace();
+			logger.log(Level.WARNING, se.toString());
 	    }
 		catch(Exception e) {
 	         //Handle errors for Class.forName
-	         e.printStackTrace();
+			logger.log(Level.WARNING, e.toString());
 	    }
 		// above here goes before calls
 		
 		Class c = new Class("CSC 101");
 		dbClassInfo(stmt, c);
-		dbClassLongName(stmt, c);
-		dbClassUnits(stmt, c);
-		dbClassCredit(stmt, c);
-		dbClassTerms(stmt, c);
-		dbClassPrereqs(stmt, c);
+		//System.out.println(dbClassLongName(stmt, c));
+		//System.out.println(dbClassUnits(stmt, c));
+		//System.out.println(dbClassCredit(stmt, c));
+		//System.out.println(dbClassTerms(stmt, c));
+		//System.out.println(dbClassPrereqs(stmt, c));
 		
 		// below here goes after calls
         try {
@@ -194,7 +201,7 @@ public class Database {
 			conn.close();
 		} 
         catch (SQLException e) {
-			e.printStackTrace();
+        	logger.log(Level.WARNING, e.toString());
 		}
         //above here goes after calls
 	}
