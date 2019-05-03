@@ -189,11 +189,13 @@ public class Database {
 	
 	public static void main(String[] args) {
 		// below here goes before calls
-		Connection conn = null;
 		Statement stmt = null;
-		try {
-	        conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur","teambulbasaur");
+		try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur","teambulbasaur")){
 	        stmt = conn.createStatement();
+	        
+	        // calls go here
+			
+			stmt.close();
 		}
 		catch(SQLException se) {
 	         //Handle errors for JDBC
@@ -203,18 +205,5 @@ public class Database {
 	         //Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
 	    }
-		// above here goes before calls
-		
-		// call works like "dbClassInfo(stmt, c)";
-		
-		// below here goes after calls
-        try {
-			stmt.close();
-			conn.close();
-		} 
-        catch (SQLException e) {
-        	logger.log(Level.WARNING, e.toString());
-		}
-        //above here goes after calls
 	}
 }
