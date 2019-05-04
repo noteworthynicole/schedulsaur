@@ -14,7 +14,7 @@ public class TestClass {
 	@Test
 	public void testClassStringNoPreReq() {
 		Class testClass = new Class(csc309);
-		assertTrue(testClass.getName().contains(csc309));
+		assertTrue(testClass.getName().contains("CSC-309"));
 	}
 	
 	@Test

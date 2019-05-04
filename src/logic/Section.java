@@ -16,6 +16,7 @@ public final class Section extends Class{
 	
 	public Section(DoubleTimes times, List<String> fields) {
 		super(fields.get(0));
+		assert(fields.size() == 8);
 		this.id = fields.get(1);
 		this.type = fields.get(2);
 		this.prof = fields.get(3);
@@ -85,6 +86,11 @@ public final class Section extends Class{
 	        return 0; 
 	    }
 	    return x;
+	}
+	
+	//Only available if maxCapacity is greater than 0 and enrolled is less than maxCapacity
+	public boolean isAvailable() {
+		return maxCapacity > 0 && this.enrolled < this.maxCapacity;
 	}
 
 }

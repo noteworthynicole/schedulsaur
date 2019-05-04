@@ -26,19 +26,19 @@ public class Main {
 		//Sort - keyset -> list 
 		//Greedy
 		
-		logger.log(Level.INFO, hashMapTime.toString());
+		//logger.log(Level.INFO, hashMapTime.toString());
 	}
 	
-	   private static File inputFile = null;
+	   public static File inputFile = null;
 
-	   private static void parseParameters(String [] args)
+	   public static void parseParameters(String [] args)
 	   {
 		  Logger logger = Logger.getLogger("param");
 	      for (int i = 0; i < args.length; i++)
 	      { 
 	         if (inputFile != null)
 	         {
-	        	 logger.log(Level.WARNING, "too many files specified");
+	        	logger.log(Level.WARNING, "too many files specified");
 	            System.exit(1);
 	         }
 	         else
@@ -73,6 +73,7 @@ public class Main {
 	   
 	   private static Section createSection(String[] line) {
 		   //0 - class department, number, and section
+		   assert(line.length == 11);
 		   List<String> fields = new ArrayList<>();
 		   fields.add(line[0].substring(0, 10));
 		   //1 - class id number 
@@ -83,10 +84,13 @@ public class Main {
 		   fields.add(line[3]);
 		   //4 - day of the week, 5 - start time, 6 - end time
 		   DoubleTimes time = new DoubleTimes(line[4], line[5], line[6]); 
-		   //5 - location
+		   //7 - location
 		   fields.add(line[7]);
+		   //8 - the maxCapacity
 		   fields.add(line[8]);
+		   //9 - the enrolled
 		   fields.add(line[9]);
+		   //10 - the wait list
 		   fields.add(line[10]);
 		   return new Section(time, fields);
 	   }
@@ -131,7 +135,7 @@ public class Main {
 		 return hashMapTime;
 	   }
 	   
-	   public void filterClassName(HashMap<String, Section> hashmap, String string){
+	   public void filterClassName(Map<String, Section> hashmap, String string){
 		   //Uses mutation to filter out classes by name
 		   Set<String> keys = hashmap.keySet();
 		   for(String key: keys) {
@@ -150,6 +154,20 @@ public class Main {
 	   	return d;
 	   }
 	   
+	   public void filerAvailableClass(Map<String, Section> hashmap) {
+		   Set<String> keys = hashmap.keySet();
+		   Set<String> keysToRemove = new HashSet<>();
+		   for(String key: keys) {
+			   if(!hashmap.get(key).isAvailable()) {
+				   keysToRemove.add(key);
+			   }
+		   }
+		   //Necessary so not error if all keys are removed
+		   for(String key: keysToRemove) {
+			   hashmap.remove(key);
+		   }
+	   }
+	   
 	   //filter by Times
 	   
 	   //prototype for greedy
@@ -160,7 +178,10 @@ public class Main {
 	        List<List<DoubleTimes>> m = new ArrayList<>();
 	        //I'm not sure if this will give all options, but it should give at least every different time as an option
 	        for(int i=0; i < k; i++) {
-	        	m.add(greedyHelper(n, i, d));
+	        	List<DoubleTimes> temp = greedyHelper(n, i, d);
+	        	if(temp.size() == n) {
+	        		m.add(temp);
+	        	}
 	        }
 	        return m;
 	    }

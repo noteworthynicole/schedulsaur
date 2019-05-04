@@ -18,7 +18,14 @@ public class Class {
 	}
 	
 	public String getName() {
-		return name;
+		return this.name;
+	}
+	
+	public String getEqualName() {
+		if(this.name != null && this.name.length() >= 7) {
+			return this.name.substring(0, 7);
+		}
+		return this.name;
 	}
 	
 	public int getUnits() {
@@ -40,6 +47,6 @@ public class Class {
 		
 	@Override
     public boolean equals(Object obj) {
-        return obj != null && obj instanceof Class && this.name.equals(((Class)obj).getName()) && this.units == ((Class)obj).getUnits();
+        return obj instanceof Class && this.getEqualName().equals(((Class)obj).getEqualName()) && this.units == ((Class)obj).getUnits();
     }
 }

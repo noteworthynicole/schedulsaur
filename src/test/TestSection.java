@@ -10,10 +10,15 @@ import org.junit.Test;
 
 public class TestSection {
 	
-	List<String> fields1 = Arrays.asList("name1", "id1", "Lec", "prof1", "building1", "0", "11", "0");
+	private String name1 = "CSC-309-01";
+	List<String> fields1 = Arrays.asList(name1, "id1", "Lec", "prof1", "building1", "20", "11", "0");
 	List<String> fields2 = Arrays.asList("name2", "id2", "Lec", "prof2", "building2", "10", "0", "4");
+	List<String> fields3 = Arrays.asList(name1, "id1", "Lec", "prof1", "building1", "11", "11", "0");
+	List<String> fields4 = Arrays.asList("name2", "id2", "Lec", "prof2", "building2", "10", "14", "4");
 	private Section sec1 = new Section(null, fields1);
 	private Section sec2 = new Section(null, fields2); 
+	private Section sec3 = new Section(null, fields3);
+	private Section sec4 = new Section(null, fields4); 
 	
 	@Test
 	public void testSecionNoPrereq() {
@@ -70,7 +75,7 @@ public class TestSection {
 	@Test
 	public void testGetMaxCapacity1() {
 		int act = sec1.getMaxCapacity();
-		assertEquals(0, act);
+		assertEquals(20, act);
 	}
 	
 	@Test
@@ -89,6 +94,26 @@ public class TestSection {
 	public void testType() {
 		String act = sec1.getType();
 		assertEquals("Lec", act);
+	}
+	
+	@Test
+	public void testisAvailable1() {
+		assertTrue(sec1.isAvailable());
+	}
+	
+	@Test
+	public void testisAvailable2() {
+		assertTrue(sec2.isAvailable());
+	}
+	
+	@Test
+	public void testisAvailable3() {
+		assertFalse(sec3.isAvailable());
+	}
+	
+	@Test
+	public void testisAvailable4() {
+		assertFalse(sec4.isAvailable());
 	}
 	
 }
