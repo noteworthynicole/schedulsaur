@@ -3,7 +3,7 @@ import java.util.*;
 
 public final class Section extends Class{
 	
-	private String id; //class department, number, and section
+	private String id; //unique 4 numbers
 	private String type; //lab or lec
 	private Section lab; //if only lab, this is null
 	private DoubleTimes times;
@@ -25,6 +25,10 @@ public final class Section extends Class{
 		this.maxCapacity = getInteger(fields.get(5));
 		this.enrolled = getInteger(fields.get(6));
 		this.waitList = getInteger(fields.get(7));
+	}
+	
+	public String getId() {
+		return this.id;
 	}
 	
 	public List<Class> getPrerec(){

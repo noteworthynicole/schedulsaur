@@ -61,6 +61,9 @@ public class DoubleTimes {
 	public int compareTo(DoubleTimes other) {
 		LocalTime t1 = getLecStartTime();
 		LocalTime t2 = other.getLecStartTime();
+		if(t1.equals(t2)) {
+			return getLecDay().compareTo(other.getLecDay());
+		}
 		return t1.compareTo(t2);
 	}
 	

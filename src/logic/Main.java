@@ -51,7 +51,7 @@ public class Main {
 	      }
 	   }
 	   
-	   private static HashMap<String, Section> parseFileCreateSections() throws FileNotFoundException{
+	   public static HashMap<String, Section> parseFileCreateSections() throws FileNotFoundException{
 		   //This function parses through the file and creates sections of both lecture and lab
 		   Scanner fileScanner = new Scanner(inputFile);
 			HashMap<String, Section> hashMapInit = new HashMap<>();
@@ -74,9 +74,8 @@ public class Main {
 			return hashMapInit;
 	   }
 	   
-	   private static Section createSection(String[] line) {
+	   public static Section createSection(String[] line) {
 		   //0 - class department, number, and section
-		   assert(line.length == 11);
 		   List<String> fields = new ArrayList<>();
 		   fields.add(line[0].substring(0, 10));
 		   //1 - class id number 
@@ -101,7 +100,7 @@ public class Main {
 	   //adds to the hashtable if it is a lab section for the same lecture
 	   //Returns true if does not add, needing to add class as separate
 	   //Returns false if it adds, thus not needing to add the class again
-	   private static boolean checkLab(HashMap<String, Section> hashMap, Section currSection) {
+	   public static boolean checkLab(Map<String, Section> hashMap, Section currSection) {
 		   if (currSection.getType().equals("Lab")) {
 			   //This grabs the prefix of the class if a lab, goes back one section to attach to lec version
 			   String lecKey = currSection.getName().substring(0,8) + 
@@ -116,7 +115,7 @@ public class Main {
 		   return true;
 	   }
 	   
-	   private static HashMap<DoubleTimes, List<Section>> classesByTime(Map<String, Section> hashMapInit){
+	   public static HashMap<DoubleTimes, List<Section>> classesByTime(Map<String, Section> hashMapInit){
 		   HashMap<DoubleTimes, List<Section>> hashMapTime = new HashMap<>();
 			for(Entry<String, Section> entry : hashMapInit.entrySet()) {
 				Section currSection = entry.getValue();
@@ -149,7 +148,7 @@ public class Main {
 	   }
 
 	   // Sort Times for Greedy Algorithm - Untested
-	   public static List<DoubleTimes> sortByKey(HashMap<DoubleTimes, List<Section>> hashmap) {
+	   public static List<DoubleTimes> sortByKey(Map<DoubleTimes, List<Section>> hashmap) {
 	   	Set<DoubleTimes> keys = hashmap.keySet();
 	   	List<DoubleTimes> d = keys.stream().collect(Collectors.toList());
 	   	Collections.sort(d, (t1, t2) -> t1.compareTo(t2)); 
@@ -193,15 +192,14 @@ public class Main {
 		   int k = d.size();
 		   List<DoubleTimes> schedule = new ArrayList<>();
 		   schedule.add(d.get(i));
-	       	for(int j=i; j<k+i; j++) {
-	    		if(j < k && schedule.get(schedule.size() - 1).compatible(d.get(j)) && allCompatible(schedule, d.get(j))) {
+		   for(int j=i+1; j<k+i; j++) {
+	    		if(j < k && allCompatible(schedule, d.get(j))) {
     				schedule.add(d.get(j));
     				if(schedule.size() >= n) {
     					return schedule; //stop because this is an optimal solution
     				}
-	    		}else if(j > k && schedule.get(schedule.size() - 1).compatible(d.get(j - i)) && allCompatible(schedule, d.get(j - i))){//loop back around
-    				//Double check this logic
-    				schedule.add(d.get(j - i));
+	    		}else if(j >= k && allCompatible(schedule, d.get(j - i - 1))){//loop back around
+    				schedule.add(d.get(j - i - 1));
     				if(schedule.size() >= n) {
     					return schedule;
 	    			}
