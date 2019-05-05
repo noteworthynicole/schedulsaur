@@ -3,7 +3,6 @@ import java.io.*;
 import java.util.*;
 import java.util.Map.*;
 import java.util.logging.*;
-import java.util.Collections.*;
 import java.util.stream.*;
 
 /*
@@ -24,9 +23,13 @@ public class Main {
 		//Likely put a filter here to get rid of classes that are not relevant
 		HashMap<DoubleTimes, List<Section>> hashMapTime = classesByTime(hashMapInit);
 		//Sort - keyset -> list 
+		List<DoubleTimes> doubleTimesList1 = sortByKey(hashMapTime); 
 		//Greedy
-		
-		//logger.log(Level.INFO, hashMapTime.toString());
+		List<List<DoubleTimes>> doubleTimesList2 = greedySchedule(4, doubleTimesList1);
+		if(!doubleTimesList2.isEmpty()) {
+			//Need to use the times from doubleTimes2 List for a schedule
+			logger.log(Level.INFO, doubleTimesList2.get(0).toString());
+		}
 	}
 	
 	   public static File inputFile = null;
@@ -146,11 +149,10 @@ public class Main {
 	   }
 
 	   // Sort Times for Greedy Algorithm - Untested
-	   public static List<DoubleTimes> sortByKey(HashMap<DoubleTimes, List<Seciton>> hashmap) {
+	   public static List<DoubleTimes> sortByKey(HashMap<DoubleTimes, List<Section>> hashmap) {
 	   	Set<DoubleTimes> keys = hashmap.keySet();
-	   	List<DoubleTimes> d = new ArrayList<>();
-	   	d = keys.stream().collect(Collectors.toList());
-	   	Collections.sort(d, (t1, t2) -> t2.compareTo(t1));
+	   	List<DoubleTimes> d = keys.stream().collect(Collectors.toList());
+	   	Collections.sort(d, (t1, t2) -> t1.compareTo(t2)); 
 	   	return d;
 	   }
 	   
@@ -160,6 +162,7 @@ public class Main {
 		   for(String key: keys) {
 			   if(!hashmap.get(key).isAvailable()) {
 				   keysToRemove.add(key);
+				   
 			   }
 		   }
 		   //Necessary so not error if all keys are removed
@@ -189,13 +192,14 @@ public class Main {
 	   public static List<DoubleTimes> greedyHelper(int n, int i, List<DoubleTimes> d){
 		   int k = d.size();
 		   List<DoubleTimes> schedule = new ArrayList<>();
+		   schedule.add(d.get(i));
 	       	for(int j=i; j<k+i; j++) {
-	    		if(j < k && schedule.get(schedule.size() - 1).compatible(d.get(j))) {
+	    		if(j < k && schedule.get(schedule.size() - 1).compatible(d.get(j)) && allCompatible(schedule, d.get(j))) {
     				schedule.add(d.get(j));
     				if(schedule.size() >= n) {
     					return schedule; //stop because this is an optimal solution
     				}
-	    		}else if(j > k && schedule.get(schedule.size() - 1).compatible(d.get(j - i))){//loop back around
+	    		}else if(j > k && schedule.get(schedule.size() - 1).compatible(d.get(j - i)) && allCompatible(schedule, d.get(j - i))){//loop back around
     				//Double check this logic
     				schedule.add(d.get(j - i));
     				if(schedule.size() >= n) {
@@ -204,6 +208,15 @@ public class Main {
 	    		}
 	    	}
 	       	return schedule;
+	   }
+	   
+	   public static boolean allCompatible(List<DoubleTimes> schedule, DoubleTimes potential) {
+		   for(DoubleTimes times : schedule) {
+			   if(!times.compatible(potential)) {
+				   return false;
+			   }
+		   }
+		   return true;
 	   }
 
 }

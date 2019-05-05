@@ -13,10 +13,11 @@ import logic.Section;
 public class TestMain {
 	
 	private String name1 = "name1";
+	private String name2 = "name2";
 	List<String> fields1 = Arrays.asList(name1, "id1", "Lec", "prof1", "building1", "20", "11", "0");
-	List<String> fields2 = Arrays.asList("name2", "id2", "Lec", "prof2", "building2", "10", "0", "4");
-	List<String> fields3 = Arrays.asList(name1, "id1", "Lec", "prof1", "building1", "11", "11", "0");
-	List<String> fields4 = Arrays.asList("name2", "id2", "Lec", "prof2", "building2", "10", "14", "4");
+	List<String> fields2 = Arrays.asList(name2, "id2", "Lec", "prof2", "building2", "10", "0", "4");
+	List<String> fields3 = Arrays.asList(name1, "id1", "Lec", "prof3", "building3", "11", "11", "0");
+	List<String> fields4 = Arrays.asList(name2, "id2", "Lec", "prof4", "building4", "10", "14", "4");
 	private Section sec1 = new Section(null, fields1);
 	private Section sec2 = new Section(null, fields2); 
 	private Section sec3 = new Section(null, fields3);
@@ -52,7 +53,7 @@ public class TestMain {
 		Main main = new Main();
 		HashMap<String, Section> hashmap = new HashMap<>();
 		hashmap.put(name1, sec1);
-		hashmap.put("name2", sec2);
+		hashmap.put(name2, sec2);
 		main.filterClassName(hashmap, name1);
 		assertFalse(hashmap.containsKey(name1));
 	}
@@ -62,7 +63,7 @@ public class TestMain {
 		Main main = new Main();
 		HashMap<String, Section> hashmap = new HashMap<>();
 		hashmap.put(name1, sec1);
-		hashmap.put("name2", sec2);
+		hashmap.put(name2, sec2);
 		main.filerAvailableClass(hashmap);
 		assertEquals(2, hashmap.size());
 	}
@@ -72,7 +73,7 @@ public class TestMain {
 		Main main = new Main();
 		HashMap<String, Section> hashmap = new HashMap<>();
 		hashmap.put(name1, sec3);
-		hashmap.put("name2", sec4);
+		hashmap.put(name2, sec4);
 		main.filerAvailableClass(hashmap);
 		assertEquals(0, hashmap.size());
 	}

@@ -36,6 +36,14 @@ public class Class {
 		this.units = units;
 	}
 	
+	@Override 
+	public int hashCode() {
+		int result = 31;
+        result = result * this.name.hashCode();
+        result = result * this.units;
+        return result;
+	}
+	
 	@Override
 	public String toString() {
 		if(!prerec.isEmpty()) {
