@@ -1,4 +1,21 @@
 const initState = {
+
+    /**
+     * student
+     * 
+     * @description Contains information about a student
+     * @param {String} id student identifier
+     * @param {String} name name of student
+     * @param {String} major major of student
+     * @param {String} catalog_year catalog year studetn follows
+     * @param {String} expected_grad expected graduation
+     * @param {String} units_this_quarter units taking this quarter
+     * @param {String} units_per_quarter units per quarter
+     * @param {String} major_percent percent completion of major courses
+     * @param {String} support_percent percent completion of support courses
+     * @param {String} ge_percent percent completion of ge courses
+     */
+
     id: '1',
     name: 'John Doe',
     major: 'Software Engineering',
@@ -12,7 +29,10 @@ const initState = {
 }
 
 const studentReducer = (state=initState, action) => {
-    // add switch for actions
+
+    // *** add switch for actions
+    // *** add switch for actions
+
     return state;
 }
 

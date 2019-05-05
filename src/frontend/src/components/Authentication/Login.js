@@ -1,4 +1,11 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+
+/**
+ * Login
+ * 
+ * @description Main component to create the Login page
+ */
 
 class Login extends Component {
     state = {
@@ -6,14 +13,42 @@ class Login extends Component {
         password: ''
     }
 
+    /**
+     * handleSubmit
+     * 
+     * @method
+     * @description called when form is submitted
+     */
     handleSubmit = (e) => {
         e.preventDefault()
+
+        // *** need to authenticate account here
+        // *** need to authenticate account here
+
+        this.props.history.push('/DashBoard')
+
     }
 
-    hangleChange = (e) => {
+    /**
+     * handleChange
+     * 
+     * @method
+     * @description called user types into input
+     */
+    handleChange = (e) => {
         this.setState({
            [e.target.id]: e.target.value
         })
+    }
+
+    /**
+     * handleSignup
+     * 
+     * @method
+     * @description called when user signs up
+     */
+    handleSignUp = (e) => {
+        this.props.history.push('/Signup')
     }
 
     render(){
@@ -26,11 +61,7 @@ class Login extends Component {
                         <input type='email' id='email' placeholder='email' onChange={this.handleChange}/>
                         <input type='password' id='password' placeholder='password' onChange={this.handleChange}/>
                     </div>
-
-                    {/* Will authenticate using Database */}
-                    {/* Will authenticate using Database */}
-                    {/* Will authenticate using Database */}
-                    <button className='btn black-text' id='button_left'>
+                    <button className='btn black-text' id='button_left' onClick={this.handleSignUp}>
                         Sign Up
                     </button>
                     <button className='btn' id='button_right'>
@@ -38,11 +69,7 @@ class Login extends Component {
                     </button>
                 </form>
                 <footer className='footer'>
-
-                    {/* redirect to About Page */}
-                    {/* redirect to About Page */}
-                    {/* redirect to About Page */}
-                    <h5 className='white-text'>About</h5>
+                    <h5><NavLink to='./About' className='white-text'>About</NavLink></h5>
                 </footer>
             </div>
         )
