@@ -17,6 +17,15 @@ public class Database {
 	private static final String PREREQS = "Prereqs";
 	private static final Logger logger = Logger.getLogger("Database");
 	
+	//sql to pull cpe catalog table
+	public final static String CSCCATSQL = "SELECT * FROM schedulsaurdb.catalog_cpe";
+	//pull csc catalog table
+	public final static String CPECATSQL = "SELECT * FROM schedulsaurdb.catalog_cpe";
+	//sql to pull cpe section table
+	public final static String CSCSECSQL = "SELECT * FROM schedulsaurdb.sections_csc";
+	//pull csc section table
+	public final static String CPESECSQL = "SELECT * FROM schedulsaurdb.sections_cpe";
+	
 	// ok right now (5/2) everything just prints out stuff, we can do returns later
 	
 	/* course information (name, prereqs, units, etc) */
@@ -179,6 +188,53 @@ public class Database {
         return prereqs;
 	}
 	
+	public static ArrayList<String[]> dbAllRows(Statement stmt, String sql)
+    {
+		ArrayList<String[]> list = new ArrayList(); 
+		try {
+    	  
+			ResultSet rs = stmt.executeQuery(sql);
+			java.sql.ResultSetMetaData rsmd = rs.getMetaData();
+			int c = 0;
+			while(rs.next()){
+				list.add(new String[rsmd.getColumnCount()]);
+	    	  
+				for(int i = 0; i < rsmd.getColumnCount(); i++)
+				{
+					list.get(c)[i] = rs.getString(rsmd.getColumnName(i+1));
+					//System.out.print(list.get(c)[i] + ", ");
+				}
+				//System.out.println("\n");
+	    	  
+				c++;
+			}
+			rs.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+      
+		return list;
+	}
+	
+	//replace class object with schedule object later
+	public static void dbWriteSched(Statement stmt, Class class)
+	{
+		String sql = "INSERT INTO Schedules () value (" + class.getName() + ");";
+		try {
+			stmt.executeUpdate(sql);
+			
+			rs.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+      
+		return list;
+	}
+	
 	/* section information (the other stuff) */
 	
 	// get section info for Literally Every csc class, returns ??
@@ -194,6 +250,8 @@ public class Database {
 	        stmt = conn.createStatement();
 	        
 	        // calls go here
+			Class testClass = new Class("CSC 309");
+			dbWriteSched(stmt, testClass);
 			
 			stmt.close();
 		}
