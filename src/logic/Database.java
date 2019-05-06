@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.logging.*;
 
 public class Database {
@@ -222,11 +222,12 @@ public class Database {
 	public static void dbWriteSched(Statement stmt, String[] classList)
 	{
 		String value = "";
-		for(int i = 0; i < classList.length-1; i++)
+		int i;
+		for(i = 0; i < classList.length-1; i++)
 		{
 			value += classList[i] + ",";
 		}
-		value += classList[i]
+		value += classList[i];
 		
 		String sql = "INSERT INTO schedulsaurdb.Schedules () value ('" + value + "');";
 		try {
@@ -246,15 +247,35 @@ public class Database {
 	
 	// get section info for a specific csc/cpe class, returns ??
 	
+	public static List<String[]> getdbAllRow() {
+		// below here goes before calls
+		Statement stmt = null;
+		List<String[]> list = null;
+		try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur","teambulbasaur")){
+	        stmt = conn.createStatement();		
+			list = dbAllRows(stmt, CSCCATSQL);
+			stmt.close();
+		}
+		catch(SQLException se) {
+	         //Handle errors for JDBC
+			logger.log(Level.WARNING, se.toString());
+	    }
+		catch(Exception e) {
+	         //Handle errors for Class.forName
+			logger.log(Level.WARNING, e.toString());
+	    }
+		return list;
+	}
+	
 	public static void main(String[] args) {
 		// below here goes before calls
 		Statement stmt = null;
 		try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur","teambulbasaur")){
 	        stmt = conn.createStatement();
-	        
+	        String[] arr = {"hello", "world"};
 	        // calls go here
 			Class testClass = new Class("CSC 309");
-			dbWriteSched(stmt, testClass);
+			dbWriteSched(stmt, arr);
 			
 			stmt.close();
 		}

@@ -18,8 +18,9 @@ public class Main {
 	private static final Logger logger = Logger.getLogger("Main");
 	
 	public static void main(String[] args) throws FileNotFoundException{
-		parseParameters(args);
-		Map<String, Section> hashMapInit = parseFileCreateSections();
+		//parseParameters(args);
+		//Map<String, Section> hashMapInit = parseFileCreateSections();
+		Map<String, Section> hashMapInit = parseDbsCreateSections();
 		//Likely put a filter here to get rid of classes that are not relevant
 		Map<DoubleTimes, List<Section>> hashMapTime = classesByTime(hashMapInit);
 		//Sort - keyset -> list 
@@ -51,6 +52,20 @@ public class Main {
 	      }
 	   }
 	   
+	   public static Map<String, Section> parseDbsCreateSections(){
+		   List<String[]> list = Database.getdbAllRow();
+		   System.out.println(list.get(0)[0]);
+		   HashMap<String, Section> hashMapInit = new HashMap<>();
+		   for(int i=0; i< list.size(); i++) {
+			   Section currSection = createSection(list.get(i));
+			   String currKey = list.get(i)[0].substring(0, 10);
+			   if(checkLab(hashMapInit, currSection)) {
+				   hashMapInit.put(currKey, currSection);
+			   }
+		   }
+		   return hashMapInit;
+	   }
+	   
 	   public static Map<String, Section> parseFileCreateSections() throws FileNotFoundException{
 		   //This function parses through the file and creates sections of both lecture and lab
 		   Scanner fileScanner = new Scanner(inputFile);
@@ -77,6 +92,7 @@ public class Main {
 	   public static Section createSection(String[] line) {
 		   //0 - class department, number, and section
 		   List<String> fields = new ArrayList<>();
+		   System.out.println(line);
 		   fields.add(line[0].substring(0, 10));
 		   //1 - class id number 
 		   fields.add(line[1]);
@@ -94,6 +110,8 @@ public class Main {
 		   fields.add(line[9]);
 		   //10 - the wait list
 		   fields.add(line[10]);
+		   //11 - the id number used in the database
+		   //fields.add(line[11]);
 		   return new Section(time, fields);
 	   }
 	   
