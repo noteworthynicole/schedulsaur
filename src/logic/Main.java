@@ -177,7 +177,7 @@ public class Main {
 	   	return d;
 	   }
 	   
-	   public void filerAvailableClass(Map<String, Section> hashmap) {
+	   public void filterAvailableClass(Map<String, Section> hashmap) {
 		   Set<String> keys = hashmap.keySet();
 		   Set<String> keysToRemove = new HashSet<>();
 		   for(String key: keys) {
@@ -241,7 +241,7 @@ public class Main {
 
 	   // Gets a list of all the potential schedules - list<section>
 	   public static List<List<Section>> getPotentialSchedules(Map<DoubleTimes, List<Section>> hashmap, List<List<DoubleTimes>> dt) {
-	   	List<List<Section>> schdeules = new ArrayList<List<Section>>();
+	   	List<List<Section>> schedules = new ArrayList<List<Section>>();
 	   	List<List<Section>> temps = new ArrayList<List<Section>>();
 	   	List<List<Section>> sections = new ArrayList<List<Section>>();
 	   	List<Section> temp = new ArrayList<Section>();
@@ -255,7 +255,7 @@ public class Main {
 	   		}
 	   		sections = getCombos(temps, 0);
 	   		for (int j = 0; j < sections.size(); j++) {
-	   			scheules.add(sections.get(j));
+	   			schedules.add(sections.get(j));
 	   		}
 	   	}
 	   	return schedules;
@@ -295,7 +295,7 @@ public class Main {
 
 	   // just returns a list of list of sections with the first element used
 	   public static List<List<Section>> getFirstSchedules(Map<DoubleTimes, List<Section>> hashmap, List<List<DoubleTimes>> dt) {
-	   	List<List<Section>> schdeules = new ArrayList<>();
+	   	List<List<Section>> schedules = new ArrayList<>();
 	   	List<Section> schedule = new ArrayList<>();
 	   	List<Section> temp = new ArrayList<>();
 	   	List<DoubleTimes> times = new ArrayList<>();
@@ -308,6 +308,20 @@ public class Main {
 	   		schedules.add(schedule);
 	   	}
 	   	return schedules;
+	   }
+
+	   public void filterPotentialSchedules(List<List<Section>> ps) {
+	   	List<Section> schedule = new ArrayList<>();
+		   for (int i = 0; i < ps.size(); i++) {
+
+		   	for()
+
+
+			   if(!hashmap.get(key).isAvailable()) {
+				   keysToRemove.add(key);
+				   
+			   }
+		   }
 	   }
 
 	   // return a string for database for schdules
