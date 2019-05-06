@@ -8,75 +8,26 @@ import logic.*;
 
 public class TestMain {
 	
-	private String name1 = "name1";
-	private String name2 = "name2";
-	private List<String> fields1 = Arrays.asList(name1, "id1", "Lec", "prof1", "building1", "20", "11", "0");
-	private List<String> fields2 = Arrays.asList(name2, "id2", "Lec", "prof2", "building2", "10", "0", "4");
-	private List<String> fields3 = Arrays.asList(name1, "id1", "Lec", "prof3", "building3", "11", "11", "0");
-	private List<String> fields4 = Arrays.asList(name2, "id2", "Lec", "prof4", "building4", "10", "14", "4");
-	private Section sec1 = new Section(null, fields1);
-	private Section sec2 = new Section(null, fields2); 
-	private Section sec3 = new Section(null, fields3);
-	private Section sec4 = new Section(null, fields4);
+	public TestSection ts = new TestSection();
 	
-	private String mwf = "MWF";
-	private String tr = "TR";
-	private String mtrf = "MWRF";
-	private String one = "01:00 PM";
-	private String two = "02:00 PM";
-	private String seven = "07:10 AM";
-	private String eight = "08:10 AM";
-	private String nine = "09:00 AM";
-	private String ten = "10:10 AM";
-	private String eleven = "11:10 AM";
+	String mwf = "MWF";
+	String tr = "TR";
+	String mtrf = "MWRF";
+	String one = "01:00 PM";
+	String two = "02:00 PM";
+	String seven = "07:10 AM";
+	String eight = "08:10 AM";
+	String nine = "09:00 AM";
+	String ten = "10:10 AM";
+	String eleven = "11:10 AM";
 	
-	private DoubleTimes time1 = new DoubleTimes(mwf, seven, nine);
-	private DoubleTimes time2 = new DoubleTimes(mwf, eight, nine);
-	private DoubleTimes time3 = new DoubleTimes(tr, eight, nine);
-	private DoubleTimes time4 = new DoubleTimes(tr, ten, eleven);
-	private DoubleTimes time5 = new DoubleTimes(mwf, ten, eleven);
-	private DoubleTimes time6 = new DoubleTimes(mtrf, eight, eleven);
-	private DoubleTimes time7 = new DoubleTimes(tr, one, two);
-	
-	/*@SuppressWarnings("static-access")
-	@Test
-	public void testMain() throws FileNotFoundException {
-		Main main = new Main();
-		main.inputFile = null;
-		String[] args = {"testfile.csv"};
-		try {
-			main.main(args);
-			//This should run
-			assertTrue(true);
-		} catch (FileNotFoundException e) {
-			assertTrue(false);
-		}
-	}*/
-	
-	/*@SuppressWarnings("static-access")
-	@Test
-	public void testParseParameters1()  throws FileNotFoundException {
-		Main main = new Main();
-		main.inputFile = null;
-		String[] args = {"testfile.csv"};
-		main.parseParameters(args);
-		assertTrue(main.inputFile != null);
-	}
-	
-	@SuppressWarnings("static-access")
-	@Test
-	public void testParseParameters2() throws FileNotFoundException {
-		Main main = new Main();
-		main.inputFile = null;
-		String[] args = {"testfile.csv", "nothing"};
-		try {
-			main.main(args);
-			assertTrue(false);
-		} catch (Exception e) {
-			//This should run
-			assertTrue(true);
-		}
-	}*/
+	DoubleTimes time1 = new DoubleTimes(mwf, seven, nine);
+	DoubleTimes time2 = new DoubleTimes(mwf, eight, nine);
+	DoubleTimes time3 = new DoubleTimes(tr, eight, nine);
+	DoubleTimes time4 = new DoubleTimes(tr, ten, eleven);
+	DoubleTimes time5 = new DoubleTimes(mwf, ten, eleven);
+	DoubleTimes time6 = new DoubleTimes(mtrf, eight, eleven);
+	DoubleTimes time7 = new DoubleTimes(tr, one, two);
 	
 	@Test
 	public void testSort1() {
@@ -157,18 +108,18 @@ public class TestMain {
 	public void testFilterClassName(){
 		Main main = new Main();
 		HashMap<String, Section> hashmap = new HashMap<>();
-		hashmap.put(name1, sec1);
-		hashmap.put(name2, sec2);
-		main.filterClassName(hashmap, name1);
-		assertFalse(hashmap.containsKey(name1));
+		hashmap.put("CSC-309-01", ts.sec1);
+		hashmap.put("CSC-309-03", ts.sec2);
+		main.filterClassName(hashmap, ts.name1);
+		assertFalse(hashmap.containsKey("CSC-309-01"));
 	}
 	
 	@Test
 	public void testFilerAvailableClass1(){
 		Main main = new Main();
 		HashMap<String, Section> hashmap = new HashMap<>();
-		hashmap.put(name1, sec1);
-		hashmap.put(name2, sec2);
+		hashmap.put(ts.name1, ts.sec1);
+		hashmap.put(ts.name2, ts.sec2);
 		main.filerAvailableClass(hashmap);
 		assertEquals(2, hashmap.size());
 	}
@@ -177,8 +128,8 @@ public class TestMain {
 	public void testFilerAvailableClass2(){
 		Main main = new Main();
 		HashMap<String, Section> hashmap = new HashMap<>();
-		hashmap.put(name1, sec3);
-		hashmap.put(name2, sec4);
+		hashmap.put(ts.name1, ts.sec3);
+		hashmap.put(ts.name2, ts.sec4);
 		main.filerAvailableClass(hashmap);
 		assertEquals(0, hashmap.size());
 	}

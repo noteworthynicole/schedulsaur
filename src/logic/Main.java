@@ -19,9 +19,9 @@ public class Main {
 	
 	public static void main(String[] args) throws FileNotFoundException{
 		parseParameters(args);
-		HashMap<String, Section> hashMapInit = parseFileCreateSections();
+		Map<String, Section> hashMapInit = parseFileCreateSections();
 		//Likely put a filter here to get rid of classes that are not relevant
-		HashMap<DoubleTimes, List<Section>> hashMapTime = classesByTime(hashMapInit);
+		Map<DoubleTimes, List<Section>> hashMapTime = classesByTime(hashMapInit);
 		//Sort - keyset -> list 
 		List<DoubleTimes> doubleTimesList1 = sortByKey(hashMapTime); 
 		//Greedy
@@ -51,7 +51,7 @@ public class Main {
 	      }
 	   }
 	   
-	   public static HashMap<String, Section> parseFileCreateSections() throws FileNotFoundException{
+	   public static Map<String, Section> parseFileCreateSections() throws FileNotFoundException{
 		   //This function parses through the file and creates sections of both lecture and lab
 		   Scanner fileScanner = new Scanner(inputFile);
 			HashMap<String, Section> hashMapInit = new HashMap<>();
@@ -115,7 +115,7 @@ public class Main {
 		   return true;
 	   }
 	   
-	   public static HashMap<DoubleTimes, List<Section>> classesByTime(Map<String, Section> hashMapInit){
+	   public static Map<DoubleTimes, List<Section>> classesByTime(Map<String, Section> hashMapInit){
 		   HashMap<DoubleTimes, List<Section>> hashMapTime = new HashMap<>();
 			for(Entry<String, Section> entry : hashMapInit.entrySet()) {
 				Section currSection = entry.getValue();
@@ -140,10 +140,14 @@ public class Main {
 	   public void filterClassName(Map<String, Section> hashmap, String string){
 		   //Uses mutation to filter out classes by name
 		   Set<String> keys = hashmap.keySet();
+		   List<String> keysToRemove = new ArrayList<>();
 		   for(String key: keys) {
 			   if(key.contains(string)) {
-				   hashmap.remove(key);
+				   keysToRemove.add(key);
 			   }
+		   }
+		   for(String key: keysToRemove) {
+			   hashmap.remove(key);
 		   }
 	   }
 
