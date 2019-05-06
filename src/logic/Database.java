@@ -10,6 +10,8 @@ import java.util.logging.*;
 
 public class Database {
 	
+	//test commit 2
+	
 	// constants i guess
 	private static final String CLASSNAME = "ClassName";
 	private static final String UNITS = "Units";
