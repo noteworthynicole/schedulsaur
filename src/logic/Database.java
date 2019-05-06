@@ -219,21 +219,17 @@ public class Database {
 	}
 	
 	//replace class object with schedule object later
-	public static void dbWriteSched(Statement stmt, Class class)
+	public static void dbWriteSched(Statement stmt, Class testClass)
 	{
-		String sql = "INSERT INTO Schedules () value (" + class.getName() + ");";
+		String sql = "INSERT INTO schedulsaurdb.Schedules () value ('" + testClass.getName() +"');";
 		try {
 			stmt.executeUpdate(sql);
-			
-			rs.close();
 		}
 		catch(Exception e)
 		{
 			System.out.println(e);
 		}
-      
-		return list;
-	}
+   	}
 	
 	/* section information (the other stuff) */
 	
