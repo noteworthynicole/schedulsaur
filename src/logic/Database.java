@@ -191,7 +191,7 @@ public class Database {
         return prereqs;
 	}
 	
-	public static ArrayList<String[]> dbAllRows(Statement stmt, String sql)
+	public static List<String[]> dbAllRows(Statement stmt, String sql)
     {
 		ArrayList<String[]> list = new ArrayList(); 
 		try {
@@ -219,9 +219,16 @@ public class Database {
 	}
 	
 	//replace class object with schedule object later
-	public static void dbWriteSched(Statement stmt, Class testClass)
+	public static void dbWriteSched(Statement stmt, String[] classList)
 	{
-		String sql = "INSERT INTO schedulsaurdb.Schedules () value ('" + testClass.getName() +"');";
+		String value = "";
+		for(int i = 0; i < classList.length-1; i++)
+		{
+			value += classList[i] + ",";
+		}
+		value += classList[i]
+		
+		String sql = "INSERT INTO schedulsaurdb.Schedules () value ('" + value + "');";
 		try {
 			stmt.executeUpdate(sql);
 		}
