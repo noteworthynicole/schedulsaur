@@ -221,4 +221,77 @@ public class Main {
 		   return true;
 	   }
 
+	   // Gets a list of all the potential schedules - list<section>
+	   public static List<List<Section>> getPotentialSchedules(Map<DoubleTimes, List<Section>> hashmap, List<List<DoubleTimes>> dt) {
+	   	List<List<Section>> schdeules = new ArrayList<List<Section>>();
+	   	List<List<Section>> temps = new ArrayList<List<Section>>();
+	   	List<List<Section>> sections = new ArrayList<List<Section>>();
+	   	List<Section> temp = new ArrayList<Section>();
+	   	List<DoubleTimes> times = new ArrayList<DoubleTimes>();
+
+	   	for (int i = 0; i < dt.size(); i++) {
+	   		times = dt.get(i);
+	   		for (int k = 0; k < times.size(); k++) {
+	   			temp = hashmap.get(times.get(k));
+	   			temps.add(temp);
+	   		}
+	   		sections = getCombos(temps, 0);
+	   		for (int j = 0; j < sections.size(); j++) {
+	   			scheules.add(sections.get(j));
+	   		}
+	   	}
+	   	return schedules;
+	   }
+
+		// i is used for recursion, for the initial call this should be 0
+		private List<List<Section>> getCombos(List<List<Section>> input, int i) {
+			
+			// stop condition
+			if(i == input.size()) {
+				// return a list with an empty list
+				List<List<Section>> result = new ArrayList<List<Section>>();
+				result.add(new ArrayList<Section>());
+				return result;
+			}
+			
+			List<List<Section>> result = new ArrayList<List<Section>>();
+			List<List<Section>> recursive = test2(input, i+1); // recursive call
+			
+			// for each element of the first list of input
+			for(int j = 0; j < input.get(i).size(); j++) {
+				// add the element to all combinations obtained for the rest of the lists
+				for(int k = 0; k < recursive.size(); k++) {
+		                        // copy a combination from recursive
+					List<Section> newList = new ArrayList<Section>();
+					for(Section section : recursive.get(k)) {
+						newList.add(section);
+					}
+					// add element of the first list
+					newList.add(input.get(i).get(j));
+		                        // add new combination to result
+					result.add(newList);
+				}
+			}
+			return result;
+		}
+
+	   // just returns a list of list of sections with the first element used
+	   public static List<List<Section>> getFirstSchedules(Map<DoubleTimes, List<Section>> hashmap, List<List<DoubleTimes>> dt) {
+	   	List<List<Section>> schdeules = new ArrayList<>();
+	   	List<Section> schedule = new ArrayList<>();
+	   	List<Section> temp = new ArrayList<>();
+	   	List<DoubleTimes> times = new ArrayList<>();
+	   	for (int i = 0; i < dt.size(); i++) {
+	   		times = dt.get(i);
+	   		for (int k = 0; k < times.size(); k++) {
+	   			temp = hashmap.get(times.get(k));
+	   			schedule.add(temp.get(0));
+	   		}
+	   		schedules.add(schedule);
+	   	}
+	   	return schedules;
+	   }
+
+	   // return a string for database for schdules
+
 }
