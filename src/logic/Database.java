@@ -205,10 +205,7 @@ public class Database {
 				for(int i = 0; i < rsmd.getColumnCount(); i++)
 				{
 					list.get(c)[i] = rs.getString(rsmd.getColumnName(i+1));
-					//System.out.print(list.get(c)[i] + ", ");
 				}
-				//System.out.println("\n");
-	    	  
 				c++;
 			}
 			rs.close();
