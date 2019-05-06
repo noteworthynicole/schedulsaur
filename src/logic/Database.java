@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.*;
 
 public class Database {
@@ -18,13 +19,13 @@ public class Database {
 	private static final Logger logger = Logger.getLogger("Database");
 	
 	//sql to pull cpe catalog table
-	public final static String CSCCATSQL = "SELECT * FROM schedulsaurdb.catalog_cpe";
+	public static final String CSCCATSQL = "SELECT * FROM schedulsaurdb.catalog_cpe";
 	//pull csc catalog table
-	public final static String CPECATSQL = "SELECT * FROM schedulsaurdb.catalog_cpe";
+	public static final String CPECATSQL = "SELECT * FROM schedulsaurdb.catalog_cpe";
 	//sql to pull cpe section table
-	public final static String CSCSECSQL = "SELECT * FROM schedulsaurdb.sections_csc";
+	public static final String CSCSECSQL = "SELECT * FROM schedulsaurdb.sections_csc";
 	//pull csc section table
-	public final static String CPESECSQL = "SELECT * FROM schedulsaurdb.sections_cpe";
+	public static final String CPESECSQL = "SELECT * FROM schedulsaurdb.sections_cpe";
 	
 	// ok right now (5/2) everything just prints out stuff, we can do returns later
 	
@@ -212,7 +213,7 @@ public class Database {
 		}
 		catch(Exception e)
 		{
-			System.out.println(e);
+			logger.log(Level.WARNING, e.toString());
 		}
       
 		return list;
@@ -227,7 +228,7 @@ public class Database {
 		}
 		catch(Exception e)
 		{
-			System.out.println(e);
+			logger.log(Level.WARNING, e.toString());
 		}
    	}
 	
