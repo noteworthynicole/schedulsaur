@@ -310,17 +310,22 @@ public class Main {
 	   	return schedules;
 	   }
 
+	   // filter out schedules with duplicate courses
 	   public void filterPotentialSchedules(List<List<Section>> ps) {
 	   	List<Section> schedule = new ArrayList<>();
+	   	Set<String> names = new Set<String>();
+	   	int[] arr = new int[ps.size()];
+	   	int count = 0;
 		   for (int i = 0; i < ps.size(); i++) {
-
-		   	for()
-
-
-			   if(!hashmap.get(key).isAvailable()) {
-				   keysToRemove.add(key);
-				   
-			   }
+		   	schedule = ps.get(i);
+		   	for (int j = 0; j < schedule.size(); j++) {
+		   		if (names.add(schedule.get(j).getName()) == false) {
+		   			arr[count++]= i;
+		   		}
+		   	}
+		   }
+		   for (int i = 0; i < arr.size(); i++) {
+			   ps.remove(arr[i]);
 		   }
 	   }
 
