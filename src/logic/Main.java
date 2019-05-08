@@ -323,6 +323,7 @@ public class Main {
 		   			arr[count++]= i;
 		   		}
 		   	}
+		   	names.empty();
 		   }
 		   for (int i = 0; i < arr.size(); i++) {
 			   ps.remove(arr[i]);
