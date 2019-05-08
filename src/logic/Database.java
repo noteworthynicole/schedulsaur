@@ -289,9 +289,8 @@ public class Database {
 		Statement stmt = null;
 		try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur",mostSecureEncryptionEver(ENCRYPTEDPW))){
 	        stmt = conn.createStatement();
-	        String[] arr = {"hello", "world"};
 	        // calls go here
-			//dbWriteSched(stmt, arr);
+			dbWriteSched(stmt, arr);
 	        
 			stmt.close();
 		}
