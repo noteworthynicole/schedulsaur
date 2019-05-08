@@ -223,11 +223,15 @@ public class Database {
 	{
 		String value = "";
 		int i;
+		StringBuilder bld = new StringBuilder();
 		for(i = 0; i < classList.length-1; i++)
 		{
 			value += classList[i] + ",";
+			 bld.append(classList[i]);
+			 bld.append(",");
 		}
-		value += classList[i];
+		bld.append(classList[i]);
+		value = bld.toString(); 
 		
 		String sql = "INSERT INTO schedulsaurdb.Schedules () value ('" + value + "');";
 		try {
@@ -274,7 +278,6 @@ public class Database {
 	        stmt = conn.createStatement();
 	        String[] arr = {"hello", "world"};
 	        // calls go here
-			Class testClass = new Class("CSC 309");
 			dbWriteSched(stmt, arr);
 			
 			stmt.close();
