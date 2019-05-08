@@ -325,7 +325,7 @@ public class Main {
 		   	}
 		   	names.empty();
 		   }
-		   for (int i = 0; i < arr.size(); i++) {
+		   for (int i = 0; i < count; i++) {
 			   ps.remove(arr[i]);
 		   }
 	   }
