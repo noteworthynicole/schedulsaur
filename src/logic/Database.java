@@ -226,9 +226,8 @@ public class Database {
 		StringBuilder bld = new StringBuilder();
 		for(i = 0; i < classList.length-1; i++)
 		{
-			value += classList[i] + ",";
-			 bld.append(classList[i]);
-			 bld.append(",");
+			bld.append(classList[i]);
+			bld.append(",");
 		}
 		bld.append(classList[i]);
 		value = bld.toString(); 
