@@ -11,6 +11,7 @@ import java.util.logging.*;
 public class Database {
 	
 	//test commit 2
+	private static final String PASSWORD = "fakepassword";
 	
 	// constants i guess
 	private static final String CLASSNAME = "ClassName";
@@ -30,6 +31,10 @@ public class Database {
 	public static final String CPESECSQL = "SELECT * FROM schedulsaurdb.sections_cpe";
 	
 	// ok right now (5/2) everything just prints out stuff, we can do returns later
+	
+	public static String mostSecureEncryptionEver(String str) {
+		return "teambulbasaur";
+	}
 	
 	/* course information (name, prereqs, units, etc) */
 	
@@ -254,7 +259,7 @@ public class Database {
 		// below here goes before calls
 		Statement stmt = null;
 		List<String[]> list = null;
-		try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur","teambulbasaur")){
+		try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur",mostSecureEncryptionEver(PASSWORD))){
 	        stmt = conn.createStatement();		
 			list = dbAllRows(stmt, CSCCATSQL);
 			stmt.close();
@@ -273,7 +278,7 @@ public class Database {
 	public static void main(String[] args) {
 		// below here goes before calls
 		Statement stmt = null;
-		try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur","teambulbasaur")){
+		try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur",mostSecureEncryptionEver(PASSWORD))){
 	        stmt = conn.createStatement();
 	        String[] arr = {"hello", "world"};
 	        // calls go here
