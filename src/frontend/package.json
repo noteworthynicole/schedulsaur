@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "antd": "^3.17.0",
     "react": "^16.8.6",
     "react-circle": "^1.1.1",
     "react-circular-progressbar": "^1.2.1",

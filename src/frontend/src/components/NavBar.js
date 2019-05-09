@@ -1,30 +1,56 @@
-import React from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import React from "react";
+import { NavLink, withRouter } from "react-router-dom";
+import "./NavBar.css";
 
 /**
- * NavBar 
- * 
+ * NavBar
+ *
  * @description Component to create the navigation bar
- * @param {*} props 
+ * @param {*} props
  */
 
-const NavBar = (props) => {
-    return(
-        <div className='sidebar'>
+const NavBar = props => {
+  return (
+    <div className="sidebar">
+      {/* // NavLink navigates to a new page specified by 'to' attribute */}
 
-            {/* // NavLink navigates to a new page specified by 'to' attribute */}
+      <NavLink className="dashboard-button" to="/DashBoard">
+        Dashboard
+      </NavLink>
 
-            <li className='sidebar-button'><NavLink to='/DashBoard'>Dashboard</NavLink></li>
-            <li className='sidebar-button'><NavLink to='/CourseHistory'>Course History</NavLink></li>
-            <li className='sidebar-button'><NavLink to='/TimeAvailability'>Time Availability</NavLink></li>
-            <li className='sidebar-button'><NavLink to='/DesiredCourse'>Desired Course</NavLink></li>
-            <li className='sidebar-button'><NavLink to='/CreateSchedules'>Create Schedules</NavLink></li>
-            <li className='sidebar-button'><NavLink to='/SavedSchedules'>Saved Schedules</NavLink></li>
-            <li className='sidebar-button'><NavLink to='/Help'>Help</NavLink></li>
-            <li className='sidebar-button'><NavLink to='/About'>About</NavLink></li>
-            <li className='sidebar-button'><NavLink to='/'>Log Out</NavLink></li>
-        </div>
-    );
-}
+      <NavLink className="sidebar-button" to="/CourseHistory">
+        Course History
+      </NavLink>
+
+      <NavLink className="sidebar-button" to="/TimeAvailability">
+        Time Availability
+      </NavLink>
+
+      <NavLink className="sidebar-button" to="/DesiredCourse">
+        Desired Course
+      </NavLink>
+
+      <NavLink className="sidebar-button" to="/CreateSchedules">
+        Create Schedules
+      </NavLink>
+
+      <NavLink className="sidebar-button" to="/SavedSchedules">
+        Saved Schedules
+      </NavLink>
+
+      <NavLink className="help-button" to="/Help">
+        Help
+      </NavLink>
+
+      <NavLink className="sidebar-button" to="/About">
+        About
+      </NavLink>
+
+      <NavLink className="sidebar-button" to="/">
+        Log Out
+      </NavLink>
+    </div>
+  );
+};
 
 export default withRouter(NavBar);
