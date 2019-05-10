@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Dashboard.css'
 
 /**
  * StudentInfo
@@ -21,7 +22,7 @@ class StudentInfo extends Component{
         )
 
         return(
-            <span style={{fontSize:'20px', fontWeight:'normal'}}>
+            <span className='dashboard_text'>
                 {student_info}
             </span>
         );

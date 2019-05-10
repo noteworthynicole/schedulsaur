@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import './Authentication.css'
 
 /**
  * Login
@@ -26,7 +27,6 @@ class Login extends Component {
         // *** need to authenticate account here
 
         this.props.history.push('/DashBoard')
-
     }
 
     /**
@@ -54,17 +54,17 @@ class Login extends Component {
     render(){
         return(
             <div className='center-align'>
-                <h1 className='title' >Schedulsaur</h1>
-                <h5>a friendly schedule finder</h5>
+                <h1 className='title'>Schedulsaur</h1>
+                <h5 className='title_description'>a friendly schedule finder</h5>
                 <form onSubmit={this.handleSubmit} >
                     <div className='container'>
                         <input type='email' id='email' placeholder='email' onChange={this.handleChange}/>
                         <input type='password' id='password' placeholder='password' onChange={this.handleChange}/>
                     </div>
-                    <button className='btn black-text' id='button_left' onClick={this.handleSignUp}>
+                    <button className='btn signup_button' onClick={this.handleSignUp}>
                         Sign Up
                     </button>
-                    <button className='btn' id='button_right'>
+                    <button className='btn login_button'>
                         Log In
                     </button>
                 </form>

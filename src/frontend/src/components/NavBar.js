@@ -9,8 +9,6 @@ import "./NavBar.css";
  * @param {*} props
  */
 
-//NavBar!!!
-
 const NavBar = props => {
   return (
     <div className="sidebar">

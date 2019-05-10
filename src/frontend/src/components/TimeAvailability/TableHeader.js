@@ -1,4 +1,5 @@
 import React from 'react';
+import './TableHeader.css';
 
 /**
  * TableHeader
@@ -10,7 +11,7 @@ const TableHeader = () => {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 
                   'Thursday', 'Friday', 'Saturday'].map(day => {
         return(
-            <th key={day}> {day} </th>
+            <th key={day} className='day_name'> {day} </th>
         );
     })
     return(

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProgressWheel from './ProgressWheel';
 import StudentInfo from './StudentInfo';
+import { save } from '../../store/actions/studentActions'
+import './Dashboard.css'
 
 /**
  * DashBoard
@@ -17,7 +19,8 @@ class DashBoard extends Component{
         tempC: this.props.student.catalog_year,
         tempE: this.props.student.expected_grad,
         tempUT: this.props.student.units_this_quarter,
-        tempUP: this.props.student.units_per_quarter
+        tempUP: this.props.student.units_per_quarter,
+        editButton: 'Edit Profile'
     }
 
     /**
@@ -41,11 +44,23 @@ class DashBoard extends Component{
     handleEdit = () => {
         if(this.state.isEdit===false){
             this.setState({
-                isEdit: !this.state.isEdit
+                isEdit: !this.state.isEdit,
+                editButton: 'Cancel'
+            })
+        }else{
+
+            // discard any changes
+            this.setState({
+                isEdit: !this.state.isEdit,
+                tempM: this.props.student.major,
+                tempC: this.props.student.catalog_year,
+                tempE: this.props.student.expected_grad,
+                tempUT: this.props.student.units_this_quarter,
+                tempUP: this.props.student.units_per_quarter,
+                editButton: 'Edit Profile'
             })
         }
     }
-
 
     /**
      * handleSave
@@ -55,42 +70,45 @@ class DashBoard extends Component{
      */
     handleSave = () => {
         if(this.state.isEdit===true){
+            this.props.save(
+                this.state.tempM,
+                this.state.tempC,
+                this.state.tempE,
+                this.state.tempUT,
+                this.state.tempUT
+            )
             this.setState({
                 isEdit: !this.state.isEdit
             })
         }
-
-        // *** need to send action to modify global state 
-        // *** need to send action to modify global state 
-
     }
 
     render(){
         const { student } = this.props;
         return(
             <div>
-                <h2  className='subtitle' align='center'>Dashboard</h2>
-                <div style={{paddingTop:'2%'}} className='row'>
+                <h2 className='subtitle' align='center'>Dashboard</h2>
+                <div style={{marginBottom: '0'}} className='row'>
 
                     {/* // Left Section of Dashboard */}
                     
-                    <div className='col s4'>
-                        <ProgressWheel progress={student.major_percent} size='400'/>
+                    <div className='col s4 progress_wheel'>
+                        <ProgressWheel progress={student.major_percent} size='350'/>
                         <h5 align='center'>Degree Progress</h5>
                     </div>
-                    <div style={{paddingTop:'2%'}} className='col s2'>
+                    <div className='col s2 progress_wheel'>
                         <ProgressWheel progress={student.support_percent} size='150'/>
-                        <h5 align='center'>Support Progress</h5>
+                        <h5 className='desc' align='center'>Support Progress</h5>
                         <ProgressWheel progress={student.ge_percent} size='150'/>
-                        <h5 align='center'>GE Progress</h5>
+                        <h5 className='desc' align='center'>GE Progress</h5>
                     </div>
 
                     {/* // Right Section of Dashboard */}
 
-                    <div style={{paddingTop:'1%'}} className='col s4 offset-s2'>
+                    <div className='col s3 offset-s2 info_section'>
                         <div className='subsubtitle'>
                             <h5> Name:  
-                                <span style={{fontSize:'20px', fontWeight:'normal'}}>
+                                <span className='dashboard_text'>
                                     {' ' + student.name}
                                 </span>
                             </h5>
@@ -124,11 +142,11 @@ class DashBoard extends Component{
                                              edit ={this.state.isEdit} />
                             </h5>
                         </div>
-                        <div style={{paddingTop:'10%'}}>
-                            <button className='button' id='button_left' onClick={this.handleEdit}>
-                                Edit Profile
+                        <div style={{paddingTop:'20%'}}>
+                            <button className='white_button' onClick={this.handleEdit}>
+                                {this.state.editButton}
                             </button>
-                            <button className='button' id='button_right' onClick={this.handleSave}>
+                            <button className='green_button' onClick={this.handleSave}>
                                 Save
                             </button>
                         </div>
@@ -146,14 +164,24 @@ class DashBoard extends Component{
  * @param {*} state 
  * @param {*} ownProps 
  */
-
 const mapStateToProps = (state, ownProps) => {
     return {
         student: state.student
     }
 }
 
+/**
+ * mapStateToDispatch
+ * 
+ * @description maps dispatch to props to allow component to send an action
+ * @param {*} dispatch 
+ */
+const mapStateToDispatch = (dispatch) => {
+    return{
+        save: (tempM, tempC, tempE, tempUT, tempUP) => { dispatch(save(tempM, tempC, tempE, tempUT, tempUP)) }
+    }
+}
 
 // 'connect' allows component to access the state from the store
 
-export default connect(mapStateToProps)(DashBoard);
+export default connect(mapStateToProps, mapStateToDispatch)(DashBoard);
