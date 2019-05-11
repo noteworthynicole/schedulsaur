@@ -85,15 +85,19 @@
             <test name="tests.TestDoubleTimes" todir="${junit.output.dir}"/>
             <test name="tests.TestSection" todir="${junit.output.dir}"/>
             <test name="tests.TestTimes" todir="${junit.output.dir}"/>
+            <test name="tests.TestGenerateSchedules" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
             <classpath refid="schedulesaur.classpath"/>
         </junit>
     </target>
-    <target name="Main">
-        <java classname="logic.Main" failonerror="true" fork="yes">
-            <arg line="testfile.csv"/>
+    <target name="TestGenerateSchedules">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="tests.TestGenerateSchedules" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
             <classpath refid="schedulesaur.classpath"/>
-        </java>
+        </junit>
     </target>
     <target name="TestTimes">
         <mkdir dir="${junit.output.dir}"/>
