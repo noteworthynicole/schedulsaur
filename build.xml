@@ -82,6 +82,12 @@
             <classpath refid="schedulesaur.classpath"/>
         </java>
     </target>
+    <target name="GenerateSchedules">
+        <java classname="logic.GenerateSchedules" failonerror="true" fork="yes">
+            <arg line="testfile.csv"/>
+            <classpath refid="schedulesaur.classpath"/>
+        </java>
+    </target>
     <target name="TestClass">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
@@ -105,6 +111,24 @@
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="test.TestDoubleTimes" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="schedulesaur.classpath"/>
+        </junit>
+    </target>
+    <target name="TestGenerateSchedules">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestGenerateSchedules" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="schedulesaur.classpath"/>
+        </junit>
+    </target>
+    <target name="TestGenerateSchedules.testGreedy3">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestGenerateSchedules" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
             <classpath refid="schedulesaur.classpath"/>
         </junit>
@@ -140,30 +164,6 @@
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="test.TestTimes" todir="${junit.output.dir}"/>
-            <jvmarg line="-ea"/>
-            <classpath refid="schedulesaur.classpath"/>
-        </junit>
-    </target>
-    <target name="GenerateSchedules">
-        <java classname="logic.GenerateSchedules" failonerror="true" fork="yes">
-            <arg line="testfile.csv"/>
-            <classpath refid="schedulesaur.classpath"/>
-        </java>
-    </target>
-    <target name="TestGenerateSchedules">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="test.TestGenerateSchedules" todir="${junit.output.dir}"/>
-            <jvmarg line="-ea"/>
-            <classpath refid="schedulesaur.classpath"/>
-        </junit>
-    </target>
-    <target name="TestGenerateSchedules.testGreedy3">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="test.TestGenerateSchedules" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
             <classpath refid="schedulesaur.classpath"/>
         </junit>
