@@ -68,7 +68,7 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="AllTests">
+    <target name="AllTests (1)">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
@@ -116,6 +116,15 @@
         </junit>
     </target>
     <target name="TestGenerateSchedules">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestGenerateSchedules" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="schedulesaur.classpath"/>
+        </junit>
+    </target>
+    <target name="TestGenerateSchedules.testGreedy3">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
