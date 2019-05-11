@@ -1,5 +1,4 @@
 package logic;
-import java.io.*;
 import java.util.*;
 import java.util.Map.*;
 import java.util.logging.*;
@@ -17,7 +16,7 @@ public class GenerateSchedules {
 	
 	private static final Logger logger = Logger.getLogger("GenerateSchedules");
 	
-	public static void main(String[] args) throws FileNotFoundException{
+	public static void main(String[] args) {
 		Map<String, Section> hashMapInit = parseDbsCreateSections();
 		//Likely put a filter here to get rid of classes that are not relevant
 		Map<DoubleTimes, List<Section>> hashMapTime = classesByTime(hashMapInit);
@@ -194,17 +193,13 @@ public class GenerateSchedules {
 
 	   // Gets a list of all the potential schedules - list<section>
 	   public static List<List<Section>> getPotentialSchedules(Map<DoubleTimes, List<Section>> hashmap, List<List<DoubleTimes>> dt) {
-	   	List<List<Section>> schedules = new ArrayList<List<Section>>();
-	   	List<List<Section>> temps = new ArrayList<List<Section>>();
-	   	List<List<Section>> sections = new ArrayList<List<Section>>();
-	   	List<Section> temp = new ArrayList<Section>();
-	   	List<DoubleTimes> times = new ArrayList<DoubleTimes>();
+	   	List<List<Section>> schedules = new ArrayList<>();
+	   	List<List<Section>> temps = new ArrayList<>();
+	   	List<List<Section>> sections = new ArrayList<>();
 
 	   	for (int i = 0; i < dt.size(); i++) {
-	   		times = dt.get(i);
-	   		for (int k = 0; k < times.size(); k++) {
-	   			temp = hashmap.get(times.get(k));
-	   			temps.add(temp);
+	   		for (int k = 0; k < dt.get(i).size(); k++) {
+	   			temps.add(hashmap.get(dt.get(i).get(k)));
 	   		}
 	   		sections = getCombos(temps, 0);
 	   		for (int j = 0; j < sections.size(); j++) {
@@ -220,12 +215,12 @@ public class GenerateSchedules {
 			// stop condition
 			if(i == input.size()) {
 				// return a list with an empty list
-				List<List<Section>> result = new ArrayList<List<Section>>();
+				List<List<Section>> result = new ArrayList<>();
 				result.add(new ArrayList<Section>());
 				return result;
 			}
 			
-			List<List<Section>> result = new ArrayList<List<Section>>();
+			List<List<Section>> result = new ArrayList<>();
 			List<List<Section>> recursive = getCombos(input, i+1); // recursive call
 			
 			// for each element of the first list of input
@@ -233,7 +228,7 @@ public class GenerateSchedules {
 				// add the element to all combinations obtained for the rest of the lists
 				for(int k = 0; k < recursive.size(); k++) {
 		                        // copy a combination from recursive
-					List<Section> newList = new ArrayList<Section>();
+					List<Section> newList = new ArrayList<>();
 					for(Section section : recursive.get(k)) {
 						newList.add(section);
 					}
@@ -250,13 +245,9 @@ public class GenerateSchedules {
 	   public static List<List<Section>> getFirstSchedules(Map<DoubleTimes, List<Section>> hashmap, List<List<DoubleTimes>> dt) {
 	   	List<List<Section>> schedules = new ArrayList<>();
 	   	List<Section> schedule = new ArrayList<>();
-	   	List<Section> temp = new ArrayList<>();
-	   	List<DoubleTimes> times = new ArrayList<>();
 	   	for (int i = 0; i < dt.size(); i++) {
-	   		times = dt.get(i);
-	   		for (int k = 0; k < times.size(); k++) {
-	   			temp = hashmap.get(times.get(k));
-	   			schedule.add(temp.get(0));
+	   		for (int k = 0; k < dt.get(i).size(); k++) {
+	   			schedule.add(hashmap.get(dt.get(i).get(k)).get(0));
 	   		}
 	   		schedules.add(schedule);
 	   	}
@@ -266,14 +257,12 @@ public class GenerateSchedules {
 
 	   // filter out schedules with duplicate courses
 	   public void filterPotentialSchedules(List<List<Section>> ps) {
-		   	List<Section> schedule = new ArrayList<>();
 		   	Set<String> names = new HashSet<String>();
 		   	int[] arr = new int[ps.size()];
 		   	int count = 0;
 		   	for (int i = 0; i < ps.size(); i++) {
-		   	schedule = ps.get(i);
-			   	for (int j = 0; j < schedule.size(); j++) {
-			   		if (names.add(schedule.get(j).getName()) == false) {
+			   	for (int j = 0; j < ps.get(i).size(); j++) {
+			   		if (!names.add(ps.get(i).get(j).getName())) {
 			   			arr[count++]= i;
 			   		}
 			   	}
