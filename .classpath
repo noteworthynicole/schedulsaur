@@ -5,4 +5,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="src/mysql-connector-java-5.1.47.jar"/>
 	<classpathentry kind="output" path="bin"/>
+	<fileset dir="${junit.dir}">
+            <include name="**/junit.jar" />
+    </fileset>
 </classpath>
