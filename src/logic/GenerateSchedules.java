@@ -195,15 +195,12 @@ public class GenerateSchedules {
 	   public static List<List<Section>> getPotentialSchedules(Map<DoubleTimes, List<Section>> hashmap, List<List<DoubleTimes>> dt) {
 	   	List<List<Section>> schedules = new ArrayList<>();
 	   	List<List<Section>> temps = new ArrayList<>();
-	   	List<List<Section>> sections = new ArrayList<>();
-
 	   	for (int i = 0; i < dt.size(); i++) {
 	   		for (int k = 0; k < dt.get(i).size(); k++) {
 	   			temps.add(hashmap.get(dt.get(i).get(k)));
 	   		}
-	   		sections = getCombos(temps, 0);
-	   		for (int j = 0; j < sections.size(); j++) {
-	   			schedules.add(sections.get(j));
+	   		for (int j = 0; j < getCombos(temps, 0).size(); j++) {
+	   			schedules.add(getCombos(temps, 0).get(j));
 	   		}
 	   	}
 	   	return schedules;
@@ -257,7 +254,7 @@ public class GenerateSchedules {
 
 	   // filter out schedules with duplicate courses
 	   public void filterPotentialSchedules(List<List<Section>> ps) {
-		   	Set<String> names = new HashSet<String>();
+		   	Set<String> names = new HashSet<>();
 		   	int[] arr = new int[ps.size()];
 		   	int count = 0;
 		   	for (int i = 0; i < ps.size(); i++) {
