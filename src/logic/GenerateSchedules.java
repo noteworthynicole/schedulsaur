@@ -196,20 +196,12 @@ public class GenerateSchedules {
 	   public static List<List<logic.Section>> getPotentialSchedules(Map<logic.DoubleTimes, List<logic.Section>> hashmap, List<List<logic.DoubleTimes>> dt) {
 	   	List<List<logic.Section>> schedules = new ArrayList<List<logic.Section>>();
 	   	List<List<logic.Section>> temps = new ArrayList<List<logic.Section>>();
-	   	List<List<logic.Section>> sections = new ArrayList<List<logic.Section>>();
-	   	List<logic.Section> temp = new ArrayList<logic.Section>();
-	   	List<logic.DoubleTimes> times = new ArrayList<logic.DoubleTimes>();
-
 	   	for (int i = 0; i < dt.size(); i++) {
-	   		times = dt.get(i);
-	   		for (int k = 0; k < times.size(); k++) {
-	   			temp = hashmap.get(times.get(k));
-	   			temps.add(temp);
+	   		for (int k = 0; k < dt.get(i).size(); k++) {
+	   			temps.add(hashmap.get(dt.get(i).get(k)));
 	   		}
-	   		sections = getCombos(temps, 0);
-	   		for (int j = 0; j < sections.size(); j++) {
-	   			schedules.add(sections.get(j));
-	   		}
+	   		for (int j = 0; j < getCombos(temps, 0).size(); j++) {
+	   			schedules.add(getCombos(temps, 0).get(j));
 	   	}
 	   	return schedules;
 	   }
@@ -250,13 +242,9 @@ public class GenerateSchedules {
 	   public static List<List<logic.Section>> getFirstSchedules(Map<logic.DoubleTimes, List<logic.Section>> hashmap, List<List<logic.DoubleTimes>> dt) {
 	   	List<List<logic.Section>> schedules = new ArrayList<>();
 	   	List<logic.Section> schedule = new ArrayList<>();
-	   	List<logic.Section> temp = new ArrayList<>();
-	   	List<logic.DoubleTimes> times = new ArrayList<>();
 	   	for (int i = 0; i < dt.size(); i++) {
-	   		times = dt.get(i);
-	   		for (int k = 0; k < times.size(); k++) {
-	   			temp = hashmap.get(times.get(k));
-	   			schedule.add(temp.get(0));
+	   		for (int k = 0; k < dt.get(i).size(); k++) {
+	   			schedule.add(hashmap.get(dt.get(i).get(k)).get(0));
 	   		}
 	   		schedules.add(schedule);
 	   	}
@@ -266,14 +254,13 @@ public class GenerateSchedules {
 
 	   // filter out schedules with duplicate courses
 	   public void filterPotentialSchedules(List<List<logic.Section>> ps) {
-		   	List<logic.Section> schedule = new ArrayList<>();
-		   	Set<String> names = new HashSet<String>();
+		   	Set<String> names = new HashSet<>();
 		   	int[] arr = new int[ps.size()];
 		   	int count = 0;
 		   	for (int i = 0; i < ps.size(); i++) {
 		   	schedule = ps.get(i);
-			   	for (int j = 0; j < schedule.size(); j++) {
-			   		if (names.add(schedule.get(j).getName()) == false) {
+			   	for (int j = 0; j < ps.get(i).size(); j++) {
+			   		if (!names.add(ps.get(i).get(j).getName())) {
 			   			arr[count++]= i;
 			   		}
 			   	}
