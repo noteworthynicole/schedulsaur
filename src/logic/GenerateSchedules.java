@@ -17,7 +17,7 @@ public class GenerateSchedules {
 	
 	private static final Logger logger = Logger.getLogger("GenerateSchedules");
 	
-	public static void main(String[] args) throws FileNotFoundException{
+	public static void main(String[] args){
 		Map<String, Section> hashMapInit = parseDbsCreateSections();
 		//Likely put a filter here to get rid of classes that are not relevant
 		Map<DoubleTimes, List<Section>> hashMapTime = classesByTime(hashMapInit);
