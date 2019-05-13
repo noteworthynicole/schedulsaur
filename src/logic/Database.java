@@ -52,7 +52,7 @@ public class Database {
 	// get course info for all cpe classes, returns ??
 	
 	// this is because sonarcloud cried at me and doesn't like duplicate code
-	public static ResultSet dbClassQuery(Statement stmt, String toFind, Class myClass) {
+	public static ResultSet dbClassQuery(Statement stmt, String toFind, logic.Class myClass) {
         try {
 			String classID = myClass.getName();
 			// now we do a lookup, but it depends if it's csc/cpe tho
@@ -82,7 +82,7 @@ public class Database {
 	}
 	
 	// get course info for a specific csc/cpe class, returns a string (like from the csv)
-	public static String dbClassInfo(Statement stmt, Class myClass) {
+	public static String dbClassInfo(Statement stmt, logic.Class myClass) {
 		String classID = "N/A";
 		String className = "N/A";
 	    String units = "N/A";
@@ -111,7 +111,7 @@ public class Database {
 	}
 	
 	// get full name for a specific csc/cpe class, returns a string
-	public static String dbClassLongName(Statement stmt, Class myClass) {
+	public static String dbClassLongName(Statement stmt, logic.Class myClass) {
 		String className = "N/A";
         try {
         	ResultSet rs = dbClassQuery(stmt, CLASSNAME, myClass);
@@ -130,7 +130,7 @@ public class Database {
 	}
 	
 	// get # of units for a specific csc/cpe class, returns a string
-	public static String dbClassUnits(Statement stmt, Class myClass) {
+	public static String dbClassUnits(Statement stmt, logic.Class myClass) {
 		String units = "N/A";
         try {
     		ResultSet rs = dbClassQuery(stmt, UNITS, myClass);
@@ -149,7 +149,7 @@ public class Database {
 	}
 	
 	// get # of units for a specific csc/cpe class, returns a string
-	public static String dbClassCredit(Statement stmt, Class myClass) {
+	public static String dbClassCredit(Statement stmt, logic.Class myClass) {
 		String credit = "N/A";
         try {
     		ResultSet rs = dbClassQuery(stmt, CREDIT, myClass);
@@ -168,7 +168,7 @@ public class Database {
 	}
 	
 	// get # of units for a specific csc/cpe class, returns a string
-	public static String dbClassTerms(Statement stmt, Class myClass) {
+	public static String dbClassTerms(Statement stmt, logic.Class myClass) {
 		String terms = "N/A";
         try {
     		ResultSet rs = dbClassQuery(stmt, TERMS, myClass);
@@ -187,7 +187,7 @@ public class Database {
 	}
 	
 	// get prereq list for a specific csc/cpe class, returns a string
-	public static String dbClassPrereqs(Statement stmt, Class myClass) {
+	public static String dbClassPrereqs(Statement stmt, logic.Class myClass) {
 		String prereqs = "N/A";
         try {
     		ResultSet rs = dbClassQuery(stmt, PREREQS, myClass);
@@ -290,7 +290,6 @@ public class Database {
 		try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur",mostSecureEncryptionEver(ENCRYPTEDPW))){
 	        stmt = conn.createStatement();
 	        // calls go here
-			dbWriteSched(stmt, arr);
 	        
 			stmt.close();
 		}

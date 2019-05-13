@@ -1,20 +1,21 @@
 package logic;
+import java.lang.Class;
 import java.util.*;
 
-public final class Section extends Class{
+public final class Section extends java.lang.Class {
 	
 	private String id; //unique 4 numbers
 	private String type; //lab or lec
 	private Section lab; //if only lab, this is null
-	private DoubleTimes times;
-	private List<Class> prerec;
+	private logic.DoubleTimes times;
+	private List<java.lang.Class> prerec;
 	private String prof;
 	private String location;
 	private int maxCapacity = 0;
 	private int enrolled = 0;
 	private int waitList = 0;
 	
-	public Section(DoubleTimes times, List<String> fields) {
+	public Section(logic.DoubleTimes times, List<String> fields) {
 		super(fields.get(0));
 		this.id = fields.get(1);
 		this.type = fields.get(2);
@@ -43,14 +44,14 @@ public final class Section extends Class{
 		return type;
 	}
 	
-	public Times getLecTimes(){
+	public logic.Times getLecTimes(){
 		if(times != null) {
 			return times.getLecTimes();
 		}
 		return null;
 	}
 	
-	public DoubleTimes getTimes() {
+	public logic.DoubleTimes getTimes() {
 		return times;
 	}
 	
