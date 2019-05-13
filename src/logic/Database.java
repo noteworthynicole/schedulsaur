@@ -52,7 +52,7 @@ public class Database {
 	// get course info for all cpe classes, returns ??
 	
 	// this is because sonarcloud cried at me and doesn't like duplicate code
-	public static ResultSet dbClassQuery(Statement stmt, String toFind, Class myClass) {
+	public static ResultSet dbClassQuery(Statement stmt, String toFind, Class myClass) throws SQLException {
         try {
 			String classID = myClass.getName();
 			// now we do a lookup, but it depends if it's csc/cpe tho
@@ -77,6 +77,8 @@ public class Database {
 		catch(Exception e) {
 	         //Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
+	    } finally {
+	    	stmt.close();
 	    }
         return null;
 	}
@@ -207,7 +209,7 @@ public class Database {
 	
 	public static List<String[]> dbAllRows(Statement stmt, String sql)
     {
-		ArrayList<String[]> list = new ArrayList(); 
+		ArrayList<String[]> list = new ArrayList<>(); 
 		try {
     	  
 			ResultSet rs = stmt.executeQuery(sql);
@@ -290,8 +292,6 @@ public class Database {
 		try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur",mostSecureEncryptionEver(ENCRYPTEDPW))){
 	        stmt = conn.createStatement();
 	        // calls go here
-			dbWriteSched(stmt, arr);
-	        
 			stmt.close();
 		}
 		catch(SQLException se) {
