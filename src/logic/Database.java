@@ -10,7 +10,6 @@ import java.util.logging.*;
 
 public class Database {
 	
-	//test commit 2
 	private static final String ENCRYPTEDPW = "gvznyfoyzhzfi";
 	private static final String ENCODER = "zyvonihgf";
 	private static final String DECODER = "abelmrstu";
