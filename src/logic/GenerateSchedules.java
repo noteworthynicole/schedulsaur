@@ -1,5 +1,4 @@
 package logic;
-import java.io.*;
 import java.util.*;
 import java.util.Map.*;
 import java.util.logging.*;
@@ -14,14 +13,14 @@ import java.util.stream.*;
  * */
 
 public class GenerateSchedules {
-	
+
 	private static final Logger logger = Logger.getLogger("GenerateSchedules");
-	
-	public static void main(String[] args) throws FileNotFoundException{
-		Map<String, logic.Section> hashMapInit = parseDbsCreateSections();
+
+	public static void main(String[] args) {
+		Map<String, Section> hashMapInit = parseDbsCreateSections();
 		//Likely put a filter here to get rid of classes that are not relevant
 		Map<logic.DoubleTimes, List<logic.Section>> hashMapTime = classesByTime(hashMapInit);
-		//Sort - keyset -> list 
+		//Sort - keyset -> list
 		List<logic.DoubleTimes> doubleTimesList1 = sortByKey(hashMapTime);
 		//Greedy
 		List<List<logic.DoubleTimes>> doubleTimesList2 = greedySchedule(4, doubleTimesList1);
@@ -30,7 +29,7 @@ public class GenerateSchedules {
 			logger.log(Level.INFO, doubleTimesList2.get(0).toString());
 		}
 	}
-	   
+
 	   public static Map<String, logic.Section> parseDbsCreateSections(){
 		   List<String[]> list = logic.Database.getdbAllRow();
 		   HashMap<String, logic.Section> hashMapInit = new HashMap<>();
@@ -43,12 +42,12 @@ public class GenerateSchedules {
 		   }
 		   return hashMapInit;
 	   }
-	   
+
 	   public static logic.Section createSection(String[] line) {
 		   //0 - class department, number, and section
 		   List<String> fields = new ArrayList<>();
 		   fields.add(line[0].substring(0, 10));
-		   //1 - class id number 
+		   //1 - class id number
 		   fields.add(line[1]);
 		   //2 - class type (lec, lab, act)
 		   fields.add(line[2]);
@@ -68,16 +67,16 @@ public class GenerateSchedules {
 		   fields.add(line[11]);
 		   return new logic.Section(time, fields);
 	   }
-	   
+
 	   //adds to the hashtable if it is a lab section for the same lecture
 	   //Returns true if does not add, needing to add class as separate
 	   //Returns false if it adds, thus not needing to add the class again
 	   public static boolean checkLab(Map<String, logic.Section> hashMap, logic.Section currSection) {
 		   if (currSection.getType().equals("Lab")) {
 			   //This grabs the prefix of the class if a lab, goes back one section to attach to lec version
-			   String lecKey = currSection.getName().substring(0,8) + 
+			   String lecKey = currSection.getName().substring(0,8) +
 					   String.format("%02d", (Integer.valueOf(currSection.getName().substring(8)) - 1));
-			   //Here is where the lab is added to where the lecture section 
+			   //Here is where the lab is added to where the lecture section
 			   if(hashMap.containsKey(lecKey)) {
 				   logic.Section currList = hashMap.get(lecKey);
 				   currList.addClass(currSection);
@@ -86,7 +85,7 @@ public class GenerateSchedules {
 		   }
 		   return true;
 	   }
-	   
+
 	   public static Map<logic.DoubleTimes, List<logic.Section>> classesByTime(Map<String, logic.Section> hashMapInit){
 		   HashMap<logic.DoubleTimes, List<logic.Section>> hashMapTime = new HashMap<>();
 			for(Entry<String, logic.Section> entry : hashMapInit.entrySet()) {
@@ -99,7 +98,7 @@ public class GenerateSchedules {
 						List<logic.Section> currList = hashMapTime.get(currSection.getTimes());
 						currList.add(currSection);
 					}else {
-						//add the time as a new value 
+						//add the time as a new value
 						List<logic.Section> currValue = new ArrayList<>();
 						currValue.add(currSection);
 						hashMapTime.put(currSection.getTimes(), currValue);
@@ -108,7 +107,7 @@ public class GenerateSchedules {
 			}
 		 return hashMapTime;
 	   }
-	   
+
 	   public void filterClassName(Map<String, logic.Section> hashmap, String string){
 		   //Uses mutation to filter out classes by name
 		   Set<String> keys = hashmap.keySet();
@@ -127,10 +126,10 @@ public class GenerateSchedules {
 	   public static List<logic.DoubleTimes> sortByKey(Map<logic.DoubleTimes, List<logic.Section>> hashmap) {
 	   	Set<logic.DoubleTimes> keys = hashmap.keySet();
 	   	List<logic.DoubleTimes> d = keys.stream().collect(Collectors.toList());
-	   	Collections.sort(d, (t1, t2) -> t1.compareTo(t2)); 
+	   	Collections.sort(d, (t1, t2) -> t1.compareTo(t2));
 	   	return d;
 	   }
-	   
+
 	   public void filterAvailableClass(Map<String, logic.Section> hashmap) {
 		   Set<String> keys = hashmap.keySet();
 		   Set<String> keysToRemove = new HashSet<>();
@@ -144,9 +143,9 @@ public class GenerateSchedules {
 			   hashmap.remove(key);
 		   }
 	   }
-	   
+
 	   //filter by Times
-	   
+
 	   //main greedy schedule. Create one schedule with each class as it's own start
 	   public static List<List<logic.DoubleTimes>> greedySchedule(int n, List<logic.DoubleTimes> d){
 		   //n is the number of classes (all classes default to 4 units)
@@ -162,7 +161,7 @@ public class GenerateSchedules {
 	        }
 	        return m;
 	    }
-	   
+
 	   public static List<logic.DoubleTimes> greedyHelper(int n, int i, List<logic.DoubleTimes> d){
 		   int k = d.size();
 		   List<logic.DoubleTimes> schedule = new ArrayList<>();
@@ -182,7 +181,7 @@ public class GenerateSchedules {
 	    	}
 	       	return schedule;
 	   }
-	   
+
 	   public static boolean allCompatible(List<logic.DoubleTimes> schedule, logic.DoubleTimes potential) {
 		   for(logic.DoubleTimes times : schedule) {
 			   if(!times.compatible(potential)) {
@@ -193,22 +192,15 @@ public class GenerateSchedules {
 	   }
 
 	   // Gets a list of all the potential schedules - list<section>
-	   public static List<List<logic.Section>> getPotentialSchedules(Map<logic.DoubleTimes, List<logic.Section>> hashmap, List<List<logic.DoubleTimes>> dt) {
-	   	List<List<logic.Section>> schedules = new ArrayList<List<logic.Section>>();
-	   	List<List<logic.Section>> temps = new ArrayList<List<logic.Section>>();
-	   	List<List<logic.Section>> sections = new ArrayList<List<logic.Section>>();
-	   	List<logic.Section> temp = new ArrayList<logic.Section>();
-	   	List<logic.DoubleTimes> times = new ArrayList<logic.DoubleTimes>();
-
+	   public static List<List<Section>> getPotentialSchedules(Map<DoubleTimes, List<Section>> hashmap, List<List<DoubleTimes>> dt) {
+	   	List<List<Section>> schedules = new ArrayList<>();
+	   	List<List<Section>> temps = new ArrayList<>();
 	   	for (int i = 0; i < dt.size(); i++) {
-	   		times = dt.get(i);
-	   		for (int k = 0; k < times.size(); k++) {
-	   			temp = hashmap.get(times.get(k));
-	   			temps.add(temp);
+	   		for (int k = 0; k < dt.get(i).size(); k++) {
+	   			temps.add(hashmap.get(dt.get(i).get(k)));
 	   		}
-	   		sections = getCombos(temps, 0);
-	   		for (int j = 0; j < sections.size(); j++) {
-	   			schedules.add(sections.get(j));
+	   		for (int j = 0; j < getCombos(temps, 0).size(); j++) {
+	   			schedules.add(getCombos(temps, 0).get(j));
 	   		}
 	   	}
 	   	return schedules;
@@ -216,25 +208,25 @@ public class GenerateSchedules {
 
 		// i is used for recursion, for the initial call this should be 0
 		private static List<List<logic.Section>> getCombos(List<List<logic.Section>> input, int i) {
-			
+
 			// stop condition
 			if(i == input.size()) {
 				// return a list with an empty list
-				List<List<logic.Section>> result = new ArrayList<List<logic.Section>>();
-				result.add(new ArrayList<logic.Section>());
+				List<List<Section>> result = new ArrayList<>();
+				result.add(new ArrayList<Section>());
 				return result;
 			}
-			
-			List<List<logic.Section>> result = new ArrayList<List<logic.Section>>();
-			List<List<logic.Section>> recursive = getCombos(input, i+1); // recursive call
-			
+
+			List<List<Section>> result = new ArrayList<>();
+			List<List<Section>> recursive = getCombos(input, i+1); // recursive call
+
 			// for each element of the first list of input
 			for(int j = 0; j < input.get(i).size(); j++) {
 				// add the element to all combinations obtained for the rest of the lists
 				for(int k = 0; k < recursive.size(); k++) {
 		                        // copy a combination from recursive
-					List<logic.Section> newList = new ArrayList<logic.Section>();
-					for(logic.Section section : recursive.get(k)) {
+					List<Section> newList = new ArrayList<>();
+					for(Section section : recursive.get(k)) {
 						newList.add(section);
 					}
 					// add element of the first list
@@ -247,16 +239,12 @@ public class GenerateSchedules {
 		}
 
 	   // just returns a list of list of sections with the first element used
-	   public static List<List<logic.Section>> getFirstSchedules(Map<logic.DoubleTimes, List<logic.Section>> hashmap, List<List<logic.DoubleTimes>> dt) {
-	   	List<List<logic.Section>> schedules = new ArrayList<>();
-	   	List<logic.Section> schedule = new ArrayList<>();
-	   	List<logic.Section> temp = new ArrayList<>();
-	   	List<logic.DoubleTimes> times = new ArrayList<>();
+	   public static List<List<Section>> getFirstSchedules(Map<DoubleTimes, List<Section>> hashmap, List<List<DoubleTimes>> dt) {
+	   	List<List<Section>> schedules = new ArrayList<>();
+	   	List<Section> schedule = new ArrayList<>();
 	   	for (int i = 0; i < dt.size(); i++) {
-	   		times = dt.get(i);
-	   		for (int k = 0; k < times.size(); k++) {
-	   			temp = hashmap.get(times.get(k));
-	   			schedule.add(temp.get(0));
+	   		for (int k = 0; k < dt.get(i).size(); k++) {
+	   			schedule.add(hashmap.get(dt.get(i).get(k)).get(0));
 	   		}
 	   		schedules.add(schedule);
 	   	}
@@ -265,21 +253,19 @@ public class GenerateSchedules {
 
 
 	   // filter out schedules with duplicate courses
-	   public void filterPotentialSchedules(List<List<logic.Section>> ps) {
-		   	List<logic.Section> schedule = new ArrayList<>();
-		   	Set<String> names = new HashSet<String>();
+	   public void filterPotentialSchedules(List<List<Section>> ps) {
+		   	Set<String> names = new HashSet<>();
 		   	int[] arr = new int[ps.size()];
 		   	int count = 0;
 		   	for (int i = 0; i < ps.size(); i++) {
-		   	schedule = ps.get(i);
-			   	for (int j = 0; j < schedule.size(); j++) {
-			   		if (names.add(schedule.get(j).getName()) == false) {
+			   	for (int j = 0; j < ps.get(i).size(); j++) {
+			   		if (!names.add(ps.get(i).get(j).getName())) {
 			   			arr[count++]= i;
 			   		}
 			   	}
 		   	names = new HashSet<>();
 		   	}
-		 
+
 		   for (int i = 0; i < count; i++) {
 			   ps.remove(arr[i]);
 		   }
