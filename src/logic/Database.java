@@ -52,7 +52,7 @@ public class Database {
 	// get course info for all cpe classes, returns ??
 	
 	// this is because sonarcloud cried at me and doesn't like duplicate code
-	public static ResultSet dbClassQuery(Statement stmt, String toFind, Class myClass) throws SQLException {
+	public static ResultSet dbClassQuery(Statement stmt, String toFind, Class myClass) {
         try {
 			String classID = myClass.getName();
 			// now we do a lookup, but it depends if it's csc/cpe tho
@@ -77,8 +77,6 @@ public class Database {
 		catch(Exception e) {
 	         //Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
-	    } finally {
-	    	stmt.close();
 	    }
         return null;
 	}
@@ -207,12 +205,12 @@ public class Database {
         return prereqs;
 	}
 	
-	public static List<String[]> dbAllRows(Statement stmt, String sql)
-    {
+	public static List<String[]> dbAllRows(Statement stmt, String sql) throws SQLException {
 		ArrayList<String[]> list = new ArrayList<>(); 
+		ResultSet rs = null;
 		try {
     	  
-			ResultSet rs = stmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 			java.sql.ResultSetMetaData rsmd = rs.getMetaData();
 			int c = 0;
 			while(rs.next()){
@@ -224,11 +222,16 @@ public class Database {
 				}
 				c++;
 			}
-			rs.close();
 		}
+		catch(SQLException se) {
+	         //Handle errors for JDBC
+			 logger.log(Level.WARNING, se.toString());
+	    }
 		catch(Exception e)
 		{
 			logger.log(Level.WARNING, e.toString());
+		}finally {
+			rs.close();
 		}
       
 		return list;
@@ -292,6 +295,7 @@ public class Database {
 		try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur",mostSecureEncryptionEver(ENCRYPTEDPW))){
 	        stmt = conn.createStatement();
 	        // calls go here
+	        
 			stmt.close();
 		}
 		catch(SQLException se) {
