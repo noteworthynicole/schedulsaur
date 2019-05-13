@@ -82,34 +82,6 @@ public class Database {
         return null;
 	}
 	
-	public static ResultSet dbClassQuery(Statement stmt, String toFind, String classID) {
-        try {
-			// now we do a lookup, but it depends if it's csc/cpe tho
-			String department = classID.substring(0,3);
-			String sql = "";
-			// yes the database has them capitalized, but you know
-			if(department.equalsIgnoreCase("csc")) {
-		        sql = "SELECT " + toFind + " FROM schedulsaurdb.catalog_csc WHERE ClassID LIKE \"" + classID + "\"";
-			}
-			else if(department.equalsIgnoreCase("cpe")) {
-				sql = "SELECT " + toFind + " FROM schedulsaurdb.catalog_cpe WHERE ClassID LIKE \"" + classID + "\"";
-			}
-			else {
-				// fix this later for other majors I Guess
-			}
-			return stmt.executeQuery(sql);
-        }
-		catch(SQLException se) {
-	         //Handle errors for JDBC
-			 logger.log(Level.WARNING, se.toString());
-	    }
-		catch(Exception e) {
-	         //Handle errors for Class.forName
-			logger.log(Level.WARNING, e.toString());
-	    }
-        return null;
-	}
-	
 	// get course info for a specific csc/cpe class, returns a string (like from the csv)
 	public static String dbClassInfo(Statement stmt, Class myClass) {
 		String classID = "N/A";
