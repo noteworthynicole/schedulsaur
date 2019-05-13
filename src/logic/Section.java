@@ -1,23 +1,23 @@
 package logic;
-import java.lang.Class;
 import java.util.*;
 
-public final class Section extends java.lang.Class {
+public final class Section extends Class{
 	
-	private String id; //unique 4 numbers
+	private String num; //unique 4 numbers
 	private String type; //lab or lec
 	private Section lab; //if only lab, this is null
-	private logic.DoubleTimes times;
-	private List<java.lang.Class> prerec;
+	private DoubleTimes times;
+	private List<Class> prerec;
 	private String prof;
 	private String location;
 	private int maxCapacity = 0;
 	private int enrolled = 0;
 	private int waitList = 0;
+	private int id = 0;
 	
-	public Section(logic.DoubleTimes times, List<String> fields) {
+	public Section(DoubleTimes times, List<String> fields) {
 		super(fields.get(0));
-		this.id = fields.get(1);
+		this.num = fields.get(1);
 		this.type = fields.get(2);
 		this.prof = fields.get(3);
 		this.prerec = new ArrayList<>();
@@ -26,10 +26,15 @@ public final class Section extends java.lang.Class {
 		this.maxCapacity = getInteger(fields.get(5));
 		this.enrolled = getInteger(fields.get(6));
 		this.waitList = getInteger(fields.get(7));
+		this.id = getInteger(fields.get(8));
 	}
 	
-	public String getId() {
+	public int getId() {
 		return this.id;
+	}
+	
+	public String getNum() {
+		return this.num;
 	}
 	
 	public List<Class> getPrerec(){
@@ -44,14 +49,14 @@ public final class Section extends java.lang.Class {
 		return type;
 	}
 	
-	public logic.Times getLecTimes(){
+	public Times getLecTimes(){
 		if(times != null) {
 			return times.getLecTimes();
 		}
 		return null;
 	}
 	
-	public logic.DoubleTimes getTimes() {
+	public DoubleTimes getTimes() {
 		return times;
 	}
 	

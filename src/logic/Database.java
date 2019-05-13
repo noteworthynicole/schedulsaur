@@ -206,7 +206,7 @@ public class Database {
 	
 	public static List<String[]> dbAllRows(Statement stmt, String sql)
     {
-		ArrayList<String[]> list = new ArrayList(); 
+		ArrayList<String[]> list = new ArrayList<>(); 
 		try {
     	  
 			ResultSet rs = stmt.executeQuery(sql);
@@ -269,7 +269,7 @@ public class Database {
 		List<String[]> list = null;
 		try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur",mostSecureEncryptionEver(ENCRYPTEDPW))){
 	        stmt = conn.createStatement();		
-			list = dbAllRows(stmt, CSCCATSQL);
+			list = dbAllRows(stmt, CPESECSQL);
 			stmt.close();
 		}
 		catch(SQLException se) {
