@@ -231,7 +231,9 @@ public class Database {
 		{
 			logger.log(Level.WARNING, e.toString());
 		}finally {
-			rs.close();
+			if(rs!=null) {
+				rs.close();
+			}
 		}
       
 		return list;
