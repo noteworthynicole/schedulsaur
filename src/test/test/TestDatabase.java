@@ -1,7 +1,5 @@
 package test;
 
-import static org.junit.Assert.*;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -9,10 +7,12 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import logic.*;
 import org.junit.Test;
 
 import logic.Class;
-import logic.Database;
+
+import static org.junit.Assert.assertEquals;
 
 public class TestDatabase {
 	
@@ -46,7 +46,7 @@ public class TestDatabase {
 		Statement stmt = null;
 		try (Connection conn = DriverManager.getConnection(dbURL,dbUsername,dbPW)){
 	        stmt = conn.createStatement();
-	        assertEquals("4 units", Database.dbClassUnits(stmt, testClass));
+            assertEquals("4 units", Database.dbClassUnits(stmt, testClass));
 			stmt.close();
 		}
 		catch(SQLException se) {
