@@ -3,12 +3,14 @@ package test;
 import static org.junit.Assert.*;
 import java.util.*;
 
+import logic.DoubleTimes;
+import logic.GenerateSchedules;
+import logic.Section;
 import org.junit.Test;
-import logic.*;
 
 public class TestGenerateSchedules {
 	
-	public TestSection ts = new TestSection();
+	public test.TestSection ts = new test.TestSection();
 	
 	String mwf = "MWF";
 	String tr = "TR";

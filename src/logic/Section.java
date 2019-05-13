@@ -1,13 +1,13 @@
 package logic;
 import java.util.*;
 
-public final class Section extends Class {
+public final class Section extends logic.Class {
 	
 	private String num; //unique 4 numbers
 	private String type; //lab or lec
 	private Section lab; //if only lab, this is null
 	private logic.DoubleTimes times;
-	private List<Class> prerec;
+	private List<logic.Class> prerec;
 	private String prof;
 	private String location;
 	private int maxCapacity = 0;
@@ -37,7 +37,7 @@ public final class Section extends Class {
 		return this.id;
 	}
 	
-	public List<Class> getPrerec(){
+	public List<logic.Class> getPrerec(){
 		return prerec;
 	}
 	

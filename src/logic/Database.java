@@ -53,7 +53,7 @@ public class Database {
 
 	// this is because sonarcloud cried at me and doesn't like duplicate code
 	// helper function for anything starting with dbClass
-	public static ResultSet dbClassQuery(Statement stmt, String toFind, Class myClass) {
+	public static ResultSet dbClassQuery(Statement stmt, String toFind, logic.Class myClass) {
         try {
 			String classID = myClass.getName();
 			// now we do a lookup, but it depends if it's csc/cpe tho

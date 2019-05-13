@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import logic.*;
+import logic.Database;
 import org.junit.Test;
 
 import logic.Class;
