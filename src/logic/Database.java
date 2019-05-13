@@ -10,30 +10,34 @@ import java.util.logging.*;
 
 public class Database {
 	
-	//test commit 2
+	//for mostSecureEncryptionEver
 	private static final String ENCRYPTEDPW = "gvznyfoyzhzfi";
 	private static final String ENCODER = "zyvonihgf";
 	private static final String DECODER = "abelmrstu";
 	
-	// constants i guess
+	// constants for the dbClass family of functions
 	private static final String CLASSNAME = "ClassName";
 	private static final String UNITS = "Units";
 	private static final String CREDIT = "Credit";
 	private static final String TERMS = "Terms";
 	private static final String PREREQS = "Prereqs";
+	
+	// sonarcloud hates print
 	private static final Logger logger = Logger.getLogger("Database");
 	
 	//sql to pull cpe catalog table
 	public static final String CSCCATSQL = "SELECT * FROM schedulsaurdb.catalog_cpe";
-	//pull csc catalog table
+	//sql to pull csc catalog table
 	public static final String CPECATSQL = "SELECT * FROM schedulsaurdb.catalog_cpe";
 	//sql to pull cpe section table
 	public static final String CSCSECSQL = "SELECT * FROM schedulsaurdb.sections_csc";
-	//pull csc section table
+	//sql to pull csc section table
 	public static final String CPESECSQL = "SELECT * FROM schedulsaurdb.sections_cpe";
 	
-	// ok right now (5/2) everything just prints out stuff, we can do returns later
+	/* ----------------------------------------------------------------------------------- */
 	
+	// sonarcloud doesn't like plaintext passwords
+	// so i did a substitution cipher lol
 	public static String mostSecureEncryptionEver(String str) {
 		char temp;
 		char[] res = str.toCharArray();
@@ -45,16 +49,41 @@ public class Database {
 		return new String(res);
 	}
 	
-	/* course information (name, prereqs, units, etc) */
-	
-	// get course info for all csc classes, returns ??
-	
-	// get course info for all cpe classes, returns ??
+	/* ----------------------------------------------------------------------------------- */
 	
 	// this is because sonarcloud cried at me and doesn't like duplicate code
+	// helper function for anything starting with dbClass
 	public static ResultSet dbClassQuery(Statement stmt, String toFind, Class myClass) {
         try {
 			String classID = myClass.getName();
+			// now we do a lookup, but it depends if it's csc/cpe tho
+			String department = classID.substring(0,3);
+			String sql = "";
+			// yes the database has them capitalized, but you know
+			if(department.equalsIgnoreCase("csc")) {
+		        sql = "SELECT " + toFind + " FROM schedulsaurdb.catalog_csc WHERE ClassID LIKE \"" + classID + "\"";
+			}
+			else if(department.equalsIgnoreCase("cpe")) {
+				sql = "SELECT " + toFind + " FROM schedulsaurdb.catalog_cpe WHERE ClassID LIKE \"" + classID + "\"";
+			}
+			else {
+				// fix this later for other majors I Guess
+			}
+			return stmt.executeQuery(sql);
+        }
+		catch(SQLException se) {
+	         //Handle errors for JDBC
+			 logger.log(Level.WARNING, se.toString());
+	    }
+		catch(Exception e) {
+	         //Handle errors for Class.forName
+			logger.log(Level.WARNING, e.toString());
+	    }
+        return null;
+	}
+	
+	public static ResultSet dbClassQuery(Statement stmt, String toFind, String classID) {
+        try {
 			// now we do a lookup, but it depends if it's csc/cpe tho
 			String department = classID.substring(0,3);
 			String sql = "";
@@ -205,6 +234,11 @@ public class Database {
         return prereqs;
 	}
 	
+	/* ----------------------------------------------------------------------------------- */
+	
+	/* ----------------------------------------------------------------------------------- */
+	
+	// helper function for getdbAllRow
 	public static List<String[]> dbAllRows(Statement stmt, String sql) throws SQLException {
 		ArrayList<String[]> list = new ArrayList<>(); 
 		ResultSet rs = null;
@@ -213,7 +247,7 @@ public class Database {
 			rs = stmt.executeQuery(sql);
 			java.sql.ResultSetMetaData rsmd = rs.getMetaData();
 			int c = 0;
-			while(rs.next()){
+			while(rs.next()) {
 				list.add(new String[rsmd.getColumnCount()]);
 	    	  
 				for(int i = 0; i < rsmd.getColumnCount(); i++)
@@ -227,10 +261,10 @@ public class Database {
 	         //Handle errors for JDBC
 			 logger.log(Level.WARNING, se.toString());
 	    }
-		catch(Exception e)
-		{
+		catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
-		}finally {
+		}
+		finally {
 			if(rs!=null) {
 				rs.close();
 			}
@@ -238,6 +272,30 @@ public class Database {
       
 		return list;
 	}
+	
+	// get section info for Literally Every csc class, returns list
+	// currently hardcoded for CSC classes? we probably wanna edit that later
+	public static List<String[]> getdbAllRow() {
+		// below here goes before calls
+		Statement stmt = null;
+		List<String[]> list = null;
+		try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur",mostSecureEncryptionEver(ENCRYPTEDPW))){
+	        stmt = conn.createStatement();		
+			list = dbAllRows(stmt, CSCCATSQL);
+			stmt.close();
+		}
+		catch(SQLException se) {
+	         //Handle errors for JDBC
+			logger.log(Level.WARNING, se.toString());
+	    }
+		catch(Exception e) {
+	         //Handle errors for Class.forName
+			logger.log(Level.WARNING, e.toString());
+	    }
+		return list;
+	}
+	
+	/* ----------------------------------------------------------------------------------- */
 	
 	//replace class object with schedule object later
 	public static void dbWriteSched(Statement stmt, String[] classList)
@@ -263,34 +321,9 @@ public class Database {
 		}
    	}
 	
-	/* section information (the other stuff) */
+	/* ----------------------------------------------------------------------------------- */
 	
-	// get section info for Literally Every csc class, returns ??
-	
-	// get section info for Literally Every cpe class, returns ??
-	
-	// get section info for a specific csc/cpe class, returns ??
-	
-	public static List<String[]> getdbAllRow() {
-		// below here goes before calls
-		Statement stmt = null;
-		List<String[]> list = null;
-		try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur",mostSecureEncryptionEver(ENCRYPTEDPW))){
-	        stmt = conn.createStatement();		
-			list = dbAllRows(stmt, CSCCATSQL);
-			stmt.close();
-		}
-		catch(SQLException se) {
-	         //Handle errors for JDBC
-			logger.log(Level.WARNING, se.toString());
-	    }
-		catch(Exception e) {
-	         //Handle errors for Class.forName
-			logger.log(Level.WARNING, e.toString());
-	    }
-		return list;
-	}
-	
+	// (this doesn't do anything really, it was there for trial/error)
 	public static void main(String[] args) {
 		// below here goes before calls
 		Statement stmt = null;
