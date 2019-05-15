@@ -17,7 +17,7 @@ public class GenerateSchedules {
 	
 	private static final Logger logger = Logger.getLogger("GenerateSchedules");
 	
-	public static void main(String[] args) throws FileNotFoundException{
+	public static void main(String[] args){
 		Map<String, Section> hashMapInit = parseDbsCreateSections();
 		//Likely put a filter here to get rid of classes that are not relevant
 		Map<DoubleTimes, List<Section>> hashMapTime = classesByTime(hashMapInit);
@@ -214,12 +214,12 @@ public class GenerateSchedules {
 			// stop condition
 			if(i == input.size()) {
 				// return a list with an empty list
-				List<List<Section>> result = new ArrayList<List<Section>>();
+				List<List<Section>> result = new ArrayList<>();
 				result.add(new ArrayList<Section>());
 				return result;
 			}
 			
-			List<List<Section>> result = new ArrayList<List<Section>>();
+			List<List<Section>> result = new ArrayList<>();
 			List<List<Section>> recursive = getCombos(input, i+1); // recursive call
 			
 			// for each element of the first list of input
@@ -227,7 +227,7 @@ public class GenerateSchedules {
 				// add the element to all combinations obtained for the rest of the lists
 				for(int k = 0; k < recursive.size(); k++) {
 		                        // copy a combination from recursive
-					List<Section> newList = new ArrayList<Section>();
+					List<Section> newList = new ArrayList<>();
 					for(Section section : recursive.get(k)) {
 						newList.add(section);
 					}
