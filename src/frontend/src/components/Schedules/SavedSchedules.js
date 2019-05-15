@@ -18,6 +18,9 @@ class SavedSchedules extends Component{
          <div>
             <div className='row'>
                 <div className='col s8'>
+
+                    {/* // Schedule Section */}
+
                     <h2 className='subtitle' align='center'>Saved Schedules</h2>
                     <ScheduleList  
                         schedules={storeSavedSchedules} 
@@ -26,6 +29,9 @@ class SavedSchedules extends Component{
                     />
                 </div>
                 <div className='col s4'>
+
+                    {/* // Sort & Filter Section */}
+
                     <SortFilter sorters={storeSorters} filters={storeFilters}/>
                 </div>
             </div>
@@ -33,6 +39,14 @@ class SavedSchedules extends Component{
         )
     }
 }
+
+/**
+ * mapStateToProps
+ * 
+ * @description maps state from store to props 
+ * @param {*} state 
+ * @param {*} onwProps 
+ */
 
 const mapStateToProps = (state, onwProps) => {
     return {
@@ -42,10 +56,18 @@ const mapStateToProps = (state, onwProps) => {
     }
 }
 
-const mapStateToDispatch = (dispatch) => {
+/**
+ * mapDispatchToProps 
+ * 
+ * @description maps dispatch to props to allow component to send an action
+ * @param {*} dispatch 
+ */
+const mapDispatchToProps = (dispatch) => {
     return{
         view: (id, index) => { dispatch(view(id, index)) },
     }
 }
 
-export default connect(mapStateToProps, mapStateToDispatch)(SavedSchedules);
+// 'connect' allows comopnent to access the state from the store
+
+export default connect(mapStateToProps, mapDispatchToProps)(SavedSchedules);

@@ -3,6 +3,12 @@ import ScheduleHeader from './ScheduleHeader';
 import ScheduleBody from './ScheduleBody';
 import './Schedule.css'
 
+/**
+ * Schedule
+ * 
+ * @description Main component that creates an individual component
+ */
+
 class Schedule extends Component{
     render(){
         const { descriptors, schedule } = this.props;

@@ -2,6 +2,13 @@ import React from 'react';
 import Popup from 'reactjs-popup';
 import './TimePopup.css';
 
+/**
+ * TimePopup
+ * 
+ * @description Component to create the popup when saving a time preference
+ * @param {*} param0 
+ */
+
 const TimePopup = ({trigger, onSave, onChange}) => {
     return(
         <Popup trigger={trigger} 

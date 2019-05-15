@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import './Schedule.css'
 
+/**
+ * ScheduleBody
+ * 
+ * @description Component that creates the individual schedule body
+ */
+
 class ScheduleBody extends Component{
 
     /**

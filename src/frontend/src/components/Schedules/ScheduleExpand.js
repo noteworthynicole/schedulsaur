@@ -4,6 +4,12 @@ import TableHeader from '../TimeAvailability/TableHeader';
 import TableBody from '../TimeAvailability/TableBody';
 import './ScheduleExpand.css'
 
+/**
+ * ScheduleExpand
+ * 
+ * @description Component that creates the expanded portion of the schedule
+ */
+
 class ScheduleExpand extends Component{
     render(){
         const { schedule } = this.props;

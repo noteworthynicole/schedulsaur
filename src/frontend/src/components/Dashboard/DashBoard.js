@@ -38,6 +38,7 @@ class DashBoard extends Component{
 
     /**
      * handleEdit
+     * 
      * @method 
      * @description called when edit profile button is clicked
      */

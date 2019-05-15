@@ -39,17 +39,32 @@ class TimeTable extends Component{
     }
 }
 
+
+/**
+ * mapStateToProps
+ * 
+ * @description maps state from store to props
+ * @param {*} state 
+ * @param {*} ownProps 
+ */
 const mapStateToProps = (state, ownProps) => {
     return{
         storeTimeTable: state.time.table,
     }
 }
 
+
+/**
+ * @description maps dispatch to props to allow component to send an action
+ * @param {*} dispatch 
+ */
 const mapDispatchToProps = (dispatch) => {
     return{
         changeAvailable: (isViewing, row_id, col_id) => { 
             dispatch(changeAvailable(isViewing, row_id, col_id)) }        
     }
 }
+
+// 'connect' allows component to access the state from the store
 
 export default connect(mapStateToProps, mapDispatchToProps)(TimeTable);

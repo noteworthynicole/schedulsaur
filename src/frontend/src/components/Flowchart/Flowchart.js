@@ -2,8 +2,20 @@ import React, { Component } from 'react';
 import { connect }  from 'react-redux';
 import './Flowchart.css'
 
+/**
+ * Flowchart
+ * 
+ * @description Component that creates the flowchart
+ */
+
 class Flowchart extends Component{
 
+    /**
+     * createBox
+     * 
+     * @method
+     * @description Used to create the individual course boxes
+     */
     createBox = (course) => {
         switch(course.type){
             case 'CSC':
@@ -17,6 +29,12 @@ class Flowchart extends Component{
         }
     }
 
+    /**
+     * createRow
+     * 
+     * @method
+     * @description Used to create a row of courses
+     */
     createRow = (row) => {
         return(
             row.map((course, index) => {
@@ -29,6 +47,12 @@ class Flowchart extends Component{
         )
     }
 
+    /**
+     * createGrid
+     * 
+     * @method
+     * @description Used to create the entire grid
+     */
     createGrid = (flowchart) => {
         let grid = []
         Object.keys(flowchart).forEach((row, index)=>{
@@ -51,10 +75,19 @@ class Flowchart extends Component{
     }
 }
 
+/**
+ * mapStateToProps
+ * 
+ * @description maps state from store to props
+ * @param {*} state 
+ * @param {*} ownProps 
+ */
 const mapStateToProps = (state, ownProps) => {
     return {
         courses: state.flowchart
     }
 }
+
+// 'connect' allows component to access the state from the store
 
 export default connect(mapStateToProps)(Flowchart);

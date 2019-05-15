@@ -1,6 +1,13 @@
 import React from 'react';
 import './TimeName.css'
 
+/**
+ * TimeNameEdit
+ * 
+ * @description Component to create the editted version of the names in the saved times section
+ * @param {*} param0 
+ */
+
 const TimeNameEdit = ({time, onView, onChange, onEdit, onSave, onDelete, index}) => {
     return(
         <div>

@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import './Dropdown.css';
 
+/**
+ * Dropdown
+ * 
+ * @description Componet that creates the dropdown menu
+ */
+
 class Dropdown extends Component {
     state = {
         isOpen: false
@@ -17,7 +23,6 @@ class Dropdown extends Component {
             isOpen: false
         })
     } 
-
 
     /**
      * toggleList

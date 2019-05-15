@@ -5,12 +5,30 @@ import ScheduleExpand from './ScheduleExpand';
 import { view, select, deselect } from '../../store/actions/scheduleActions';
 import './ScheduleList.css'
 
+/**
+ * ScheduleList
+ * 
+ * @description Main Component to create the list of schedules
+ */
+
 class ScheduleList extends Component{
 
+    /**
+     * handleView
+     * 
+     * @method
+     * @description Called when user views a schedule
+     */
     handleView = (e) => {
         this.props.view(e.target.id, e.target.getAttribute('index'))
     }
 
+    /**
+     * handleSelect
+     * 
+     * @method
+     * @description Called when user selects a schedule
+     */
     handleSelect = (e) => {
         if(e.target.checked){
             this.props.select(e.target.id, e.target.getAttribute('index'))
@@ -19,6 +37,13 @@ class ScheduleList extends Component{
         }
     }
 
+
+    /**
+     * expandSchedule
+     * 
+     * @method
+     * @description Expand schedule if user clicks on view
+     */
     expandSchedule = (schedule, viewing, index) => {
         if(viewing[index].text === 'View'){
             return(null)
@@ -27,6 +52,13 @@ class ScheduleList extends Component{
         }
     }
 
+
+    /**
+     * showCheckBox
+     * 
+     * @method
+     * @description Show checkbox if selecting potential schedules, not when viewing saved schedules
+     */
     showCheckBox = (addCheckBoxes, schedule_id, index) => {
         return(
             addCheckBoxes ? (
@@ -40,6 +72,13 @@ class ScheduleList extends Component{
         )
     }
 
+
+    /** 
+     * listSchedules
+     * 
+     * @method
+     * @description Lists all the shedules in the store
+     */
     listSchedules = (descriptors, schedules, viewing, addCheckBoxes) => {
         const list = 
         schedules.map((schedule, index) => {
@@ -67,11 +106,15 @@ class ScheduleList extends Component{
 
         const schedulesList = 
             schedules.length ? (
+
+                // Show schedules if there are any
                 <ul className='ul'>
                    {this.listSchedules(storeDescriptors, schedules, storeViewing, addCheckBoxes)}
                     <div style={{marginBottom:'2%'}}></div>
                 </ul>
             ) : (
+
+                // Show text if there are no schedules
                 <h6 align='center'>{ emptyText }</h6>
             )
 
@@ -83,6 +126,14 @@ class ScheduleList extends Component{
     }
 }
 
+
+/**
+ * mapStateToProps
+ * 
+ * @description mpas state from store to props
+ * @param {*} state 
+ * @param {*} ownProps 
+ */
 const mapStateToProps = (state, ownProps) => {
     return{
         storeDescriptors: state.schedule.descriptors,
@@ -90,6 +141,12 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
+/**
+ * mapDispatchToProps
+ * 
+ * @description maps dispatch to props to allow component to send an action
+ * @param {*} dispatch 
+ */
 const mapDispatchToProps = (dispatch) => {
     return{
         view: (id, index) => { dispatch(view(id, index)) },
@@ -97,5 +154,7 @@ const mapDispatchToProps = (dispatch) => {
         deselect: (id, index) => { dispatch(deselect(id, index)) }
     }
 }
+
+// 'connect' allows component to access the state from the store
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScheduleList);

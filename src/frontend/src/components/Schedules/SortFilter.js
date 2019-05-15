@@ -1,6 +1,13 @@
 import React from 'react';
 import Dropdown from './Dropdown';
 
+
+/**
+ * SortFilter
+ * 
+ * @description Component creates the sort and filter dropdowns
+ * @param {*} param0 
+ */
 const SortFilter = ({ sorters, filters }) => {
     return(
         <div>

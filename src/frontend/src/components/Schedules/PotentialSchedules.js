@@ -63,7 +63,14 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-const mapStateToDispatch = (dispatch) => {
+/**
+ * mapDispatchToProps
+ * 
+ * @description maps dispatch to props to allow component to send an action
+ * @param {*} dispatch 
+ */
+
+const mapDispatchToProps = (dispatch) => {
     return{
         save: () => { dispatch(save()) }
     }
@@ -71,4 +78,4 @@ const mapStateToDispatch = (dispatch) => {
 
 // 'connect' allows component to access the state from the store
 
-export default connect(mapStateToProps, mapStateToDispatch)(PotentialSchedules);
+export default connect(mapStateToProps, mapDispatchToProps)(PotentialSchedules);

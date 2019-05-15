@@ -16,16 +16,34 @@ class SavedTimes extends Component{
         tempName: ''
     }
 
+    /**
+     * handleNameChange
+     * 
+     * @method
+     * @description Called when user changes the name of a saved time preference
+     */
     handleNameChange = (e) => {
         this.setState({
             tempName: e.target.value
         })
     }
 
+    /**
+     * handleNameEdit
+     * 
+     * @method
+     * @description Called when user clicks to edit the name of a saved time preference
+     */
     handleNameEdit = (e) => {
         this.props.editName(e.target.id, e.target.getAttribute('index'))
     }
 
+    /**
+     * handleNameSave
+     * 
+     * @method
+     * @description Called when user saves a new name
+     */
     handleNameSave = (e) => {
 
     // *** need to prevent empty name here
@@ -34,14 +52,32 @@ class SavedTimes extends Component{
         this.props.saveName(e.target.id, e.target.getAttribute('index'), this.state.tempName)
     }
 
+    /**
+     * handleDelete
+     * 
+     * @method
+     * @description Called when user deletes a saved time preference
+     */
     handleDelete = (e) => {
         this.props.del(e.target.id, e.target.getAttribute('index'))
     }
 
+    /**
+     * handleView
+     * 
+     * @method
+     * @description Called when user clicks to view a saved time preference
+     */
     handleView = (e) => {
         this.props.view(e.target.id, e.target.getAttribute('index'))
     }
 
+    /**
+     * normalOrEditBox
+     * 
+     * @method
+     * @description Grabs component based on state of name (user is editting or not editting)
+     */
     normalOrEditBox = (isEdit, time, index) => {
         let box = 
             isEdit ? (
@@ -90,12 +126,25 @@ class SavedTimes extends Component{
     }
 }
 
+/**
+ * mapStateToProps
+ * 
+ * @description maps state from store to props
+ * @param {*} state 
+ * @param {*} ownProps 
+ */
 const mapStateToProps = (state, ownProps) => {
     return{
         storeSavedTimes: state.time.saved
     }
 }
 
+/**
+ * mapDispatchToProps
+ * 
+ * @description maps dispatch to props to allow component to send an action
+ * @param {*} dispatch 
+ */
 const mapDispatchToProps = (dispatch) => {
     return{
         editName: (id, index) => { dispatch(editName(id, index)) },

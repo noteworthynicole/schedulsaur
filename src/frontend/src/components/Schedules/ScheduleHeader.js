@@ -1,6 +1,13 @@
 import React from 'react';
 import './Schedule.css'
 
+/**
+ * ScheduleHeader
+ * 
+ * @description Component that creates the individual schedule header 
+ * @param {*} param0 
+ */
+
 const ScheduleHeader = ({descriptors}) => {
     const headers = descriptors.map(header => {
         return(

@@ -41,6 +41,12 @@ class Time extends Component{
     close()
   }
 
+  /**
+   * handleChange
+   * 
+   * @method
+   * @description Called when user inputs a new name in the popup
+   */
   handleChange = (e) => {
     this.setState({
       name: e.target.value
@@ -133,7 +139,6 @@ class Time extends Component{
  * @param {*} state 
  * @param {*} ownProps 
  */
-
 const mapStateToProps = (state, ownProps) => {
   return {
     storeIsViewing: state.time.isViewing
@@ -143,7 +148,7 @@ const mapStateToProps = (state, ownProps) => {
 /**
  * mapDispatchToProps
  * 
- * @description map dispatch to props to allow component to send an action
+ * @description maps dispatch to props to allow component to send an action
  * @param {*} dispatch 
  */
 const mapDispatchToProps = (dispatch) => {
@@ -156,3 +161,4 @@ const mapDispatchToProps = (dispatch) => {
 // 'connect' allows component to access the state from the store
 
 export default connect(mapStateToProps, mapDispatchToProps)(Time);
+
