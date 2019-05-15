@@ -10,29 +10,34 @@ import java.util.logging.*;
 
 public class Database {
 	
+	//for mostSecureEncryptionEver
 	private static final String ENCRYPTEDPW = "gvznyfoyzhzfi";
 	private static final String ENCODER = "zyvonihgf";
 	private static final String DECODER = "abelmrstu";
 	
-	// constants i guess
+	// constants for the dbClass family of functions
 	private static final String CLASSNAME = "ClassName";
 	private static final String UNITS = "Units";
 	private static final String CREDIT = "Credit";
 	private static final String TERMS = "Terms";
 	private static final String PREREQS = "Prereqs";
+	
+	// sonarcloud hates print
 	private static final Logger logger = Logger.getLogger("Database");
 	
 	//sql to pull cpe catalog table
 	public static final String CSCCATSQL = "SELECT * FROM schedulsaurdb.catalog_cpe";
-	//pull csc catalog table
+	//sql to pull csc catalog table
 	public static final String CPECATSQL = "SELECT * FROM schedulsaurdb.catalog_cpe";
 	//sql to pull cpe section table
 	public static final String CSCSECSQL = "SELECT * FROM schedulsaurdb.sections_csc";
-	//pull csc section table
+	//sql to pull csc section table
 	public static final String CPESECSQL = "SELECT * FROM schedulsaurdb.sections_cpe";
 	
-	// ok right now (5/2) everything just prints out stuff, we can do returns later
+	/* ----------------------------------------------------------------------------------- */
 	
+	// sonarcloud doesn't like plaintext passwords
+	// so i did a substitution cipher lol
 	public static String mostSecureEncryptionEver(String str) {
 		char temp;
 		char[] res = str.toCharArray();
@@ -44,14 +49,11 @@ public class Database {
 		return new String(res);
 	}
 	
-	/* course information (name, prereqs, units, etc) */
-	
-	// get course info for all csc classes, returns ??
-	
-	// get course info for all cpe classes, returns ??
+	/* ----------------------------------------------------------------------------------- */
 	
 	// this is because sonarcloud cried at me and doesn't like duplicate code
-	public static ResultSet dbClassQuery(Statement stmt, String toFind, logic.Class myClass) {
+	// helper function for anything starting with dbClass
+	public static ResultSet dbClassQuery(Statement stmt, String toFind, Class myClass) {
         try {
 			String classID = myClass.getName();
 			// now we do a lookup, but it depends if it's csc/cpe tho
@@ -81,7 +83,7 @@ public class Database {
 	}
 	
 	// get course info for a specific csc/cpe class, returns a string (like from the csv)
-	public static String dbClassInfo(Statement stmt, logic.Class myClass) {
+	public static String dbClassInfo(Statement stmt, Class myClass) {
 		String classID = "N/A";
 		String className = "N/A";
 	    String units = "N/A";
@@ -110,7 +112,7 @@ public class Database {
 	}
 	
 	// get full name for a specific csc/cpe class, returns a string
-	public static String dbClassLongName(Statement stmt, logic.Class myClass) {
+	public static String dbClassLongName(Statement stmt, Class myClass) {
 		String className = "N/A";
         try {
         	ResultSet rs = dbClassQuery(stmt, CLASSNAME, myClass);
@@ -129,7 +131,7 @@ public class Database {
 	}
 	
 	// get # of units for a specific csc/cpe class, returns a string
-	public static String dbClassUnits(Statement stmt, logic.Class myClass) {
+	public static String dbClassUnits(Statement stmt, Class myClass) {
 		String units = "N/A";
         try {
     		ResultSet rs = dbClassQuery(stmt, UNITS, myClass);
@@ -148,7 +150,7 @@ public class Database {
 	}
 	
 	// get # of units for a specific csc/cpe class, returns a string
-	public static String dbClassCredit(Statement stmt, logic.Class myClass) {
+	public static String dbClassCredit(Statement stmt, Class myClass) {
 		String credit = "N/A";
         try {
     		ResultSet rs = dbClassQuery(stmt, CREDIT, myClass);
@@ -167,7 +169,7 @@ public class Database {
 	}
 	
 	// get # of units for a specific csc/cpe class, returns a string
-	public static String dbClassTerms(Statement stmt, logic.Class myClass) {
+	public static String dbClassTerms(Statement stmt, Class myClass) {
 		String terms = "N/A";
         try {
     		ResultSet rs = dbClassQuery(stmt, TERMS, myClass);
@@ -186,7 +188,7 @@ public class Database {
 	}
 	
 	// get prereq list for a specific csc/cpe class, returns a string
-	public static String dbClassPrereqs(Statement stmt, logic.Class myClass) {
+	public static String dbClassPrereqs(Statement stmt, Class myClass) {
 		String prereqs = "N/A";
         try {
     		ResultSet rs = dbClassQuery(stmt, PREREQS, myClass);
@@ -204,15 +206,18 @@ public class Database {
         return prereqs;
 	}
 	
-	public static List<String[]> dbAllRows(Statement stmt, String sql)
-    {
+	/* ----------------------------------------------------------------------------------- */
+	
+	// helper function for getdbAllRow
+	public static List<String[]> dbAllRows(Statement stmt, String sql) throws SQLException {
 		ArrayList<String[]> list = new ArrayList<>(); 
+		ResultSet rs = null;
 		try {
     	  
-			ResultSet rs = stmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 			java.sql.ResultSetMetaData rsmd = rs.getMetaData();
 			int c = 0;
-			while(rs.next()){
+			while(rs.next()) {
 				list.add(new String[rsmd.getColumnCount()]);
 	    	  
 				for(int i = 0; i < rsmd.getColumnCount(); i++)
@@ -221,15 +226,46 @@ public class Database {
 				}
 				c++;
 			}
-			rs.close();
 		}
-		catch(Exception e)
-		{
+		catch(SQLException se) {
+	         //Handle errors for JDBC
+			 logger.log(Level.WARNING, se.toString());
+	    }
+		catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
+		}
+		finally {
+			if(rs!=null) {
+				rs.close();
+			}
 		}
       
 		return list;
 	}
+	
+	// get section info for Literally Every csc class, returns list
+	// currently hardcoded for CSC classes? we probably wanna edit that later
+	public static List<String[]> getdbAllRow() {
+		// below here goes before calls
+		Statement stmt = null;
+		List<String[]> list = null;
+		try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur",mostSecureEncryptionEver(ENCRYPTEDPW))){
+	        stmt = conn.createStatement();		
+			list = dbAllRows(stmt, CSCCATSQL);
+			stmt.close();
+		}
+		catch(SQLException se) {
+	         //Handle errors for JDBC
+			logger.log(Level.WARNING, se.toString());
+	    }
+		catch(Exception e) {
+	         //Handle errors for Class.forName
+			logger.log(Level.WARNING, e.toString());
+	    }
+		return list;
+	}
+	
+	/* ----------------------------------------------------------------------------------- */
 	
 	//replace class object with schedule object later
 	public static void dbWriteSched(Statement stmt, String[] classList)
@@ -255,34 +291,9 @@ public class Database {
 		}
    	}
 	
-	/* section information (the other stuff) */
+	/* ----------------------------------------------------------------------------------- */
 	
-	// get section info for Literally Every csc class, returns ??
-	
-	// get section info for Literally Every cpe class, returns ??
-	
-	// get section info for a specific csc/cpe class, returns ??
-	
-	public static List<String[]> getdbAllRow() {
-		// below here goes before calls
-		Statement stmt = null;
-		List<String[]> list = null;
-		try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur",mostSecureEncryptionEver(ENCRYPTEDPW))){
-	        stmt = conn.createStatement();		
-			list = dbAllRows(stmt, CPESECSQL);
-			stmt.close();
-		}
-		catch(SQLException se) {
-	         //Handle errors for JDBC
-			logger.log(Level.WARNING, se.toString());
-	    }
-		catch(Exception e) {
-	         //Handle errors for Class.forName
-			logger.log(Level.WARNING, e.toString());
-	    }
-		return list;
-	}
-	
+	// (this doesn't do anything really, it was there for trial/error)
 	public static void main(String[] args) {
 		// below here goes before calls
 		Statement stmt = null;
