@@ -8,25 +8,11 @@ import Circle from 'react-circle';
  */
 
 class ProgressWheel extends Component{
-    state = {
-        percentage: 0
-    }
-
-    // Used for progress wheel animation
-    componentDidMount() {
-        setInterval(() => {
-            this.setState({
-                percentage: this.props.progress
-            })
-        }, );
-    }
-
     render(){
         return(
             <div align='center'>
                 <Circle 
-                    progress={this.state.percentage}
-                    animationDuration='.8s'
+                    progress={this.props.progress}
                     size={this.props.size}
                     textColor='#8b8b8b'
                     progressColor='#5ea181'

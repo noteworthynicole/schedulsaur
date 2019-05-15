@@ -1,5 +1,4 @@
 import React, { Component} from 'react';
-import './TableBody.css'
 
 /**
  * TableBody
@@ -8,24 +7,17 @@ import './TableBody.css'
 
 class TableBody extends Component{
 
-    /**
-     * fillRow
-     * 
-     * @method
-     * @description Colors selected cell
-     */
-    fillRow = (row, row_index) => {
+    fillRow = (row) => {
+        let col_id = 0;
         return(
-            row.available.map((selected, index) => {
+            row.available.map(selected => {
                 return(
                     selected ? (
-                        // fill green if selected
-                        <td key={index} row_id={row_index} col_id={index} 
+                        <td key={col_id+=1} row_id={row.id} col_id={col_id} 
                             bgcolor='#5ea181' className='table_td' onClick={this.props.handleSelect}></td>
                     ) : (
-                        // fill white if not selected
-                        <td key={index} row_id={row_index} col_id={index} 
-                            className='table_td' onClick={this.props.handleSelect}></td>
+                        <td key={col_id+=1} row_id={row.id} col_id={col_id} 
+                            style={{backgroundColor:'white'}} className='table_td' onClick={this.props.handleSelect}></td>
                     )
                 )
             })
@@ -34,11 +26,11 @@ class TableBody extends Component{
 
     render(){
         const { table } = this.props;
-        const times = table.map((time, index) => {
+        const times = table.map(time => {
             return(
-                <tr className='table_tr' key={index}>
-                    <td className='time_slot'>{time.time}</td>
-                    {this.fillRow(time, index)}
+                <tr className='table_tr' key={time.id}>
+                    <td>{time.time}</td>
+                    {this.fillRow(time)}
                 </tr>
             )
         })

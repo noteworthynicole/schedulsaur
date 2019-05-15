@@ -28,29 +28,12 @@ const initState = {
     ge_percent: '10'
 }
 
-/**
- * studentReducer
- * 
- * @description Modifies state according to dispatched action
- * @param {*} state 
- * @param {*} action 
- */
 const studentReducer = (state=initState, action) => {
-    switch(action.type){
 
-        /* // When user saves their personal information */
-        case 'STUDENT_SAVE':
-            return{
-                ...state,
-                major: action.major,
-                catalog_year: action.catalog,
-                expected_grad: action.expected,
-                units_this_quarter: action.units_this,
-                units_per_quarter: action.units_per
-            }
-        default:
-            return state
-    }
+    // *** add switch for actions
+    // *** add switch for actions
+
+    return state;
 }
 
 export default studentReducer;
