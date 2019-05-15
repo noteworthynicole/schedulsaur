@@ -3,37 +3,38 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="schedulesaur">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="src">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../../../../../../eclipse/jee-2018-12/eclipse/"/>
+    <property name="schedulesaur.location" value="../../../../../../Winter 2019/308/schedulsaur/schedulsaur.git/trunk"/>
+    <property name="ECLIPSE_HOME" value="../../../../../../../../eclipse/jee-2018-12/eclipse/"/>
     <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
     <path id="JUnit 5.libraryclasspath">
-        <pathelement location="../../../../../../../.p2/pool/plugins/org.junit.jupiter.api_5.3.1.v20181005-1442.jar"/>
-        <pathelement location="../../../../../../../.p2/pool/plugins/org.junit.jupiter.engine_5.3.1.v20181005-1442.jar"/>
-        <pathelement location="../../../../../../../.p2/pool/plugins/org.junit.jupiter.migrationsupport_5.3.1.v20181005-1442.jar"/>
-        <pathelement location="../../../../../../../.p2/pool/plugins/org.junit.jupiter.params_5.3.1.v20181005-1442.jar"/>
-        <pathelement location="../../../../../../../.p2/pool/plugins/org.junit.platform.commons_1.3.1.v20181005-1442.jar"/>
-        <pathelement location="../../../../../../../.p2/pool/plugins/org.junit.platform.engine_1.3.1.v20181005-1442.jar"/>
-        <pathelement location="../../../../../../../.p2/pool/plugins/org.junit.platform.launcher_1.3.1.v20181005-1442.jar"/>
-        <pathelement location="../../../../../../../.p2/pool/plugins/org.junit.platform.runner_1.3.1.v20181005-1442.jar"/>
-        <pathelement location="../../../../../../../.p2/pool/plugins/org.junit.platform.suite.api_1.3.1.v20181005-1442.jar"/>
-        <pathelement location="../../../../../../../.p2/pool/plugins/org.junit.vintage.engine_5.3.1.v20181005-1442.jar"/>
-        <pathelement location="../../../../../../../.p2/pool/plugins/org.opentest4j_1.1.1.v20181005-1442.jar"/>
-        <pathelement location="../../../../../../../.p2/pool/plugins/org.apiguardian_1.0.0.v20181005-1442.jar"/>
-        <pathelement location="../../../../../../../.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
-        <pathelement location="../../../../../../../.p2/pool/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
+        <pathelement location="../../../../../../../../.p2/pool/plugins/org.junit.jupiter.api_5.3.1.v20181005-1442.jar"/>
+        <pathelement location="../../../../../../../../.p2/pool/plugins/org.junit.jupiter.engine_5.3.1.v20181005-1442.jar"/>
+        <pathelement location="../../../../../../../../.p2/pool/plugins/org.junit.jupiter.migrationsupport_5.3.1.v20181005-1442.jar"/>
+        <pathelement location="../../../../../../../../.p2/pool/plugins/org.junit.jupiter.params_5.3.1.v20181005-1442.jar"/>
+        <pathelement location="../../../../../../../../.p2/pool/plugins/org.junit.platform.commons_1.3.1.v20181005-1442.jar"/>
+        <pathelement location="../../../../../../../../.p2/pool/plugins/org.junit.platform.engine_1.3.1.v20181005-1442.jar"/>
+        <pathelement location="../../../../../../../../.p2/pool/plugins/org.junit.platform.launcher_1.3.1.v20181005-1442.jar"/>
+        <pathelement location="../../../../../../../../.p2/pool/plugins/org.junit.platform.runner_1.3.1.v20181005-1442.jar"/>
+        <pathelement location="../../../../../../../../.p2/pool/plugins/org.junit.platform.suite.api_1.3.1.v20181005-1442.jar"/>
+        <pathelement location="../../../../../../../../.p2/pool/plugins/org.junit.vintage.engine_5.3.1.v20181005-1442.jar"/>
+        <pathelement location="../../../../../../../../.p2/pool/plugins/org.opentest4j_1.1.1.v20181005-1442.jar"/>
+        <pathelement location="../../../../../../../../.p2/pool/plugins/org.apiguardian_1.0.0.v20181005-1442.jar"/>
+        <pathelement location="../../../../../../../../.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
+        <pathelement location="../../../../../../../../.p2/pool/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
     </path>
-    <path id="schedulesaur.classpath">
-        <pathelement location="bin"/>
+    <path id="src.classpath">
+        <pathelement location="."/>
+        <pathelement location="${schedulesaur.location}/src/mysql-connector-java-5.1.47.jar"/>
         <path refid="JUnit 5.libraryclasspath"/>
     </path>
     <target name="init">
-        <mkdir dir="bin"/>
-        <copy includeemptydirs="false" todir="bin">
-            <fileset dir="src">
+        <copy includeemptydirs="false" todir=".">
+            <fileset dir=".">
                 <exclude name="**/*.launch"/>
                 <exclude name="**/*.xtend"/>
                 <exclude name="**/*.java"/>
@@ -41,16 +42,18 @@
         </copy>
     </target>
     <target name="clean">
-        <delete dir="bin"/>
+        <delete>
+            <fileset dir="." includes="**/*.class"/>
+        </delete>
     </target>
     <target depends="clean" name="cleanall"/>
     <target depends="build-subprojects,build-project" name="build"/>
     <target name="build-subprojects"/>
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
-            <src path="src"/>
-            <classpath refid="schedulesaur.classpath"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="." includeantruntime="false" source="${source}" target="${target}">
+            <src path="."/>
+            <classpath refid="src.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
@@ -67,68 +70,59 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="TestClass">
+    <target name="AllTests (4)">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <test name="tests.TestClass" todir="${junit.output.dir}"/>
+            <test name="test.AllTests" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
-            <classpath refid="schedulesaur.classpath"/>
+            <classpath refid="src.classpath"/>
         </junit>
     </target>
-    <target name="tests (1)">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="tests.AllTests" todir="${junit.output.dir}"/>
-            <test name="tests.TestClass" todir="${junit.output.dir}"/>
-            <test name="tests.TestDoubleTimes" todir="${junit.output.dir}"/>
-            <test name="tests.TestSection" todir="${junit.output.dir}"/>
-            <test name="tests.TestTimes" todir="${junit.output.dir}"/>
-            <jvmarg line="-ea"/>
-            <classpath refid="schedulesaur.classpath"/>
-        </junit>
-    </target>
-    <target name="Main">
-        <java classname="logic.Main" failonerror="true" fork="yes">
-            <arg line="testfile.csv"/>
-            <classpath refid="schedulesaur.classpath"/>
+    <target name="Database (1)">
+        <java classname="logic.Database" failonerror="true" fork="yes">
+            <classpath refid="src.classpath"/>
         </java>
     </target>
-    <target name="TestTimes">
+    <target name="TestDoubleTimes (1)">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <test name="tests.TestTimes" todir="${junit.output.dir}"/>
+            <test name="test.TestDoubleTimes" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
-            <classpath refid="schedulesaur.classpath"/>
+            <classpath refid="src.classpath"/>
         </junit>
     </target>
-    <target name="TestSection">
+    <target name="TestGenerateSchedules (1)">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <test name="tests.TestSection" todir="${junit.output.dir}"/>
+            <test name="test.TestGenerateSchedules" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
-            <classpath refid="schedulesaur.classpath"/>
+            <classpath refid="src.classpath"/>
         </junit>
     </target>
-    <target name="AllTests (1)">
+    <target name="TestSection.testSecionAddClass">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <test name="tests.AllTests" todir="${junit.output.dir}"/>
+            <test name="test.TestSection" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
-            <classpath refid="schedulesaur.classpath"/>
+            <classpath refid="src.classpath"/>
         </junit>
     </target>
-    <target name="TestDoubleTimes">
+    <target name="GenerateSchedules (1)">
+        <java classname="logic.GenerateSchedules" failonerror="true" fork="yes">
+            <classpath refid="src.classpath"/>
+        </java>
+    </target>
+    <target name="TestPrerequisites">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <test name="tests.TestDoubleTimes" todir="${junit.output.dir}"/>
+            <test name="test.TestPrerequisites" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
-            <classpath refid="schedulesaur.classpath"/>
+            <classpath refid="src.classpath"/>
         </junit>
     </target>
     <target name="junitreport">
