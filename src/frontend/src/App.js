@@ -7,7 +7,6 @@ import DashBoard from './components/Dashboard/DashBoard';
 import CourseHistory from './components/CourseHistory';
 import Time from './components/TimeAvailability/Time'
 import DesiredCurr from './components/DesiredCurr';
-import CreateSchedules from './components/Schedules/CreateSchedules'
 import PotentialSchedules from './components/Schedules/PotentialSchedules'
 import SavedSchedules from './components/Schedules/SavedSchedules'
 import About from './components/Other/About'
@@ -45,8 +44,7 @@ class App extends Component {
                 <Route path='/CourseHistory' component={CourseHistory}/>
                 <Route path='/TimeAvailability' component={Time}/>
                 <Route path='/DesiredCourse' component={DesiredCurr}/>
-                <Route path='/CreateSchedules' component={CreateSchedules}/>
-                <Route path='/PotentialSchedules' component={PotentialSchedules}/>
+                <Route path='/CreateSchedules' component={PotentialSchedules}/>
                 <Route path='/SavedSchedules' component={SavedSchedules}/>
                 <Route path='/Help' component={Help}/>
               </div>

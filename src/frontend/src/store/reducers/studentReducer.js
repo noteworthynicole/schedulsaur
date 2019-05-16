@@ -3,7 +3,7 @@ const initState = {
     /**
      * student
      * 
-     * @description Contains information about a student
+     * @desc Contains information about a student
      * @param {String} id student identifier
      * @param {String} name name of student
      * @param {String} major major of student
@@ -28,12 +28,25 @@ const initState = {
     ge_percent: '10'
 }
 
+/**
+ * --- Modifies state according to dispatched action
+*/
 const studentReducer = (state=initState, action) => {
+    switch(action.type){
 
-    // *** add switch for actions
-    // *** add switch for actions
-
-    return state;
+        /* // When user saves their personal information */
+        case 'STUDENT_SAVE':
+            return{
+                ...state,
+                major: action.major,
+                catalog_year: action.catalog,
+                expected_grad: action.expected,
+                units_this_quarter: action.units_this,
+                units_per_quarter: action.units_per
+            }
+        default:
+            return state
+    }
 }
 
 export default studentReducer;

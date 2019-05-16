@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import './Dashboard.css'
 
 /**
- * StudentInfo
- * 
- * @description component that creates student information
+ *------------------------------------------------------- 
+ * component that creates the student information
+ *------------------------------------------------------- 
  */
 
 class StudentInfo extends Component{
@@ -21,7 +22,7 @@ class StudentInfo extends Component{
         )
 
         return(
-            <span style={{fontSize:'20px', fontWeight:'normal'}}>
+            <span className='dashboard_text'>
                 {student_info}
             </span>
         );

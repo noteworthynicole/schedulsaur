@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-
-/**
- * Signup
- * 
- * @description Main component to create the Signup page
- */
+import './Authentication.css'
 
 class Signup extends Component {
     state = {
@@ -15,12 +10,6 @@ class Signup extends Component {
         lastName: ''
     }
 
-    /**
-     * handleSubmit
-     * 
-     * @method
-     * @description called when from is submitted
-     */
     handleSubmit = (e) => {
         e.preventDefault()
 
@@ -30,12 +19,6 @@ class Signup extends Component {
         this.props.history.push('./Dashboard')
     }
 
-    /**
-     * handleChange
-     * 
-     * @method
-     * @description called when user types into input
-     */
     hangleChange = (e) => {
         this.setState({
            [e.target.id]: e.target.value
@@ -44,9 +27,9 @@ class Signup extends Component {
 
     render(){
         return(
-            <div className='loginWrapper' align='center'>
+            <div className='center-align'>
                 <h1 className='title'>Schedulsaur</h1>
-                <h5>a friendly schedule finder</h5>
+                <h5 className='title_description'>a friendly schedule finder</h5>
                 <form onSubmit={this.handleSubmit} >
                     <div className="container">
                         <input type='text' id='firstName' placeholder='first name' onChange={this.handleChange}/>
@@ -54,7 +37,7 @@ class Signup extends Component {
                         <input type='email' id='email' placeholder='email' onChange={this.handleChange}/>
                         <input type='password' id='password' placeholder='password' onChange={this.handleChange}/>
                     </div>
-                    <button className='btn black-text' id='button_left'>
+                    <button className='btn signup_button'>
                         Sign Up
                     </button>
                 </form>

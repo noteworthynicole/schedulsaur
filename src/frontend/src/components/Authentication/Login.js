@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import './Authentication.css'
 
-/**
- * Login
- * 
- * @description Main component to create the Login page
- */
 
 class Login extends Component {
     state = {
@@ -13,12 +9,6 @@ class Login extends Component {
         password: ''
     }
 
-    /**
-     * handleSubmit
-     * 
-     * @method
-     * @description called when form is submitted
-     */
     handleSubmit = (e) => {
         e.preventDefault()
 
@@ -26,27 +16,14 @@ class Login extends Component {
         // *** need to authenticate account here
 
         this.props.history.push('/DashBoard')
-
     }
 
-    /**
-     * handleChange
-     * 
-     * @method
-     * @description called user types into input
-     */
     handleChange = (e) => {
         this.setState({
            [e.target.id]: e.target.value
         })
     }
 
-    /**
-     * handleSignup
-     * 
-     * @method
-     * @description called when user signs up
-     */
     handleSignUp = (e) => {
         this.props.history.push('/Signup')
     }
@@ -54,17 +31,17 @@ class Login extends Component {
     render(){
         return(
             <div className='center-align'>
-                <h1 className='title' >Schedulsaur</h1>
-                <h5>a friendly schedule finder</h5>
+                <h1 className='title'>Schedulsaur</h1>
+                <h5 className='title_description'>a friendly schedule finder</h5>
                 <form onSubmit={this.handleSubmit} >
                     <div className='container'>
                         <input type='email' id='email' placeholder='email' onChange={this.handleChange}/>
                         <input type='password' id='password' placeholder='password' onChange={this.handleChange}/>
                     </div>
-                    <button className='btn black-text' id='button_left' onClick={this.handleSignUp}>
+                    <button className='btn signup_button' onClick={this.handleSignUp}>
                         Sign Up
                     </button>
-                    <button className='btn' id='button_right'>
+                    <button className='btn login_button'>
                         Log In
                     </button>
                 </form>

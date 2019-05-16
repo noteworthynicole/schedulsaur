@@ -1,0 +1,34 @@
+/*
+ * Flowchart
+ */
+
+.box {
+  height: 50px;
+  border: solid 1px var(--dark_grey);
+  text-align: center;
+  font-weight: 400;
+}
+
+.box:hover {
+  filter: brightness(75%)
+}
+
+.csc_box {
+  margin:0;
+  background-color: #FFFFa1;
+}
+
+.support_box {
+  margin:0;
+  background-color: #FFcc9d;
+}
+
+.ge_box {
+  margin:0;
+  background-color: #b4dfb5;
+}
+
+.empty_box {
+    background-color: white;
+    border: none;
+}

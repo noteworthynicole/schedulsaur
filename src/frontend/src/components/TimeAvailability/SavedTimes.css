@@ -1,0 +1,34 @@
+/*
+ * SavedTimes CSS
+ */
+
+.time_ul {
+    top: 150px;
+    bottom: 100px;
+    height: 350px;
+    overflow: hidden;
+    overflow-y: hidden;
+    margin: 0px;
+    padding: 5px;
+    border: 2px solid #ccc;
+    -webkit-overflow-scrolling: touch;
+}
+
+.time_ul:hover{
+    overflow-y: overlay;
+}
+
+.time_li {
+    padding: 10px 15px;
+    border-bottom: 1px solid #ccc;
+    vertical-align: middle;
+}
+
+.time_li:last-child {
+    border-bottom: none;
+    margin-bottom: 3px;
+}
+
+.time_li:nth-child(even) {
+    background: #f8f8f8;
+}
