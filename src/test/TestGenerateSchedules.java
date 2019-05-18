@@ -8,7 +8,7 @@ import logic.*;
 
 public class TestGenerateSchedules {
 	
-	public TestSection ts = new TestSection();
+	public static final TestSection ts = new TestSection();
 	
 	String mwf = "MWF";
 	String tr = "TR";
