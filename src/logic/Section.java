@@ -13,10 +13,9 @@ public final class Section extends Class{
 	private int maxCapacity = 0;
 	private int enrolled = 0;
 	private int waitList = 0;
-	private int id = 0;
 	
 	public Section(DoubleTimes times, List<String> fields) {
-		super(fields.get(0));
+		super(fields.get(0), getInteger(fields.get(8)));
 		this.num = fields.get(1);
 		this.type = fields.get(2);
 		this.prof = fields.get(3);
@@ -26,11 +25,6 @@ public final class Section extends Class{
 		this.maxCapacity = getInteger(fields.get(5));
 		this.enrolled = getInteger(fields.get(6));
 		this.waitList = getInteger(fields.get(7));
-		this.id = getInteger(fields.get(8));
-	}
-	
-	public int getId() {
-		return this.id;
 	}
 	
 	public String getNum() {
@@ -75,9 +69,9 @@ public final class Section extends Class{
 	@Override
 	public String toString() {
 		if(lab == null) {
-			return super.toString() + " Section " + id + " " + type + " " + times + " " + prof + " " + location;
+	      return super.toString() + " Section " + type + " " + times + " " + prof + " " + location;
 		}
-		return super.toString() + " Section " + id + " " + type + " " + times + " " + prof + " " + location + ", Lab " + lab.toString(); 
+		return super.toString() + " Section " + type + " " + times + " " + prof + " " + location + ", Lab " + lab.toString(); 
 	}
 	
 	public void addClass(Section lab) {

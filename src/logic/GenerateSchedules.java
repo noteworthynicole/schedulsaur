@@ -1,5 +1,4 @@
 package logic;
-import java.io.*;
 import java.util.*;
 import java.util.Map.*;
 import java.util.logging.*;
@@ -31,19 +30,6 @@ public class GenerateSchedules {
 		}
 	}
 	
-	public static Map<String, Section> parseDbsCreateSections(){
-		List<String[]> list = Database.getdbAllRow();
-		HashMap<String, Section> hashMapInit = new HashMap<>();
-		for(int i=0; i< list.size(); i++) {
-			Section currSection = createSection(list.get(i));
-			String currKey = list.get(i)[0].substring(0, 10);
-			if(checkLab(hashMapInit, currSection)) {
-				hashMapInit.put(currKey, currSection);
-			}
-		}
-		return hashMapInit;
-	}
-	
 	public static logic.Section createSection(String[] line) {
 		//0 - class department, number, and section
 		List<String> fields = new ArrayList<>();
@@ -69,6 +55,19 @@ public class GenerateSchedules {
 		return new logic.Section(time, fields);
 	}
 	   
+	   public static Map<String, Section> parseDbsCreateSections(){
+		   List<String[]> list = Database.getdbAllRow(Database.CPESECSQL, Database.CSCSECSQL);
+		   HashMap<String, Section> hashMapInit = new HashMap<>();
+		   for(int i=0; i< list.size(); i++) {
+			   Section currSection = createSection(list.get(i));
+			   String currKey = list.get(i)[0].substring(0, 10);
+			   if(checkLab(hashMapInit, currSection)) {
+				   hashMapInit.put(currKey, currSection);
+			   }
+		   }
+		   return hashMapInit;
+	   }
+
 	//adds to the hashtable if it is a lab section for the same lecture
 	//Returns true if does not add, needing to add class as separate
 	//Returns false if it adds, thus not needing to add the class again

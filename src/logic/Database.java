@@ -52,9 +52,9 @@ public class Database {
 	/* ----------------------------------------------------------------------------------- */
 	
 	// this is because sonarcloud cried at me and doesn't like duplicate code
-	// helper function for anything starting with dbClass
 	public static ResultSet dbClassQuery(Statement stmt, String toFind, Class myClass) {
-		try {
+        try {
+        	// helper function for anything starting with dbClass
 			String classID = myClass.getName();
 			// now we do a lookup, but it depends if it's csc/cpe tho
 			String department = classID.substring(0,3);
@@ -242,7 +242,7 @@ public class Database {
 	
 	// get section info for Literally Every csc class, returns list
 	// currently hardcoded for CSC classes? we probably wanna edit that later
-	public static List<String[]> getdbAllRow() {
+	public static List<String[]> getdbAllRow1() {
 		// below here goes before calls
 		Statement stmt = null;
 		List<String[]> list = null;
@@ -289,22 +289,50 @@ public class Database {
 	
 	/* ----------------------------------------------------------------------------------- */
 	
-	// (this doesn't do anything really, it was there for trial/error)
-	public static void main(String[] args) {
-		// below here goes before calls
+	// get section info for Literally Every csc class, returns ??
+	
+	// get section info for Literally Every cpe class, returns ??
+	
+	// get section info for a specific csc/cpe class, returns ??
+	
+	public static List<String[]> getdbAllRow(String csc, String cpe) {
+		// This is used, please don't change or delete!
 		Statement stmt = null;
+		List<String[]> list = null;
 		try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur",mostSecureEncryptionEver(ENCRYPTEDPW))){
-			stmt = conn.createStatement();
-			// calls go here
+	        stmt = conn.createStatement();		
+			list = dbAllRows(stmt, csc);
+			list.addAll(dbAllRows(stmt, cpe));
 			stmt.close();
 		}
 		catch(SQLException se) {
-			//Handle errors for JDBC
+	         //Handle errors for JDBC
 			logger.log(Level.WARNING, se.toString());
-		}
+	    }
 		catch(Exception e) {
-			//Handle errors for Class.forName
+	         //Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
-		}
+	    }
+		return list;
 	}
+	
+	// (this doesn't do anything really, it was there for trial/error)
+		public static void main(String[] args) {
+			// below here goes before calls
+			Statement stmt = null;
+			try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur",mostSecureEncryptionEver(ENCRYPTEDPW))){
+				stmt = conn.createStatement();
+				// calls go here
+				stmt.close();
+			}
+			catch(SQLException se) {
+				//Handle errors for JDBC
+				logger.log(Level.WARNING, se.toString());
+			}
+			catch(Exception e) {
+				//Handle errors for Class.forName
+				logger.log(Level.WARNING, e.toString());
+			}
+		}
+	
 }
