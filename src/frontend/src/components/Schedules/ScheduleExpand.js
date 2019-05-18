@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import tempMap from '../../TempMap.png'
-import TableHeader from '../TimeAvailability/TableHeader';
+import Map from '../../Map2.png' 
+ import TableHeader from '../TimeAvailability/TableHeader';
 import TableBody from '../TimeAvailability/TableBody';
+import PinchZoomPan from 'react-responsive-pinch-zoom-pan';
 import './ScheduleExpand.css'
 
 /**
@@ -12,13 +13,38 @@ import './ScheduleExpand.css'
  */
 
 class ScheduleExpand extends Component{
+
+    /**
+     * --- disable scroll when interacting with map
+     */
+    disableScroll = () => {
+        var list = document.getElementsByClassName('ul');
+        list[0].classList.remove('scrollable')
+        list[0].classList.add('nonscrollable')
+    }
+
+    /**
+     * --- enable scroll when not interacting with map
+     */
+    enableScroll = () => {
+        var list = document.getElementsByClassName('ul');
+        list[0].classList.remove('nonscrollable')
+        list[0].classList.add('scrollable')
+    }
+
     render(){
         const { schedule } = this.props;
         return(
             <div className='layout'>
-                <span className='image'>
-                    <img src={tempMap} alt='Campus Map' width='100%'/>
-                </span>
+                <div className='image' onMouseOver={this.disableScroll} onMouseLeave={this.enableScroll}>
+                    <PinchZoomPan 
+                        position='center' 
+                        initialScale={2.5} 
+                        maxScale={5} 
+                        zoomButtons={false} >
+                            <img src={Map} alt='Campus Map' width='100%'/>
+                    </PinchZoomPan>
+                </div>
                 <table className='tb smallTable' align='center'>
                     <thead>
                         <TableHeader  />

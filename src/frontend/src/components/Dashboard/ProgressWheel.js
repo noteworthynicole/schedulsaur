@@ -26,7 +26,7 @@ class ProgressWheel extends Component{
             <div align='center'>
                 <Circle 
                     progress={this.state.percentage}
-                    animationDuration='.8s'
+                    animationDuration='1s'
                     size={this.props.size}
                     textColor='#8b8b8b'
                     progressColor='#5ea181'

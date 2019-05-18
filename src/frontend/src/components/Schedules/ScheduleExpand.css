@@ -3,14 +3,16 @@
  */
 
 .layout {
+  box-sizing: unset;
   display: grid;
-  grid-template-columns: 40% auto;
+  grid-template-columns: 35% auto;
   padding-bottom: 2%;
 }
 
-.image {
+.image{
   margin-top: 5%;
 }
+
 
 .tb {
   border-collapse:collapse;
@@ -18,10 +20,11 @@
 }
 
 .smallTable td{
-  font-size: .8rem;
+  font-size: .5rem;
   pointer-events: none;
   padding: 1%;
   text-align: right;
+  border-color: #ccc;
 }
 
 .smallTable .table_tr{

@@ -91,11 +91,12 @@ const initState = {
 /**
  * --- Modifies the state according to dispatched action 
 */
-const flowchartReducer = (state=initState, action) => {
-    switch(action.type){
-        default:
-            return state
-    }
+const flowchartReducer = (state=initState, action=null) => {
+//    switch(action.type){
+//        default:
+//            return state
+//    }
+    return state;
 }
 
 export default flowchartReducer;

@@ -31,21 +31,20 @@ const initState = {
 /**
  * --- Modifies state according to dispatched action
 */
-const studentReducer = (state=initState, action) => {
-    switch(action.type){
+const studentReducer = (state=initState, action=null) => {
 
-        /* // When user saves their personal information */
-        case 'STUDENT_SAVE':
-            return{
-                ...state,
-                major: action.major,
-                catalog_year: action.catalog,
-                expected_grad: action.expected,
-                units_this_quarter: action.units_this,
-                units_per_quarter: action.units_per
-            }
-        default:
-            return state
+    /* // When user saves their personal information */
+    if(action.type === 'STUDENT_SAVE'){
+        return{
+            ...state,
+            major: action.major,
+            catalog_year: action.catalog,
+            expected_grad: action.expected,
+            units_this_quarter: action.units_this,
+            units_per_quarter: action.units_per
+        }
+    } else {
+        return state
     }
 }
 

@@ -12,6 +12,7 @@
   border-right: solid 1px var(--dark_grey);
   border-bottom: solid 1px var(--dark_grey);
   border-top: solid 1px var(--dark_grey);
+  cursor: pointer;
 }
 
 .table_td:hover{

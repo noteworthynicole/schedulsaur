@@ -136,7 +136,7 @@ const cloneSavedEdit = (saved, id) => {
 /*
  * --- Modifies state according to dipsatched action 
 */
-const timeReducer = (state=initState, action) => {
+const timeReducer = (state=initState, action=null) => {
 
     switch(action.type){
 

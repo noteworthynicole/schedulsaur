@@ -59,7 +59,7 @@ class ScheduleList extends Component{
     showCheckBox = (addCheckBoxes, schedule_id, index) => {
         return(
             addCheckBoxes ? (
-                <div style={{float:'right', marginLeft:'3%', display:'inline'}}>
+                <div style={{float:'right', marginLeft:'10px', display:'inline'}}>
                     <label>
                         <input type='checkbox' className='box-green' id={schedule_id} index={index} onClick={this.handleSelect}/>
                         <span className='sched_check'></span>
@@ -95,6 +95,7 @@ class ScheduleList extends Component{
                     </div>
                     <Schedule descriptors={descriptors} schedule={schedule}/> 
                     { this.expandSchedule(schedule, viewing, index) }
+                    <div></div>
                 </li>
             );
         })
@@ -108,7 +109,7 @@ class ScheduleList extends Component{
             schedules.length ? (
 
                 // Show schedules if there are any
-                <ul className='ul'>
+                <ul className='ul scrollable'>
                    {this.listSchedules(storeDescriptors, schedules, storeViewing, addCheckBoxes)}
                     <div style={{marginBottom:'2%'}}></div>
                 </ul>
@@ -121,6 +122,7 @@ class ScheduleList extends Component{
         return(
             <div>
                 { schedulesList }
+                <div></div>
             </div>
         )
     }

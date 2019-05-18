@@ -30,11 +30,11 @@ class Login extends Component {
 
     render(){
         return(
-            <div className='center-align'>
+            <div className='center-align auth'>
                 <h1 className='title'>Schedulsaur</h1>
                 <h5 className='title_description'>a friendly schedule finder</h5>
                 <form onSubmit={this.handleSubmit} >
-                    <div className='container'>
+                    <div className='container form'>
                         <input type='email' id='email' placeholder='email' onChange={this.handleChange}/>
                         <input type='password' id='password' placeholder='password' onChange={this.handleChange}/>
                     </div>

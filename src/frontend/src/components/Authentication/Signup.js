@@ -27,11 +27,11 @@ class Signup extends Component {
 
     render(){
         return(
-            <div className='center-align'>
+            <div className='center-align auth'>
                 <h1 className='title'>Schedulsaur</h1>
                 <h5 className='title_description'>a friendly schedule finder</h5>
                 <form onSubmit={this.handleSubmit} >
-                    <div className="container">
+                    <div className="container form">
                         <input type='text' id='firstName' placeholder='first name' onChange={this.handleChange}/>
                         <input type='text' id='lastName' placeholder='last name' onChange={this.handleChange}/>
                         <input type='email' id='email' placeholder='email' onChange={this.handleChange}/>

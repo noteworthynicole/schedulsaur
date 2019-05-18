@@ -11,6 +11,7 @@
     vertical-align: middle;
     font-size: 150%;
     font-weight: 600;
+    cursor: text;
 }
 
 .button_collection {
@@ -19,9 +20,11 @@
     height: 30px;
     background-color: var(--schedulsaur_green);
     border-color: var(--schedulsaur_green);
+    border: none;
     color: white;
     font-size: 120%;
     text-align: center;
+    cursor: pointer;
 }
 
 .button_collection:focus{
@@ -43,12 +46,12 @@
     border: solid 1px var(--dark_grey);
     color: var(--schedulsaur_green);
     text-align: center;
+    cursor: pointer;
 }
 
 .button_collection_edit:focus{
     border: solid 1px var(--dark_grey);
     background-color: white;
-    border: solid 1px var(--dark_grey);
 }
 
 .button_collection_edit:hover {

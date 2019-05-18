@@ -11,8 +11,8 @@
 .ul {
   top: 150px;
   bottom: 100px;
-  height: 70vh;
-  overflow: hidden;
+  height: 68vh;
+  overflow-x: hidden;
   overflow-y: hidden;
   margin: 0px;
   padding: 5px;
@@ -20,8 +20,12 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.ul:hover{
+.scrollable:hover{
   overflow-y: overlay;
+}
+
+.nonscrollable:hover{
+  overflow: hidden;
 }
 
 .sched_name {
@@ -53,6 +57,10 @@
   border-right-color: var(--schedulsaur_green);
 }
 
+.box-green[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+  position: relative;
+}
+
 .button_collection {
     vertical-align: 'middle';
     width: 120px;
@@ -60,7 +68,6 @@
     background-color: var(--schedulsaur_green);
     border-color: var(--schedulsaur_green);
     color: white;
-    font-size: 120%;
     text-align: center;
 }
 

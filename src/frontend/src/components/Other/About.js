@@ -8,7 +8,7 @@ const About = (props) => {
                 <h1 className='title'>Schedulsaur</h1>
                 <h5 className='subtext'>a friendly schedule finder</h5>
             </div>
-            <div className='container'>
+            <div className='container other'>
                 <h6 className='about'>
                     schedulsaur is a scheduling app designed by <br/>
                     cal poly students for cal poly students <br/>
@@ -22,8 +22,8 @@ const About = (props) => {
                     --team bulbasaur <br/>
                 </h6>
             </div>
-            <div className='container'>
-                <button className='green_button back_button' onClick={props.history.goBack}>Back</button>
+            <div className='container other'>
+                <button className='green_button' onClick={props.history.goBack}>Back</button>
             </div>
             <h6 style={{position:'absolute', right:'2%', bottom:'10%'}}>version 0.1.0</h6>
             <footer className='footer'></footer>

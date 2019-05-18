@@ -48,7 +48,7 @@ class CourseHistory extends Component {
         <div>
             {this.getView()}
             <div className='row'>
-                <div className='col s4 offset-s9'>
+                <div align='right' className='col s4 offset-s8'>
                     <button className='white_button' onClick={this.handleCurr}>Curriculum View</button>
                     <button className='green_button' onClick={this.handleFlow}>Flowchart</button>
                 </div>

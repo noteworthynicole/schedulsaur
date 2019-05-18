@@ -8,12 +8,16 @@
     "react-circle": "^1.1.1",
     "react-circular-progressbar": "^1.2.1",
     "react-dom": "^16.8.6",
+    "react-image-lightbox": "^5.1.0",
+    "react-map-interaction": "^1.2.1",
     "react-redux": "^7.0.3",
+    "react-responsive-pinch-zoom-pan": "^0.2.2",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0",
     "reactjs-popup": "^1.3.2",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "use-pan-and-zoom": "^0.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

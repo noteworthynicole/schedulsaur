@@ -7,10 +7,11 @@
   border: solid 1px var(--dark_grey);
   text-align: center;
   font-weight: 400;
+  cursor: pointer;
 }
 
 .box:hover {
-  filter: brightness(75%)
+  filter: brightness(75%);
 }
 
 .csc_box {

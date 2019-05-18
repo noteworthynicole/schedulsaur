@@ -2,8 +2,12 @@
  * Authentication
  */
 
-.container {
+.auth {
+  padding-top: 10vh;
+}
+.form {
   width: 40%;
+  margin-top: 3%;
   margin-bottom: 1%;
 }
 

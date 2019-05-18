@@ -216,7 +216,7 @@ const cloneViewing = (viewing) => {
 /**
  * --- Modifies the state according to dispatched action 
 */
-const studentReducer = (state=initState, action) => {
+const scheduleReducer = (state=initState, action=null) => {
     switch(action.type){
         
         /* // When user is viewing a schedule */
@@ -281,4 +281,4 @@ const studentReducer = (state=initState, action) => {
     return state;
 }
 
-export default studentReducer;
+export default scheduleReducer;

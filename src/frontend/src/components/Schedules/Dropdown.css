@@ -11,7 +11,8 @@
   font-size:120%;
   color: var(--dark_grey);
   text-align:left;
-  border-top: solid 2px var(--schedulsaur_green)
+  border-top: solid 2px var(--schedulsaur_green);
+  cursor: pointer;
 }
 
 .dropdown-cont li:hover {
@@ -27,4 +28,5 @@
   background-color: var(--light_grey);
   font-size: 140%;
   padding-left: 5%;
+  cursor: pointer;
 }

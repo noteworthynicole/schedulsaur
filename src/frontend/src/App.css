@@ -11,7 +11,13 @@
   --ge_class: #b3dfb3;
   width: 100%;
   height: 100%;
+  cursor: default;
+}
 
+body {
+  height: 100vh;
+  background-size: cover;
+  overflow: hidden;
 }
 
 .main {
@@ -49,11 +55,11 @@
   height: calc(100vh - 70px);
   display: flex;
   flex-direction: row;
-  
+  overflow-y: auto;
 }
 
 .sidebar {
-  height: 100%;
+  height: 100vh;
   width: 190px;
   position: fixed;
   z-index: 0;
@@ -135,10 +141,9 @@
   font-weight: 550;
   font-size: 300%;
   letter-spacing: 1px;
-  margin-top: 15px;
+  margin-top: 30px;
   padding-bottom: 1%;
 }
-
 
 .subsubtitle h5{
   color: black;
@@ -153,6 +158,7 @@
   border: none;
   margin-bottom: 5%;
   text-align: center;
+  cursor: pointer;
 }
 
 .green_button:hover {
@@ -173,6 +179,7 @@
   margin-right: 5%;
   margin-bottom: 5%;
   text-align: center;
+  cursor: pointer;
 }
 
 .white_button:hover {
@@ -207,6 +214,10 @@ input:focus {
   box-shadow: 0 1px 0 0 var(--schedulsaur_green) !important;
 }
 
+.sidebar::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
 ::-webkit-scrollbar {
   margin-left: 20%;
   width: .5em;
@@ -219,6 +230,10 @@ input:focus {
 
 ::-webkit-scrollbar-track {
   background: white;
+}
+
+.app-body::-webkit-scrollbar-thumb {
+  all: unset;
 }
 
 /*

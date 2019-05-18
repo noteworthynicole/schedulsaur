@@ -80,11 +80,11 @@ class DashBoard extends Component{
         return(
             <div>
                 <h2 className='subtitle' align='center'>Dashboard</h2>
-                <div style={{marginBottom: '0'}} className='row'>
+                <div className='row dash'>
 
                     {/* // Left Section of Dashboard */}
                     
-                    <div className='col s4 progress_wheel'>
+                    <div align='right' className='col s3 offset-s1 progress_wheel'>
                         <ProgressWheel progress={student.major_percent} size='350'/>
                         <h5 align='center'>Degree Progress</h5>
                     </div>
@@ -134,14 +134,16 @@ class DashBoard extends Component{
                                              edit ={this.state.isEdit} />
                             </h5>
                         </div>
-                        <div style={{paddingTop:'20%'}}>
-                            <button className='white_button' onClick={this.handleEdit}>
-                                {this.state.editButton}
-                            </button>
-                            <button className='green_button' onClick={this.handleSave}>
-                                Save
-                            </button>
-                        </div>
+                    </div>
+                </div>
+                <div style = {{margin: '0px'}} className='row'>
+                    <div className='col s4 offset-s8' >
+                        <button className='white_button' onClick={this.handleEdit}>
+                            {this.state.editButton}
+                        </button>
+                        <button className='green_button' onClick={this.handleSave}>
+                            Save
+                        </button>
                     </div>
                 </div>
             </div>

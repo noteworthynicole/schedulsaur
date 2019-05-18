@@ -10,4 +10,10 @@
 .time_slot {
   text-align: right;
   padding-right: 2%;
+  font-variant-numeric: tabular-nums;
+  font-size: 85%;
+}
+
+.row .col.s6.offset-s1{
+  width: 55%;
 }

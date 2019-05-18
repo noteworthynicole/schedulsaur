@@ -4,6 +4,7 @@ import SavedTimes from './SavedTimes';
 import TimeTable from './TimeTable';
 import TimePopup from './TimePopup';
 import { save, clear}  from '../../store/actions/timeActions';
+import './Time.css'
 
 /**
  *------------------------------------------------------- 
@@ -117,13 +118,12 @@ class Time extends Component{
               Click all the boxes that correspond to the hours and days <br />
               that you do not want to have class. Any white boxes will be considered free.
             </h6>
-            <div className='row'></div>
-            <TimeTable />
-         </div>
-          <div className='row'>
-            <div className='col s4 offset-s8' style={{marginTop:'1%'}}>
-              {this.getButton(storeIsViewing, 'left')}
-              {this.getButton(storeIsViewing, 'right')}
+            <div className='container timetable'>
+              <TimeTable />
+              <div align='right' className='timeButtons'>
+                {this.getButton(storeIsViewing, 'left')}
+                {this.getButton(storeIsViewing, 'right')}
+              </div>
             </div>
           </div>
         </div>
