@@ -41,9 +41,9 @@ public class Times {
 	}
 	
 	@Override
-	   public String toString() {
-	      return "(Time " + day + " " + startTime + " " + endTime + ")";
-	   }
+	public String toString() {
+		return "(Time " + day + " " + startTime + " " + endTime + ")";
+	}
 
 	@Override
 	public boolean equals(Object other) {
@@ -54,16 +54,15 @@ public class Times {
 	
 	@Override
 	public int hashCode() {
-        int result = 31;
-        result = result * day.hashCode();
-        if(startTime != null) {
-        	result = result * (startTime.getHour() + startTime.getMinute());
-        }
-        if(endTime != null) {
-        	result = result * (endTime.getHour() + endTime.getMinute());
-        }
-        return result;
-        
+		int result = 31;
+		result = result * day.hashCode();
+		if(startTime != null) {
+			result = result * (startTime.getHour() + startTime.getMinute());
+		}
+		if(endTime != null) {
+			result = result * (endTime.getHour() + endTime.getMinute());
+		}
+		return result;
  	}
 	
 	public static boolean compatible(Times time1, Times time2) {

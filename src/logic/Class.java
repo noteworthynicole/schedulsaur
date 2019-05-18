@@ -39,9 +39,9 @@ public class Class {
 	@Override 
 	public int hashCode() {
 		int result = 31;
-        result = result * this.name.hashCode();
-        result = result * this.units;
-        return result;
+		result = result * this.name.hashCode();
+		result = result * this.units;
+		return result;
 	}
 	
 	@Override
@@ -54,7 +54,7 @@ public class Class {
 	}
 		
 	@Override
-    public boolean equals(Object obj) {
-        return obj instanceof Class && this.getEqualName().equals(((Class)obj).getEqualName()) && this.units == ((Class)obj).getUnits();
-    }
+	public boolean equals(Object obj) {
+		return obj instanceof Class && this.getEqualName().equals(((Class)obj).getEqualName()) && this.units == ((Class)obj).getUnits();
+	}
 }

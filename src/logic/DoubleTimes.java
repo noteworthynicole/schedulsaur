@@ -31,9 +31,9 @@ public class DoubleTimes {
 	}
 	
 	@Override
-	   public String toString() {
-	      return "DoubleTimes Lec: " + lecTimes + " Lab: " + labTimes;
-	   }
+	public String toString() {
+		return "DoubleTimes Lec: " + lecTimes + " Lab: " + labTimes;
+	}
 	
 	@Override
 	public boolean equals(Object other) {
@@ -69,13 +69,13 @@ public class DoubleTimes {
 	
 	@Override 
 	public int hashCode() {
-        int result = 31;
-        result = result * lecTimes.hashCode();
-        if(labTimes != null) {
-        	result = result * labTimes.hashCode();
-        }
-        return result;
-    }
+		int result = 31;
+		result = result * lecTimes.hashCode();
+		if(labTimes != null) {
+			result = result * labTimes.hashCode();
+		}
+		return result;
+	}
 	
 	
 }

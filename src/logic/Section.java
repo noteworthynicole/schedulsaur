@@ -73,12 +73,12 @@ public final class Section extends Class{
 	}
 	
 	@Override
-	   public String toString() {
+	public String toString() {
 		if(lab == null) {
-	      return super.toString() + " Section " + id + " " + type + " " + times + " " + prof + " " + location;
+			return super.toString() + " Section " + id + " " + type + " " + times + " " + prof + " " + location;
 		}
 		return super.toString() + " Section " + id + " " + type + " " + times + " " + prof + " " + location + ", Lab " + lab.toString(); 
-	   }
+	}
 	
 	public void addClass(Section lab) {
 		this.lab = lab;
@@ -89,12 +89,13 @@ public final class Section extends Class{
 	
 	public static int getInteger(String s) {
 		int x;
-	    try { 
-	       x = Integer.parseInt(s); 
-	    } catch(Exception e) { 
-	        return 0; 
-	    }
-	    return x;
+		try { 
+			x = Integer.parseInt(s); 
+		} 
+		catch(Exception e) { 
+			return 0; 
+		}
+		return x;
 	}
 	
 	//Only available if maxCapacity is greater than 0 and enrolled is less than maxCapacity

@@ -54,7 +54,7 @@ public class Database {
 	// this is because sonarcloud cried at me and doesn't like duplicate code
 	// helper function for anything starting with dbClass
 	public static ResultSet dbClassQuery(Statement stmt, String toFind, Class myClass) {
-        try {
+		try {
 			String classID = myClass.getName();
 			// now we do a lookup, but it depends if it's csc/cpe tho
 			String department = classID.substring(0,3);
@@ -70,140 +70,140 @@ public class Database {
 				// fix this later for other majors I Guess
 			}
 			return stmt.executeQuery(sql);
-        }
+		}
 		catch(SQLException se) {
-	         //Handle errors for JDBC
-			 logger.log(Level.WARNING, se.toString());
-	    }
+			//Handle errors for JDBC
+			logger.log(Level.WARNING, se.toString());
+		}
 		catch(Exception e) {
-	         //Handle errors for Class.forName
+			//Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
-	    }
-        return null;
+		}
+		return null;
 	}
 	
 	// get course info for a specific csc/cpe class, returns a string (like from the csv)
 	public static String dbClassInfo(Statement stmt, Class myClass) {
 		String classID = "N/A";
 		String className = "N/A";
-	    String units = "N/A";
-	    String credit = "N/A";
-	    String terms = "N/A";
-	    String prereqs = "N/A";
-        try {
-        	ResultSet rs = dbClassQuery(stmt, "*", myClass);
-    		if(rs == null) {
-    			return (classID + ", " + className + ", " + units + ", " + credit + ", " + terms + ", " + prereqs);
-    		}
+		String units = "N/A";
+		String credit = "N/A";
+		String terms = "N/A";
+		String prereqs = "N/A";
+		try {
+			ResultSet rs = dbClassQuery(stmt, "*", myClass);
+			if(rs == null) {
+				return (classID + ", " + className + ", " + units + ", " + credit + ", " + terms + ", " + prereqs);
+			}
 			while(rs.next()){
 				classID = myClass.getName();
 				className = rs.getString(CLASSNAME);
-			    units = rs.getString(UNITS);
-			    credit = rs.getString(CREDIT);
-			    terms = rs.getString(TERMS);
-			    prereqs = rs.getString(PREREQS);
+				units = rs.getString(UNITS);
+				credit = rs.getString(CREDIT);
+				terms = rs.getString(TERMS);
+				prereqs = rs.getString(PREREQS);
 			}
 			rs.close();
 		} 
-        catch (Exception e) {
-        	logger.log(Level.WARNING, e.toString());
+		catch (Exception e) {
+			logger.log(Level.WARNING, e.toString());
 		}
-	    return (classID + ", " + className + ", " + units + ", " + credit + ", " + terms + ", " + prereqs);
+		return (classID + ", " + className + ", " + units + ", " + credit + ", " + terms + ", " + prereqs);
 	}
 	
 	// get full name for a specific csc/cpe class, returns a string
 	public static String dbClassLongName(Statement stmt, Class myClass) {
 		String className = "N/A";
-        try {
-        	ResultSet rs = dbClassQuery(stmt, CLASSNAME, myClass);
-    		if(rs == null) {
-    			return className;
-    		}
+		try {
+			ResultSet rs = dbClassQuery(stmt, CLASSNAME, myClass);
+			if(rs == null) {
+				return className;
+			}
 			while(rs.next()){
 				className = rs.getString(CLASSNAME);
 			}
 			rs.close();
 		} 
-        catch (Exception e) {
-        	logger.log(Level.WARNING, e.toString());
+		catch (Exception e) {
+			logger.log(Level.WARNING, e.toString());
 		}
-        return className;
+		return className;
 	}
 	
 	// get # of units for a specific csc/cpe class, returns a string
 	public static String dbClassUnits(Statement stmt, Class myClass) {
 		String units = "N/A";
-        try {
-    		ResultSet rs = dbClassQuery(stmt, UNITS, myClass);
-    		if(rs == null) {
-    			return units;
-    		}
+		try {
+			ResultSet rs = dbClassQuery(stmt, UNITS, myClass);
+			if(rs == null) {
+				return units;
+			}
 			while(rs.next()){
-			    units = rs.getString(UNITS);
+				units = rs.getString(UNITS);
 			}
 			rs.close();
 		} 
-        catch (Exception e) {
-        	logger.log(Level.WARNING, e.toString());
+		catch (Exception e) {
+			logger.log(Level.WARNING, e.toString());
 		}
-        return units;
+		return units;
 	}
 	
 	// get # of units for a specific csc/cpe class, returns a string
 	public static String dbClassCredit(Statement stmt, Class myClass) {
 		String credit = "N/A";
-        try {
-    		ResultSet rs = dbClassQuery(stmt, CREDIT, myClass);
-    		if(rs == null) {
-    			return credit;
-    		}
+		try {
+			ResultSet rs = dbClassQuery(stmt, CREDIT, myClass);
+			if(rs == null) {
+				return credit;
+			}
 			while(rs.next()){
-			    credit = rs.getString(CREDIT);
+				credit = rs.getString(CREDIT);
 			}
 			rs.close();
 		} 
-        catch (Exception e) {
-        	logger.log(Level.WARNING, e.toString());
+		catch (Exception e) {
+			logger.log(Level.WARNING, e.toString());
 		}
-        return credit;
+		return credit;
 	}
 	
 	// get # of units for a specific csc/cpe class, returns a string
 	public static String dbClassTerms(Statement stmt, Class myClass) {
 		String terms = "N/A";
-        try {
-    		ResultSet rs = dbClassQuery(stmt, TERMS, myClass);
-    		if(rs == null) {
-    			return terms;
-    		}
+		try {
+			ResultSet rs = dbClassQuery(stmt, TERMS, myClass);
+			if(rs == null) {
+				return terms;
+			}
 			while(rs.next()){
-			    terms = rs.getString(TERMS);
+				terms = rs.getString(TERMS);
 			}
 			rs.close();
 		} 
-        catch (Exception e) {
-        	logger.log(Level.WARNING, e.toString());
+		catch (Exception e) {
+			logger.log(Level.WARNING, e.toString());
 		}
-        return terms;
+		return terms;
 	}
 	
 	// get prereq list for a specific csc/cpe class, returns a string
 	public static String dbClassPrereqs(Statement stmt, Class myClass) {
 		String prereqs = "N/A";
-        try {
-    		ResultSet rs = dbClassQuery(stmt, PREREQS, myClass);
-    		if(rs == null) {
-    			return prereqs;
-    		}
+		try {
+			ResultSet rs = dbClassQuery(stmt, PREREQS, myClass);
+			if(rs == null) {
+				return prereqs;
+			}
 			while(rs.next()){
-			    prereqs = rs.getString(PREREQS);
+				prereqs = rs.getString(PREREQS);
 			}
 			rs.close();
 		} 
-        catch (Exception e) {
-        	logger.log(Level.WARNING, e.toString());
+		catch (Exception e) {
+			logger.log(Level.WARNING, e.toString());
 		}
-        return prereqs;
+		return prereqs;
 	}
 	
 	/* ----------------------------------------------------------------------------------- */
@@ -213,13 +213,11 @@ public class Database {
 		ArrayList<String[]> list = new ArrayList<>(); 
 		ResultSet rs = null;
 		try {
-    	  
 			rs = stmt.executeQuery(sql);
 			java.sql.ResultSetMetaData rsmd = rs.getMetaData();
 			int c = 0;
 			while(rs.next()) {
 				list.add(new String[rsmd.getColumnCount()]);
-	    	  
 				for(int i = 0; i < rsmd.getColumnCount(); i++)
 				{
 					list.get(c)[i] = rs.getString(rsmd.getColumnName(i+1));
@@ -228,9 +226,9 @@ public class Database {
 			}
 		}
 		catch(SQLException se) {
-	         //Handle errors for JDBC
-			 logger.log(Level.WARNING, se.toString());
-	    }
+			//Handle errors for JDBC
+			logger.log(Level.WARNING, se.toString());
+		}
 		catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
 		}
@@ -239,7 +237,6 @@ public class Database {
 				rs.close();
 			}
 		}
-      
 		return list;
 	}
 	
@@ -250,18 +247,18 @@ public class Database {
 		Statement stmt = null;
 		List<String[]> list = null;
 		try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur",mostSecureEncryptionEver(ENCRYPTEDPW))){
-	        stmt = conn.createStatement();		
+			stmt = conn.createStatement();		
 			list = dbAllRows(stmt, CSCCATSQL);
 			stmt.close();
 		}
 		catch(SQLException se) {
-	         //Handle errors for JDBC
+			//Handle errors for JDBC
 			logger.log(Level.WARNING, se.toString());
-	    }
+		}
 		catch(Exception e) {
-	         //Handle errors for Class.forName
+			//Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
-	    }
+		}
 		return list;
 	}
 	
@@ -280,7 +277,6 @@ public class Database {
 		}
 		bld.append(classList[i]);
 		value = bld.toString(); 
-		
 		String sql = "INSERT INTO schedulsaurdb.Schedules () value ('" + value + "');";
 		try {
 			stmt.executeUpdate(sql);
@@ -289,7 +285,7 @@ public class Database {
 		{
 			logger.log(Level.WARNING, e.toString());
 		}
-   	}
+	}
 	
 	/* ----------------------------------------------------------------------------------- */
 	
@@ -298,18 +294,17 @@ public class Database {
 		// below here goes before calls
 		Statement stmt = null;
 		try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur",mostSecureEncryptionEver(ENCRYPTEDPW))){
-	        stmt = conn.createStatement();
-	        // calls go here
-	        
+			stmt = conn.createStatement();
+			// calls go here
 			stmt.close();
 		}
 		catch(SQLException se) {
-	         //Handle errors for JDBC
+			//Handle errors for JDBC
 			logger.log(Level.WARNING, se.toString());
-	    }
+		}
 		catch(Exception e) {
-	         //Handle errors for Class.forName
+			//Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
-	    }
+		}
 	}
 }

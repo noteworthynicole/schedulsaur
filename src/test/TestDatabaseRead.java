@@ -27,89 +27,89 @@ public class TestDatabaseRead {
 	public void testGetClassLongName() {
 		Statement stmt = null;
 		try (Connection conn = DriverManager.getConnection(dbURL,dbUsername,dbPW)){
-	        stmt = conn.createStatement();
-	        assertEquals("Software Engineering II", Database.dbClassLongName(stmt, testClass));
+			stmt = conn.createStatement();
+			assertEquals("Software Engineering II", Database.dbClassLongName(stmt, testClass));
 			stmt.close();
 		}
 		catch(SQLException se) {
-	         //Handle errors for JDBC
+			//Handle errors for JDBC
 			logger.log(Level.WARNING, se.toString());
-	    }
+		}
 		catch(Exception e) {
-	         //Handle errors for Class.forName
+			//Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
-	    }
+		}
 	}
 	
 	@Test
 	public void testGetClassUnits() {
 		Statement stmt = null;
 		try (Connection conn = DriverManager.getConnection(dbURL,dbUsername,dbPW)){
-	        stmt = conn.createStatement();
-            assertEquals("4 units", Database.dbClassUnits(stmt, testClass));
+			stmt = conn.createStatement();
+			assertEquals("4 units", Database.dbClassUnits(stmt, testClass));
 			stmt.close();
 		}
 		catch(SQLException se) {
-	         //Handle errors for JDBC
+			//Handle errors for JDBC
 			logger.log(Level.WARNING, se.toString());
-	    }
+		}
 		catch(Exception e) {
-	         //Handle errors for Class.forName
+			//Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
-	    }
+		}
 	}
 	
 	@Test
 	public void testGetClassCredit() {
 		Statement stmt = null;
 		try (Connection conn = DriverManager.getConnection(dbURL,dbUsername,dbPW)){
-	        stmt = conn.createStatement();
+			stmt = conn.createStatement();
 			assertEquals("Graded", Database.dbClassCredit(stmt, testClass));
 			stmt.close();
 		}
 		catch(SQLException se) {
-	         //Handle errors for JDBC
+			//Handle errors for JDBC
 			logger.log(Level.WARNING, se.toString());
-	    }
+		}
 		catch(Exception e) {
-	         //Handle errors for Class.forName
+			//Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
-	    }
+		}
 	}
 	
 	@Test
 	public void testGetClassTerms() {
 		Statement stmt = null;
 		try (Connection conn = DriverManager.getConnection(dbURL,dbUsername,dbPW)){
-	        stmt = conn.createStatement();
+		stmt = conn.createStatement();
 			assertEquals("W, SP", Database.dbClassTerms(stmt, testClass));
 			stmt.close();
 		}
 		catch(SQLException se) {
-	         //Handle errors for JDBC
+			//Handle errors for JDBC
 			logger.log(Level.WARNING, se.toString());
-	    }
+		}
 		catch(Exception e) {
-	         //Handle errors for Class.forName
+			//Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
-	    }
+		}
 	}
 	
 	@Test
 	public void testGetClassPrereqs() {
 		Statement stmt = null;
 		try (Connection conn = DriverManager.getConnection(dbURL,dbUsername,dbPW)){
-	        stmt = conn.createStatement();
+		stmt = conn.createStatement();
 			assertEquals("CSC 308 && CSC/CPE 357", Database.dbClassPrereqs(stmt, testClass));
 			stmt.close();
 		}
 		catch(SQLException se) {
-	         //Handle errors for JDBC
+			//Handle errors for JDBC
 			logger.log(Level.WARNING, se.toString());
-	    }
+		}
 		catch(Exception e) {
-	         //Handle errors for Class.forName
+			//Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
-	    }
+		}
 	}
 }
