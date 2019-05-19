@@ -1,7 +1,6 @@
 package logic;
 import java.util.*;
 import java.util.Map.*;
-import java.util.logging.*;
 import java.util.stream.*;
 
 /*
@@ -14,8 +13,6 @@ import java.util.stream.*;
 
 public class GenerateSchedules {
 	
-	private static final Logger logger = Logger.getLogger("GenerateSchedules");
-	
 	public static void main(String[] args){
 		Map<String, Section> hashMapInit = parseDbsCreateSections();
 		//Likely put a filter here to get rid of classes that are not relevant
@@ -24,13 +21,26 @@ public class GenerateSchedules {
 		List<DoubleTimes> doubleTimesList1 = sortByKey(hashMapTime);
 		//Greedy
 		List<List<DoubleTimes>> doubleTimesList2 = greedySchedule(4, doubleTimesList1);
-		if(!doubleTimesList2.isEmpty()) {
-			//Need to use the times from doubleTimes2 List for a schedule
-			logger.log(Level.INFO, doubleTimesList2.get(0).toString());
-		}
+		//This is a placeholder
+		callToFrontEnd(doubleTimesList2);
 	}
 	
-	public static logic.Section createSection(String[] line) {
+	//this is a placeholder
+	public static boolean callToFrontEnd(List<List<DoubleTimes>> doubleTimes) {
+		int numberOfSchedules = 0;
+		boolean callDatabase = false;
+		for(List<DoubleTimes> schedule : doubleTimes) {
+			if(!schedule.isEmpty()) {
+				numberOfSchedules++;
+			}
+		}
+		if(numberOfSchedules > 0) {
+			callDatabase = true;
+		}
+		return callDatabase;
+	}
+	
+	public static Section createSection(String[] line) {
 		//0 - class department, number, and section
 		List<String> fields = new ArrayList<>();
 		fields.add(line[0].substring(0, 10));
