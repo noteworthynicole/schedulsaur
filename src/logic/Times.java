@@ -76,7 +76,7 @@ public class Times {
 		return true;
 	}
 	
-	public static int localToInt(LocalTime time) {
+	private static int localToInt(LocalTime time) {
 		return (time.getHour() * 60) + time.getMinute();
 	}
 	
