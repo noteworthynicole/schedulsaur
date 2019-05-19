@@ -172,8 +172,7 @@ public class GenerateSchedules {
 				if(schedule.size() >= numOfClasses) {
 					return schedule; //stop because this is an optimal solution
 				}
-			}
-			else if(j >= listSize && allCompatible(schedule, doubleTimesList.get(j - currentIndex - 1))){//loop back around
+			} else if(j >= listSize && allCompatible(schedule, doubleTimesList.get(j - currentIndex - 1))){//loop back around
 				schedule.add(doubleTimesList.get(j - currentIndex - 1));
 				if(schedule.size() >= numOfClasses) {
 					return schedule;

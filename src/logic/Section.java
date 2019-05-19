@@ -85,8 +85,7 @@ public final class Section extends Class{
 		int x;
 		try { 
 			x = Integer.parseInt(s); 
-		} 
-		catch(Exception e) { 
+		} catch(Exception e) { 
 			return 0; 
 		}
 		return x;
