@@ -22,7 +22,7 @@ public class Catalog extends Class{
 		if(fields.get(5).isEmpty()) {
 			this.prereqs = "true";
 		}else {
-			this.prereqs = fields.get(5);
+			this.prereqs = fields.get(5).trim().replaceAll("[\\u00A0\\u2007\\u202F]+", " ");
 		}
 		this.setId(Integer.parseInt(fields.get(6)));
 	}
@@ -40,10 +40,12 @@ public class Catalog extends Class{
    }
    
    private String replaceWithBoolean(List<String> classesTaken) {
-	   String[] split = prereqs.split("( )"); 
+	   String noParen = prereqs.replace("(", "").replace(")", "");
+	   String[] split = noParen.split(" "); 
 	   for(int i = 0; i < split.length; i++) {
 		   if(!split[i].contains("true") && !split[i].contains("false") 
-				   && !split[i].contains("|") && !split[i].contains("&")) {
+				   && !split[i].contains("|") && !split[i].contains("&")
+				   && !split[i].contains("or") && !split[i].contains("and")) {
 			   String potentialClass = split[i] + " " + split[i + 1];
 			   if(classesTaken.contains(potentialClass)) {
 				   return prereqs.replace(potentialClass, "true");
@@ -52,6 +54,7 @@ public class Catalog extends Class{
 			   }
 		   }
 	   }
+	   System.out.println("should not get here");
 	   return prereqs;
    }
    
