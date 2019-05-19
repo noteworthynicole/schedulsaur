@@ -1,19 +1,15 @@
 package logic;
 
 import java.util.*;
-import java.util.logging.*;
 
 import org.mvel2.MVEL;
 
 public class Catalog extends Class{
-	
-	private static final Logger logger = Logger.getLogger("Catalog");
 
 	private String nameDescr;
 	private String credit;
 	private String terms;
 	private String prereqs;
-	private int id; 
 	
 	public Catalog(List<String> fields){
 		super(fields.get(0));
@@ -26,7 +22,7 @@ public class Catalog extends Class{
 		}else {
 			this.prereqs = fields.get(5);
 		}
-		this.id = Integer.parseInt(fields.get(6));
+		this.setId(Integer.parseInt(fields.get(6)));
 	}
 	
 	@Override
@@ -55,6 +51,14 @@ public class Catalog extends Class{
 		   }
 	   }
 	   return prereqs;
+   }
+   
+   public String getCredit() {
+	   return credit;
+   }
+   
+   public String getTerms() {
+	   return terms;
    }
 	
 }

@@ -22,6 +22,10 @@ public class Database {
 	private static final String TERMS = "Terms";
 	private static final String PREREQS = "Prereqs";
 	
+	//schedulsaur
+	private static final String SCHEDELSAUR = "schedulsaur";
+	private static final String DBSITE = "jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false";
+	
 	// sonarcloud hates print
 	private static final Logger logger = Logger.getLogger("Database");
 	
@@ -240,28 +244,6 @@ public class Database {
 		return list;
 	}
 	
-	// get section info for Literally Every csc class, returns list
-	// currently hardcoded for CSC classes? we probably wanna edit that later
-	public static List<String[]> getdbAllRow1() {
-		// below here goes before calls
-		Statement stmt = null;
-		List<String[]> list = null;
-		try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur",mostSecureEncryptionEver(ENCRYPTEDPW))){
-			stmt = conn.createStatement();		
-			list = dbAllRows(stmt, CSCCATSQL);
-			stmt.close();
-		}
-		catch(SQLException se) {
-			//Handle errors for JDBC
-			logger.log(Level.WARNING, se.toString());
-		}
-		catch(Exception e) {
-			//Handle errors for Class.forName
-			logger.log(Level.WARNING, e.toString());
-		}
-		return list;
-	}
-	
 	/* ----------------------------------------------------------------------------------- */
 	
 	//replace class object with schedule object later
@@ -299,7 +281,7 @@ public class Database {
 		// This is used, please don't change or delete!
 		Statement stmt = null;
 		List<String[]> list = null;
-		try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur",mostSecureEncryptionEver(ENCRYPTEDPW))){
+		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
 	        stmt = conn.createStatement();		
 			list = dbAllRows(stmt, csc);
 			list.addAll(dbAllRows(stmt, cpe));
@@ -320,7 +302,7 @@ public class Database {
 		public static void main(String[] args) {
 			// below here goes before calls
 			Statement stmt = null;
-			try (Connection conn = DriverManager.getConnection("jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false","schedulsaur",mostSecureEncryptionEver(ENCRYPTEDPW))){
+			try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
 				stmt = conn.createStatement();
 				// calls go here
 				stmt.close();
