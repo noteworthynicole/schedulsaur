@@ -6,7 +6,7 @@ import org.mvel2.MVEL;
 
 public class Catalog extends Class{
 	
-	private static String DIGITS = ".*\\d.*";
+	private static String digits = ".*\\d.*";
 
 	private String nameDescr;
 	private String credit;
@@ -33,7 +33,7 @@ public class Catalog extends Class{
    }
 	
    public boolean getPrereq(List<String> classesTaken) {
-	   while(prereqs.matches(DIGITS)){
+	   while(prereqs.matches(digits)){
 		   prereqs = replaceWithBoolean(classesTaken);
 	   }
 		return (boolean) MVEL.eval(prereqs);
