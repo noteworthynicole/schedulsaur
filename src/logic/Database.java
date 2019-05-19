@@ -202,6 +202,27 @@ public class Database {
 	
 	/* ----------------------------------------------------------------------------------- */
 	
+	//replace class object with schedule object later
+	public static void dbWriteSched(Statement stmt, String[] classList) {
+		String value = "";
+		int i;
+		StringBuilder bld = new StringBuilder();
+		for(i = 0; i < classList.length-1; i++) {
+			bld.append(classList[i]);
+			bld.append(",");
+		}
+		bld.append(classList[i]);
+		value = bld.toString(); 
+		String sql = "INSERT INTO schedulsaurdb.Schedules () value ('" + value + "');";
+		try {
+			stmt.executeUpdate(sql);
+		} catch(Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		}
+	}
+	
+	/* ----------------------------------------------------------------------------------- */
+	
 	// helper function for getdbAllRow
 	public static List<String[]> dbAllRows(Statement stmt, String sql) throws SQLException {
 		ArrayList<String[]> list = new ArrayList<>(); 
@@ -230,37 +251,6 @@ public class Database {
 		return list;
 	}
 	
-	/* ----------------------------------------------------------------------------------- */
-	
-	//replace class object with schedule object later
-	public static void dbWriteSched(Statement stmt, String[] classList)
-	{
-		String value = "";
-		int i;
-		StringBuilder bld = new StringBuilder();
-		for(i = 0; i < classList.length-1; i++) {
-			bld.append(classList[i]);
-			bld.append(",");
-		}
-		bld.append(classList[i]);
-		value = bld.toString(); 
-		String sql = "INSERT INTO schedulsaurdb.Schedules () value ('" + value + "');";
-		try {
-			stmt.executeUpdate(sql);
-		} catch(Exception e)
-		{
-			logger.log(Level.WARNING, e.toString());
-		}
-	}
-	
-	/* ----------------------------------------------------------------------------------- */
-	
-	// get section info for Literally Every csc class, returns ??
-	
-	// get section info for Literally Every cpe class, returns ??
-	
-	// get section info for a specific csc/cpe class, returns ??
-	
 	public static List<String[]> getdbAllRow(String csc, String cpe) {
 		// This is used, please don't change or delete!
 		Statement stmt = null;
@@ -279,6 +269,8 @@ public class Database {
 		}
 		return list;
 	}
+	
+	/* ----------------------------------------------------------------------------------- */
 	
 	// (this doesn't do anything really, it was there for trial/error)
 	public static void main(String[] args) {
