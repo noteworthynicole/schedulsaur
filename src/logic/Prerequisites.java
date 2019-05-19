@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Prerequisites {
 	
+	//This main will be replaced with a filter function with the same functionality
 	public static void main(String[] args) {
 		Map<String, Section> sections = new HashMap<>();
 		List<Catalog> catalogs = collectCatalogClasses();
@@ -40,7 +41,6 @@ public class Prerequisites {
 				catalogToRemove.add(catalog);
 			}
 		}
-		
 		catalogs.removeAll(catalogToRemove);
 	}
 	
@@ -51,13 +51,11 @@ public class Prerequisites {
 		for(Catalog catalog : catalogs) {
 			eligibleClasses.add(catalog.getEqualName());
 		}
-		
 		for(Map.Entry<String, Section> entry : sections.entrySet()) {
 			if(!eligibleClasses.contains(entry.getValue().getEqualName())) {
 				sectionsToRemove.add(entry.getKey());
 			}
 		}
-		
 		for(String key : sectionsToRemove) {
 			sections.remove(key);
 		}
