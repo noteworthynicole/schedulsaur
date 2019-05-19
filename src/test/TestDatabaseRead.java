@@ -30,12 +30,10 @@ public class TestDatabaseRead {
 			stmt = conn.createStatement();
 			assertEquals("Software Engineering II", Database.dbClassLongName(stmt, testClass));
 			stmt.close();
-		}
-		catch(SQLException se) {
+		} catch(SQLException se) {
 			//Handle errors for JDBC
 			logger.log(Level.WARNING, se.toString());
-		}
-		catch(Exception e) {
+		} catch(Exception e) {
 			//Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
 		}
@@ -48,12 +46,10 @@ public class TestDatabaseRead {
 			stmt = conn.createStatement();
 			assertEquals("4 units", Database.dbClassUnits(stmt, testClass));
 			stmt.close();
-		}
-		catch(SQLException se) {
+		} catch(SQLException se) {
 			//Handle errors for JDBC
 			logger.log(Level.WARNING, se.toString());
-		}
-		catch(Exception e) {
+		} catch(Exception e) {
 			//Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
 		}
@@ -66,12 +62,10 @@ public class TestDatabaseRead {
 			stmt = conn.createStatement();
 			assertEquals("Graded", Database.dbClassCredit(stmt, testClass));
 			stmt.close();
-		}
-		catch(SQLException se) {
+		} catch(SQLException se) {
 			//Handle errors for JDBC
 			logger.log(Level.WARNING, se.toString());
-		}
-		catch(Exception e) {
+		} catch(Exception e) {
 			//Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
 		}
@@ -84,12 +78,10 @@ public class TestDatabaseRead {
 		stmt = conn.createStatement();
 			assertEquals("W, SP", Database.dbClassTerms(stmt, testClass));
 			stmt.close();
-		}
-		catch(SQLException se) {
+		} catch(SQLException se) {
 			//Handle errors for JDBC
 			logger.log(Level.WARNING, se.toString());
-		}
-		catch(Exception e) {
+		} catch(Exception e) {
 			//Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
 		}
@@ -102,12 +94,10 @@ public class TestDatabaseRead {
 		stmt = conn.createStatement();
 			assertEquals("CSC 308 && CSC/CPE 357", Database.dbClassPrereqs(stmt, testClass));
 			stmt.close();
-		}
-		catch(SQLException se) {
+		} catch(SQLException se) {
 			//Handle errors for JDBC
 			logger.log(Level.WARNING, se.toString());
-		}
-		catch(Exception e) {
+		} catch(Exception e) {
 			//Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
 		}

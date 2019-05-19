@@ -57,29 +57,25 @@ public class Database {
 	
 	// this is because sonarcloud cried at me and doesn't like duplicate code
 	public static ResultSet dbClassQuery(Statement stmt, String toFind, Class myClass) {
-        try {
-        	// helper function for anything starting with dbClass
+		try {
+			// helper function for anything starting with dbClass
 			String classID = myClass.getName();
 			// now we do a lookup, but it depends if it's csc/cpe tho
 			String department = classID.substring(0,3);
 			String sql = "";
 			// yes the database has them capitalized, but you know
 			if(department.equalsIgnoreCase("csc")) {
-		        sql = "SELECT " + toFind + " FROM schedulsaurdb.catalog_csc WHERE ClassID LIKE \"" + classID + "\"";
-			}
-			else if(department.equalsIgnoreCase("cpe")) {
+				sql = "SELECT " + toFind + " FROM schedulsaurdb.catalog_csc WHERE ClassID LIKE \"" + classID + "\"";
+			} else if(department.equalsIgnoreCase("cpe")) {
 				sql = "SELECT " + toFind + " FROM schedulsaurdb.catalog_cpe WHERE ClassID LIKE \"" + classID + "\"";
-			}
-			else {
+			} else {
 				// fix this later for other majors I Guess
 			}
 			return stmt.executeQuery(sql);
-		}
-		catch(SQLException se) {
+		} catch(SQLException se) {
 			//Handle errors for JDBC
 			logger.log(Level.WARNING, se.toString());
-		}
-		catch(Exception e) {
+		} catch(Exception e) {
 			//Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
 		}
@@ -108,8 +104,7 @@ public class Database {
 				prereqs = rs.getString(PREREQS);
 			}
 			rs.close();
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			logger.log(Level.WARNING, e.toString());
 		}
 		return (classID + ", " + className + ", " + units + ", " + credit + ", " + terms + ", " + prereqs);
@@ -127,8 +122,7 @@ public class Database {
 				className = rs.getString(CLASSNAME);
 			}
 			rs.close();
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			logger.log(Level.WARNING, e.toString());
 		}
 		return className;
@@ -146,8 +140,7 @@ public class Database {
 				units = rs.getString(UNITS);
 			}
 			rs.close();
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			logger.log(Level.WARNING, e.toString());
 		}
 		return units;
@@ -165,8 +158,7 @@ public class Database {
 				credit = rs.getString(CREDIT);
 			}
 			rs.close();
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			logger.log(Level.WARNING, e.toString());
 		}
 		return credit;
@@ -184,8 +176,7 @@ public class Database {
 				terms = rs.getString(TERMS);
 			}
 			rs.close();
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			logger.log(Level.WARNING, e.toString());
 		}
 		return terms;
@@ -203,8 +194,7 @@ public class Database {
 				prereqs = rs.getString(PREREQS);
 			}
 			rs.close();
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			logger.log(Level.WARNING, e.toString());
 		}
 		return prereqs;
@@ -222,21 +212,17 @@ public class Database {
 			int c = 0;
 			while(rs.next()) {
 				list.add(new String[rsmd.getColumnCount()]);
-				for(int i = 0; i < rsmd.getColumnCount(); i++)
-				{
+				for(int i = 0; i < rsmd.getColumnCount(); i++) {
 					list.get(c)[i] = rs.getString(rsmd.getColumnName(i+1));
 				}
 				c++;
 			}
-		}
-		catch(SQLException se) {
+		} catch(SQLException se) {
 			//Handle errors for JDBC
 			logger.log(Level.WARNING, se.toString());
-		}
-		catch(Exception e) {
+		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
-		}
-		finally {
+		} finally {
 			if(rs!=null) {
 				rs.close();
 			}
@@ -252,8 +238,7 @@ public class Database {
 		String value = "";
 		int i;
 		StringBuilder bld = new StringBuilder();
-		for(i = 0; i < classList.length-1; i++)
-		{
+		for(i = 0; i < classList.length-1; i++) {
 			bld.append(classList[i]);
 			bld.append(",");
 		}
@@ -262,8 +247,7 @@ public class Database {
 		String sql = "INSERT INTO schedulsaurdb.Schedules () value ('" + value + "');";
 		try {
 			stmt.executeUpdate(sql);
-		}
-		catch(Exception e)
+		} catch(Exception e)
 		{
 			logger.log(Level.WARNING, e.toString());
 		}
@@ -282,39 +266,35 @@ public class Database {
 		Statement stmt = null;
 		List<String[]> list = null;
 		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
-	        stmt = conn.createStatement();		
+			stmt = conn.createStatement();		
 			list = dbAllRows(stmt, csc);
 			list.addAll(dbAllRows(stmt, cpe));
 			stmt.close();
-		}
-		catch(SQLException se) {
-	         //Handle errors for JDBC
+		} catch(SQLException se) {
+			//Handle errors for JDBC
 			logger.log(Level.WARNING, se.toString());
-	    }
-		catch(Exception e) {
-	         //Handle errors for Class.forName
+		} catch(Exception e) {
+			//Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
-	    }
+		}
 		return list;
 	}
 	
 	// (this doesn't do anything really, it was there for trial/error)
-		public static void main(String[] args) {
-			// below here goes before calls
-			Statement stmt = null;
-			try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
-				stmt = conn.createStatement();
-				// calls go here
-				stmt.close();
-			}
-			catch(SQLException se) {
-				//Handle errors for JDBC
-				logger.log(Level.WARNING, se.toString());
-			}
-			catch(Exception e) {
-				//Handle errors for Class.forName
-				logger.log(Level.WARNING, e.toString());
-			}
+	public static void main(String[] args) {
+		// below here goes before calls
+		Statement stmt = null;
+		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
+			stmt = conn.createStatement();
+			// calls go here
+			stmt.close();
+		} catch(SQLException se) {
+			//Handle errors for JDBC
+			logger.log(Level.WARNING, se.toString());
+		} catch(Exception e) {
+			//Handle errors for Class.forName
+			logger.log(Level.WARNING, e.toString());
 		}
+	}
 	
 }
