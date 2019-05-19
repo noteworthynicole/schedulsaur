@@ -54,7 +54,6 @@ public class Catalog extends Class{
 			   }
 		   }
 	   }
-	   System.out.println("should not get here");
 	   return prereqs;
    }
    
