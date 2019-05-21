@@ -4,6 +4,7 @@ import ProgressWheel from './ProgressWheel';
 import StudentInfo from './StudentInfo';
 import { save } from '../../store/actions/studentActions'
 import './Dashboard.css'
+import axios from 'axios';
 
 /**
  *------------------------------------------------------- 
@@ -13,15 +14,20 @@ import './Dashboard.css'
 
 class DashBoard extends Component{
 
-    state = {
-        isEdit: false,
-        tempM: this.props.student.major,
-        tempC: this.props.student.catalog_year,
-        tempE: this.props.student.expected_grad,
-        tempUT: this.props.student.units_this_quarter,
-        tempUP: this.props.student.units_per_quarter,
-        editButton: 'Edit Profile'
+    constructor(props) {
+        super(props)
+        this.state = {
+            isEdit: false,
+            name: "Davide",
+            tempM: this.props.student.major,
+            tempC: this.props.student.catalog_year,
+            tempE: this.props.student.expected_grad,
+            tempUT: this.props.student.units_this_quarter,
+            tempUP: this.props.student.units_per_quarter,
+            editButton: 'Edit Profile'
+        }
     }
+    
 
     /**
      * --- Called when input text is changing in StudentInfo component 
@@ -55,6 +61,7 @@ class DashBoard extends Component{
                 editButton: 'Edit Profile'
             })
         }
+
     }
 
     /**
@@ -66,13 +73,52 @@ class DashBoard extends Component{
                 this.state.tempM,
                 this.state.tempC,
                 this.state.tempE,
-                this.state.tempUT,
+                this.state.tempUP,
                 this.state.tempUT
             )
             this.setState({
                 isEdit: !this.state.isEdit
             })
         }
+
+        /* JSON body which will be sent to the backend with the POST */
+        const user = {
+            "name": "Davide",
+            "major": this.state.tempM,
+            "minor": "Stats",
+            "catalogYear": this.state.tempC,
+            "planningQuarter": "Spring",
+            "unitsPerQuarter": 12
+        }
+
+        /* Extra parameters may be specified via the URL
+         * For example: http://localhost/8080/user?id=1234567890/
+         * In this way, the backend knows which user to query the DB for
+         * And ultimately returns the correct JSON
+        */
+        axios.post('http://localhost:8080/user', user)
+        .then(response => {
+            console.log(response);
+        })
+
+    }
+
+    /*   
+     * A lifecycle method is called when the component is first rendered
+     * This is where a GET request is made, and setState() is called with response
+    */
+    componentDidMount() {
+        /* Simply a demonstration HTTP request-- can print
+         * whatever info the backend returns about the user
+        */
+       axios.get('http://localhost:8080/hello')
+       .then(response => {
+           console.log(response);
+       })
+
+       /* Ultimately, this will be how the initial state for the 
+        * whole application is rendered and saved into the redux store
+       */
     }
 
     render(){
