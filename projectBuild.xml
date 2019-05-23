@@ -1,0 +1,6 @@
+<?eclipse.ant.import?>
+<project
+	xmlns:ivy="antlib:org.apache.ivy.ant"
+	xmlns:spring-boot="antlib:org.springframework.boot.ant"
+	name="myapp">
+</project>
