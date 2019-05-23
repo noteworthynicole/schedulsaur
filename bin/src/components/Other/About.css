@@ -1,0 +1,41 @@
+/*
+ * About
+ */
+ 
+.about {
+  text-align: center;
+  margin-top: 8%;
+  font-size:170%;
+  font-weight: 100px;
+}
+
+.other {
+  width: 40%;
+  margin-top: 3%;
+  margin-bottom: 1%;
+}
+
+.version {
+    position: absolute;
+    right: 2%;
+    bottom: 10%;
+}
+
+.subtext {
+  line-height: 0;
+  padding-left: 1.5%;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  height: 10%;
+  left: 0%;
+  bottom: 0%;
+  width: 100%;
+  z-index: 1;
+  background-color: var(--schedulsaur_green);
+}
+

@@ -1,0 +1,21 @@
+/*
+ * Time CSS
+ */
+
+.timetable{
+    width: 100%;
+    height: 50vh;
+    padding-right: 8%;
+}
+
+.container td{
+    padding: 1.5vh;
+}
+
+.container .table_tr{
+    padding:15px;
+}
+
+.timeButtons {
+    padding-top: 3%;
+}

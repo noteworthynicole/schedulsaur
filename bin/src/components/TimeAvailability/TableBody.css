@@ -1,0 +1,20 @@
+/*
+ * TableBody CSS
+ */
+
+.table_tr {
+  border:none;
+  line-height:1px;
+}
+
+.table_td {
+  border-left: solid 1px var(--dark_grey);
+  border-right: solid 1px var(--dark_grey);
+  border-bottom: solid 1px var(--dark_grey);
+  border-top: solid 1px var(--dark_grey);
+  cursor: pointer;
+}
+
+.table_td:hover{
+  background-color: var(--schedulsaur_green)
+}

@@ -1,0 +1,13 @@
+/*
+ * TableHeader CSS
+ */
+
+.table_tr {
+  border:none;
+  line-height:1px;
+  text-align: center;
+}
+
+.day_name {
+  text-align: center
+}

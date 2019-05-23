@@ -1,0 +1,19 @@
+.course-section {
+  width: 400px;
+  overflow-y: scroll;
+  border: solid rgb(179, 179, 179) 1px;
+}
+
+.course-box {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: auto;
+}
+
+.box-header {
+  width: 400px;
+  color: black;
+  height: 30px;
+  font-size: 40px;
+}

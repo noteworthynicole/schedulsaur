@@ -1,0 +1,723 @@
+/* https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp thank u w3schools */
+
+.all {
+  /* TO USE: do var(--name_of_variable) */
+  --schedulsaur_green: #5ea181;
+  --light_grey: #ececec;
+  --middle_grey: #dddddd;
+  --dark_grey: #8b8b8b;
+  --major_class: #ffff99;
+  --support_class: #ffcc99;
+  --ge_class: #b3dfb3;
+  width: 100%;
+  height: 100%;
+  cursor: default;
+}
+
+body {
+  height: 100vh;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.main {
+  margin-left: 190px;
+  margin-top: 17px;
+  width: 100%;
+  padding: 0px 10px;
+}
+
+.header {
+  height: 90px;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: var(--schedulsaur_green);
+  overflow-y: hidden;
+}
+
+.logo {
+  position: absolute;
+  height: 70px;
+  margin-left: 20px;
+  padding-top: 15px;
+  color: white;
+  font-size: 55px;
+  font-weight: 420;
+
+}
+
+.app-body {
+  position: relative;
+  top: 73px;
+  height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: row;
+  overflow-y: auto;
+}
+
+.sidebar {
+  height: 100vh;
+  width: 190px;
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  background-color: var(--schedulsaur_green);
+  overflow-x: hidden;
+  padding-top: 90px; /* 70 + 35 */
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-button {
+  outline: none;
+  cursor: pointer;
+  height: 30px;
+  background-color: var(--schedulsaur_green);
+  border: none;
+  border-top-width: 50%;
+  margin-bottom: 20px;
+  color: white;
+  font-size: 15px;
+}
+
+.dashboard-button:before{    
+  content : "";
+  display: block;
+  margin: 0 auto;
+  height: 18px;
+  width: 80%;  /* or 100px */
+  border-top:1px solid white;
+} 
+
+.dashboard-button:after{   
+  content : "";
+  display: block;
+  margin: 0 auto;
+  height: 18px;
+  width: 80%;  /* or 100px */
+  border-bottom:1px solid white;
+} 
+
+.sidebar-button {
+  outline: none;
+  cursor: pointer;
+  height: 30px;
+  background-color: var(--schedulsaur_green);
+  border: none;
+  border-top-width: 50%;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  color: white;
+  font-size: 15px;
+  font-weight: 530;
+}
+
+.sidebar a {
+  /* top right bottom left */
+  padding: 0px 8px 35px 16px;
+  text-decoration: none;
+  color: #fff;
+  display: block;
+}
+
+.title {
+  color: var(--schedulsaur_green);
+  font-weight: bold;
+  letter-spacing: 4px;
+  padding-top: 2%;
+}
+
+.title_description {
+  padding-bottom: 1%;
+  line-height: 0;
+}
+
+.subtitle {
+  color: black;
+  font-weight: 550;
+  font-size: 300%;
+  letter-spacing: 1px;
+  margin-top: 30px;
+  padding-bottom: 1%;
+}
+
+.subsubtitle h5{
+  color: black;
+  font-weight: 550;
+}
+
+.green_button {
+  width: 190px;
+  height: 30px;
+  color: white;
+  background-color: var(--schedulsaur_green);
+  border: none;
+  margin-bottom: 5%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.green_button:hover {
+  background-color: var(--schedulsaur_green);
+  box-shadow: 4px 5px 4px var(--middle_grey);
+}
+
+.green_button:focus {
+  background-color: var(--schedulsaur_green);
+}
+
+.white_button {
+  width: 190px;
+  height: 30px;
+  color: var(--schedulsaur_green);
+  border: 2px solid var(--dark_grey);
+  background-color: white;
+  margin-right: 5%;
+  margin-bottom: 5%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.white_button:hover {
+  background-color: white;
+  box-shadow: 4px 5px 4px var(--middle_grey);
+}
+
+.white_button:focus {
+  background-color: white;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  height: 10%;
+  left: 0%;
+  bottom: 0%;
+  width: 100%;
+  z-index: 1;
+  background-color: var(--schedulsaur_green);
+}
+
+input {
+  color: var(--dark_grey)
+}
+
+input:focus {
+  color: black;
+  border-bottom-color: var(--schedulsaur_green) !important;
+  box-shadow: 0 1px 0 0 var(--schedulsaur_green) !important;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+::-webkit-scrollbar {
+  margin-left: 20%;
+  width: .5em;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--schedulsaur_green);
+  border-radius: 20pt;
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+.app-body::-webkit-scrollbar-thumb {
+  all: unset;
+}
+
+/*
+I think  using a div will work better for logo text styles
+.header p {
+  padding: 0px 8px 35px 16px;
+  // text-decoration to be updated at some point? 
+  text-decoration: none;
+  color: #fff;
+  display: block;
+} */
+/*
+
+.button {
+  width: 190px;
+  height: 30px;
+  border-style: solid;
+  border-width: 2px;
+  bottom: 1%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#button_left {
+  background-color: #fff;
+  border-color: var(--dark_grey);
+  color: var(--schedulsaur_green)
+}
+
+#button_left a {
+  color: #5ea181;
+  display: block;
+}
+
+#button_right {
+  background-color: var(--schedulsaur_green);
+  border-color: var(--schedulsaur_green);
+  right: 5%;
+  margin: 20px;
+  color: white;
+}
+
+#button_right a {
+  color: #fff;
+  display: block;
+}
+
+.main {
+  margin-left: 190px;
+  margin-top: 17px;
+  width: 100%;
+  padding: 0px 10px;
+} 
+
+/*
+*
+* Roberto's adds
+*
+*/
+
+/* Main */
+/*
+.title{
+  color: var(--schedulsaur_green);
+  font-weight: bold;
+}
+
+.schedule{
+  top: 0%;
+}
+
+.container{
+  width:50%;
+}
+
+/* Main */
+/*
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  height: 10%;
+  left: 0%;
+  bottom: 0%;
+  width: 100%;
+  z-index: 1;
+  background-color: var(--schedulsaur_green);
+}
+
+.dashcols {
+  display: inline-block;
+  position: relative;
+  padding: 5%;
+  padding-top: 3%;
+}
+
+#dashtitle{
+  font-weight: 300px;
+}
+
+/* Main */
+/*
+.subsubtitle h5{
+  color: black;
+  font-weight: 600;
+}
+
+/* Main */
+/*
+.subsubtitle i{
+  color: black;
+  font-weight: 600;
+}
+
+/* Main */
+/*
+.subtitle {
+  color: black;
+  font-weight: 700;
+}
+
+
+input {
+  color: var(--dark_grey)
+}
+
+input:focus {
+  color: black;
+  border-bottom-color: var(--schedulsaur_green) !important;
+  box-shadow: 0 1px 0 0 var(--schedulsaur_green) !important;
+}
+
+.button_collection {
+  width: 120px;
+  background-color: var(--schedulsaur_green);
+  border-color: var(--schedulsaur_green);
+  color: white;
+}
+.button_collection:focus{
+  background-color: var(--schedulsaur_green);
+  border:none;
+}
+.button_collection_edit {
+  width: 80px;
+  font-size: 80%;
+  background-color: white;
+  border: solid 1px var(--dark_grey);
+  color: var(--schedulsaur_green);
+}
+
+.button_collection_edit:focus{
+  border: solid 1px var(--dark_grey);
+  background-color: white;
+  border: solid 1px var(--dark_grey);
+}
+
+.tb {
+  border-collapse:collapse;
+  table-layout: fixed;
+}
+
+.table_tr {
+  border:none;
+  line-height:1px;
+}
+
+.table_td {
+  border-left: solid 1px var(--dark_grey);
+  border-right: solid 1px var(--dark_grey);
+  border-bottom: solid 1px var(--dark_grey);
+  border-top: solid 1px var(--dark_grey);
+}
+
+.table_td:hover {
+  background-color: var(--schedulsaur_green)
+}
+
+.dropdown .drop {
+  margin: auto;
+  width: 70%;
+  text-align: left;
+  margin-top:3%;
+  color: var(--dark_grey);
+  background-color: var(--light_grey);
+  font-size: 140%;
+  padding-left: 5%;
+}
+
+.dropdown-cont {
+  display: block;
+  background-color: var(--light_grey);
+  margin:0;
+  padding:0; 
+  width: 70%;
+  font-size:120%;
+  color: var(--dark_grey);
+  text-align:left;
+  border-top: solid 2px var(--schedulsaur_green)
+}
+
+.dropdown-cont li:hover {
+  color: var(--schedulsaur_green)
+}
+
+.about {
+  text-align: center;
+  margin-top: 8%;
+  font-size:170%;
+  font-weight: 100px;
+}
+
+.sch_button {
+  width: 80%;
+  height:100%;
+  color: white;
+  background-color: var(--schedulsaur_green);
+  border:none;
+  font-size: 100%;
+  padding-right: 0%;
+  margin-right: 20%;
+}
+
+.input[type=checkbox] {
+  vertical-align: middle;
+}
+
+.check {
+  display: inline;
+  vertical-align: middle;
+}
+
+
+.box-green[type="checkbox"]+span:not(.lever):before, 
+ [type="checkbox"]:not(.filled-in)+span:not(.lever):after {
+  border: solid 2px var(--dark_grey);
+  background-color: white;
+}
+
+.box-green[type="checkbox"]:checked+span:not(.lever):before{
+  background-color: transparent;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: var(--schedulsaur_green);
+  border-right-color: var(--schedulsaur_green);
+  
+}
+
+::-webkit-scrollbar {
+  margin-left: 20%;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--schedulsaur_green);
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+.ul_sched {
+  overflow: hidden;
+  overflow-y:auto;
+  margin: 0px;
+  padding: 5px;
+  
+  border: 2px solid #ccc;
+  
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+  
+  -webkit-overflow-scrolling: touch;
+}
+
+.button_popup {
+  color: var(--schedulsaur_green);
+  background-color: white;
+  font-size: 24px;
+  border: none;
+  margin-top: 2%;
+  margin-bottom: 1.5%;
+  margin-right: 3%;
+}
+
+.button_popup:focus {
+  color: var(--schedulsaur_green);
+  background-color: white;
+  font-size: 20px;
+  border: none;
+}
+
+.smallTable td{
+  font-size: .8rem;
+  pointer-events: none;
+  padding: 1%;
+}
+
+.smallTable .table_tr{
+  font-size: .8rem;
+  pointer-events: none;
+  padding:15px;
+}
+
+.box {
+  height: 50px;
+  border: solid 1px var(--dark_grey);
+  text-align: center;
+  font-weight: 400;
+}
+
+.box:hover {
+  filter: brightness(75%)
+}
+
+
+/*
+*
+* Jack's adds
+*
+*/
+/*
+.column {
+  float: left;
+  width: 48%;
+  padding: 10px;
+  font-size: 24px;
+  color:var(--dark_grey);
+}
+
+* {box-sizing: border-box;}
+
+.ul {
+  top: 150px;
+  bottom: 100px;
+  height: 350px;
+
+  overflow: hidden;
+  overflow-y:auto;
+  margin: 0px;
+  padding: 5px;
+  
+  border: 2px solid #ccc;
+  
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+  
+  -webkit-overflow-scrolling: touch;
+}
+
+.li {
+  padding: 10px 15px;
+  
+  border-bottom: 1px solid #ccc;
+} 
+
+.li:last-child {
+    border-bottom: none;
+  }
+  
+.li:nth-child(even) {
+    background: #f8f8f8;
+  }
+
+/* Clear floats after the columns */
+/*
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.calbutton {
+  width: 40px;
+  height: 100%;
+  margin-left: 5px;
+  background-color: var(--dark_grey);
+}
+
+.calcolumn {
+  float: center;
+  width: 75%;
+  padding: 2px;
+  font-size: 12px;
+  color:var(--dark_grey);
+}
+
+#tsch {
+   width: 90%;
+   border: 2px solid black;
+   border-collapse: collapse;
+}
+
+#thsch {
+   width: 50px;
+   border: 2px solid black;
+   border-collapse: collapse;
+   margin: 10px;
+}
+
+#tdsch {
+   width: 50px;
+   border: 2px solid black;
+   border-collapse: collapse;
+}
+
+h1{
+  font-size: 56px;
+  color: var(--schedulsaur_green);
+}
+
+h2{
+  font-size: 36px;
+  color: var(--dark_grey);
+}
+
+a{
+  color:var(--dark_grey);
+}
+
+
+/*Login page only*/
+/*
+.loginWrapper{
+    vertical-align: middle;
+    text-align:center;
+    padding-top: 5%;
+}
+
+.login_input{
+  height: 30px;
+  width: 300px;
+  margin: 5px;
+  background-color: var(--light_grey);
+  border-color: var(--dark_grey);
+}
+
+.loginButton {
+    width: 190px;
+    height: 30px;
+    border-style: solid;
+    border-width: 3px;
+    text-align: center;
+    margin: 13px 12px 12px 10px;
+    display:inline-block;
+}
+
+/* Dashboard page for formating */
+/* Create two equal columns that floats next to each other */
+/*
+.column {
+  float: left;
+  width: 48%;
+  padding: 10px;
+  font-size: 24px;
+  color:var(--dark_grey);
+}
+
+/* Clear floats after the columns */
+/*
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.bottom_zone {
+    height: 70px;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    background-color: var(--schedulsaur_green);
+    overflow-y: hidden;
+    padding-top: 20px;
+}
+
+.bottom_zone p {
+    padding: 0px 8px 35px 16px;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+}
+
+
+*/
