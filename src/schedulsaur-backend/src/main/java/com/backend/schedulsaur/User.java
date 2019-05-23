@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class User {
 	
-	
 	private String name;
 	private String major;
 	private String minor;
