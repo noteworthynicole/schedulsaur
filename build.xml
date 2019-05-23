@@ -2,6 +2,7 @@
 <project basedir="." default="build" name="schedulsaur"
 	xmlns:ivy="antlib:org.apache.ivy.ant"
 	xmlns:spring-boot="antlib:org.springframework.boot.ant" >
+
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../../../../../../../Applications/Eclipse.app/Contents/Eclipse/"/>
     <property name="junit.output.dir" value="junit"/>
@@ -58,23 +59,23 @@
         <pathelement location="../../../../../../.ivy2/cache/org.springframework/spring-webmvc/jars/spring-webmvc-5.1.7.RELEASE.jar"/>
         <pathelement location="../../../../../../.ivy2/cache/org.mvel/mvel2/jars/mvel2-2.4.4.Final.jar"/>
     </path>
-    <path id="local_schedulsaur.classpath">
+    <path id="schedulsaur.classpath">
         <pathelement location="bin"/>
         <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="mysql-connector-java-5.1.47.jar"/>
         <path refid="Ivy.libraryclasspath"/>
-        <pathelement location="src/backend/mysql-connector-java-5.1.47.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
-            <fileset dir="src/backend">
+            <fileset dir="src/frontend">
                 <exclude name="**/*.launch"/>
                 <exclude name="**/*.xtend"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
         <copy includeemptydirs="false" todir="bin">
-            <fileset dir="src/frontend">
+            <fileset dir="src/backend">
                 <exclude name="**/*.launch"/>
                 <exclude name="**/*.xtend"/>
                 <exclude name="**/*.java"/>
@@ -90,9 +91,9 @@
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
-            <src path="src/backend"/>
             <src path="src/frontend"/>
-            <classpath refid="local_schedulsaur.classpath"/>
+            <src path="src/backend"/>
+            <classpath refid="schedulsaur.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
@@ -109,47 +110,45 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="GenerateSchedules (2)">
-        <java classname="logic.GenerateSchedules" failonerror="true" fork="yes">
-            <classpath refid="local_schedulsaur.classpath"/>
+    <target name="SchedulsaurBackendApplication (1)">
+        <java classname="main.SchedulsaurBackendApplication" failonerror="true" fork="yes">
+            <classpath refid="schedulsaur.classpath"/>
         </java>
     </target>
-    <target name="src">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <jvmarg line="-ea"/>
-            <classpath refid="local_schedulsaur.classpath"/>
-        </junit>
-    </target>
-    <target name="test (2)">
+    <target name="test (3)">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="test.AllTests" todir="${junit.output.dir}"/>
+            <test name="test.TestCatalog" todir="${junit.output.dir}"/>
             <test name="test.TestClass" todir="${junit.output.dir}"/>
+            <test name="test.TestDatabase" todir="${junit.output.dir}"/>
             <test name="test.TestDatabaseRead" todir="${junit.output.dir}"/>
+            <test name="test.TestDatabaseWrite" todir="${junit.output.dir}"/>
             <test name="test.TestDoubleTimes" todir="${junit.output.dir}"/>
+            <test name="test.TestFilterPastClasses" todir="${junit.output.dir}"/>
             <test name="test.TestGenerateSchedules" todir="${junit.output.dir}"/>
+            <test name="test.TestPrerequisites" todir="${junit.output.dir}"/>
             <test name="test.TestSection" todir="${junit.output.dir}"/>
+            <test name="test.TestTimeVariations" todir="${junit.output.dir}"/>
             <test name="test.TestTimes" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
-            <classpath refid="local_schedulsaur.classpath"/>
+            <classpath refid="schedulsaur.classpath"/>
         </junit>
     </target>
-    <target name="SchedulsaurBackendApplication">
-        <java classname="main.SchedulsaurBackendApplication" failonerror="true" fork="yes">
-            <classpath refid="local_schedulsaur.classpath"/>
-        </java>
-    </target>
-    <target name="Database (2)">
+    <target name="Database (3)">
         <java classname="logic.Database" failonerror="true" fork="yes">
-            <classpath refid="local_schedulsaur.classpath"/>
+            <classpath refid="schedulsaur.classpath"/>
         </java>
     </target>
-    <target name="Prerequisites">
+    <target name="GenerateSchedules (3)">
+        <java classname="logic.GenerateSchedules" failonerror="true" fork="yes">
+            <classpath refid="schedulsaur.classpath"/>
+        </java>
+    </target>
+    <target name="Prerequisites (1)">
         <java classname="logic.Prerequisites" failonerror="true" fork="yes">
-            <classpath refid="local_schedulsaur.classpath"/>
+            <classpath refid="schedulsaur.classpath"/>
         </java>
     </target>
     <target name="junitreport">
