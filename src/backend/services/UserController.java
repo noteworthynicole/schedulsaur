@@ -1,4 +1,4 @@
-package restServices;
+package services;
 
 import java.io.IOException;
 
@@ -27,13 +27,12 @@ public class UserController {
 	
 	@CrossOrigin(origins = RESTURI.EXTERNAL_DOMAIN)
 	@PostMapping(RESTURI.POST_USER) 
-	public void userPost(@RequestBody User user) throws JsonParseException, JsonMappingException, IOException {
+	public void userPost(@RequestBody User user) throws JsonMappingException, IOException {
 			
 		/* This is where a connection to the DB is established and info is updated
 		 * 
 		 * On success return 200
 		 *  */
-		System.out.println(user.getName());
 	}
 
 }

@@ -1,6 +1,10 @@
-package restServices;
+package services;
 
 public class RESTURI {
+	
+	private RESTURI() {
+		throw new IllegalStateException("Utility class");
+	}
 	
 	public static final String EXTERNAL_DOMAIN = "http://localhost:3000";
 	
