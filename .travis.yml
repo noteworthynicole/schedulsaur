@@ -9,8 +9,7 @@ addons:
     token:
       secure: "f3ae02fda201cd40d8ae2140bec988985f273b22"
 script:
-
-- ./src/schedulsaur-backend mvn clean install
+- mvn clean install
 - ant build
 - sonar-scanner
 
