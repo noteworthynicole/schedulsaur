@@ -1,4 +1,4 @@
-package logic;
+package backend.logic;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -1,4 +1,4 @@
-package logic;
+package backend.logic;
 import java.util.*;
 
 public final class Section extends Class{
@@ -98,7 +98,7 @@ public final class Section extends Class{
 	
 	public void addToScheduleRow(List<ScheduleRow> rows) {
 		String status;
-		if(this.isAvailable()) {
+		if(this.enrolled < this.maxCapacity) {
 			status = "open";
 		}else {
 			status = "closed";

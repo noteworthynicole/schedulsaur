@@ -2,10 +2,6 @@ package services;
 
 public class RESTURI {
 	
-	public static void main(String[] args) {
-		
-	}
-	
 	private RESTURI() {
 		throw new IllegalStateException("Utility class");
 	}
