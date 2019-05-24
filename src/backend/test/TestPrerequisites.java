@@ -1,4 +1,4 @@
-package test;
+package backend.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import logic.*;
+import backend.logic.*;
 
 public class TestPrerequisites {
 

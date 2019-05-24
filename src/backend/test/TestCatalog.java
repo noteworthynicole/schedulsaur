@@ -1,4 +1,4 @@
-package test;
+package backend.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.*;
 
 import org.junit.Test;
-import logic.*;
+import backend.logic.*;
 
 public class TestCatalog {
 

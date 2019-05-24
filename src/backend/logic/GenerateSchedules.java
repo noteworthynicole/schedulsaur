@@ -1,4 +1,4 @@
-package logic;
+package backend.logic;
 import java.util.*;
 import java.util.Map.*;
 import java.util.stream.*;
@@ -51,7 +51,7 @@ public class GenerateSchedules {
 		//3 - prof name
 		fields.add(line[3]);
 		//4 - day of the week, 5 - start time, 6 - end time
-		logic.DoubleTimes time = new logic.DoubleTimes(line[4], line[5], line[6]);
+		DoubleTimes time = new DoubleTimes(line[4], line[5], line[6]);
 		//7 - location
 		fields.add(line[7]);
 		//8 - the maxCapacity
@@ -62,7 +62,7 @@ public class GenerateSchedules {
 		fields.add(line[10]);
 		//11 - the id number used in the database
 		fields.add(line[11]);
-		return new logic.Section(time, fields);
+		return new Section(time, fields);
 	}
 	   
 	   public static Map<String, Section> parseDbsCreateSections(){
@@ -81,14 +81,14 @@ public class GenerateSchedules {
 	//adds to the hashtable if it is a lab section for the same lecture
 	//Returns true if does not add, needing to add class as separate
 	//Returns false if it adds, thus not needing to add the class again
-	public static boolean checkLab(Map<String, logic.Section> hashMap, logic.Section currSection) {
+	public static boolean checkLab(Map<String, Section> hashMap, Section currSection) {
 		if (currSection.getType().equals("Lab")) {
 			//This grabs the prefix of the class if a lab, goes back one section to attach to lec version
 			String lecKey = currSection.getName().substring(0,8) + 
 				String.format("%02d", (Integer.valueOf(currSection.getName().substring(8)) - 1));
 			//Here is where the lab is added to where the lecture section 
 			if(hashMap.containsKey(lecKey)) {
-				logic.Section currList = hashMap.get(lecKey);
+				Section currList = hashMap.get(lecKey);
 				currList.addClass(currSection);
 			}
 			return false;
@@ -96,20 +96,20 @@ public class GenerateSchedules {
 		return true;
 	}
 	   
-	public static Map<logic.DoubleTimes, List<logic.Section>> classesByTime(Map<String, logic.Section> hashMapInit){
-		HashMap<logic.DoubleTimes, List<logic.Section>> hashMapTime = new HashMap<>();
-		for(Entry<String, logic.Section> entry : hashMapInit.entrySet()) {
-			logic.Section currSection = entry.getValue();
+	public static Map<DoubleTimes, List<Section>> classesByTime(Map<String, Section> hashMapInit){
+		HashMap<DoubleTimes, List<Section>> hashMapTime = new HashMap<>();
+		for(Entry<String, Section> entry : hashMapInit.entrySet()) {
+			Section currSection = entry.getValue();
 			//Check to not add classes with nonexistent times
 			if(!currSection.getTimes().getLecDay().contains("N/A")) {
 				//The line below never evaluates to true, even though I am feeding in multiple times that should be the same
 				if(hashMapTime.containsKey(currSection.getTimes())) {
 					//add the section to the section list
-					List<logic.Section> currList = hashMapTime.get(currSection.getTimes());
+					List<Section> currList = hashMapTime.get(currSection.getTimes());
 					currList.add(currSection);
 				}else {
 					//add the time as a new value 
-					List<logic.Section> currValue = new ArrayList<>();
+					List<Section> currValue = new ArrayList<>();
 					currValue.add(currSection);
 					hashMapTime.put(currSection.getTimes(), currValue);
 				}
@@ -118,7 +118,7 @@ public class GenerateSchedules {
 		return hashMapTime;
 		}
 	   
-	public void filterClassName(Map<String, logic.Section> hashmap, String string){
+	public void filterClassName(Map<String, Section> hashmap, String string){
 		//Uses mutation to filter out classes by name
 		Set<String> keys = hashmap.keySet();
 		List<String> keysToRemove = new ArrayList<>();
@@ -133,14 +133,14 @@ public class GenerateSchedules {
 	}
 
 	// Sort Times for Greedy Algorithm
-	public static List<logic.DoubleTimes> sortByKey(Map<logic.DoubleTimes, List<logic.Section>> hashmap) {
-		Set<logic.DoubleTimes> keys = hashmap.keySet();
-		List<logic.DoubleTimes> sortedList = keys.stream().collect(Collectors.toList());
+	public static List<DoubleTimes> sortByKey(Map<DoubleTimes, List<Section>> hashmap) {
+		Set<DoubleTimes> keys = hashmap.keySet();
+		List<DoubleTimes> sortedList = keys.stream().collect(Collectors.toList());
 		Collections.sort(sortedList, (t1, t2) -> t1.compareTo(t2)); 
 		return sortedList;
 	}
 	   
-	public void filterAvailableClass(Map<String, logic.Section> hashmap) {
+	public void filterAvailableClass(Map<String, Section> hashmap) {
 		Set<String> keys = hashmap.keySet();
 		Set<String> keysToRemove = new HashSet<>();
 		for(String key: keys) {
@@ -157,14 +157,14 @@ public class GenerateSchedules {
 	//filter by Times
 	   
 	//main greedy schedule. Create one schedule with each class as it's own start
-	public static List<List<logic.DoubleTimes>> greedySchedule(int numOfClasses, List<logic.DoubleTimes> doubleTimesList){
+	public static List<List<DoubleTimes>> greedySchedule(int numOfClasses, List<DoubleTimes> doubleTimesList){
 		//n is the number of classes (all classes default to 4 units)
 		//d is the list of DoubleTimes?
 		int listSize = doubleTimesList.size();
-		List<List<logic.DoubleTimes>> mySchedule = new ArrayList<>();
+		List<List<DoubleTimes>> mySchedule = new ArrayList<>();
 		//I'm not sure if this will give all options, but it should give at least every different time as an option
 		for(int i = 0; i < listSize; i++) {
-			List<logic.DoubleTimes> temp = greedyHelper(numOfClasses, i, doubleTimesList);
+			List<DoubleTimes> temp = greedyHelper(numOfClasses, i, doubleTimesList);
 			if(temp.size() == numOfClasses) {
 				mySchedule.add(temp);
 			}
@@ -172,9 +172,9 @@ public class GenerateSchedules {
 		return mySchedule;
 	}
 	   
-	public static List<logic.DoubleTimes> greedyHelper(int numOfClasses, int currentIndex, List<logic.DoubleTimes> doubleTimesList){
+	public static List<DoubleTimes> greedyHelper(int numOfClasses, int currentIndex, List<DoubleTimes> doubleTimesList){
 		int listSize = doubleTimesList.size();
-		List<logic.DoubleTimes> schedule = new ArrayList<>();
+		List<DoubleTimes> schedule = new ArrayList<>();
 		schedule.add(doubleTimesList.get(currentIndex));
 		for(int j = currentIndex + 1; j < listSize + currentIndex; j++) {
 			if(j < listSize && allCompatible(schedule, doubleTimesList.get(j))) {
@@ -192,8 +192,8 @@ public class GenerateSchedules {
 		return schedule;
 	}
 	   
-	public static boolean allCompatible(List<logic.DoubleTimes> schedule, logic.DoubleTimes potential) {
-		for(logic.DoubleTimes times : schedule) {
+	public static boolean allCompatible(List<DoubleTimes> schedule, DoubleTimes potential) {
+		for(DoubleTimes times : schedule) {
 			if(!times.compatible(potential)) {
 				return false;
 			}
@@ -249,7 +249,7 @@ public class GenerateSchedules {
 	}
 
 	// just returns a list of list of sections with the first element used
-	public static List<List<Section>> getFirstSchedules(Map<logic.DoubleTimes, List<Section>> hashmap, List<List<logic.DoubleTimes>> listDoubleTimes) {
+	public static List<List<Section>> getFirstSchedules(Map<DoubleTimes, List<Section>> hashmap, List<List<DoubleTimes>> listDoubleTimes) {
 		List<List<Section>> schedules = new ArrayList<>();
 		List<Section> schedule = new ArrayList<>();
 		for (int i = 0; i < listDoubleTimes.size(); i++) {

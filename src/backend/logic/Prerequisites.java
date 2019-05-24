@@ -1,4 +1,4 @@
-package logic;
+package backend.logic;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package test;
+package backend.test;
 
 import static org.junit.Assert.assertTrue;
 
