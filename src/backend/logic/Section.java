@@ -95,5 +95,20 @@ public final class Section extends Class{
 	public boolean isAvailable() {
 		return maxCapacity > 0 && this.enrolled < this.maxCapacity;
 	}
+	
+	public void addToScheduleRow(List<ScheduleRow> rows) {
+		String status;
+		if(this.enrolled < this.maxCapacity) {
+			status = "open";
+		}else {
+			status = "closed";
+		}
+		rows.add(new ScheduleRow(this.getName(), this.type, this.num, this.prof, this.maxCapacity, 0/*reserved, no data*/,
+				this.enrolled, this.waitList, status, this.getLecTimes().getDay(), 
+				this.getLecTimes().getScheduleStart(), this.getLecTimes().getScheduleEnd()));
+		if(this.lab != null) {
+			this.lab.addToScheduleRow(rows);
+		}
+	}
 
 }
