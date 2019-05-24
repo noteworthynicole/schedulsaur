@@ -1,4 +1,4 @@
-package backend.test;
+package test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,10 +7,10 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import backend.logic.Database;
+import logic.Database;
 import org.junit.Test;
 
-import backend.logic.Class;
+import logic.Class;
 
 import static org.junit.Assert.assertEquals;
 

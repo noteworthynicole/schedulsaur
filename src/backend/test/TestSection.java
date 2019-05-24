@@ -1,10 +1,10 @@
-package backend.test;
+package test;
 
 import static org.junit.Assert.*;
 
 import java.util.*;
 
-import backend.logic.*;
+import logic.*;
 
 import org.junit.Test;
 

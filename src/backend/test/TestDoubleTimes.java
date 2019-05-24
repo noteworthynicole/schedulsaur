@@ -1,12 +1,12 @@
-package backend.test;
+package test;
 
 import static org.junit.Assert.*;
 
 import java.time.LocalTime;
 
 import org.junit.Test;
-import backend.logic.DoubleTimes;
-import backend.logic.Times;
+import logic.DoubleTimes;
+import logic.Times;
 
 public class TestDoubleTimes {
 	private String one = "01:00 PM";

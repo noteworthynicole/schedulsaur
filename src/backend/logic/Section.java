@@ -1,4 +1,4 @@
-package backend.logic;
+package logic;
 import java.util.*;
 
 public final class Section extends Class{

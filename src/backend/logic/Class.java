@@ -1,4 +1,4 @@
-package backend.logic;
+package logic;
 
 public class Class {
 

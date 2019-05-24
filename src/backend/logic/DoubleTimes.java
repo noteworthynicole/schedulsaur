@@ -1,20 +1,20 @@
-package backend.logic;
+package logic;
 
 import java.time.LocalTime;
 
 public class DoubleTimes {
-	private Times lecTimes;
-	private Times labTimes;
+	private logic.Times lecTimes;
+	private logic.Times labTimes;
 	
 	public DoubleTimes(String day, String startTime, String endTime) {
-		this.lecTimes = new Times(day, startTime, endTime);
+		this.lecTimes = new logic.Times(day, startTime, endTime);
 	}
 	
-	public Times getLecTimes() {
+	public logic.Times getLecTimes() {
 		return lecTimes;
 	}
 	
-	public Times getLabTimes() {
+	public logic.Times getLabTimes() {
 		return labTimes;
 	}
 	
@@ -46,15 +46,15 @@ public class DoubleTimes {
 		return false;
 	}
 	
-	public void setLabTime(Times time) {
+	public void setLabTime(logic.Times time) {
 		this.labTimes = time;
 	}
 	
 	public boolean compatible(DoubleTimes other) {
-		boolean result = Times.compatible(this.lecTimes, other.getLecTimes());
-		result = result && Times.compatible(this.lecTimes, other.getLabTimes());
-		result = result && Times.compatible(this.labTimes, other.getLecTimes());
-		result = result && Times.compatible(this.labTimes, other.getLabTimes());
+		boolean result = logic.Times.compatible(this.lecTimes, other.getLecTimes());
+		result = result && logic.Times.compatible(this.lecTimes, other.getLabTimes());
+		result = result && logic.Times.compatible(this.labTimes, other.getLecTimes());
+		result = result && logic.Times.compatible(this.labTimes, other.getLabTimes());
 		return result;
 	}
 

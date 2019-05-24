@@ -1,9 +1,9 @@
-package backend.test;
+package test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import backend.logic.Class;
+import logic.Class;
 
 public class TestClass {
 

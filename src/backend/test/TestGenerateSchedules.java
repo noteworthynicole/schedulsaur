@@ -1,10 +1,10 @@
-package backend.test;
+package test;
 
 import static org.junit.Assert.*;
 import java.util.*;
 
 import org.junit.Test;
-import backend.logic.*;
+import logic.*;
 
 public class TestGenerateSchedules {
 	
