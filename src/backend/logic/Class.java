@@ -1,6 +1,10 @@
-package backend.logic;
+package logic;
 
 public class Class {
+	
+	public static void main(String[] args) {
+		System.out.println("hello");
+	}
 
 	private String name;
 	private int units = 4;

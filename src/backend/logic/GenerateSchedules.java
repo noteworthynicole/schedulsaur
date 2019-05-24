@@ -1,4 +1,4 @@
-package backend.logic;
+package logic;
 import java.util.*;
 import java.util.Map.*;
 import java.util.stream.*;

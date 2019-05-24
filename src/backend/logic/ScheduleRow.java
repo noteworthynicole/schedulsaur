@@ -1,9 +1,11 @@
-package backend.logic;
+package logic;
+
+import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ScheduleRow {
+public class ScheduleRow implements Serializable {
 	
 	private String className;
 	private String sec;
@@ -18,7 +20,7 @@ public class ScheduleRow {
 	private String start;
 	private String end;
 
-	@JsonCreator
+	
 	public ScheduleRow(@JsonProperty("className") String className,
 			@JsonProperty("sec") String sec,
 			@JsonProperty("classNum") String classNum,

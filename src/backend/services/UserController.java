@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-import logic.User;
+import backend.logic.User;
 
 @RestController
 public class UserController {
