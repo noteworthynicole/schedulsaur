@@ -36,44 +36,6 @@ public class Times {
 		return startTime;
 	}
 	
-	public String getScheduleStart() {
-		int hour = this.startTime.getHour();
-		boolean am = true;
-		if(hour > 12) {
-			hour = hour - 12;
-			am = false;
-		}else if(hour == 12) {
-			am = false;
-		}
-		int minutes = this.startTime.getMinute();
-		String milit;
-		if(am) {
-			milit = "AM";
-		}else {
-			milit = "PM";
-		}
-		return hour + ":" + minutes + " " + milit;
-	}
-	
-	public String getScheduleEnd() {
-		int hour = this.endTime.getHour();
-		boolean am = true;
-		if(hour > 12) {
-			hour = hour - 12;
-			am = false;
-		}else if(hour == 12) {
-			am = false;
-		}
-		int minutes = this.endTime.getMinute();
-		String milit;
-		if(am) {
-			milit = "AM";
-		}else {
-			milit = "PM";
-		}
-		return hour + ":" + minutes + " " + milit;
-	}
-	
 	public LocalTime getEndTime() {
 		return endTime;
 	}
