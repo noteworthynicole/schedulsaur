@@ -6,5 +6,11 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="mysql-connector-java-5.1.47.jar"/>
 	<classpathentry kind="con" path="org.apache.ivyde.eclipse.cpcontainer.IVYDE_CONTAINER/?project=schedulsaur&amp;ivyXmlPath=ivy.xml&amp;confs=*"/>
+	<classpathentry kind="con" path="org.apache.ivyde.eclipse.cpcontainer.IVYDE_CONTAINER/?project=schedulesaur&amp;ivyXmlPath=file%3A%2FC%3A%2FUsers%2FLocal%2520Nicole%2FDocuments%2FCal%2520Poly%2FSpring%25202019%2F309%2FeclipseHatesMe%2Ftrunk%2Fivy.xml&amp;confs=*"/>
+	<classpathentry kind="lib" path="C:/Users/Local Nicole/.ivy2/cache/org.springframework.boot/spring-boot/jars/spring-boot-2.1.5.RELEASE.jar" rootpath="C:/Users/Local Nicole/.ivy2/cache/org.springframework.boot/spring-boot/sources/spring-boot-2.1.5.RELEASE-sources.jar" sourcepath="C:/Users/Local Nicole/.ivy2/cache/org.springframework.boot/spring-boot/sources/spring-boot-2.1.5.RELEASE-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:/Users/Local%20Nicole/.ivy2/cache/org.springframework.boot/spring-boot/javadocs/spring-boot-2.1.5.RELEASE-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

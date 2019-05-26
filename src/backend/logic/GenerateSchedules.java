@@ -21,23 +21,24 @@ public class GenerateSchedules {
 		List<DoubleTimes> doubleTimesList1 = sortByKey(hashMapTime);
 		//Greedy
 		List<List<DoubleTimes>> doubleTimesList2 = greedySchedule(4, doubleTimesList1);
-		//This is a placeholder
-		callToFrontEnd(doubleTimesList2);
+		//Getting the different combinations of classes
+		List<List<Section>> schedules = getPotentialSchedules(hashMapTime, doubleTimesList2);
+		//putting the classes into ScheduleRow objects for the frontend
+		System.out.println(listsOfSchedules(schedules));
+		
 	}
 	
 	//this is a placeholder
-	public static boolean callToFrontEnd(List<List<DoubleTimes>> doubleTimes) {
-		int numberOfSchedules = 0;
-		boolean callDatabase = false;
-		for(List<DoubleTimes> schedule : doubleTimes) {
-			if(!schedule.isEmpty()) {
-				numberOfSchedules++;
+	public static String[][] listsOfSchedules(List<List<Section>> doubleTimes) {
+		List<List<ScheduleRow>> outerList = new ArrayList<>();
+		for(int i=0; i<doubleTimes.size(); i++) {
+			outerList.add(new ArrayList<>());
+			List<ScheduleRow> innerList = outerList.get(i);
+			for(Section sec : doubleTimes.get(i)) {
+				sec.addToScheduleRow(innerList);
 			}
 		}
-		if(numberOfSchedules > 0) {
-			callDatabase = true;
-		}
-		return callDatabase;
+		return outerList.stream().map(u -> u.toArray(new String[0])).toArray(String[][]::new);
 	}
 	
 	public static Section createSection(String[] line) {
@@ -116,7 +117,7 @@ public class GenerateSchedules {
 			}
 		}
 		return hashMapTime;
-		}
+	}
 	   
 	public void filterClassName(Map<String, logic.Section> hashmap, String string){
 		//Uses mutation to filter out classes by name
@@ -157,14 +158,14 @@ public class GenerateSchedules {
 	//filter by Times
 	   
 	//main greedy schedule. Create one schedule with each class as it's own start
-	public static List<List<logic.DoubleTimes>> greedySchedule(int numOfClasses, List<logic.DoubleTimes> doubleTimesList){
+	public static List<List<DoubleTimes>> greedySchedule(int numOfClasses, List<DoubleTimes> doubleTimesList){
 		//n is the number of classes (all classes default to 4 units)
 		//d is the list of DoubleTimes?
 		int listSize = doubleTimesList.size();
-		List<List<logic.DoubleTimes>> mySchedule = new ArrayList<>();
+		List<List<DoubleTimes>> mySchedule = new ArrayList<>();
 		//I'm not sure if this will give all options, but it should give at least every different time as an option
 		for(int i = 0; i < listSize; i++) {
-			List<logic.DoubleTimes> temp = greedyHelper(numOfClasses, i, doubleTimesList);
+			List<DoubleTimes> temp = greedyHelper(numOfClasses, i, doubleTimesList);
 			if(temp.size() == numOfClasses) {
 				mySchedule.add(temp);
 			}
@@ -172,9 +173,9 @@ public class GenerateSchedules {
 		return mySchedule;
 	}
 	   
-	public static List<logic.DoubleTimes> greedyHelper(int numOfClasses, int currentIndex, List<logic.DoubleTimes> doubleTimesList){
+	public static List<DoubleTimes> greedyHelper(int numOfClasses, int currentIndex, List<DoubleTimes> doubleTimesList){
 		int listSize = doubleTimesList.size();
-		List<logic.DoubleTimes> schedule = new ArrayList<>();
+		List<DoubleTimes> schedule = new ArrayList<>();
 		schedule.add(doubleTimesList.get(currentIndex));
 		for(int j = currentIndex + 1; j < listSize + currentIndex; j++) {
 			if(j < listSize && allCompatible(schedule, doubleTimesList.get(j))) {

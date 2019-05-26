@@ -98,14 +98,31 @@ public final class Section extends Class{
 	
 	public void addToScheduleRow(List<ScheduleRow> rows) {
 		String status;
-		if(this.isAvailable()) {
+		if(this.enrolled < this.maxCapacity) {
 			status = "open";
 		}else {
 			status = "closed";
 		}
-		rows.add(new ScheduleRow(this.getName(), this.type, this.num, this.prof, this.maxCapacity, 0/*reserved, no data*/,
-				this.enrolled, this.waitList, status, this.getLecTimes().getDay(), 
-				this.getLecTimes().getScheduleStart(), this.getLecTimes().getScheduleEnd()));
+		String open;
+		if(this.maxCapacity - this.enrolled >= 0) {
+			open = String.valueOf(this.maxCapacity - this.enrolled);
+		}else {
+			open = "0";
+		}
+		String[] fields = new String[12];
+		fields[0] = this.getName();
+		fields[1] = this.type;
+		fields[2] = this.num;
+		fields[3] = this.prof;
+		fields[4] = String.valueOf(open);
+		fields[5] = "0"; //No way to know reserved seats -\"_"/-
+		fields[6] = String.valueOf(this.enrolled);
+		fields[7] = String.valueOf(this.waitList);
+		fields[8] = status;
+		fields[9] = this.getLecTimes().getDay();
+		fields[10] = this.getLecTimes().getScheduleStart();
+		fields[11] = this.getLecTimes().getScheduleEnd();
+		rows.add(new ScheduleRow(fields));
 		if(this.lab != null) {
 			this.lab.addToScheduleRow(rows);
 		}
