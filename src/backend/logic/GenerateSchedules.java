@@ -13,7 +13,7 @@ import java.util.stream.*;
 
 public class GenerateSchedules {
 	
-	public static void main(String[] args){
+	public static String[][] generateSchedules(){
 		Map<String, Section> hashMapInit = parseDbsCreateSections();
 		//Likely put a filter here to get rid of classes that are not relevant
 		Map<DoubleTimes, List<Section>> hashMapTime = classesByTime(hashMapInit);
@@ -24,8 +24,8 @@ public class GenerateSchedules {
 		//Getting the different combinations of classes
 		List<List<Section>> schedules = getPotentialSchedules(hashMapTime, doubleTimesList2);
 		//putting the classes into ScheduleRow objects for the frontend
-		System.out.println(listsOfSchedules(schedules));
-		
+		return listsOfSchedules(schedules);
+
 	}
 	
 	//this is a placeholder

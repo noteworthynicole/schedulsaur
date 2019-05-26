@@ -36,84 +36,33 @@ public class Times {
 		return startTime;
 	}
 	
+	private String getAM(int hour) {
+		if(hour >= 12) {
+			return "PM";
+		}else {
+			return "AM";
+		}
+	}
+	
 	public String getScheduleStart() {
 		int hour = this.startTime.getHour();
-		boolean am = true;
+		String milit = getAM(hour);
 		if(hour > 12) {
 			hour = hour - 12;
-			am = false;
-		}else if(hour == 12) {
-			am = false;
 		}
 		int minutes = this.startTime.getMinute();
-		String milit;
-		if(am) {
-			milit = "AM";
-		}else {
-			milit = "PM";
-		}
 		return hour + ":" + minutes + " " + milit;
 	}
 
 	public String getScheduleEnd() {
 		int hour = this.endTime.getHour();
-		boolean am = true;
-		if(hour > 12) {
-			hour = hour - 12;
-			am = false;
-		}else if(hour == 12) {
-			am = false;
-		}
+		String milit = getAM(hour);
 		int minutes = this.endTime.getMinute();
-		String milit;
-		if(am) {
-			milit = "AM";
-		}else {
-			milit = "PM";
-		}
 		return hour + ":" + minutes + " " + milit;
 	}
 
 	public LocalTime getEndTime() {
 		return endTime;
-	}
-	
-	public String getScheduleStart() {
-		int hour = this.startTime.getHour();
-		boolean am = true;
-		if(hour > 12) {
-			hour = hour - 12;
-			am = false;
-		}else if(hour == 12) {
-			am = false;
-		}
-		int minutes = this.startTime.getMinute();
-		String milit;
-		if(am) {
-			milit = "AM";
-		}else {
-			milit = "PM";
-		}
-		return hour + ":" + minutes + " " + milit;
-	}
-
- 	public String getScheduleEnd() {
-		int hour = this.endTime.getHour();
-		boolean am = true;
-		if(hour > 12) {
-			hour = hour - 12;
-			am = false;
-		}else if(hour == 12) {
-			am = false;
-		}
-		int minutes = this.endTime.getMinute();
-		String milit;
-		if(am) {
-			milit = "AM";
-		}else {
-			milit = "PM";
-		}
-		return hour + ":" + minutes + " " + milit;
 	}
 	
 	@Override
