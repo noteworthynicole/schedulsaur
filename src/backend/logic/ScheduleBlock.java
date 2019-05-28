@@ -50,16 +50,16 @@ public final class ScheduleBlock implements Serializable {
    */
    public String[] toDBFormat() {
       String[] hours = new String[7];
+      StringBuilder bld = new StringBuilder();
       for (int i = 0; i < blocks.length; i++) {
-         String avail = "";
          for (boolean b : blocks[i]) {
             if (b) {
-               avail += "1";
+               bld.append("1");
             } else {
-               avail += "0";
+               bld.append("0");
             }
          }
-         hours[i] = avail;
+         hours[i] = bld.toString();
       }
       return hours;
    }
