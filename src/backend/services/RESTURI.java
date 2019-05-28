@@ -10,5 +10,22 @@ public class RESTURI {
 	
 	public static final String GET_SAMPLE_USER = "/hello";
 	public static final String POST_USER = "/user";
-
+	
+	public static final String GET_SAMPLE_BLOCK = "/avail";
+	public static final String POST_BLOCK = "/block";
+	
+	/*
+	* URIs for Schedulsaur
+	*/
+	
+	public static final String SIGN_UP = "/Signup";
+	public static final String ABOUT = "/About";
+	public static final String DASHBOARD = "/Dashboard";
+	public static final String HISTORY = "/CourseHistory";
+	public static final String TIME_AVAIL = "/TimeAvailability";
+	public static final String DESIRED = "/DesiredCourses";
+	public static final String CREATE = "/CreateSchedules";
+	public static final String SAVED = "/SavedSchedules";
+	public static final String HELP = "/Help";
+	
 }
