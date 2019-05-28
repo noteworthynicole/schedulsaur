@@ -4,7 +4,7 @@ import SavedTimes from './SavedTimes';
 import TimeTable from './TimeTable';
 import TimePopup from './TimePopup';
 import { save, clear}  from '../../store/actions/timeActions';
-import './Time.css'
+import styles from './Time.module.css';
 
 /**
  *------------------------------------------------------- 
@@ -65,7 +65,7 @@ class Time extends Component{
 
         // show 'create' button if user is viewing a saved time preference, else hide it
         return(
-          <button style={{margin:'10%'}} className='green_button' onClick={this.handleClear}>
+          <button className='green_button' onClick={this.handleClear}>
             Create New
           </button>
         )
@@ -95,36 +95,38 @@ class Time extends Component{
     const { storeIsViewing } = this.props;
 
     return(
-      <div>
-        <div className='row'>
+      <div className={styles.main_container}>
 
-          {/* // Saved Availability Section  */}
+        {/* // Saved Availability Section  */}
 
-          <div className='col s4'>
-            <div style={{marginLeft:'10%'}}>
-              <h2 align='center' className='subtitle'>Saved Availability</h2>
+        <div className={styles.saved_container}>
+          <div className={styles.saved_content}>
+            <h2 align='center' className='subtitle'>Saved Availability</h2>
+            <div className={styles.name_list}>
               <SavedTimes />
-              <div align='center'>
-                {this.getButton(storeIsViewing, 'create')}
-              </div>
             </div>
           </div>
+          <div align='center' style={{height: '3vw'}}>
+            {this.getButton(storeIsViewing, 'create')}
+          </div>
+        </div>
 
-          {/* // Time Selection Table Section */}
+        {/* // Time Selection Table Section */}
 
-          <div className='col s6 offset-s1'>
+        <div className={styles.selection_container}>
+          <div className={styles.selection_content}>
             <h2 align='center' className='subtitle'>Select When You Are Available</h2>
-            <h6 align='center'> 
-              Click all the boxes that correspond to the hours and days <br />
-              that you do not want to have class. Any white boxes will be considered free.
-            </h6>
-            <div className='container timetable'>
-              <TimeTable />
-              <div align='right' className='timeButtons'>
-                {this.getButton(storeIsViewing, 'left')}
-                {this.getButton(storeIsViewing, 'right')}
-              </div>
+            <div align='center' style={{paddingTop: '1%'}} className='description'> 
+              Click all the boxes that correspond to the hours and days that you do <br/> 
+              not want to have class. Any white boxes will be considered free.
             </div>
+            <div className={styles.table_container}>
+              <TimeTable />
+            </div>
+          </div>
+          <div className={styles.button_container}>
+            {this.getButton(storeIsViewing, 'left')}
+            {this.getButton(storeIsViewing, 'right')}
           </div>
         </div>
       </div>

@@ -30,7 +30,7 @@ export default class Course extends Component {
         }}
       >
         <div className="leftSection">
-          <Checkbox className="checkBox" autoFocus="true" />
+          <Checkbox className="checkBox" autoFocus={true} />
         </div>
         <div className="midSection"> {this.props.courseName} </div>
       </div>

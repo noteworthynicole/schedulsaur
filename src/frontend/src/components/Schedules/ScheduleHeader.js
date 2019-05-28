@@ -1,5 +1,5 @@
 import React from 'react';
-import './Schedule.css'
+import styles from './Schedule.module.css';
 
 /**
  *------------------------------------------------------- 
@@ -11,11 +11,11 @@ import './Schedule.css'
 const ScheduleHeader = ({descriptors}) => {
     const headers = descriptors.map(header => {
         return(
-            <th className='sched_cell' key={header}>{header}</th>
+            <th className={styles.sched_cell} key={header}>{header}</th>
         );
     })
     return(
-        <tr className='sched_row'>
+        <tr className={styles.sched_row}>
             {headers}
         </tr>
     )

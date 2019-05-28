@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Dropdown.css';
+import styles from './Dropdown.module.css';
 
 /**
  *------------------------------------------------------- 
@@ -54,12 +54,12 @@ class Dropdown extends Component {
         // create dropdown menu
         const listelements = 
             this.state.isOpen ? (
-                <ul className='dropdown-cont'>{elements}</ul>
+                <ul className={styles.dropdown_content}>{elements}</ul>
             ) : (null)
 
         return(
-            <div className='dropdown'>
-                <div className='drop' onClick={this.toggleList}>
+            <div className={styles.dropdown}>
+                <div className={styles.drop} onClick={this.toggleList}>
                     {name}
                     {angleIcon}
                 </div>

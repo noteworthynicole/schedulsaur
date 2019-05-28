@@ -1,12 +1,17 @@
 /*
- * Flowchart
+ * Flowchart CSS Module
  */
 
+.grid_container{
+  width: 95%;
+  height: 80%;
+}
+
 .box {
-  height: 50px;
+  height: 5vh;
   border: solid 1px var(--dark_grey);
   text-align: center;
-  font-weight: 400;
+  font-size: .8vw;
   cursor: pointer;
 }
 
@@ -16,17 +21,17 @@
 
 .csc_box {
   margin:0;
-  background-color: #FFFFa1;
+  background-color: var(--major_class)
 }
 
 .support_box {
   margin:0;
-  background-color: #FFcc9d;
+  background-color: var(--support_class)
 }
 
 .ge_box {
   margin:0;
-  background-color: #b4dfb5;
+  background-color: var(--ge_class)
 }
 
 .empty_box {

@@ -1,31 +1,37 @@
 import React from 'react';
-import './About.css';
+import styles from './About.module.css';
 
 const About = (props) => {
     return(
-        <div>
-            <div style={{marginLeft:'20%'}}>
+        <div className={styles.about_container}>
+            <div className={styles.title_offset}>
                 <h1 className='title'>Schedulsaur</h1>
-                <h5 className='subtext'>a friendly schedule finder</h5>
+                <h5 className='title-description'>a friendly schedule finder</h5>
             </div>
-            <div className='container other'>
-                <h6 className='about'>
-                    schedulsaur is a scheduling app designed by <br/>
-                    cal poly students for cal poly students <br/>
-                </h6>
-                <h6 className='about'>
-                    update you time availability, generate schedules <br/>
-                    view degree progress and more <br/>
-                </h6>
-                <h6 className='about'>
-                    happy scheduling {'<3'} <br/>
-                    --team bulbasaur <br/>
-                </h6>
+            <div className={styles.info_container}>
+                <div className={styles.text_container}>
+                    <h6 className={styles.text}>
+                        schedulsaur is a scheduling app designed by <br/>
+                        cal poly students for cal poly students <br/>
+                    </h6>
+                </div>
+                <div className={styles.text_container}>
+                    <h6 className={styles.text}>
+                        update you time availability, generate schedules <br/>
+                        view degree progress and more <br/>
+                    </h6>
+                </div>
+                <div className={styles.text_container}>
+                    <h6 className={styles.text}>
+                        happy scheduling {'<3'} <br/>
+                        --team bulbasaur <br/>
+                    </h6>
+                </div>
+                <div className={styles.button_container}>
+                    <button className='green_button' onClick={props.history.goBack}>Back</button>
+                </div>
             </div>
-            <div className='container other'>
-                <button className='green_button' onClick={props.history.goBack}>Back</button>
-            </div>
-            <h6 style={{position:'absolute', right:'2%', bottom:'10%'}}>version 0.1.0</h6>
+            <h6 className={styles.version}>version 0.1.0</h6>
             <footer className='footer'></footer>
         </div>
     );

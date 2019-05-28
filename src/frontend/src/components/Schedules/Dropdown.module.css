@@ -1,32 +1,32 @@
 /*
- * Dropdown
+ * Dropdown CSS Module
  */
 
-.dropdown-cont {
+.dropdown_content {
   display: block;
   background-color: var(--light_grey);
   margin:0;
   padding:0; 
-  width: 70%;
-  font-size:120%;
+  width: 85%;
+  font-size: 1.5vw;
   color: var(--dark_grey);
   text-align:left;
   border-top: solid 2px var(--schedulsaur_green);
   cursor: pointer;
 }
 
-.dropdown-cont li:hover {
+.dropdown_content li:hover {
   color: var(--schedulsaur_green)
 }
 
 .dropdown .drop {
   margin: auto;
-  width: 70%;
+  width: 85%;
   text-align: left;
   margin-top:3%;
   color: var(--dark_grey);
   background-color: var(--light_grey);
-  font-size: 140%;
+  font-size: 1.8vw;
   padding-left: 5%;
   cursor: pointer;
 }

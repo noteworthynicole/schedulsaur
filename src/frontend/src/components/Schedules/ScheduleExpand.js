@@ -3,7 +3,7 @@ import Map from '../../Map2.png'
  import TableHeader from '../TimeAvailability/TableHeader';
 import TableBody from '../TimeAvailability/TableBody';
 import PinchZoomPan from 'react-responsive-pinch-zoom-pan';
-import './ScheduleExpand.css'
+import styles from './SchedExpand.module.css';
 
 /**
  *------------------------------------------------------- 
@@ -18,7 +18,7 @@ class ScheduleExpand extends Component{
      * --- disable scroll when interacting with map
      */
     disableScroll = () => {
-        var list = document.getElementsByClassName('ul');
+        var list = document.getElementsByClassName('interactive');
         list[0].classList.remove('scrollable')
         list[0].classList.add('nonscrollable')
     }
@@ -27,7 +27,7 @@ class ScheduleExpand extends Component{
      * --- enable scroll when not interacting with map
      */
     enableScroll = () => {
-        var list = document.getElementsByClassName('ul');
+        var list = document.getElementsByClassName('interactive');
         list[0].classList.remove('nonscrollable')
         list[0].classList.add('scrollable')
     }
@@ -35,8 +35,8 @@ class ScheduleExpand extends Component{
     render(){
         const { schedule } = this.props;
         return(
-            <div className='layout'>
-                <div className='image' onMouseOver={this.disableScroll} onMouseLeave={this.enableScroll}>
+            <div className={styles.layout}>
+                <div className={styles.image} onMouseOver={this.disableScroll} onMouseLeave={this.enableScroll}>
                     <PinchZoomPan 
                         position='center' 
                         initialScale={2.5} 
@@ -45,7 +45,7 @@ class ScheduleExpand extends Component{
                             <img src={Map} alt='Campus Map' width='100%'/>
                     </PinchZoomPan>
                 </div>
-                <table className='tb smallTable' align='center'>
+                <table className={styles.smallTable} align='center'>
                     <thead>
                         <TableHeader  />
                     </thead>

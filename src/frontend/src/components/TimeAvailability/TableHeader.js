@@ -1,5 +1,5 @@
 import React from 'react';
-import './TableHeader.css';
+import styles from './TimeTable.module.css';
 
 /**
  *------------------------------------------------------- 
@@ -8,14 +8,16 @@ import './TableHeader.css';
  */
 
 const TableHeader = () => {
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 
-                  'Thursday', 'Friday', 'Saturday'].map(day => {
+    const days = ['Sun.', 'Mon.', 'Tues.', 'Wed.', 
+                  'Thurs.', 'Fri.', 'Sat.'].map(day => {
         return(
-            <th key={day} className='day_name'> {day} </th>
+            <th key={day}> 
+                <div className={styles.day_name}>{day}</div> 
+            </th>
         );
     })
     return(
-        <tr className='table_tr'>
+        <tr className={styles.table_tr}>
             <th></th>
             {days}
         </tr>

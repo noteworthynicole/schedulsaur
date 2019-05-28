@@ -1,16 +1,10 @@
 /*
- * SavedTimes CSS
+ * SavedTimes CSS Module
  */
 
 .time_ul {
-    top: 150px;
-    bottom: 100px;
-    height: 350px;
-    overflow: hidden;
-    overflow-y: hidden;
-    margin: 0px;
-    padding: 5px;
-    border: 2px solid #ccc;
+    overflow-x: hidden;
+    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -21,7 +15,6 @@
 .time_li {
     padding: 10px 15px;
     border-bottom: 1px solid #ccc;
-    vertical-align: middle;
 }
 
 .time_li:last-child {

@@ -1,0 +1,75 @@
+/*
+ * ScheduleList CSS Module
+ */
+
+.li {
+    padding: 10px 15px;
+    border-bottom: 1px solid #ccc;
+    vertical-align: middle;
+}
+
+.ul {
+  top: 150px;
+  bottom: 100px;
+  height: 68vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  margin: 0px;
+  padding: 5px;
+  border: 2px solid #ccc;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 3%;
+}
+
+.empty{
+  height: 68vh;
+}
+
+.sched_entry{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3vw;
+}
+
+.sched_name {
+  font-size: 1.8vw;
+  font-weight: 600;
+}
+
+.check_container{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 25%;
+  height: 65%;
+}
+
+.green_check_box{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.box_green[type="checkbox"]+span:not(.lever){
+  display: block;
+}
+
+.box_green[type="checkbox"]+span:not(.lever):before, 
+ [type="checkbox"]:not(.filled-in)+span:not(.lever):after {
+  border: solid 2px var(--dark_grey);
+  background-color: white;
+}
+
+.box_green[type="checkbox"]:checked+span:not(.lever):before{
+  background-color: transparent;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: var(--schedulsaur_green);
+  border-right-color: var(--schedulsaur_green);
+}
+
+.modified{
+  margin-right: 15px !important;
+  width: 100% !important; 
+}

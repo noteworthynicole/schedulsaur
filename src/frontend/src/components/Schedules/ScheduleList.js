@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Schedule from './Schedule';
 import ScheduleExpand from './ScheduleExpand';
 import { view, select, deselect } from '../../store/actions/scheduleActions';
-import './ScheduleList.css'
+import styles from './SchedList.module.css'
 
 /**
  *------------------------------------------------------- 
@@ -59,12 +59,11 @@ class ScheduleList extends Component{
     showCheckBox = (addCheckBoxes, schedule_id, index) => {
         return(
             addCheckBoxes ? (
-                <div style={{float:'right', marginLeft:'10px', display:'inline'}}>
-                    <label>
-                        <input type='checkbox' className='box-green' id={schedule_id} index={index} onClick={this.handleSelect}/>
-                        <span className='sched_check'></span>
-                    </label>
-                </div>
+                <label className={styles.check_box}>
+                    <input type='checkbox' className={styles.box_green} 
+                            id={schedule_id} index={index} onClick={this.handleSelect}/>
+                    <span></span>
+                </label>
             ) : (null)
         )
     }
@@ -83,19 +82,21 @@ class ScheduleList extends Component{
         const list = 
         schedules.map((schedule, index) => {
             return(
-                <li className='li subsubtitles' key={index}>
-                    <div className='sched_entry'>
-                        <span className='sched_name'>
+                <li className={styles.li} key={index}>
+                    <div className={styles.sched_entry}>
+                        <div className={styles.sched_name}>
                             { schedule.name }
-                        </span>
-                        <button className='button_collection' id={schedule.id} index={index} onClick={this.handleView}>
-                            { viewing[index].text }
-                        </button>
-                        { this.showCheckBox(addCheckBoxes, schedule.id, index) }
+                        </div>
+                        <div className={styles.check_container}>
+                            <button className={`list-button-green ${styles.modified}`} id={schedule.id} 
+                                    index={index} onClick={this.handleView}>
+                                { viewing[index].text }
+                            </button>
+                            { this.showCheckBox(addCheckBoxes, schedule.id, index) }
+                        </div>
                     </div>
                     <Schedule descriptors={descriptors} schedule={schedule}/> 
                     { this.expandSchedule(schedule, viewing, index) }
-                    <div></div>
                 </li>
             );
         })
@@ -109,14 +110,16 @@ class ScheduleList extends Component{
             schedules.length ? (
 
                 // Show schedules if there are any
-                <ul className='ul scrollable'>
+                <ul className={`${styles.ul} interactive scrollable`}>
                    {this.listSchedules(storeDescriptors, schedules, storeViewing, addCheckBoxes)}
                     <div style={{marginBottom:'2%'}}></div>
                 </ul>
             ) : (
 
                 // Show text if there are no schedules
-                <h6 align='center'>{ emptyText }</h6>
+                <div className={styles.empty}>
+                    <h6 align='center'>{ emptyText }</h6>
+                </div>
             )
 
         return(

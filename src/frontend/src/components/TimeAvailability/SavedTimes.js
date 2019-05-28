@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import TimeNameEdit from './TimeNameEdit';
 import TimeNameNormal from './TimeNameNormal';
 import { editName, saveName, view, del } from '../../store/actions/timeActions';
-import './SavedTimes.css';
+import styles from './SavedTimes.module.css';
 
 /**
  *------------------------------------------------------- 
@@ -96,7 +96,7 @@ class SavedTimes extends Component{
             storeSavedTimes.length ? (
                 storeSavedTimes.map((time, index) => {
                     return(
-                        <li className='time_li' key={index}>
+                        <li className={styles.time_li} key={index}>
                             {this.normalOrEditBox(time.isEdit, time, index)}
                         </li>
                     );
@@ -106,7 +106,7 @@ class SavedTimes extends Component{
                 <div className='center'> You Have No Saved Time Preferences</div>
             )
         return(
-            <ul className='time_ul'>
+            <ul className={styles.time_ul}>
                 { savedList }
             </ul>
         );

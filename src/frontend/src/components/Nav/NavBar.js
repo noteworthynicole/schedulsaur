@@ -20,7 +20,7 @@ const NavBar = props => {
         Time Availability
       </NavLink>
 
-      <NavLink className="sidebar-button" to="/DesiredCourse">
+      <NavLink className="sidebar-button" to="/DesiredCourses">
         Desired Course
       </NavLink>
 

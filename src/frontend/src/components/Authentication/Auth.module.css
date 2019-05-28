@@ -1,21 +1,32 @@
 /*
- * Authentication
+ * Authentication CSS Module
  */
 
-.auth {
-  padding-top: 10vh;
+.main_container{
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
 }
-.form {
-  width: 40%;
-  margin-top: 3%;
-  margin-bottom: 1%;
+
+.form_container{
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button_container{
+  display: flex;
+  justify-content: center;
 }
 
 .login_button {
   background-color: var(--schedulsaur_green);
-  right: 5%;
-  margin-left: 20px;
   color: white;
+  margin: 3%;
+  height: 25px;
+  line-height: 25px;
 }
 
 .login_button:hover {
@@ -26,6 +37,9 @@
 .signup_button {
   background-color: white;
   color: var(--schedulsaur_green);
+  margin: 3%;
+  height: 25px;
+  line-height: 25px;
 }
 
 .signup_button:hover {

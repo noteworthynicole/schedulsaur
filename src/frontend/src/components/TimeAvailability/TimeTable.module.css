@@ -1,0 +1,62 @@
+/*
+ * TimeTable CSS
+ */
+
+.time_table {
+  table-layout: fixed;
+  width: 90%;
+  height: 95%;
+}
+
+/* 
+ * TableHeader CSS
+ */
+
+.table_tr {
+  border:none;
+  line-height:1px;
+  text-align: center;
+}
+
+.day_name {
+  font-size: 1.2vw;
+  font-weight: 500;
+  line-height: 1.5vw;
+  text-align: center;
+}
+
+.table_tr th{
+  padding: 5px;
+}
+
+
+/*
+ * TableBody CSS 
+ */
+
+.time_slot {
+  text-align: left;
+  font-variant-numeric: tabular-nums;
+  font-size: .8vw;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.table_tr td{
+  padding: 1.5%;
+  padding-bottom: 2.5%;
+  border-radius: 0;
+}
+
+.table_td {
+  border-left: solid 1px var(--dark_grey);
+  border-right: solid 1px var(--dark_grey);
+  border-bottom: solid 1px var(--dark_grey);
+  border-top: solid 1px var(--dark_grey);
+  cursor: pointer;
+}
+
+.table_td:hover{
+  background-color: var(--schedulsaur_green)
+}

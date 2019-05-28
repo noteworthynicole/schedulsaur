@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ScheduleList from './ScheduleList';
 import SortFilter from './SortFilter';
 import { save } from '../../store/actions/scheduleActions';
+import  styles from './MainSched.module.css';
 
 /**
  *------------------------------------------------------- 
@@ -28,24 +29,26 @@ class PotentialSchedules extends Component{
     render(){
         const { storeSchedules, storeSorters, storeFilters } = this.props;
         return(
-         <div>
-            <div className='row'>
-                <div className='col s8'>
+            <div className={styles.main_container}>
+
+                {/* // Schedule Section */}
+
+                <div className={styles.list_container}>
                     <h2 className='subtitle' align='center'>Potential Schedules</h2>
                     <ScheduleList  
                         schedules={storeSchedules} 
                         addCheckBoxes={true} 
                         emptyText={'No Schedules Meet Your Criteria'} 
                     />
-                </div>
-                <div className='col s4'>
+                </div> 
+
+                {/* // Filter/Sort Section */}
+
+                <div className={styles.filter_container}>
                     <SortFilter sorters={storeSorters} filters={storeFilters} />
-                    <div style={{marginTop:'10%'}} className='row' align='center'>
-                        <button className='green_button' onClick={this.handleSave}>Save Shedule(s)</button>
-                    </div>
+                    <button className='green_button' onClick={this.handleSave}>Save Shedule(s)</button>
                 </div>
             </div>
-        </div>
         )
     }
 }
