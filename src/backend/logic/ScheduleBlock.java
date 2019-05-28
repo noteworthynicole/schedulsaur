@@ -1,7 +1,14 @@
 package logic;
 
-public final class ScheduleBlock {
-   /*
+import java.io.Serializable;
+
+public final class ScheduleBlock implements Serializable {
+	
+   /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1438795722467582123L;
+/*
    * blocks contains a table of true/false values
    * gets from FrontEnd and Database
    * true = 1
@@ -13,7 +20,7 @@ public final class ScheduleBlock {
    private String[] days;
    private int availNum;
    private int studentId;
-
+   
    public ScheduleBlock(int studentId, int availNum, String[] days, boolean[][] blocks) {
       this.blocks = blocks;
       this.days = days;
