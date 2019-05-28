@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Circle from 'react-circle';
+import styles from './Dashboard.module.css';
 
 /**
  *------------------------------------------------------- 
@@ -14,24 +15,35 @@ class ProgressWheel extends Component{
 
     // Used for progress wheel animation
     componentDidMount() {
-        setInterval(() => {
+        this.interval = setInterval(() => {
             this.setState({
                 percentage: this.props.progress
             })
         }, );
     }
 
+    componentWillUnmount() {
+        clearInterval(this.interval)
+    }
+
     render(){
         return(
-            <div align='center'>
+            <svg align='center' style={{height: this.props.size, width: this.props.size}} 
+                className={styles.wheel}>
                 <Circle 
                     progress={this.state.percentage}
                     animationDuration='1s'
-                    size={this.props.size}
-                    textColor='#8b8b8b'
+                    size='100%'
+                    textColor='#fff'
                     progressColor='#5ea181'
                 />
-            </div>
+                <text className={styles.wheel_text} x='50%' y='48%' textAnchor='middle'>
+                    {this.state.percentage + '%'}
+                </text>
+                <text className={styles.wheel_text} x='50%' y='60%' textAnchor='middle'>
+                    {this.props.desc}
+                </text>
+            </svg>
         );
     }
 }

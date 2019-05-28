@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProgressWheel from './ProgressWheel';
 import StudentInfo from './StudentInfo';
-import { save } from '../../store/actions/studentActions'
-import './Dashboard.css'
+import { edit, save } from '../../store/actions/studentActions'
+import styles from './Dashboard.module.css';
 
 /**
  *------------------------------------------------------- 
@@ -14,13 +14,11 @@ import './Dashboard.css'
 class DashBoard extends Component{
 
     state = {
-        isEdit: false,
-        tempM: this.props.student.major,
-        tempC: this.props.student.catalog_year,
-        tempE: this.props.student.expected_grad,
-        tempUT: this.props.student.units_this_quarter,
-        tempUP: this.props.student.units_per_quarter,
-        editButton: 'Edit Profile'
+        type0: this.props.student.info[0].text,
+        type1: this.props.student.info[1].text,
+        type2: this.props.student.info[2].text,
+        type3: this.props.student.info[3].text,
+        type4: this.props.student.info[4].text
     }
 
     /**
@@ -37,42 +35,40 @@ class DashBoard extends Component{
      * --- Called when edit profile button is clicked
     */
     handleEdit = () => {
-        if(this.state.isEdit===false){
-            this.setState({
-                isEdit: !this.state.isEdit,
-                editButton: 'Cancel'
-            })
-        }else{
-
-            // discard any changes
-            this.setState({
-                isEdit: !this.state.isEdit,
-                tempM: this.props.student.major,
-                tempC: this.props.student.catalog_year,
-                tempE: this.props.student.expected_grad,
-                tempUT: this.props.student.units_this_quarter,
-                tempUP: this.props.student.units_per_quarter,
-                editButton: 'Edit Profile'
-            })
-        }
+        this.props.edit();
     }
 
     /**
      * --- Called when save button is clicked
     */
     handleSave = () => {
-        if(this.state.isEdit===true){
+        if(this.props.student.isEdit===true){
             this.props.save(
-                this.state.tempM,
-                this.state.tempC,
-                this.state.tempE,
-                this.state.tempUT,
-                this.state.tempUT
+                this.state.type0,
+                this.state.type1,
+                this.state.type2,
+                this.state.type3,
+                this.state.type4
             )
-            this.setState({
-                isEdit: !this.state.isEdit
-            })
         }
+    }
+
+    /**
+     * --- Creates the student info section of the dashboard
+     */
+    createInfo = () => {
+        let student_info = 
+            this.props.student.info.slice(1).map((element, index) => {
+                return(
+                    <div key={index}>{element.type + ': '}
+                        <StudentInfo id={'type'+index} info={element.text} 
+                                     edit={this.props.student.isEdit}
+                                     handleChange={this.handleChange}
+                        />
+                    </div>
+                )
+        })
+        return (student_info)
     }
 
     render(){
@@ -80,66 +76,45 @@ class DashBoard extends Component{
         return(
             <div>
                 <h2 className='subtitle' align='center'>Dashboard</h2>
-                <div className='row dash'>
+                <div className={styles.main_container}>
 
                     {/* // Left Section of Dashboard */}
-                    
-                    <div align='right' className='col s3 offset-s1 progress_wheel'>
-                        <ProgressWheel progress={student.major_percent} size='350'/>
-                        <h5 align='center'>Degree Progress</h5>
-                    </div>
-                    <div className='col s2 progress_wheel'>
-                        <ProgressWheel progress={student.support_percent} size='150'/>
-                        <h5 className='desc' align='center'>Support Progress</h5>
-                        <ProgressWheel progress={student.ge_percent} size='150'/>
-                        <h5 className='desc' align='center'>GE Progress</h5>
+
+                    <div className={styles.prog_container}>
+                        <div className={styles.main_wheel}>
+                            <ProgressWheel progress={student.major_percent} size='100%' desc='Degree'/>
+                        </div>
+                        <div className={styles.sub_wheel}>
+                            <ProgressWheel progress={student.support_percent} size='65%' desc='Support'/>
+                            <ProgressWheel progress={student.ge_percent} size='65%' desc='GE'/>
+                        </div>
                     </div>
 
                     {/* // Right Section of Dashboard */}
 
-                    <div className='col s3 offset-s2 info_section'>
-                        <div className='subsubtitle'>
-                            <h5> Name:  
-                                <span className='dashboard_text'>
-                                    {' ' + student.name}
+                    <div className={styles.student_container}>
+                        <div className={`${styles.info_container} subsubtitle`}>
+                            <div> Name:  
+                                <span className={styles.text}>
+                                    {' ' + student.info[0].text}
                                 </span>
-                            </h5>
-                            <div className='row'></div>
-                            <div className='row'></div>
-                            <h5>Major:
-                                <StudentInfo id='tempM' info={this.state.tempM}
-                                             handleChange={this.handleChange} 
-                                             edit={this.state.isEdit} />
-                            </h5>
-                            <h5>Catalog Year:
-                                <StudentInfo id='tempC' info={this.state.tempC}
-                                             handleChange={this.handleChange} 
-                                             edit={this.state.isEdit} />
-                            </h5>
-                            <h5>Expected Graduation:
-                                <StudentInfo id='tempE' info={this.state.tempE}
-                                             handleChange={this.handleChange} 
-                                             edit ={this.state.isEdit} />
-                            </h5>
-                            <div className='row'></div>
-                            <div className='row'></div>
-                            <h5>Units This Quarter:
-                                <StudentInfo id='tempUP' info={this.state.tempUP}
-                                             handleChange={this.handleChange} 
-                                             edit ={this.state.isEdit} />
-                            </h5>
-                            <h5>Units Per Quarter:
-                                <StudentInfo id='tempUT' info={this.state.tempUT}
-                                             handleChange={this.handleChange} 
-                                             edit ={this.state.isEdit} />
-                            </h5>
+                            </div>
+                            <div className={styles.info}>
+                                {this.createInfo()}
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div style = {{margin: '0px'}} className='row'>
-                    <div className='col s4 offset-s8' >
+
+                    {/* // Bottom Section of Dashboard */}
+
+                <div className={styles.bottom_container}>
+                    <div className='description'>
+                        *Degree Progress is Measured with the classes you have inputted.
+                    </div>
+                    <div className={styles.button_container}>
                         <button className='white_button' onClick={this.handleEdit}>
-                            {this.state.editButton}
+                            {student.editButton}
                         </button>
                         <button className='green_button' onClick={this.handleSave}>
                             Save
@@ -172,7 +147,8 @@ const mapStateToProps = (state, ownProps) => {
  */
 const mapStateToDispatch = (dispatch) => {
     return{
-        save: (tempM, tempC, tempE, tempUT, tempUP) => { dispatch(save(tempM, tempC, tempE, tempUT, tempUP)) }
+        save: (tempM, tempC, tempE, tempUT, tempUP) => { dispatch(save(tempM, tempC, tempE, tempUT, tempUP)) },
+        edit: () => { dispatch(edit()) }
     }
 }
 

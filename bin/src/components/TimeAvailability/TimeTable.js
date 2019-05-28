@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 import { changeAvailable } from '../../store/actions/timeActions';
-import './TimeTable.css';
+import styles from './TimeTable.module.css';
 
 /**
  *------------------------------------------------------- 
@@ -25,7 +25,7 @@ class TimeTable extends Component{
     render(){
         const { storeTimeTable } = this.props;
         return(
-            <table className='tb' align='center'>
+            <table className={styles.time_table}>
                 <thead>
                     <TableHeader />
                 </thead>

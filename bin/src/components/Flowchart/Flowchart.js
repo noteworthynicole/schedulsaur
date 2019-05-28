@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect }  from 'react-redux';
-import './Flowchart.css'
+import styles from './Flow.module.css';
 
 class Flowchart extends Component{
 
@@ -10,13 +10,13 @@ class Flowchart extends Component{
     createBox = (course) => {
         switch(course.type){
             case 'CSC':
-                return <div className='box csc_box'>CSC<br/>...</div>
+                return <div className={`${styles.box} ${styles.csc_box}`}>CSC<br/>...</div>
             case 'Support':
-                return <div className='box support_box'>Support<br/>...</div>
+                return <div className= {`${styles.box} ${styles.support_box}`}>Support<br/>...</div>
             case 'GE':
-                return <div className='box ge_box'>GE<br/>...</div>
+                return <div className={`${styles.box} ${styles.ge_box}`}>GE<br/>...</div>
             default:
-                return <div className='empty_box'></div>
+                return <div className={styles.empty_box}></div>
         }
     }
 
@@ -53,7 +53,7 @@ class Flowchart extends Component{
     render(){
         const { courses } = this.props;
         return(
-            <div>
+            <div className={styles.grid_container}>
                 {this.createGrid(courses.flowchart)}
             </div>
         )

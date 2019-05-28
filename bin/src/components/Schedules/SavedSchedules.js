@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { view } from '../../store/actions/scheduleActions';
 import ScheduleList from './ScheduleList';
 import SortFilter from './SortFilter';
+import  styles from './MainSched.module.css';
 
 /**
  *------------------------------------------------------- 
@@ -20,12 +21,11 @@ class SavedSchedules extends Component{
     render(){
         const { storeSavedSchedules, storeSorters, storeFilters } = this.props;
         return(
-         <div>
-            <div className='row'>
-                <div className='col s8'>
+            <div className={styles.main_container}>
 
                     {/* // Schedule Section */}
 
+                <div className={styles.list_container}>
                     <h2 className='subtitle' align='center'>Saved Schedules</h2>
                     <ScheduleList  
                         schedules={storeSavedSchedules} 
@@ -33,14 +33,13 @@ class SavedSchedules extends Component{
                         emptyText={'No Saved Schedules'}     
                     />
                 </div>
-                <div className='col s4'>
 
                     {/* // Sort & Filter Section */}
 
+                <div className={styles.filter_container}>
                     <SortFilter sorters={storeSorters} filters={storeFilters}/>
                 </div>
             </div>
-        </div>
         )
     }
 }

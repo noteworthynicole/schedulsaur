@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import './TableBody.css'
+import styles from './TimeTable.module.css';
 
 /**
  *------------------------------------------------------- 
@@ -24,11 +24,13 @@ class TableBody extends Component{
                     selected ? (
                         // fill green if selected
                         <td key={index} row_id={row_index} col_id={index} 
-                            bgcolor='#5ea181' className='table_td' onClick={this.props.handleSelect}></td>
+                            bgcolor='#5ea181' className={styles.table_td} 
+                            onClick={this.props.handleSelect}></td>
                     ) : (
                         // fill white if not selected
                         <td key={index} row_id={row_index} col_id={index} 
-                            className='table_td' onClick={this.props.handleSelect}></td>
+                            className={styles.table_td} 
+                            onClick={this.props.handleSelect}></td>
                     )
                 )
             })
@@ -39,8 +41,10 @@ class TableBody extends Component{
         const { table } = this.props;
         const times = table.map((time, index) => {
             return(
-                <tr className='table_tr' key={index}>
-                    <td className='time_slot'>{time.time}</td>
+                <tr className={styles.table_tr} key={index}>
+                    <td className={styles.time_slot}>
+                        {time.time}
+                    </td>
                     {this.fillRow(time, index)}
                 </tr>
             )

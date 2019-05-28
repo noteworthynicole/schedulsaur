@@ -1,6 +1,6 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
-import './TimePopup.css';
+import styles from './TimePopup.module.css';
 
 /**
  *------------------------------------------------------- 
@@ -20,7 +20,7 @@ const TimePopup = ({trigger, onSave, onChange}) => {
                     <h5 align='left'>Title</h5>
                     <form onSubmit={(e) => {onSave(e, close)}}>
                         <input type='text' placeholder='New Name' autoFocus={true} onChange={onChange}/>
-                        <button align='right' className='button_popup'>ok</button>
+                        <button align='right' className={styles.button_popup}>ok</button>
                     </form>
                 </div>
             )}

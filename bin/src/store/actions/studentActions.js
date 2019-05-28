@@ -1,3 +1,13 @@
+/**
+ * edit
+ * 
+ * @desc Edit the user's information
+ */
+export const edit = () => {
+    return{
+        type: 'EDIT_INFO'
+    }
+}
 
 /**
  * save 
@@ -19,3 +29,4 @@ export const save = (major, catalog, expected, units_this, units_per) => {
         units_per: units_per
     }
 }
+

@@ -1,23 +1,43 @@
-/* https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp thank u w3schools */
-
-.all {
-  /* TO USE: do var(--name_of_variable) */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   --schedulsaur_green: #5ea181;
   --light_grey: #ececec;
   --middle_grey: #dddddd;
+  --other_grey: #b0b0b0;
   --dark_grey: #8b8b8b;
   --major_class: #ffff99;
   --support_class: #ffcc99;
   --ge_class: #b3dfb3;
-  width: 100%;
-  height: 100%;
-  cursor: default;
 }
 
-body {
-  height: 100vh;
-  background-size: cover;
+body{
   overflow: hidden;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+
+}
+
+.title-container{
+  display: flex;
+  flex-flow: column;
+  padding: 3%;
+  margin: 3%;
+}
+
+.title {
+  color: var(--schedulsaur_green);
+  font-weight: bold;
+  font-size: 400%;
+  letter-spacing: 6px;
+  margin: auto;
+}
+
+.title-description {
+  position: relative;
+  margin: auto;
+  letter-spacing: 1px;
 }
 
 .main {
@@ -55,7 +75,7 @@ body {
   height: calc(100vh - 70px);
   display: flex;
   flex-direction: row;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 .sidebar {
@@ -124,39 +144,35 @@ body {
   display: block;
 }
 
-.title {
-  color: var(--schedulsaur_green);
-  font-weight: bold;
-  letter-spacing: 4px;
-  padding-top: 2%;
-}
-
-.title_description {
-  padding-bottom: 1%;
-  line-height: 0;
-}
-
 .subtitle {
   color: black;
-  font-weight: 550;
-  font-size: 300%;
+  font-weight: 500;
+  font-size: 40px;
   letter-spacing: 1px;
   margin-top: 30px;
-  padding-bottom: 1%;
+  margin-bottom: 0;
 }
 
-.subsubtitle h5{
+.subsubtitle {
   color: black;
+  font-size: 2.0vw;
   font-weight: 550;
+}
+
+.description{
+  color: black;
+  font-size: 1.1vw;
+  margin-bottom: 15px;
+  line-height: 1.2;
 }
 
 .green_button {
-  width: 190px;
-  height: 30px;
+  width: 15vw;
+  height: 25px;
   color: white;
   background-color: var(--schedulsaur_green);
   border: none;
-  margin-bottom: 5%;
+  margin-bottom: 15px;
   text-align: center;
   cursor: pointer;
 }
@@ -171,13 +187,13 @@ body {
 }
 
 .white_button {
-  width: 190px;
-  height: 30px;
+  width: 15vw;
+  height: 25px;
   color: var(--schedulsaur_green);
-  border: 2px solid var(--dark_grey);
+  border: 2px solid var(--other_grey);
   background-color: white;
-  margin-right: 5%;
-  margin-bottom: 5%;
+  margin-right: 15px;
+  margin-bottom: 15px;
   text-align: center;
   cursor: pointer;
 }
@@ -191,533 +207,102 @@ body {
   background-color: white;
 }
 
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  height: 10%;
-  left: 0%;
-  bottom: 0%;
-  width: 100%;
-  z-index: 1;
+.list-button-green {
+  height: 85%;
+  width: 100px;
   background-color: var(--schedulsaur_green);
-}
-
-input {
-  color: var(--dark_grey)
-}
-
-input:focus {
-  color: black;
-  border-bottom-color: var(--schedulsaur_green) !important;
-  box-shadow: 0 1px 0 0 var(--schedulsaur_green) !important;
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-  background: transparent;
-}
-
-::-webkit-scrollbar {
-  margin-left: 20%;
-  width: .5em;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--schedulsaur_green);
-  border-radius: 20pt;
-}
-
-::-webkit-scrollbar-track {
-  background: white;
-}
-
-.app-body::-webkit-scrollbar-thumb {
-  all: unset;
-}
-
-/*
-I think  using a div will work better for logo text styles
-.header p {
-  padding: 0px 8px 35px 16px;
-  // text-decoration to be updated at some point? 
-  text-decoration: none;
-  color: #fff;
-  display: block;
-} */
-/*
-
-.button {
-  width: 190px;
-  height: 30px;
-  border-style: solid;
-  border-width: 2px;
-  bottom: 1%;
+  border-color: var(--schedulsaur_green);
+  border: none;
+  color: white;
   text-align: center;
-  vertical-align: middle;
+  cursor: pointer;
+  margin: 3px;
 }
 
-#button_left {
-  background-color: #fff;
-  border-color: var(--dark_grey);
-  color: var(--schedulsaur_green)
-}
-
-#button_left a {
-  color: #5ea181;
-  display: block;
-}
-
-#button_right {
-  background-color: var(--schedulsaur_green);
-  border-color: var(--schedulsaur_green);
-  right: 5%;
-  margin: 20px;
-  color: white;
-}
-
-#button_right a {
-  color: #fff;
-  display: block;
-}
-
-.main {
-  margin-left: 190px;
-  margin-top: 17px;
-  width: 100%;
-  padding: 0px 10px;
-} 
-
-/*
-*
-* Roberto's adds
-*
-*/
-
-/* Main */
-/*
-.title{
-  color: var(--schedulsaur_green);
-  font-weight: bold;
-}
-
-.schedule{
-  top: 0%;
-}
-
-.container{
-  width:50%;
-}
-
-/* Main */
-/*
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  height: 10%;
-  left: 0%;
-  bottom: 0%;
-  width: 100%;
-  z-index: 1;
-  background-color: var(--schedulsaur_green);
-}
-
-.dashcols {
-  display: inline-block;
-  position: relative;
-  padding: 5%;
-  padding-top: 3%;
-}
-
-#dashtitle{
-  font-weight: 300px;
-}
-
-/* Main */
-/*
-.subsubtitle h5{
-  color: black;
-  font-weight: 600;
-}
-
-/* Main */
-/*
-.subsubtitle i{
-  color: black;
-  font-weight: 600;
-}
-
-/* Main */
-/*
-.subtitle {
-  color: black;
-  font-weight: 700;
-}
-
-
-input {
-  color: var(--dark_grey)
-}
-
-input:focus {
-  color: black;
-  border-bottom-color: var(--schedulsaur_green) !important;
-  box-shadow: 0 1px 0 0 var(--schedulsaur_green) !important;
-}
-
-.button_collection {
-  width: 120px;
-  background-color: var(--schedulsaur_green);
-  border-color: var(--schedulsaur_green);
-  color: white;
-}
-.button_collection:focus{
+.list-button-green:focus{
   background-color: var(--schedulsaur_green);
   border:none;
 }
-.button_collection_edit {
+
+.list-button-green:hover {
+  background-color: var(--schedulsaur_green);
+  box-shadow: 4px 5px 4px var(--middle_grey);
+}
+
+.list-button-white {
   width: 80px;
-  font-size: 80%;
+  margin-right: 1%;
   background-color: white;
-  border: solid 1px var(--dark_grey);
+  border: solid 1px var(--other_grey);
   color: var(--schedulsaur_green);
-}
-
-.button_collection_edit:focus{
-  border: solid 1px var(--dark_grey);
-  background-color: white;
-  border: solid 1px var(--dark_grey);
-}
-
-.tb {
-  border-collapse:collapse;
-  table-layout: fixed;
-}
-
-.table_tr {
-  border:none;
-  line-height:1px;
-}
-
-.table_td {
-  border-left: solid 1px var(--dark_grey);
-  border-right: solid 1px var(--dark_grey);
-  border-bottom: solid 1px var(--dark_grey);
-  border-top: solid 1px var(--dark_grey);
-}
-
-.table_td:hover {
-  background-color: var(--schedulsaur_green)
-}
-
-.dropdown .drop {
-  margin: auto;
-  width: 70%;
-  text-align: left;
-  margin-top:3%;
-  color: var(--dark_grey);
-  background-color: var(--light_grey);
-  font-size: 140%;
-  padding-left: 5%;
-}
-
-.dropdown-cont {
-  display: block;
-  background-color: var(--light_grey);
-  margin:0;
-  padding:0; 
-  width: 70%;
-  font-size:120%;
-  color: var(--dark_grey);
-  text-align:left;
-  border-top: solid 2px var(--schedulsaur_green)
-}
-
-.dropdown-cont li:hover {
-  color: var(--schedulsaur_green)
-}
-
-.about {
   text-align: center;
-  margin-top: 8%;
-  font-size:170%;
-  font-weight: 100px;
+  cursor: pointer;
 }
 
-.sch_button {
-  width: 80%;
-  height:100%;
-  color: white;
+.list-button-white:focus{
+  border: solid 1px var(--other_grey);
+  background-color: white;
+}
+
+.list-button-white:hover {
+  background-color: white;
+  box-shadow: 4px 5px 4px var(--middle_grey);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  height: 10%;
+  left: 0%;
+  bottom: 0%;
+  width: 100%;
+  z-index: 1;
   background-color: var(--schedulsaur_green);
-  border:none;
-  font-size: 100%;
-  padding-right: 0%;
-  margin-right: 20%;
 }
 
-.input[type=checkbox] {
-  vertical-align: middle;
+.scrollable:hover{
+  overflow-y: overlay;
 }
 
-.check {
-  display: inline;
-  vertical-align: middle;
-}
-
-
-.box-green[type="checkbox"]+span:not(.lever):before, 
- [type="checkbox"]:not(.filled-in)+span:not(.lever):after {
-  border: solid 2px var(--dark_grey);
-  background-color: white;
-}
-
-.box-green[type="checkbox"]:checked+span:not(.lever):before{
-  background-color: transparent;
-  border-top-color: transparent;
-  border-left-color: transparent;
-  border-bottom-color: var(--schedulsaur_green);
-  border-right-color: var(--schedulsaur_green);
-  
-}
-
-::-webkit-scrollbar {
-  margin-left: 20%;
-  width: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--schedulsaur_green);
-}
-
-::-webkit-scrollbar-track {
-  background: white;
-}
-
-.ul_sched {
+.nonscrollable:hover{
   overflow: hidden;
-  overflow-y:auto;
-  margin: 0px;
-  padding: 5px;
-  
-  border: 2px solid #ccc;
-  
-  font-size: 20px;
-  font-family: Arial, sans-serif;
-  
-  -webkit-overflow-scrolling: touch;
 }
 
-.button_popup {
-  color: var(--schedulsaur_green);
-  background-color: white;
-  font-size: 24px;
-  border: none;
-  margin-top: 2%;
-  margin-bottom: 1.5%;
-  margin-right: 3%;
+input {
+  color: var(--dark_grey)
 }
 
-.button_popup:focus {
-  color: var(--schedulsaur_green);
-  background-color: white;
-  font-size: 20px;
-  border: none;
+input:focus {
+  color: black;
+  border-bottom-color: var(--schedulsaur_green) !important;
+  box-shadow: 0 1px 0 0 var(--schedulsaur_green) !important;
 }
 
-.smallTable td{
-  font-size: .8rem;
-  pointer-events: none;
-  padding: 1%;
-}
+@media only screen and (max-width: 1240px){
 
-.smallTable .table_tr{
-  font-size: .8rem;
-  pointer-events: none;
-  padding:15px;
-}
-
-.box {
-  height: 50px;
-  border: solid 1px var(--dark_grey);
-  text-align: center;
-  font-weight: 400;
-}
-
-.box:hover {
-  filter: brightness(75%)
-}
-
-
-/*
-*
-* Jack's adds
-*
-*/
-/*
-.column {
-  float: left;
-  width: 48%;
-  padding: 10px;
-  font-size: 24px;
-  color:var(--dark_grey);
-}
-
-* {box-sizing: border-box;}
-
-.ul {
-  top: 150px;
-  bottom: 100px;
-  height: 350px;
-
-  overflow: hidden;
-  overflow-y:auto;
-  margin: 0px;
-  padding: 5px;
-  
-  border: 2px solid #ccc;
-  
-  font-size: 20px;
-  font-family: Arial, sans-serif;
-  
-  -webkit-overflow-scrolling: touch;
-}
-
-.li {
-  padding: 10px 15px;
-  
-  border-bottom: 1px solid #ccc;
-} 
-
-.li:last-child {
-    border-bottom: none;
-  }
-  
-.li:nth-child(even) {
-    background: #f8f8f8;
+  .title{
+    font-size: 350%;
   }
 
-/* Clear floats after the columns */
-/*
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
+  .title-description{
+    font-size: 150%;
+  }
+
+  .subtitle {
+    font-size: 30px;
+  }
+
+  .green_button {
+    height: 22px;
+  }
+  .white_button {
+    height: 22px;
+  }
+
+  h6{
+    font-size: 80%;
+  }
 }
 
-.calbutton {
-  width: 40px;
-  height: 100%;
-  margin-left: 5px;
-  background-color: var(--dark_grey);
-}
-
-.calcolumn {
-  float: center;
-  width: 75%;
-  padding: 2px;
-  font-size: 12px;
-  color:var(--dark_grey);
-}
-
-#tsch {
-   width: 90%;
-   border: 2px solid black;
-   border-collapse: collapse;
-}
-
-#thsch {
-   width: 50px;
-   border: 2px solid black;
-   border-collapse: collapse;
-   margin: 10px;
-}
-
-#tdsch {
-   width: 50px;
-   border: 2px solid black;
-   border-collapse: collapse;
-}
-
-h1{
-  font-size: 56px;
-  color: var(--schedulsaur_green);
-}
-
-h2{
-  font-size: 36px;
-  color: var(--dark_grey);
-}
-
-a{
-  color:var(--dark_grey);
-}
-
-
-/*Login page only*/
-/*
-.loginWrapper{
-    vertical-align: middle;
-    text-align:center;
-    padding-top: 5%;
-}
-
-.login_input{
-  height: 30px;
-  width: 300px;
-  margin: 5px;
-  background-color: var(--light_grey);
-  border-color: var(--dark_grey);
-}
-
-.loginButton {
-    width: 190px;
-    height: 30px;
-    border-style: solid;
-    border-width: 3px;
-    text-align: center;
-    margin: 13px 12px 12px 10px;
-    display:inline-block;
-}
-
-/* Dashboard page for formating */
-/* Create two equal columns that floats next to each other */
-/*
-.column {
-  float: left;
-  width: 48%;
-  padding: 10px;
-  font-size: 24px;
-  color:var(--dark_grey);
-}
-
-/* Clear floats after the columns */
-/*
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.bottom_zone {
-    height: 70px;
-    width: 100%;
-    position: fixed;
-    z-index: 1;
-    bottom: 0;
-    left: 0;
-    background-color: var(--schedulsaur_green);
-    overflow-y: hidden;
-    padding-top: 20px;
-}
-
-.bottom_zone p {
-    padding: 0px 8px 35px 16px;
-    text-decoration: none;
-    color: #fff;
-    display: block;
-}
-
-
-*/

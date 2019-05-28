@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Schedule.css'
+import styles from './Schedule.module.css';
 
 /**
  *------------------------------------------------------- 
@@ -20,7 +20,7 @@ class ScheduleBody extends Component{
         Object.keys(course).forEach((element, index)=>{
             if(course.hasOwnProperty(element)){
                 values.push(
-                    <td key={index} className='sched_cell'>{ course[element] }</td>
+                    <td key={index} className={styles.sched_cell}>{ course[element] }</td>
                 )     
             }
         })

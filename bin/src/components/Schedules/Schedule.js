@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ScheduleHeader from './ScheduleHeader';
 import ScheduleBody from './ScheduleBody';
-import './Schedule.css'
+import styles from './Schedule.module.css'
 
 /**
  *------------------------------------------------------- 
@@ -13,8 +13,8 @@ class Schedule extends Component{
     render(){
         const { descriptors, schedule } = this.props;
         return(
-            <table className='sched_table'>
-                <thead className='sched_header'>
+            <table className={styles.sched_table}>
+                <thead className={styles.sched_header}>
                     <ScheduleHeader descriptors={descriptors} />
                 </thead>
                 <ScheduleBody classes={schedule.classes}/>

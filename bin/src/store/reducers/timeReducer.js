@@ -10,11 +10,11 @@ const initState = {
      * @param {Boolean} isEdit indicates wheter user is editing a time preference
      */
     saved: [
-        {id: '0', name: 'Winter 2018', text: 'View', isEdit: false},
-        {id: '1', name: 'Summer Quarter', text: 'View', isEdit: false},
-        {id: '2', name: 'More Sleep', text: 'View', isEdit: false},
-        {id: '3', name: 'Morning Only', text: 'View', isEdit: false},
-        {id: '4', name: 'Chem TA Schedule', text: 'View', isEdit: false},
+        {id: '0', name: 'Winter 2018', text: 'Select', isEdit: false},
+        {id: '1', name: 'Summer Quarter', text: 'Select', isEdit: false},
+        {id: '2', name: 'More Sleep', text: 'Select', isEdit: false},
+        {id: '3', name: 'Morning Only', text: 'Select', isEdit: false},
+        {id: '4', name: 'Chem TA Schedule', text: 'Select', isEdit: false},
     ],
 
     /**
@@ -109,7 +109,7 @@ const cloneSavedDefault = (saved) => {
     let newSaved = []
     saved.forEach(function(element){
         newSaved.push({...element})
-        newSaved[newSaved.length-1].text = 'View'
+        newSaved[newSaved.length-1].text = 'Select'
     })
     return(newSaved)
 }
@@ -172,9 +172,9 @@ const timeReducer = (state=initState, action=null) => {
         /* // When user wants to view a saved time preference */
         case 'TIME_VIEW':
             let viewSaved = cloneSavedDefault(state.saved)
-            if(state.saved[action.index].text === 'View'){
+            if(state.saved[action.index].text === 'Select'){
                 let savedTable = cloneTable(state.availability, false)
-                viewSaved[action.index].text = 'Viewing'
+                viewSaved[action.index].text = 'Selected'
                 return {
                     ...state,
                     saved: viewSaved,
@@ -201,7 +201,7 @@ const timeReducer = (state=initState, action=null) => {
             // *** need to get name that user inputs here
             // *** neee to get id from database
             let newTime = {id: (parseInt(state.saved[state.saved.length-1].id)+1).toString(),
-                           name: action.name, text: 'View', isEdit: false }
+                           name: action.name, text: 'Select', isEdit: false }
             newSaved.push(newTime)
             return{
                 ...state,
