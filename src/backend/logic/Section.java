@@ -1,4 +1,5 @@
 package logic;
+import java.time.LocalTime;
 import java.util.*;
 
 public final class Section extends Class{
@@ -44,10 +45,7 @@ public final class Section extends Class{
 	}
 	
 	public Times getLecTimes(){
-		if(times != null) {
-			return times.getLecTimes();
-		}
-		return null;
+		return times.getLecTimes();
 	}
 	
 	public DoubleTimes getTimes() {

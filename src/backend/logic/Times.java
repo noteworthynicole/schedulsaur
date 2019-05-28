@@ -18,6 +18,9 @@ public class Times {
 			if(endTime.contains("PM") && this.endTime.getHour() != 12) {
 				this.endTime = this.endTime.plusHours(12);
 			}
+		}else {
+			this.startTime = LocalTime.of(0, 0);
+			this.endTime = LocalTime.of(0, 0);
 		}
 		this.day = day;
 	}
