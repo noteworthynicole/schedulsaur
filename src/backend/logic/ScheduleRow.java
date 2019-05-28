@@ -33,6 +33,11 @@ public class ScheduleRow implements Serializable{
 			this.setStart(fields[10]);
 			this.setEnd(fields[11]);
 		}
+		
+		@Override
+		public String toString() {
+			return className + " " + sec + " " + classNum + " " + instructor;
+		}
 
 
 		public String getClassName() {

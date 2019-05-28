@@ -13,7 +13,7 @@ import java.util.stream.*;
 
 public class GenerateSchedules {
 	
-	public static String[][] generateSchedules(){
+	public static ScheduleRow[][] generateSchedules(){
 		Map<String, Section> hashMapInit = parseDbsCreateSections();
 		//Likely put a filter here to get rid of classes that are not relevant
 		Map<DoubleTimes, List<Section>> hashMapTime = classesByTime(hashMapInit);
@@ -29,7 +29,7 @@ public class GenerateSchedules {
 	}
 	
 	//this is a placeholder
-	public static String[][] listsOfSchedules(List<List<Section>> doubleTimes) {
+	public static ScheduleRow[][] listsOfSchedules(List<List<Section>> doubleTimes) {
 		List<List<ScheduleRow>> outerList = new ArrayList<>();
 		for(int i=0; i<doubleTimes.size(); i++) {
 			outerList.add(new ArrayList<>());
@@ -38,7 +38,7 @@ public class GenerateSchedules {
 				sec.addToScheduleRow(innerList);
 			}
 		}
-		return outerList.stream().map(u -> u.toArray(new String[0])).toArray(String[][]::new);
+		return outerList.stream().map(u -> u.toArray(new ScheduleRow[0])).toArray(ScheduleRow[][]::new);
 	}
 	
 	public static Section createSection(String[] line) {

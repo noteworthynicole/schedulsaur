@@ -12,10 +12,10 @@ public class TestSection {
 	
 	String name1 = "CSC-309-01";
 	String name2 = "name2";
-	List<String> fields1 = Arrays.asList(name1, "id1", "Lec", "prof1", "building1", "20", "11", "0");
-	List<String> fields2 = Arrays.asList(name2, "id2", "Lec", "prof2", "building2", "10", "0", "4");
-	List<String> fields3 = Arrays.asList(name1, "id1", "Lec", "prof3", "building3", "11", "11", "0");
-	List<String> fields4 = Arrays.asList(name2, "id2", "Lec", "prof4", "building4", "10", "14", "4");
+	List<String> fields1 = Arrays.asList(name1, "id1", "Lec", "prof1", "building1", "20", "11", "0", "1");
+	List<String> fields2 = Arrays.asList(name2, "id2", "Lec", "prof2", "building2", "10", "0", "4", "2");
+	List<String> fields3 = Arrays.asList(name1, "id1", "Lec", "prof3", "building3", "11", "11", "0", "3");
+	List<String> fields4 = Arrays.asList(name2, "id2", "Lec", "prof4", "building4", "10", "14", "4", "4");
 	Section sec1 = new Section(null, fields1);
 	Section sec2 = new Section(null, fields2); 
 	Section sec3 = new Section(null, fields3);

@@ -57,7 +57,7 @@ public class TestTimes {
 	@Test
 	public void testTimesNA() {
 		Times myTime = new Times("N/A", "N/A", "N/A");
-		assertEquals(null, myTime.getEndTime());
+		assertEquals(LocalTime.of(0, 0), myTime.getEndTime());
 	}
 	
 	@Test
