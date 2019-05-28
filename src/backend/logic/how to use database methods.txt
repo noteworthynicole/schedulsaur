@@ -1,0 +1,44 @@
+Pulling from Catalog table:
+
+1. To get all information of a class from the catalog database:
+
+   dbClassInfo(Statement stmt, Class myClass) where
+   -myClass is the class you want information on
+
+
+2. To just get full class name of a class:
+
+   dbClassLongName(Statement stmt, Class myClass) where
+   -myClass is the class you want information on
+
+
+3. To just get # of units of the class:
+
+   dbClassUnits(Statement stmt, Class myClass) where
+   -myClass is the class you want information on
+
+
+4. To just get prereqs for a class:
+   dbClassPrereqs(Statement stmt, Class myClass) where
+   -myClass is the class you want information on
+
+
+Writing to Student:
+
+1. To write a student to the databse:
+  
+  dbWriteStud(Statement stmt, String name, String major, String minor, String cat_year, String quartToPlanFor, int numUnitsToTake) where
+  -name, major, minor, cat_year are obvious
+  -quartToPlanFor is the quarter that is being planned for (ex. "Fall" or "Winter")
+  -numUnitsToTake is the number of units the student wants to take
+  
+Writing to Schedule:
+
+1. dbWriteSched(Statement stmt, String[] strList) where
+  -strList contains the abbreviated names of the classes the student is going to take(ex. stdList = {csc309, csc349})
+
+Writing to Time Availility:
+
+1. To write a time availibility to the database:
+   dbWriteTimeAvail(Statement stmt, int student_id, int availNum, String[] day, String[] hours)
+   -Jack knows what this means

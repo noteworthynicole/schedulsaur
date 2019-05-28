@@ -202,22 +202,47 @@ public class Database {
 	
 	/* ----------------------------------------------------------------------------------- */
 	
-	//replace class object with schedule object later
-	public static void dbWriteSched(Statement stmt, String[] classList) {
+	//replace class object with schedule object later							//either 'Student' or 'Schedule'
+	public static void dbWriteSchedOrStud(Statement stmt, String[] strList, String table) {
 		String value = "";
 		int i;
 		StringBuilder bld = new StringBuilder();
-		for(i = 0; i < classList.length-1; i++) {
-			bld.append(classList[i]);
+		for(i = 0; i < strList.length-1; i++) {
+			bld.append(strList[i]);
 			bld.append(",");
 		}
-		bld.append(classList[i]);
+		bld.append(strList[i]);
 		value = bld.toString(); 
-		String sql = "INSERT INTO schedulsaurdb.Schedules () value ('" + value + "');";
+		String sql = "INSERT INTO schedulsaurdb." + table + " () value ('" + value + "');";
 		try {
 			stmt.executeUpdate(sql);
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
+		}
+	}
+	
+	public static dbWriteTimeAvail(Statement stmt, int student_id, int availNum, String[] day, String[] hours)
+	{
+		String value = "";
+		
+		for(int i = 0; i < day.length; i++)
+		{
+			StringBuilder bld = new StringBuilder();
+			bld.append(Integer.toString(student_id));
+			bld.append(",");
+			bld.append(Integer.toString(availNum));
+			bld.append(",");
+			bld.append(Integer.toString(day[i]));
+			bld.append(",");
+			bld.append(Integer.toString(hours[i]));
+			value=bld.toString();
+			
+			String sql = "INSERT INTO schedulsaurdb.TimeAvail () value ('" + value + "');";
+			try {
+				stmt.executeUpdate(sql);
+			} catch(Exception e) {
+				logger.log(Level.WARNING, e.toString());
+			}
 		}
 	}
 	
