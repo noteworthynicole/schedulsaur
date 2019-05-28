@@ -230,7 +230,7 @@ public class Database {
 		}
    }
 	
-	public static dbWriteTimeAvail(Statement stmt, int studentId, int availNum, String[] day, String[] hours){
+	public static void dbWriteTimeAvail(Statement stmt, int studentId, int availNum, String[] day, String[] hours){
 		String value = "";
 		
 		for(int i = 0; i < day.length; i++){
@@ -239,9 +239,9 @@ public class Database {
 			bld.append(",");
 			bld.append(Integer.toString(availNum));
 			bld.append(",");
-			bld.append(Integer.toString(day[i]));
+			bld.append(day[i]);
 			bld.append(",");
-			bld.append(Integer.toString(hours[i]));
+			bld.append(hours[i]);
 			value=bld.toString();
 			
 			String sql = "INSERT INTO schedulsaurdb.TimeAvail () value ('" + value + "');";
