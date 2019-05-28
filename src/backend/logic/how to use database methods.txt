@@ -27,15 +27,14 @@ Writing to Student:
 
 1. To write a student to the databse:
   
-  dbWriteStud(Statement stmt, String name, String major, String minor, String cat_year, String quartToPlanFor, int numUnitsToTake) where
-  -name, major, minor, cat_year are obvious
-  -quartToPlanFor is the quarter that is being planned for (ex. "Fall" or "Winter")
-  -numUnitsToTake is the number of units the student wants to take
+  dbWriteStudent(Statement stmt, String[] strList, String table) where
+  -strList contains every column for the entry
+  --name, major, minor, cat_year, quartToPlanFor, numUnitsToTake
   
 Writing to Schedule:
 
-1. dbWriteSched(Statement stmt, String[] strList) where
-  -strList contains the abbreviated names of the classes the student is going to take(ex. stdList = {csc309, csc349})
+1. dbWriteSchedule(Statement stmt, String sched) where
+  -sched contains the abbreviated names of the classes the student is going to take(ex. sched = {csc309, csc349})
 
 Writing to Time Availility:
 

@@ -202,8 +202,8 @@ public class Database {
 	
 	/* ----------------------------------------------------------------------------------- */
 	
-	//replace class object with schedule object later							//either 'Student' or 'Schedule'
-	public static void dbWriteSchedOrStud(Statement stmt, String[] strList, String table) {
+	//replace class object with schedule object later							
+	public static void dbWriteStudent(Statement stmt, String[] strList, String table) {
 		String value = "";
 		int i;
 		StringBuilder bld = new StringBuilder();
@@ -220,6 +220,15 @@ public class Database {
 			logger.log(Level.WARNING, e.toString());
 		}
 	}
+   
+   public static void dbWriteSchedule(Statement stmt, String sched) {
+      String sql = "INSERT INTO schedulsaurdb.Schedule () value ('" + sched + "');";
+      try {
+			stmt.executeUpdate(sql);
+		} catch(Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		}
+   }
 	
 	public static dbWriteTimeAvail(Statement stmt, int studentId, int availNum, String[] day, String[] hours){
 		String value = "";
