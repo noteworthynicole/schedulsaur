@@ -221,12 +221,10 @@ public class Database {
 		}
 	}
 	
-	public static dbWriteTimeAvail(Statement stmt, int student_id, int availNum, String[] day, String[] hours)
-	{
+	public static dbWriteTimeAvail(Statement stmt, int studentId, int availNum, String[] day, String[] hours){
 		String value = "";
 		
-		for(int i = 0; i < day.length; i++)
-		{
+		for(int i = 0; i < day.length; i++){
 			StringBuilder bld = new StringBuilder();
 			bld.append(Integer.toString(student_id));
 			bld.append(",");
