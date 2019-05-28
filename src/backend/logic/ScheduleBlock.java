@@ -18,6 +18,7 @@ public final class ScheduleBlock {
       this.blocks = blocks;
       this.days = days;
       this.availNum = availNum;
+      this.studentId = studentId;
    }
    
    public boolean[][] getBlocks() {
