@@ -226,7 +226,7 @@ public class Database {
 		
 		for(int i = 0; i < day.length; i++){
 			StringBuilder bld = new StringBuilder();
-			bld.append(Integer.toString(student_id));
+			bld.append(Integer.toString(studentId));
 			bld.append(",");
 			bld.append(Integer.toString(availNum));
 			bld.append(",");
