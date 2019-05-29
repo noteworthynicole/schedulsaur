@@ -1,0 +1,25 @@
+/*
+ * TimePopup CSS Module
+ */
+
+.button_popup {
+  color: var(--schedulsaur_green);
+  background-color: white;
+  font-size: 24px;
+  border: none;
+  margin-top: 2%;
+  margin-bottom: 1.5%;
+  margin-right: 3%;
+  float: right;
+}
+
+.button_popup:hover {
+  background-color: white;
+  box-shadow: 4px 5px 4px var(--middle_grey);
+}
+
+.button_popup:focus {
+  color: var(--schedulsaur_green);
+  background-color: white;
+  border: none;
+}

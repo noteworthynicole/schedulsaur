@@ -1,0 +1,35 @@
+/*
+ * Schedule CSS Module
+ */
+
+.sched_table {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    border: solid 2px #ccc;
+}
+
+.sched_header {
+    border-bottom: solid 1px #ccc;
+}
+
+.sched_row {
+  border:none;
+  line-height:1px;
+}
+
+.sched_cell {
+    text-align: center;
+    font-size: 78%;
+}
+
+@media only screen and (max-width: 1270px){
+    .sched_cell{
+        font-size: 60%
+    }
+}
+
+@media only screen and (max-width: 1080px){
+    .sched_cell{
+        font-size: 54%
+    }
+}

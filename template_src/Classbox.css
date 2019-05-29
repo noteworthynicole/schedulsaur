@@ -1,0 +1,6 @@
+.classBox {
+    --major_class: #ffff99;
+    --support_class: #ffcc99;
+    --ge_class: #b3dfb3;
+    margin-right: 50px;
+}
