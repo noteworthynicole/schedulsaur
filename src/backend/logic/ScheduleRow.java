@@ -4,39 +4,39 @@ import java.io.Serializable;
 
 public class ScheduleRow implements Serializable{
 
-		private static final long serialVersionUID = 1L;
-		private String className;
-		private String sec;
-		private String classNum;
-		private String instructor;
-		private Integer open;
-		private Integer reserved;
-		private Integer taken;
-		private Integer waitlist;
-		private String status;
-		private String days;
-		private String start;
-		private String end;
+	private static final long serialVersionUID = 1L;
+	private String className;
+	private String sec;
+	private String classNum;
+	private String instructor;
+	private Integer open;
+	private Integer reserved;
+	private Integer taken;
+	private Integer waitlist;
+	private String status;
+	private String days;
+	private String start;
+	private String end;
 
 
-		public ScheduleRow(String[] fields) {
-			this.setClassName(fields[0]);
-			this.setSec(fields[1]);
-			this.setClassNum(fields[2]);
-			this.setInstructor(fields[3]);
-			this.setOpen(Integer.parseInt(fields[4]));
-			this.setReserved(Integer.parseInt(fields[5]));
-			this.setTaken(Integer.parseInt(fields[6]));
-			this.setWaitlist(Integer.parseInt(fields[7]));
-			this.setStatus(fields[8]);
-			this.setDays(fields[9]);
-			this.setStart(fields[10]);
-			this.setEnd(fields[11]);
-		}
-		
-		@Override
-		public String toString() {
-			return className + " " + sec + " " + classNum + " " + instructor;
+	public ScheduleRow(String[] fields) {
+		this.setClassName(fields[0]);
+		this.setSec(fields[1]);
+		this.setClassNum(fields[2]);
+		this.setInstructor(fields[3]);
+		this.setOpen(Integer.parseInt(fields[4]));
+		this.setReserved(Integer.parseInt(fields[5]));
+		this.setTaken(Integer.parseInt(fields[6]));
+		this.setWaitlist(Integer.parseInt(fields[7]));
+		this.setStatus(fields[8]);
+		this.setDays(fields[9]);
+		this.setStart(fields[10]);
+		this.setEnd(fields[11]);
+	}
+	
+	@Override
+	public String toString() {
+		return className + " " + sec + " " + classNum + " " + instructor;
 		}
 
 

@@ -5,8 +5,7 @@ import java.util.*;
 public class Prerequisites {
 	
 	//This main will be replaced with a filter function with the same functionality
-	public static void main(String[] args) {
-		Map<String, Section> sections = new HashMap<>();
+	public static void filterPrereqs(Map<String, Section> sections) {
 		List<Catalog> catalogs = collectCatalogClasses();
 		List<String> classesTaken = getClassesTaken();
 		replaceBooleanClasses(catalogs, classesTaken);

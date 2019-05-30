@@ -13,10 +13,15 @@ import java.util.stream.*;
 
 public class GenerateSchedules {
 	
-	public static ScheduleRow[][] generateSchedules(){
+	public static Schedule[] generateSchedules(){
 		Map<String, Section> hashMapInit = parseDbsCreateSections();
-		//Likely put a filter here to get rid of classes that are not relevant
+		//filter with prereqs - need the user's id to get past classes
+		//Prerequisites.filterPrereqs(hashMapInit);
+		
 		Map<DoubleTimes, List<Section>> hashMapTime = classesByTime(hashMapInit);
+		//filter with time availability - need the user's id to get off time
+		//Nicole - convert the boolean table to Times for compatibility
+		
 		//Sort - keyset -> list 
 		List<DoubleTimes> doubleTimesList1 = sortByKey(hashMapTime);
 		//Greedy
@@ -28,17 +33,17 @@ public class GenerateSchedules {
 
 	}
 	
-	//this is a placeholder
-	public static ScheduleRow[][] listsOfSchedules(List<List<Section>> doubleTimes) {
-		List<List<ScheduleRow>> outerList = new ArrayList<>();
+	public static Schedule[] listsOfSchedules(List<List<Section>> doubleTimes) {
+		List<Schedule> outerList = new ArrayList<>();
 		for(int i=0; i<doubleTimes.size(); i++) {
-			outerList.add(new ArrayList<>());
-			List<ScheduleRow> innerList = outerList.get(i);
+			List<ScheduleRow> innerList = new ArrayList<>();
 			for(Section sec : doubleTimes.get(i)) {
 				sec.addToScheduleRow(innerList);
 			}
+			//Jack, add the new time availability for when people have classes here where the null is
+			outerList.add(new Schedule((ScheduleRow[]) innerList.toArray(), null));
 		}
-		return outerList.stream().map(u -> u.toArray(new ScheduleRow[0])).toArray(ScheduleRow[][]::new);
+		return (Schedule[]) outerList.toArray();
 	}
 	
 	public static Section createSection(String[] line) {
@@ -82,14 +87,14 @@ public class GenerateSchedules {
 	//adds to the hashtable if it is a lab section for the same lecture
 	//Returns true if does not add, needing to add class as separate
 	//Returns false if it adds, thus not needing to add the class again
-	public static boolean checkLab(Map<String, logic.Section> hashMap, logic.Section currSection) {
+	public static boolean checkLab(Map<String, Section> hashMap, Section currSection) {
 		if (currSection.getType().equals("Lab")) {
 			//This grabs the prefix of the class if a lab, goes back one section to attach to lec version
 			String lecKey = currSection.getName().substring(0,8) + 
 				String.format("%02d", (Integer.valueOf(currSection.getName().substring(8)) - 1));
 			//Here is where the lab is added to where the lecture section 
 			if(hashMap.containsKey(lecKey)) {
-				logic.Section currList = hashMap.get(lecKey);
+				Section currList = hashMap.get(lecKey);
 				currList.addClass(currSection);
 			}
 			return false;
@@ -97,20 +102,20 @@ public class GenerateSchedules {
 		return true;
 	}
 	   
-	public static Map<logic.DoubleTimes, List<logic.Section>> classesByTime(Map<String, logic.Section> hashMapInit){
-		HashMap<logic.DoubleTimes, List<logic.Section>> hashMapTime = new HashMap<>();
-		for(Entry<String, logic.Section> entry : hashMapInit.entrySet()) {
-			logic.Section currSection = entry.getValue();
+	public static Map<DoubleTimes, List<Section>> classesByTime(Map<String, Section> hashMapInit){
+		HashMap<logic.DoubleTimes, List<Section>> hashMapTime = new HashMap<>();
+		for(Entry<String, Section> entry : hashMapInit.entrySet()) {
+			Section currSection = entry.getValue();
 			//Check to not add classes with nonexistent times
 			if(!currSection.getTimes().getLecDay().contains("N/A")) {
 				//The line below never evaluates to true, even though I am feeding in multiple times that should be the same
 				if(hashMapTime.containsKey(currSection.getTimes())) {
 					//add the section to the section list
-					List<logic.Section> currList = hashMapTime.get(currSection.getTimes());
+					List<Section> currList = hashMapTime.get(currSection.getTimes());
 					currList.add(currSection);
 				}else {
 					//add the time as a new value 
-					List<logic.Section> currValue = new ArrayList<>();
+					List<Section> currValue = new ArrayList<>();
 					currValue.add(currSection);
 					hashMapTime.put(currSection.getTimes(), currValue);
 				}
@@ -119,7 +124,7 @@ public class GenerateSchedules {
 		return hashMapTime;
 	}
 	   
-	public void filterClassName(Map<String, logic.Section> hashmap, String string){
+	public void filterClassName(Map<String, Section> hashmap, String string){
 		//Uses mutation to filter out classes by name
 		Set<String> keys = hashmap.keySet();
 		List<String> keysToRemove = new ArrayList<>();
@@ -134,14 +139,14 @@ public class GenerateSchedules {
 	}
 
 	// Sort Times for Greedy Algorithm
-	public static List<logic.DoubleTimes> sortByKey(Map<logic.DoubleTimes, List<logic.Section>> hashmap) {
+	public static List<logic.DoubleTimes> sortByKey(Map<logic.DoubleTimes, List<Section>> hashmap) {
 		Set<logic.DoubleTimes> keys = hashmap.keySet();
 		List<logic.DoubleTimes> sortedList = keys.stream().collect(Collectors.toList());
 		Collections.sort(sortedList, (t1, t2) -> t1.compareTo(t2)); 
 		return sortedList;
 	}
 	   
-	public void filterAvailableClass(Map<String, logic.Section> hashmap) {
+	public void filterAvailableClass(Map<String, Section> hashmap) {
 		Set<String> keys = hashmap.keySet();
 		Set<String> keysToRemove = new HashSet<>();
 		for(String key: keys) {
@@ -193,8 +198,8 @@ public class GenerateSchedules {
 		return schedule;
 	}
 	   
-	public static boolean allCompatible(List<logic.DoubleTimes> schedule, logic.DoubleTimes potential) {
-		for(logic.DoubleTimes times : schedule) {
+	public static boolean allCompatible(List<DoubleTimes> schedule, DoubleTimes potential) {
+		for(DoubleTimes times : schedule) {
 			if(!times.compatible(potential)) {
 				return false;
 			}
@@ -250,7 +255,7 @@ public class GenerateSchedules {
 	}
 
 	// just returns a list of list of sections with the first element used
-	public static List<List<Section>> getFirstSchedules(Map<logic.DoubleTimes, List<Section>> hashmap, List<List<logic.DoubleTimes>> listDoubleTimes) {
+	public static List<List<Section>> getFirstSchedules(Map<DoubleTimes, List<Section>> hashmap, List<List<DoubleTimes>> listDoubleTimes) {
 		List<List<Section>> schedules = new ArrayList<>();
 		List<Section> schedule = new ArrayList<>();
 		for (int i = 0; i < listDoubleTimes.size(); i++) {
