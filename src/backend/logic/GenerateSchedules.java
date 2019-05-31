@@ -13,10 +13,10 @@ import java.util.stream.*;
 
 public class GenerateSchedules {
 	
-	public static Schedule[] generateSchedules(){
+	public static Schedule[] generateSchedules(String studentId){
 		Map<String, Section> hashMapInit = parseDbsCreateSections();
 		//filter with prereqs - need the user's id to get past classes
-		//Prerequisites.filterPrereqs(hashMapInit);
+		//Prerequisites.filterPrereqs(hashMapInit, studentId);
 		
 		Map<DoubleTimes, List<Section>> hashMapTime = classesByTime(hashMapInit);
 		//filter with time availability - need the user's id to get off time
