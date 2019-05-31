@@ -304,6 +304,45 @@ public class Database {
 	
 	/* ----------------------------------------------------------------------------------- */
 	
+	public static ResultSet dbGetTimeAvailHelper(Statement stmt, String studentID, String studentAvailNum, String day) {
+		try {
+			String sql = "";
+			//sql = "select day, hours from TimeAvil where student_id=given_student_id and availNum=given_availNum";
+			sql = "select hours from TimeAvil where student_id=\"" + studentID + "\" and availNum=\"" + studentAvailNum + "\" and day=\"" + day + "\"";
+			return stmt.executeQuery(sql);
+		} catch(SQLException se) {
+			//Handle errors for JDBC
+			logger.log(Level.WARNING, se.toString());
+		} catch(Exception e) {
+			//Handle errors for Class.forName
+			logger.log(Level.WARNING, e.toString());
+		}
+		return null;
+	}
+	
+	public static List<String> dbGetTimeAvail(Statement stmt, String studentID, String studentAvailNum) {
+		List<String> avails = new ArrayList<>();
+		String[] days = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+		try {
+			// sunday through saturday
+			for(int i = 0; i < 7; i++) {
+				ResultSet rs = dbGetTimeAvailHelper(stmt, studentID, studentAvailNum, days[i]);
+				if(rs == null) {
+					avails.add("");
+				}
+				while(rs.next()){
+					avails.add(rs.getString(PREREQS));
+				}
+				rs.close();
+			}
+		} catch (Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		}
+		return avails;
+	}
+	
+	/* ----------------------------------------------------------------------------------- */
+	
 	// (this doesn't do anything really, it was there for trial/error)
 	public static void main(String[] args) {
 		// below here goes before calls
