@@ -307,7 +307,6 @@ public class Database {
 	public static ResultSet dbGetTimeAvailHelper(Statement stmt, String studentID, String studentAvailNum, String day) {
 		try {
 			String sql = "";
-			//sql = "select day, hours from TimeAvil where student_id=given_student_id and availNum=given_availNum";
 			sql = "select hours from TimeAvil where student_id=\"" + studentID + "\" and availNum=\"" + studentAvailNum + "\" and day=\"" + day + "\"";
 			return stmt.executeQuery(sql);
 		} catch(SQLException se) {

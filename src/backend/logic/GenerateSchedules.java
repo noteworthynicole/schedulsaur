@@ -1,4 +1,5 @@
 package logic;
+import java.sql.Statement;
 import java.util.*;
 import java.util.Map.*;
 import java.util.stream.*;
@@ -16,7 +17,7 @@ public class GenerateSchedules {
 	public static Schedule[] generateSchedules(String studentId){
 		Map<String, Section> hashMapInit = parseDbsCreateSections();
 		//filter with prereqs - need the user's id to get past classes
-		//Prerequisites.filterPrereqs(hashMapInit, studentId);
+		Prerequisites.filterPrereqs(hashMapInit, studentId);
 		
 		Map<DoubleTimes, List<Section>> hashMapTime = classesByTime(hashMapInit);
 		//filter with time availability - need the user's id to get off time
@@ -44,6 +45,13 @@ public class GenerateSchedules {
 			outerList.add(new Schedule((ScheduleRow[]) innerList.toArray(), null));
 		}
 		return (Schedule[]) outerList.toArray();
+	}
+	
+	public void filterByTimes(List<DoubleTimes> doubleTimes, String studentId) {
+		//get the times function
+		Statement stmt = null;
+		List<String> timeAvalibility = Database.dbGetTimeAvail(stmt, studentId, "0");
+		
 	}
 	
 	public static Section createSection(String[] line) {

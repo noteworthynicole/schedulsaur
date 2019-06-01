@@ -4,10 +4,13 @@ import java.util.*;
 
 public class Prerequisites {
 	
-	//This main will be replaced with a filter function with the same functionality
-	public static void filterPrereqs(Map<String, Section> sections) {
+	private Prerequisites() {
+	    throw new IllegalStateException("Utility class");
+	}
+	
+	public static void filterPrereqs(Map<String, Section> sections, String studentId) {
 		List<Catalog> catalogs = collectCatalogClasses();
-		List<String> classesTaken = getClassesTaken();
+		List<String> classesTaken = getClassesTaken(studentId);
 		replaceBooleanClasses(catalogs, classesTaken);
 		removeIneligbleClasses(catalogs, sections);
 	}
@@ -23,7 +26,7 @@ public class Prerequisites {
 	}
 	
 	//This is a dummy function. Replace with actual call to database when implemented
-	public static List<String> getClassesTaken(){
+	public static List<String> getClassesTaken(String studentId){
 		List<String> classes = new ArrayList<>();
 		classes.add("");
 		return classes;
