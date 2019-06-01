@@ -46,7 +46,7 @@ public class Times {
       daysOfTheWeek.put(3, "W");
       daysOfTheWeek.put(4, "R");
       daysOfTheWeek.put(5, "F");
-    };
+    }
 	
 	public String getDay() {
 		return day;
