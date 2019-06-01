@@ -21,6 +21,7 @@ public class Database {
 	private static final String CREDIT = "Credit";
 	private static final String TERMS = "Terms";
 	private static final String PREREQS = "Prereqs";
+	private static final String HOURS = "hours";
 	
 	//schedulsaur
 	private static final String SCHEDELSAUR = "schedulsaur";
@@ -330,7 +331,7 @@ public class Database {
 					avails.add("");
 				}
 				while(rs.next()){
-					avails.add(rs.getString(PREREQS));
+					avails.add(rs.getString(HOURS));
 				}
 				rs.close();
 			}
