@@ -57,6 +57,12 @@ public class DoubleTimes {
 		result = result && logic.Times.compatible(this.labTimes, other.getLabTimes());
 		return result;
 	}
+	
+	public boolean compatible(Times other) {
+		boolean result = logic.Times.compatible(this.lecTimes, other);
+		result = result && logic.Times.compatible(this.labTimes, other);
+		return result;
+	}
 
 	public int compareTo(DoubleTimes other) {
 		LocalTime t1 = getLecStartTime();

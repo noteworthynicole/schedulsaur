@@ -10,7 +10,7 @@ public class TestLoop {
 
 	@Test
 	public void testNoLoopBody() {
-		ScheduleRow[][] schedules = GenerateSchedules.listsOfSchedules(new ArrayList<>());
+		Schedule[] schedules = GenerateSchedules.listsOfSchedules(new ArrayList<>());
 		assertEquals(0, schedules.length);
 	}
 	

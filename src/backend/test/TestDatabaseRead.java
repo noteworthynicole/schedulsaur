@@ -92,7 +92,7 @@ public class TestDatabaseRead {
 		Statement stmt = null;
 		try (Connection conn = DriverManager.getConnection(dbURL,dbUsername,dbPW)){
 		stmt = conn.createStatement();
-			assertEquals("CSCÂ 308 && CSC/CPEÂ 357", Database.dbClassPrereqs(stmt, testClass));
+			assertEquals("CSC 308 && CSC/CPE 357", Database.dbClassPrereqs(stmt, testClass));
 			stmt.close();
 		} catch(SQLException se) {
 			//Handle errors for JDBC

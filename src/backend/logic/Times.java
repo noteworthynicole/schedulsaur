@@ -1,6 +1,7 @@
 package logic;
 
 import java.time.LocalTime;
+import java.util.*;
 
 public class Times {
 
@@ -30,6 +31,20 @@ public class Times {
 		this.startTime = startTime;
 		this.endTime = endTime;
 	}
+	
+    public Times(int day, int startTime){
+        this.startTime = LocalTime.of(startTime, 0);
+        this.endTime = LocalTime.of(startTime + 1, 0);
+        this.day = daysOfTheWeek.get(day);
+    }
+
+    private Map<Integer, String> daysOfTheWeek = new Map<>(){{
+      put(1, "M");
+      put(2, "T");
+      put(3, "W");
+      put(4, "R");
+      put(5, "F");
+    }};
 	
 	public String getDay() {
 		return day;

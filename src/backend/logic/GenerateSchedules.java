@@ -18,13 +18,12 @@ public class GenerateSchedules {
 		Map<String, Section> hashMapInit = parseDbsCreateSections();
 		//filter with prereqs - need the user's id to get past classes
 		Prerequisites.filterPrereqs(hashMapInit, studentId);
-		
+		//Create map separated by a list of times
 		Map<DoubleTimes, List<Section>> hashMapTime = classesByTime(hashMapInit);
-		//filter with time availability - need the user's id to get off time
-		//Nicole - convert the boolean table to Times for compatibility
-		
 		//Sort - keyset -> list 
 		List<DoubleTimes> doubleTimesList1 = sortByKey(hashMapTime);
+		//filter with time availability - need the user's id to get off time
+		filterByTimes(doubleTimesList1, studentId);
 		//Greedy
 		List<List<DoubleTimes>> doubleTimesList2 = greedySchedule(4, doubleTimesList1);
 		//Getting the different combinations of classes
@@ -47,11 +46,29 @@ public class GenerateSchedules {
 		return (Schedule[]) outerList.toArray();
 	}
 	
-	public void filterByTimes(List<DoubleTimes> doubleTimes, String studentId) {
+	public static void filterByTimes(List<DoubleTimes> doubleTimes, String studentId) {
 		//get the times function
 		Statement stmt = null;
-		List<String> timeAvalibility = Database.dbGetTimeAvail(stmt, studentId, "0");
-		
+		//get their actual time availibility number, hardcoded for now
+		List<String> timeList = Database.dbGetTimeAvail(stmt, studentId, "0");
+		List<Times> timesAvailable = new ArrayList<>();
+		for(int i=1; i < timeList.size() - 1; i++){
+            char[] charArray = timeList.get(i).toCharArray();
+            for(int j=0; j<charArray.length; j++){
+                if(charArray[j] == '1'){
+                    timesAvailable.add(new Times(i, j+7));
+                }
+            }
+        }
+		List<DoubleTimes> doubleTimesToRemove = new ArrayList<>();
+		for(DoubleTimes doubleTime : doubleTimes) {
+			for(Times time : timesAvailable) {
+				if(!doubleTime.compatible(time)) {
+					doubleTimesToRemove.add(doubleTime);
+				}
+			}
+		}
+		doubleTimes.removeAll(doubleTimesToRemove);
 	}
 	
 	public static Section createSection(String[] line) {
