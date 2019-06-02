@@ -201,10 +201,30 @@ public class Database {
 		return prereqs;
 	}
 	
+	public static void dbUpdateStudent (Statement stmt, String[] strList) {
+		String sql = "UPDATE Student ";
+		sql += "set id = " + strList[0];
+		sql += "set name = " + strList[1];
+		sql += "set major = " + strList[2];
+		sql += "set minor = " + strList[3];
+		sql += "set cat_year = " + strList[4];
+		sql += "set qtpf = " + strList[5];
+		sql += "set noutt = " + strList[6];
+		sql += "set email = " + strList[7];
+		sql += "set password = " + strList[8];
+		sql += "set password = " + strList[9];
+		sql += "WHERE id = " + strList[0];
+		try {
+			stmt.executeUpdate(sql);
+		} catch(Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		}
+	}
+	
 	/* ----------------------------------------------------------------------------------- */
 	
 	//replace class object with schedule object later							
-	public static void dbWriteStudent(Statement stmt, String[] strList, String table) {
+	public static void dbWriteStudent(Statement stmt, String[] strList) {
 		String value = "";
 		int i;
 		StringBuilder bld = new StringBuilder();
@@ -214,7 +234,7 @@ public class Database {
 		}
 		bld.append(strList[i]);
 		value = bld.toString(); 
-		String sql = "INSERT INTO schedulsaurdb." + table + " () value ('" + value + "');";
+		String sql = "INSERT INTO schedulsaurdb.Student" + " () value ('" + value + "');";
 		try {
 			stmt.executeUpdate(sql);
 		} catch(Exception e) {
