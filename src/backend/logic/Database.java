@@ -359,8 +359,10 @@ public class Database {
 				if(rs == null) {
 					avails.add("");
 				}
-				while(rs.next()){
-					avails.add(rs.getString(HOURS));
+				else {
+					while(rs.next()){
+						avails.add(rs.getString(HOURS));
+					}
 				}
 				rs.close();
 			}
