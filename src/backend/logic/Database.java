@@ -23,6 +23,15 @@ public class Database {
 	private static final String PREREQS = "Prereqs";
 	private static final String HOURS = "hours";
 	
+	// constants for student info functions
+	private static final String STUDENTNAME = "name";
+	private static final String STUDENTMAJOR = "major";
+	private static final String STUDENTMINOR = "minor";
+	private static final String CATALOGYEAR = "cat_year";
+	private static final String QUARTERTOPLANFOR = "qtpf";
+	private static final String NUMUNITS = "noutt";
+	private static final String PREVCLASSES = "prevClass";
+	
 	//schedulsaur
 	private static final String SCHEDELSAUR = "schedulsaur";
 	private static final String DBSITE = "jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false";
@@ -359,6 +368,65 @@ public class Database {
 			logger.log(Level.WARNING, e.toString());
 		}
 		return avails;
+	}
+	
+	/* ----------------------------------------------------------------------------------- */
+	
+	public static ResultSet dbGetStudentInfoHelper(Statement stmt, String studentID) {
+		try {
+			String sql = "";
+			sql = "select * from Student where student_id=\"" + studentID + "\"";
+			return stmt.executeQuery(sql);
+		} catch(SQLException se) {
+			//Handle errors for JDBC
+			logger.log(Level.WARNING, se.toString());
+		} catch(Exception e) {
+			//Handle errors for Class.forName
+			logger.log(Level.WARNING, e.toString());
+		}
+		return null;
+	}
+	
+	// takes in ID, returns Everything (except email and password)
+	public static List<String> dbGetStudentInfo(Statement stmt, String studentID) {
+		List<String> info = new ArrayList<>();
+		try {
+			ResultSet rs = dbGetStudentInfoHelper(stmt, studentID);
+			if(rs == null) {
+				return info;
+			}
+			while(rs.next()){
+				info.add(rs.getString(STUDENTNAME));
+				info.add(rs.getString(STUDENTMAJOR));
+				info.add(rs.getString(STUDENTMINOR));
+				info.add(rs.getString(CATALOGYEAR));
+				info.add(rs.getString(QUARTERTOPLANFOR));
+				info.add(rs.getString(NUMUNITS));
+				info.add(rs.getString(PREVCLASSES));
+			}
+			rs.close();
+		} catch (Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		}
+		return info;
+	}
+	
+	// taked in ID, returns just past classes
+	public static String dbGetPastClasses(Statement stmt, String studentID) {
+		String pastClasses = "";
+		try {
+			ResultSet rs = dbGetStudentInfoHelper(stmt, studentID);
+			if(rs == null) {
+				return pastClasses;
+			}
+			while(rs.next()){
+				pastClasses = rs.getString(PREVCLASSES);
+			}
+			rs.close();
+		} catch (Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		}
+		return pastClasses;
 	}
 	
 	/* ----------------------------------------------------------------------------------- */
