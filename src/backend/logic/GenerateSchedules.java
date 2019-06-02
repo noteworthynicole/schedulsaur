@@ -14,7 +14,7 @@ import java.util.stream.*;
 
 public class GenerateSchedules {
 	
-	public static Schedule[] generateSchedules(String studentId){
+	public static Schedule[] generateSchedules(String studentId, String timeNum){
 		Map<String, Section> hashMapInit = parseDbsCreateSections();
 		//filter with prereqs - need the user's id to get past classes
 		Prerequisites.filterPrereqs(hashMapInit, studentId);
@@ -23,7 +23,7 @@ public class GenerateSchedules {
 		//Sort - keyset -> list 
 		List<DoubleTimes> doubleTimesList1 = sortByKey(hashMapTime);
 		//filter with time availability - need the user's id to get off time
-		filterByTimes(doubleTimesList1, studentId);
+		filterByTimes(doubleTimesList1, studentId, timeNum);
 		//Greedy
 		List<List<DoubleTimes>> doubleTimesList2 = greedySchedule(4, doubleTimesList1);
 		//Getting the different combinations of classes
@@ -41,25 +41,13 @@ public class GenerateSchedules {
 				sec.addToScheduleRow(innerList);
 			}
 			//Jack, add the new time availability for when people have classes here where the null is
-			outerList.add(new Schedule((ScheduleRow[]) innerList.toArray(), null));
+			outerList.add(new Schedule(innerList.toArray(new ScheduleRow[innerList.size()]), null));
 		}
-		return (Schedule[]) outerList.toArray();
+		return outerList.toArray(new Schedule[outerList.size()]);
 	}
 	
-	public static void filterByTimes(List<DoubleTimes> doubleTimes, String studentId) {
-		//get the times function
-		Statement stmt = null;
-		//get their actual time availibility number, hardcoded for now
-		List<String> timeList = Database.dbGetTimeAvail(stmt, studentId, "0");
-		List<Times> timesAvailable = new ArrayList<>();
-		for(int i=1; i < timeList.size() - 1; i++){
-            char[] charArray = timeList.get(i).toCharArray();
-            for(int j=0; j<charArray.length; j++){
-                if(charArray[j] == '1'){
-                    timesAvailable.add(new Times(i, j+7));
-                }
-            }
-        }
+	public static void filterByTimes(List<DoubleTimes> doubleTimes, String studentId, String timeNum) {
+		List<Times> timesAvailable = getBlockedTimes(studentId, timeNum);
 		List<DoubleTimes> doubleTimesToRemove = new ArrayList<>();
 		for(DoubleTimes doubleTime : doubleTimes) {
 			for(Times time : timesAvailable) {
@@ -69,6 +57,23 @@ public class GenerateSchedules {
 			}
 		}
 		doubleTimes.removeAll(doubleTimesToRemove);
+	}
+	
+	public static List<Times> getBlockedTimes(String studentId, String timeNum){
+		//get the times function
+		Statement stmt = null;
+		//get their actual time availibility number, hardcoded for now
+		List<String> timeList = Database.dbGetTimeAvail(stmt, studentId, timeNum);
+		List<Times> timesAvailable = new ArrayList<>();
+		for(int i=1; i < timeList.size() - 1; i++){
+            char[] charArray = timeList.get(i).toCharArray();
+            for(int j=0; j<charArray.length; j++){
+                if(charArray[j] == '1'){
+                    timesAvailable.add(new Times(i, j+7));
+                }
+            }
+        }
+		return timesAvailable;
 	}
 	
 	public static Section createSection(String[] line) {
