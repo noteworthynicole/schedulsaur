@@ -62,7 +62,7 @@ public class GenerateSchedules {
 	public static List<Times> getBlockedTimes(String studentId, String timeNum){
 		//get the times function
 		Statement stmt = null;
-		//get their actual time availibility number, hardcoded for now
+		//get their actual time availability number, hardcoded for now
 		List<String> timeList = Database.dbGetTimeAvail(stmt, studentId, timeNum);
 		List<Times> timesAvailable = new ArrayList<>();
 		for(int i=1; i < timeList.size() - 1; i++){
@@ -169,9 +169,9 @@ public class GenerateSchedules {
 	}
 
 	// Sort Times for Greedy Algorithm
-	public static List<logic.DoubleTimes> sortByKey(Map<logic.DoubleTimes, List<Section>> hashmap) {
-		Set<logic.DoubleTimes> keys = hashmap.keySet();
-		List<logic.DoubleTimes> sortedList = keys.stream().collect(Collectors.toList());
+	public static List<DoubleTimes> sortByKey(Map<DoubleTimes, List<Section>> hashmap) {
+		Set<DoubleTimes> keys = hashmap.keySet();
+		List<DoubleTimes> sortedList = keys.stream().collect(Collectors.toList());
 		Collections.sort(sortedList, (t1, t2) -> t1.compareTo(t2)); 
 		return sortedList;
 	}
@@ -189,8 +189,6 @@ public class GenerateSchedules {
 			hashmap.remove(key);
 		}
 	}
-	   
-	//filter by Times
 	   
 	//main greedy schedule. Create one schedule with each class as it's own start
 	public static List<List<DoubleTimes>> greedySchedule(int numOfClasses, List<DoubleTimes> doubleTimesList){
