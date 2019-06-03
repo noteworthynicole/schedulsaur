@@ -233,22 +233,28 @@ public class Database {
 	/* ----------------------------------------------------------------------------------- */
 	
 	//replace class object with schedule object later							
-	public static void dbWriteStudent(Statement stmt, String[] strList) {
+	public static int dbWriteStudent(Statement stmt, String[] strList) {
 		String value = "";
 		int i;
 		StringBuilder bld = new StringBuilder();
 		for(i = 0; i < strList.length-1; i++) {
+			bld.append("'");
 			bld.append(strList[i]);
+			bld.append("'");
 			bld.append(",");
 		}
 		bld.append(strList[i]);
 		value = bld.toString(); 
-		String sql = "INSERT INTO schedulsaurdb.Student" + " () value ('" + value + "');";
+		String sql = "INSERT INTO schedulsaurdb.Student" + " () value (" + value + ");";
 		try {
 			stmt.executeUpdate(sql);
+			sql = "SELECT id FROM schedulsaurdb.Student where email=" + strList[6];
+			ResultSet rs = stmt.executeQuery(sql);
+			return rs.getInt("id");
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
 		}
+		return -1;
 	}
    
    public static void dbWriteSchedule(Statement stmt, String sched) {
