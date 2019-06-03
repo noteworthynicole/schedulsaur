@@ -14,6 +14,8 @@ import java.util.stream.*;
 
 public class GenerateSchedules {
 	
+	private static int startTime = 7;
+	
 	public static Schedule[] generateSchedules(String studentId, String timeNum){
 		Map<String, Section> hashMapInit = parseDbsCreateSections();
 		//filter with prereqs - need the user's id to get past classes
@@ -35,15 +37,40 @@ public class GenerateSchedules {
 	
 	public static Schedule[] listsOfSchedules(List<List<Section>> doubleTimes) {
 		List<Schedule> outerList = new ArrayList<>();
+		/*
+		 * 7 = days
+		 * 15 = times
+		 */
+		boolean[][] blocks = new boolean[7][15];
 		for(int i=0; i<doubleTimes.size(); i++) {
 			List<ScheduleRow> innerList = new ArrayList<>();
+			for (int j = 0; j < blocks.length; j++) {
+				Arrays.fill(blocks[j], false);
+			}
 			for(Section sec : doubleTimes.get(i)) {
 				sec.addToScheduleRow(innerList);
+				getBlockData(sec, blocks);
 			}
 			//Jack, add the new time availability for when people have classes here where the null is
-			outerList.add(new Schedule(innerList.toArray(new ScheduleRow[innerList.size()]), null));
+			outerList.add(new Schedule(innerList.toArray(new ScheduleRow[innerList.size()]), new ScheduleBlock(blocks)));
 		}
 		return outerList.toArray(new Schedule[outerList.size()]);
+	}
+	
+	public static void getBlockData(Section sec, boolean[][] blocks) {
+		String days = sec.getLecTimes().getDay();
+		for (Character c : days.toCharArray()) {
+			int index = Times.daysToIndex.get(c);
+			int start = sec.getLecTimes().getStartTime().getHour() - startTime;
+			int end = sec.getLecTimes().getEndTime().getHour() - startTime;
+			while(start < end) {
+				blocks[index][start] = true;
+				start++;
+			}
+			if (sec.getLab() != null) {
+				getBlockData(sec.getLab(), blocks);
+			}
+		}
 	}
 	
 	public static void filterByTimes(List<DoubleTimes> doubleTimes, String studentId, String timeNum) {
@@ -239,7 +266,7 @@ public class GenerateSchedules {
 		List<List<Section>> schedules = new ArrayList<>();
 		List<List<Section>> temps = new ArrayList<>();
 		for (int i = 0; i < listDoubleTimes.size(); i++) {
-			for (int k = 0; k < listDoubleTimes.get(i).size(); k++) {
+			for (int k = 0; k < (listDoubleTimes.get(i)).size(); k++) {
 				temps.add(hashmap.get(listDoubleTimes.get(i).get(k)));
 			}
 			for (int j = 0; j < getCombos(temps, 0).size(); j++) {
@@ -251,7 +278,7 @@ public class GenerateSchedules {
 
 	
 	// i is used for recursion, for the initial call this should be 0
-	private static List<List<Section>> getCombos(List<List<Section>> input, int i) {
+	public static List<List<Section>> getCombos(List<List<Section>> input, int i) {
 		
 		// stop condition
 		if(i == input.size()) {
@@ -264,7 +291,7 @@ public class GenerateSchedules {
 		List<List<Section>> result = new ArrayList<>();
 		List<List<Section>> recursive = getCombos(input, i+1); // recursive call
 		
-		// for each element of the first list of input
+		// for each element of the first list of input		
 		for(int j = 0; j < input.get(i).size(); j++) {
 			// add the element to all combinations obtained for the rest of the lists
 			for(int k = 0; k < recursive.size(); k++) {

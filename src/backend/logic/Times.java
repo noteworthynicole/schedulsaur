@@ -47,6 +47,16 @@ public class Times {
       daysOfTheWeek.put(4, "R");
       daysOfTheWeek.put(5, "F");
     }
+    
+    public static Map<Character, Integer> daysToIndex = new HashMap<>();
+    
+    static {
+      daysToIndex.put('M', 1);
+      daysToIndex.put('T', 2);
+      daysToIndex.put('W', 3);
+      daysToIndex.put('R', 4);
+      daysToIndex.put('F', 5);
+    }
 	
 	public String getDay() {
 		return day;

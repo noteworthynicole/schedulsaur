@@ -2,6 +2,9 @@ package logic;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public final class ScheduleBlock implements Serializable {
 	
    /**
@@ -21,14 +24,22 @@ public final class ScheduleBlock implements Serializable {
    private int availNum;
    private int studentId;
    
-   public ScheduleBlock(int studentId, int availNum, String[] days, boolean[][] blocks) {
-      this.blocks = blocks;
-      this.days = days;
-      this.availNum = availNum;
-      this.studentId = studentId;
-   }
+   @JsonCreator
+	public ScheduleBlock(@JsonProperty("studentId")int studentId,
+			@JsonProperty("availNum") int availNum,
+			@JsonProperty("days") String[] days,
+			@JsonProperty("blocks") boolean[][] blocks) {
+		this.studentId = studentId;
+		this.availNum = availNum;
+		this.days = days;
+		this.blocks = blocks;
+	}
    
-   public boolean[][] getBlocks() {
+   public ScheduleBlock(boolean[][] blocks) {
+	   this.blocks = blocks;
+   }
+
+public boolean[][] getBlocks() {
 	   return blocks;
    }
    

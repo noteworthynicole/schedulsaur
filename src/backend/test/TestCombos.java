@@ -22,6 +22,14 @@ public class TestCombos {
 	private String na = "N/A";
 	private String lab = "Lab";
 	
+	private boolean[][] expected = {{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+			{false, false, false, false, true, false, false, false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+			{false, false, false, false, true, false, false, false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+			{false, false, false, false, true, false, false, false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}};
+	
 	private DoubleTimes time1 = new DoubleTimes(mwf, seven, nine);
 	private DoubleTimes time2 = new DoubleTimes(mwf, eight, nine);
 	private DoubleTimes time3 = new DoubleTimes(tr, eight, nine);
@@ -127,6 +135,17 @@ public class TestCombos {
 		dts.add(dt);
 		List<List<Section>> output = GenerateSchedules.getPotentialSchedules(hashMap, dts);
 		assertTrue(output.size() == 12);
+	}
+	
+	@Test
+	public void getBlockData1() {
+		boolean[][] blocks = new boolean[7][15];
+		for (int i = 0; i < blocks.length; i++) {
+			Arrays.fill(blocks[i], false);
+		}
+		Section sec1 = GenerateSchedules.createSection(line1);
+		GenerateSchedules.getBlockData(sec1, blocks);
+		assertTrue(Arrays.deepEquals(expected, blocks));
 	}
 	
 }
