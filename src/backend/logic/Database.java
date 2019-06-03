@@ -260,21 +260,22 @@ public class Database {
 		}
    }
 	
-	public static void dbWriteTimeAvail(Statement stmt, int studentId, int availNum, String[] day, String[] hours){
+	public static void dbWriteTimeAvail(Statement stmt, int student_id, int availNum, String[] day, String[] hours){
 		String value = "";
 		
 		for(int i = 0; i < day.length; i++){
 			StringBuilder bld = new StringBuilder();
-			bld.append(Integer.toString(studentId));
+			bld.append(Integer.toString(student_id));
 			bld.append(",");
 			bld.append(Integer.toString(availNum));
-			bld.append(",");
+			bld.append(",'");
 			bld.append(day[i]);
-			bld.append(",");
+			bld.append("','");
 			bld.append(hours[i]);
+			bld.append("'");
 			value=bld.toString();
 			
-			String sql = "INSERT INTO schedulsaurdb.TimeAvail () value ('" + value + "');";
+			String sql = "INSERT INTO schedulsaurdb.TimeAvail () value (" + value + ");";
 			try {
 				stmt.executeUpdate(sql);
 			} catch(Exception e) {
