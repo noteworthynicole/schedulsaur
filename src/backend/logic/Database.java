@@ -349,7 +349,7 @@ public class Database {
 	
 	/* ----------------------------------------------------------------------------------- */
 	
-	public static ResultSet dbGetTimeAvailHelper(Statement stmt, String studentID, String studentAvailNum, String day) {
+	public static ResultSet dbGetTimeAvailHelper(Statement stmt, int studentID, int studentAvailNum, String day) {
 		try {
 			String sql = "";
 			sql = "select hours from TimeAvil where student_id=\"" + studentID + "\" and availNum=\"" + studentAvailNum + "\" and day=\"" + day + "\"";
@@ -364,7 +364,7 @@ public class Database {
 		return null;
 	}
 	
-	public static List<String> dbGetTimeAvail(Statement stmt, String studentID, String studentAvailNum) {
+	public static List<String> dbGetTimeAvail(Statement stmt, int studentID, int studentAvailNum) {
 		List<String> avails = new ArrayList<>();
 		String[] days = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 		try {

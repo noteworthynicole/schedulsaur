@@ -16,7 +16,8 @@ public class GenerateSchedules {
 	
 	private static int startTime = 7;
 	
-	public static Schedule[] generateSchedules(String studentId, String timeNum){
+	public static Schedule[] generateSchedules(int studentId, int timeNum){
+
 		Map<String, Section> hashMapInit = parseDbsCreateSections();
 		//filter with prereqs - need the user's id to get past classes
 		Prerequisites.filterPrereqs(hashMapInit, studentId);
@@ -57,6 +58,9 @@ public class GenerateSchedules {
 		return outerList.toArray(new Schedule[outerList.size()]);
 	}
 	
+
+	
+
 	public static void getBlockData(Section sec, boolean[][] blocks) {
 		String days = sec.getLecTimes().getDay();
 		for (Character c : days.toCharArray()) {
@@ -73,7 +77,7 @@ public class GenerateSchedules {
 		}
 	}
 	
-	public static void filterByTimes(List<DoubleTimes> doubleTimes, String studentId, String timeNum) {
+	public static void filterByTimes(List<DoubleTimes> doubleTimes, int studentId, int timeNum) {
 		List<Times> timesAvailable = getBlockedTimes(studentId, timeNum);
 		List<DoubleTimes> doubleTimesToRemove = new ArrayList<>();
 		for(DoubleTimes doubleTime : doubleTimes) {
@@ -86,7 +90,7 @@ public class GenerateSchedules {
 		doubleTimes.removeAll(doubleTimesToRemove);
 	}
 	
-	public static List<Times> getBlockedTimes(String studentId, String timeNum){
+	public static List<Times> getBlockedTimes(int studentId, int timeNum){
 		//get the times function
 		Statement stmt = null;
 		//get their actual time availability number, hardcoded for now

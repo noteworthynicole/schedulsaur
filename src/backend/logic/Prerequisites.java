@@ -9,9 +9,9 @@ public class Prerequisites {
 	    throw new IllegalStateException("Utility class");
 	}
 	
-	public static void filterPrereqs(Map<String, Section> sections, String studentId) {
+	public static void filterPrereqs(Map<String, Section> sections, int studentId) {
 		List<Catalog> catalogs = collectCatalogClasses();
-		List<String> classesTaken = getClassesTaken(studentId);
+		List<String> classesTaken = getClassesTaken(String.valueOf(studentId));
 		replaceBooleanClasses(catalogs, classesTaken);
 		removeIneligbleClasses(catalogs, sections);
 	}
