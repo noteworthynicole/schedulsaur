@@ -16,7 +16,7 @@ import logic.User;
 @RestController
 public class BlockController {
 	
-	String[] days = {"Su", "M", "T", "W", "H", "F", "Sa"};
+	String[] days = {"Su", "M", "T", "W", "R", "F", "Sa"};
 	boolean[][] blocks = {{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
 			{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
 			{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},

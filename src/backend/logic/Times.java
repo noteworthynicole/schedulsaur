@@ -48,7 +48,7 @@ public class Times {
       daysOfTheWeek.put(5, "F");
     }
     
-    public static Map<Character, Integer> daysToIndex = new HashMap<>();
+    protected static final Map<Character, Integer> daysToIndex = new HashMap<>();
     
     static {
       daysToIndex.put('M', 1);
