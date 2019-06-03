@@ -13,15 +13,23 @@ public class TestCombos {
 	private String seven = "07:10 AM";
 	private String eight = "08:10 AM";
 	private String nine = "09:00 AM";
+	private String eleven = "11:10 AM";
+	private String two = "02:00 PM";
+	private String noon = "12:00 PM";
+	private String one = "01:10 PM";
+	
+	private String name = "Falessi, D";
+	private String na = "N/A";
+	private String lab = "Lab";
 	
 	private DoubleTimes time1 = new DoubleTimes(mwf, seven, nine);
 	private DoubleTimes time2 = new DoubleTimes(mwf, eight, nine);
 	private DoubleTimes time3 = new DoubleTimes(tr, eight, nine);
 	
-	private String[] line1 = new String[] {"CSC-309-02-2194", "6799", "Lab", "Falessi, D", "MWF", "11:10 AM", "12:00 PM", "N/A", "27", "25", "2", "3"};
-	private String[] line2 = new String[] {"CSC-309-02-2195", "6798", "Lab", "Falessi, D", "MWF", "01:10 PM", "02:00 PM", "N/A", "27", "25", "2", "3"};
-	private String[] line3 = new String[] {"CSC-308-02-2196", "6899", "Lab", "Falessi, D", "MWF", "11:10 AM", "12:00 PM", "N/A", "27", "25", "2", "3"};
-	private String[] line4 = new String[] {"CSC-308-02-2197", "6398", "Lab", "Falessi, D", "MWF", "01:10 PM", "02:00 PM", "N/A", "27", "25", "2", "3"};
+	private String[] line1 = new String[] {"CSC-309-02-2194", "6799", lab, name, mwf, eleven, noon, na, "28", "25", "2", "5"};
+	private String[] line2 = new String[] {"CSC-309-02-2195", "6798", lab, name, mwf, one, two, na, "27", "22", "1", "4"};
+	private String[] line3 = new String[] {"CSC-308-02-2196", "6899", lab, name, mwf, eleven, noon, na, "29", "21", "0", "3"};
+	private String[] line4 = new String[] {"CSC-308-02-2197", "6398", lab, name, mwf, one, two, na, "26", "20", "8", "2"};
 	
 	@Test
 	public void testCombo1() {
@@ -56,7 +64,6 @@ public class TestCombos {
 		section1.add(sec4);
 		sections.add(section1);
 		List<List<Section>> output = GenerateSchedules.getCombos(sections, 0);
-		System.out.println(output.size());
 		assertTrue(output.size() == 4);
 	}
 	
