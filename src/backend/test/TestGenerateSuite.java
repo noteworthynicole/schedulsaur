@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ TestGenerateSchedules.class })
+@SuiteClasses({ TestGenerateSchedules.class, TestCombos.class })
 public class TestGenerateSuite {
 
 }
