@@ -355,15 +355,16 @@ public class Database {
 		try {
 			// sunday through saturday
 			for(int i = 0; i < 7; i++) {
-				ResultSet rs = dbGetTimeAvailHelper(stmt, studentID, studentAvailNum, days[i]);
-				if(rs == null) {
-					avails.add("");
-				} else {
+				ResultSet rs = null;
+				try{
+					rs = dbGetTimeAvailHelper(stmt, studentID, studentAvailNum, days[i]);
 					while(rs.next()){
 						avails.add(rs.getString(HOURS));
 					}
+					rs.close();
+				} catch(NullPointerException e){
+					avails.add("");
 				}
-				rs.close();
 			}
 		} catch (Exception e) {
 			logger.log(Level.WARNING, e.toString());
