@@ -358,13 +358,13 @@ public class Database {
 				ResultSet rs = dbGetTimeAvailHelper(stmt, studentID, studentAvailNum, days[i]);
 				if(rs == null) {
 					avails.add("");
-				}
-				else {
+				} else {
 					while(rs.next()){
 						avails.add(rs.getString(HOURS));
 					}
+					rs.close();
 				}
-				rs.close();
+				
 			}
 		} catch (Exception e) {
 			logger.log(Level.WARNING, e.toString());
