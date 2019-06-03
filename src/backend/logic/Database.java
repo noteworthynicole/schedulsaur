@@ -249,9 +249,17 @@ public class Database {
 		try {
 			stmt.executeUpdate(sql);
 			sql = "SELECT id FROM schedulsaurdb.Student where email=" + strList[6];
-			ResultSet rs = stmt.executeQuery(sql);
-			return rs.getInt("id");
+			return getResultSetForStudent(stmt, sql);
 		} catch(Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		}
+		return -1;
+	}
+	
+	private static int getResultSetForStudent(Statement stmt, String sql) {
+		try(ResultSet rs = stmt.executeQuery(sql)){
+			return rs.getInt("id");
+		}catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
 		}
 		return -1;
