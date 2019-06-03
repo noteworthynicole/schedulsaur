@@ -1,5 +1,6 @@
 package logic;
 
+import java.sql.Statement;
 import java.util.*;
 
 public class Prerequisites {
@@ -25,11 +26,11 @@ public class Prerequisites {
 		return catalogs;
 	}
 	
-	//This is a dummy function. Replace with actual call to database when implemented
+	//Heads up - need to be sure that there aren't any commas, else split by that instead
 	public static List<String> getClassesTaken(String studentId){
-		List<String> classes = new ArrayList<>();
-		classes.add("");
-		return classes;
+		Statement stmt = null;
+		String pastClass = Database.dbGetPastClasses(stmt, studentId);
+		return new ArrayList<>(Arrays.asList(pastClass.split("(?<!\\G\\S+)\\s")));
 	}
 	
 	//checks to see if the class meets prereqs
