@@ -28,7 +28,7 @@ public class Class {
 	}
 	
 	public String getClassNum() {
-		return this.getEqualName().split(" ")[1];
+		return this.name.split(" ")[1].substring(0, 2);
 	}
 	
 	public String getEqualName() {
