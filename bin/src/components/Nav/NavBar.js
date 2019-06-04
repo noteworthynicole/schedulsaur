@@ -5,7 +5,6 @@ import "./NavBar.css";
 const NavBar = props => {
   return (
     <div className="sidebar">
-
       {/* // NavLink navigates to a new page specified by 'to' attribute */}
 
       <NavLink className="dashboard-button" to="/DashBoard">
@@ -28,11 +27,11 @@ const NavBar = props => {
         Create Schedules
       </NavLink>
 
-      <NavLink className="sidebar-button" to="/SavedSchedules">
+      <NavLink className="dashboard-button" to="/SavedSchedules">
         Saved Schedules
       </NavLink>
 
-      <NavLink className="help-button" to="/Help">
+      <NavLink className="sidebar-button" to="/Help">
         Help
       </NavLink>
 

@@ -2,19 +2,32 @@
  * CourseHistory/DesiredCourse CSS Module
  */
 
-.main_container{
-    display: flex;
-    flex-flow: column;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 75vh;
+.main_container {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 75vh;
 }
 
-.button_container{
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    width: 97%;
-    height: 8vh;
+.button_container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
+  width: 97%;
+  height: 8vh;
+}
+
+.modal {
+  font-size: 12px;
+}
+
+.modal > .header {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
 }

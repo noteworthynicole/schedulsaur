@@ -1,14 +1,18 @@
-.dashboard-button {
+/* .dashboard-button {
   outline: none;
   cursor: pointer;
   height: 30px;
-  background-color: var(--schedulsaur_green);
+  background-color: rgba(241, 239, 239, 0.918);
   border: none;
   border-top-width: 50%;
   margin-bottom: 20px;
-  color: white;
+  color: black;
   font-size: 15px;
   text-align: center;
+}
+
+.dashboard-button:hover {
+  background-color: #7fcfa9;
 }
 
 .dashboard-button:before {
@@ -16,15 +20,15 @@
   display: block;
   margin: 0 auto;
   height: 18px;
-  width: 80%; /* or 100px */
-  border-top: 1px solid white;
+  width: 80%;
+  border-top: 1px solid black;
 }
 
 .help-button {
   outline: none;
   cursor: pointer;
   height: 30px;
-  background-color: var(--schedulsaur_green);
+  background-color: rgba(241, 239, 239, 0.918);
   border: none;
   border-top-width: 50%;
   margin-bottom: 20px;
@@ -38,7 +42,7 @@
   display: block;
   margin: 0 auto;
   height: 18px;
-  width: 80%; /* or 100px */
+  width: 80%;
   border-top: 1px solid white;
 }
 
@@ -47,7 +51,7 @@
   display: block;
   margin: 0 auto;
   height: 1px;
-  width: 80%; /* or 100px */
+  width: 80%;
   border-bottom: 1px solid white;
 }
 
@@ -56,12 +60,16 @@
   outline: none;
   cursor: pointer;
   height: 30px;
-  background-color: var(--schedulsaur_green);
+  background-color: rgba(241, 239, 239, 0.918);
   border: none;
   border-top-width: 50%;
   margin-bottom: 15px;
   margin-top: 15px;
-  color: white;
+  color: black;
   font-size: 15px;
   font-weight: 530;
 }
+
+.sidebar-button:hover {
+  background-color: #7fcfa9;
+} */

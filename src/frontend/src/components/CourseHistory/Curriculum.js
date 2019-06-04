@@ -2,7 +2,7 @@ import React from "react";
 import CourseBox from "./CourseBox";
 import "./CourseHistory.css";
 
-const Curriculum = ({type}) => {
+const Curriculum = ({ type }) => {
   return (
     <div>
       <div className="course-history">
@@ -10,14 +10,26 @@ const Curriculum = ({type}) => {
           <CourseBox
             className="major"
             height="500px"
-            title={"Major ("+type+")"}
+            title={"Major (" + type + ")"}
+            boxType="major"
+            pageType={type}
           />
         </div>
         <div className="support">
-          <CourseBox height="450px" title={"Support ("+type+")"} />
+          <CourseBox
+            boxType="support"
+            height="450px"
+            title={"Support (" + type + ")"}
+            pageType={type}
+          />
         </div>
         <div className="ge">
-          <CourseBox height="300px" title={"GEs ("+type+")"} />
+          <CourseBox
+            height="300px"
+            title={"GEs (" + type + ")"}
+            boxType={"ge"}
+            pageType={type}
+          />
         </div>
       </div>
     </div>
