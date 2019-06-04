@@ -20,15 +20,14 @@ public class TestPrerequisites {
 	private List<String> fields1 = Arrays.asList("CSC 466-01", "id1", "Lec", "prof1", "building1", "20", "11", "0", "1");
 	private Section sec1 = new Section(null, fields1);
 	private List<String> fields2 = Arrays.asList("CSC 466-01", "id1", "Lec", "prof1", "building1", "20", "11", "0", "1");
-	private Section sec2 = new Section(null, fields2);
 	
 	@Test
 	public void testRemovePastClasses1() {
 		Map<String, Section> sections = new HashMap<>();
 		sections.put(sec1.getName(), sec1);
-		List<Catalog> catalogs = new ArrayList<>();
-		catalogs.add(cat1);
-		catalogs.add(cat2);
+		List<Catalog> catalogs2 = new ArrayList<>();
+		catalogs2.add(cat1);
+		catalogs2.add(cat2);
 		Prerequisites.removeClassesTaken(sections, catalogs);
 		assertTrue(sections.isEmpty());
 	}
