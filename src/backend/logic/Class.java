@@ -27,6 +27,10 @@ public class Class {
 		return this.name;
 	}
 	
+	public String getClassNum() {
+		return this.getEqualName().split(" ")[1];
+	}
+	
 	public String getEqualName() {
 		if(this.name != null && this.name.length() >= 7) {
 			return this.name.substring(0, 7);

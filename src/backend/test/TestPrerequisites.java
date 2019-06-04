@@ -3,9 +3,7 @@ package test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import org.junit.Test;
 
@@ -19,7 +17,21 @@ public class TestPrerequisites {
 			"CSC 466", "Knowledge Discovery from Data",	"4 units", "Graded", "F, SP", "CSC 349 && (STAT 302 || STAT 312 || STAT 321 || STAT 350)", "2")));
 	private List<Catalog> catalogs = new ArrayList<>(Arrays.asList(cat1, cat2));
 	private List<String> classesTaken1 = new ArrayList<>(Arrays.asList("MATH 118", "CSC 349"));
+	private List<String> fields1 = Arrays.asList("CSC 466-01", "id1", "Lec", "prof1", "building1", "20", "11", "0", "1");
+	private Section sec1 = new Section(null, fields1);
+	private List<String> fields2 = Arrays.asList("CSC 466-01", "id1", "Lec", "prof1", "building1", "20", "11", "0", "1");
+	private Section sec2 = new Section(null, fields2);
 	
+	@Test
+	public void testRemovePastClasses1() {
+		Map<String, Section> sections = new HashMap<>();
+		sections.put(sec1.getName(), sec1);
+		List<Catalog> catalogs = new ArrayList<>();
+		catalogs.add(cat1);
+		catalogs.add(cat2);
+		Prerequisites.removeClassesTaken(sections, catalogs);
+		assertTrue(sections.isEmpty());
+	}
 	
 	@Test
 	public void testNoClassesTaken() {

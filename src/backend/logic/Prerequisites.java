@@ -12,6 +12,7 @@ public class Prerequisites {
 	public static void filterPrereqs(Map<String, Section> sections, int studentId) {
 		List<Catalog> catalogs = collectCatalogClasses();
 		List<String> classesTaken = getClassesTaken(String.valueOf(studentId));
+		removeClassesTaken(sections, classesTaken);
 		replaceBooleanClasses(catalogs, classesTaken);
 		removeIneligbleClasses(catalogs, sections);
 	}
@@ -45,6 +46,22 @@ public class Prerequisites {
 			}
 		}
 		catalogs.removeAll(catalogToRemove);
+	}
+	
+	public static void removeClassesTaken(Map<String, Section> sections, List<Catalog> catalogs) {
+		List<String> pastClassNums = new ArrayList<>();
+		List<String> classesToRemove = new ArrayList<>();
+		for(Catalog cat : catalogs) {
+			pastClassNums.add(cat.getClassNum());
+		}
+		for(Section sec : sections.values()) {
+			if(pastClassNums.contains(sec.getClassNum())) {
+				classesToRemove.add(sec.getName());
+			}
+		}
+		for(String classToRemove : classesToRemove) {
+			sections.remove(classToRemove);
+		}
 	}
 	
 	//does the actual filtering to remove classes that don't meet prereqs
