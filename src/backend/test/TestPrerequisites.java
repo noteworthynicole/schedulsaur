@@ -19,7 +19,6 @@ public class TestPrerequisites {
 	private List<String> classesTaken1 = new ArrayList<>(Arrays.asList("MATH 118", "CSC 349"));
 	private List<String> fields1 = Arrays.asList("CSC 466-01", "id1", "Lec", "prof1", "building1", "20", "11", "0", "1");
 	private Section sec1 = new Section(null, fields1);
-	private List<String> fields2 = Arrays.asList("CSC 466-01", "id1", "Lec", "prof1", "building1", "20", "11", "0", "1");
 	
 	@Test
 	public void testRemovePastClasses1() {
