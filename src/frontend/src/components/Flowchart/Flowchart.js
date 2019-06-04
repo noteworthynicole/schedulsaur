@@ -1,77 +1,112 @@
-import React, { Component } from 'react';
-import { connect }  from 'react-redux';
-import styles from './Flow.module.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import styles from "./Flow.module.css";
 
-class Flowchart extends Component{
+class Flowchart extends Component {
+  /**
+   * --- Used to create the individual course boxes
+   */
+  createBox = course => {
+    let coursesTaken = this.props.courseHistory.courses_taken;
+    let desiredCourses = this.props.courseHistory.desired_courses;
+    let boxState = {};
 
-    /**
-     * --- Used to create the individual course boxes
-    */
-    createBox = (course) => {
-        switch(course.type){
-            case 'CSC':
-                return <div className={`${styles.box} ${styles.csc_box}`}>CSC<br/>...</div>
-            case 'Support':
-                return <div className= {`${styles.box} ${styles.support_box}`}>Support<br/>...</div>
-            case 'GE':
-                return <div className={`${styles.box} ${styles.ge_box}`}>GE<br/>...</div>
-            default:
-                return <div className={styles.empty_box}></div>
-        }
+    if (coursesTaken.includes(course.name)) {
+      boxState = { filter: "brightness(60%)" };
     }
 
-    /**
-     * --- Used to create a row of courses
-    */
-    createRow = (row) => {
-        return(
-            row.map((course, index) => {
-                return(
-                    <div key={index} className={'col s' + course.len}>
-                        {this.createBox(course)}
-                    </div>
-                )
-            })    
-        )
+    if (desiredCourses.includes(course.name)) {
+      boxState = { border: "2px solid green" };
     }
 
-    /**
-     * --- Used to create the flowchart grid
-    */
-    createGrid = (flowchart) => {
-        let grid = []
-        Object.keys(flowchart).forEach((row, index)=>{
-            grid.push(
-                <div key={index} className='row'>
-                    {this.createRow(flowchart[row])}
-                </div>
-            )
-        })
-        return(grid)
-    }
-
-    render(){
-        const { courses } = this.props;
-        return(
-            <div className={styles.grid_container}>
-                {this.createGrid(courses.flowchart)}
+    switch (course.type) {
+      case "CSC":
+        return (
+          <div className={`${styles.box} ${styles.csc_box}`} style={boxState}>
+            <div style={{ fontSize: "3px" }}>CSC</div>
+            <div style={{ fontSize: "10px", marginTop: "2px" }}>
+              {course.name}
             </div>
-        )
+          </div>
+        );
+      case "Support":
+        return (
+          <div
+            className={`${styles.box} ${styles.support_box}`}
+            style={boxState}
+          >
+            <div style={{ fontSize: "3px" }}>Support</div>
+            <div style={{ fontSize: "10px", marginTop: "2px" }}>
+              {course.name}
+            </div>
+          </div>
+        );
+      case "GE":
+        return (
+          <div className={`${styles.box} ${styles.ge_box}`} style={boxState}>
+            <div style={{ fontSize: "3px" }}>GE</div>
+            <div style={{ fontSize: "10px", marginTop: "2px" }}>
+              {course.name}
+            </div>
+          </div>
+        );
+      default:
+        return <div className={styles.empty_box} />;
     }
+  };
+
+  /**
+   * --- Used to create a row of courses
+   */
+  createRow = row => {
+    return row.map((course, index) => {
+      return (
+        <div key={index} className={"col s" + course.len}>
+          {this.createBox(course)}
+        </div>
+      );
+    });
+  };
+
+  /**
+   * --- Used to create the flowchart grid
+   */
+  createGrid = flowchart => {
+    let grid = [];
+    Object.keys(flowchart).forEach((row, index) => {
+      grid.push(
+        <div key={index} className="row">
+          {this.createRow(flowchart[row])}
+        </div>
+      );
+    });
+    return grid;
+  };
+
+  render() {
+    console.log(this.props.courseHistory.desired_courses);
+    const { courses } = this.props;
+    return (
+      <div className={styles.grid_container}>
+        {this.createGrid(courses.flowchart)}
+      </div>
+    );
+  }
 }
 
 /**
  * mapStateToProps
- * 
+ *
  * @description maps state from store to props
- * @param {*} state 
- * @param {*} ownProps 
+ * @param {*} state
+ * @param {*} ownProps
  */
 const mapStateToProps = (state, ownProps) => {
-    return {
-        courses: state.flowchart
-    }
-}
+  return {
+    courses: state.flowchart,
+    courseHistory: state.courseHistory
+  };
+};
 
 // 'connect' allows component to access the state from the store
 

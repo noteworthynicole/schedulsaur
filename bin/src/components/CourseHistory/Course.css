@@ -5,6 +5,7 @@
   flex-direction: row;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  position: relative;
 }
 
 .messageHover {
