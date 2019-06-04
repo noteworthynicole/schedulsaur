@@ -54,6 +54,7 @@ export class Course extends Component {
 
   hasTaken = () => {
     const takenCourses = this.props.courseHistory.courses_taken;
+<<<<<<< HEAD
     const desiredCourses = this.props.courseHistory.desired_courses;
 
     switch (this.props.pageType) {
@@ -74,14 +75,23 @@ export class Course extends Component {
 
       default:
         return false;
+=======
+
+    if (takenCourses.includes(this.props.courseName)) {
+      return true;
+>>>>>>> eaacc67d635ba3f41c0c8aa60d264a4ad6133ef0
     }
   };
 
   isDisabled = () => {
+<<<<<<< HEAD
     if (
       this.props.courseHistory.courses_taken.includes(this.props.courseName) &&
       this.props.pageType === "Desired"
     ) {
+=======
+    if (this.hasTaken() && this.props.pageType === "Desired") {
+>>>>>>> eaacc67d635ba3f41c0c8aa60d264a4ad6133ef0
       return true;
     }
     return false;
