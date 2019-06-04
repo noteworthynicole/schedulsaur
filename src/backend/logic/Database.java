@@ -259,15 +259,15 @@ public class Database {
 	private static int getResultSetForStudent(Statement stmt, String sql) {
 		try(ResultSet rs = stmt.executeQuery(sql)){
 			return rs.getInt("id");
-		}catch(Exception e) {
+		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
 		}
 		return -1;
 	}
    
-   public static void dbWriteSchedule(Statement stmt, String sched) {
-      String sql = "INSERT INTO schedulsaurdb.Schedule () value ('" + sched + "');";
-      try {
+	public static void dbWriteSchedule(Statement stmt, String sched) {
+		String sql = "INSERT INTO schedulsaurdb.Schedule () value ('" + sched + "');";
+		try {
 			stmt.executeUpdate(sql);
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
@@ -389,7 +389,7 @@ public class Database {
 	
 	/* ----------------------------------------------------------------------------------- */
 	
-	public static ResultSet dbGetStudentInfoHelper(Statement stmt, String studentID) {
+	public static ResultSet dbGetStudentInfoHelper(Statement stmt, int studentID) {
 		try {
 			String sql = "";
 			sql = "select * from Student where student_id=\"" + studentID + "\"";
@@ -405,7 +405,7 @@ public class Database {
 	}
 	
 	// takes in ID, returns Everything (except email and password)
-	public static List<String> dbGetStudentInfo(Statement stmt, String studentID) {
+	public static List<String> dbGetStudentInfo(Statement stmt, int studentID) {
 		List<String> info = new ArrayList<>();
 		try {
 			ResultSet rs = dbGetStudentInfoHelper(stmt, studentID);
@@ -429,7 +429,7 @@ public class Database {
 	}
 	
 	// taked in ID, returns just past classes
-	public static String dbGetPastClasses(Statement stmt, String studentID) {
+	public static String dbGetPastClasses(Statement stmt, int studentID) {
 		String pastClasses = "";
 		try {
 			ResultSet rs = dbGetStudentInfoHelper(stmt, studentID);
