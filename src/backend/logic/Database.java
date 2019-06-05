@@ -390,7 +390,7 @@ public class Database {
 	
 	/* ----------------------------------------------------------------------------------- */
 	
-	public static ResultSet dbGetStudentInfoHelper(Statement stmt, String studentID) {
+	public static ResultSet dbGetStudentInfoHelper(Statement stmt, int studentID) {
 		try {
 			String sql = "";
 			sql = "select * from Student where student_id=\"" + studentID + "\"";
@@ -406,7 +406,7 @@ public class Database {
 	}
 	
 	// takes in ID, returns Everything (except email and password)
-	public static List<String> dbGetStudentInfo(Statement stmt, String studentID) {
+	public static List<String> dbGetStudentInfo(Statement stmt, int studentID) {
 		List<String> info = new ArrayList<>();
 		try {
 			ResultSet rs = dbGetStudentInfoHelper(stmt, studentID);
@@ -430,7 +430,7 @@ public class Database {
 	}
 	
 	// taked in ID, returns just past classes
-	public static String dbGetPastClasses(Statement stmt, String studentID) {
+	public static String dbGetPastClasses(Statement stmt, int studentID) {
 		String pastClasses = "";
 		try {
 			ResultSet rs = dbGetStudentInfoHelper(stmt, studentID);
