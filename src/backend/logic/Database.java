@@ -245,7 +245,8 @@ public class Database {
 		}
 		bld.append(strList[i]);
 		value = bld.toString(); 
-		String sql = "INSERT INTO schedulsaurdb.Student" + " () value (" + value + ");";
+		String sql = "INSERT INTO schedulsaurdb.Student" + " (name, major, minor, cat_year, "
+				+ "qtpf, noutt, email, password, prevclass) value (" + value + ");";
 		try {
 			stmt.executeUpdate(sql);
 			sql = "SELECT id FROM schedulsaurdb.Student where email=" + strList[6];
@@ -259,15 +260,15 @@ public class Database {
 	private static int getResultSetForStudent(Statement stmt, String sql) {
 		try(ResultSet rs = stmt.executeQuery(sql)){
 			return rs.getInt("id");
-		} catch(Exception e) {
+		}catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
 		}
 		return -1;
 	}
    
-	public static void dbWriteSchedule(Statement stmt, String sched) {
-		String sql = "INSERT INTO schedulsaurdb.Schedule () value ('" + sched + "');";
-		try {
+   public static void dbWriteSchedule(Statement stmt, String sched, int studentId) {
+      String sql = "INSERT INTO schedulsaurdb.Schedules (sections, student_id) value ('" + sched + "'," + studentId + ");";
+      try {
 			stmt.executeUpdate(sql);
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
@@ -389,7 +390,7 @@ public class Database {
 	
 	/* ----------------------------------------------------------------------------------- */
 	
-	public static ResultSet dbGetStudentInfoHelper(Statement stmt, int studentID) {
+	public static ResultSet dbGetStudentInfoHelper(Statement stmt, String studentID) {
 		try {
 			String sql = "";
 			sql = "select * from Student where student_id=\"" + studentID + "\"";
@@ -405,7 +406,7 @@ public class Database {
 	}
 	
 	// takes in ID, returns Everything (except email and password)
-	public static List<String> dbGetStudentInfo(Statement stmt, int studentID) {
+	public static List<String> dbGetStudentInfo(Statement stmt, String studentID) {
 		List<String> info = new ArrayList<>();
 		try {
 			ResultSet rs = dbGetStudentInfoHelper(stmt, studentID);
@@ -429,7 +430,7 @@ public class Database {
 	}
 	
 	// taked in ID, returns just past classes
-	public static String dbGetPastClasses(Statement stmt, int studentID) {
+	public static String dbGetPastClasses(Statement stmt, String studentID) {
 		String pastClasses = "";
 		try {
 			ResultSet rs = dbGetStudentInfoHelper(stmt, studentID);
