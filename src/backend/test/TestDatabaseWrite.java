@@ -31,7 +31,7 @@ public class TestDatabaseWrite {
 		try (Connection conn = DriverManager.getConnection(dbURL,dbUsername,dbPW)){
 			stmt = conn.createStatement();
 			ResultSet rs = Database.dbClassQuery(stmt, "ClassID", testClass);
-			assertEquals("CSC 309", rs.getString(0));
+			assertEquals("CSC 309", rs.getString(1));
 			stmt.close();
 		} catch(SQLException se) {
 			//Handle errors for JDBC
