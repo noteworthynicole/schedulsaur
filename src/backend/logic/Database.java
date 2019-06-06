@@ -409,9 +409,10 @@ public class Database {
 		} finally {
 			if(rs != null) {
 				try {
+					logger.log(Level.WARNING, "please 1");
 					rs.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+					
 					logger.log(Level.WARNING, e.toString());
 				}
 			}
@@ -445,8 +446,9 @@ public class Database {
 			if(rs != null) {
 				try {
 					rs.close();
+					logger.log(Level.WARNING, "please 2");
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+					
 					logger.log(Level.WARNING, e.toString());
 				}
 			}
@@ -493,8 +495,9 @@ public class Database {
 			if(rs != null) {
 				try {
 					rs.close();
+					logger.log(Level.WARNING, "please 3");
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+					
 					logger.log(Level.WARNING, e.toString());
 				}
 			}
@@ -537,8 +540,9 @@ public class Database {
 			if(rs != null) {
 				try {
 					rs.close();
+					logger.log(Level.WARNING, "please 4");
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+					
 					logger.log(Level.WARNING, e.toString());
 				}
 			}

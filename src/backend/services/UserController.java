@@ -77,8 +77,9 @@ public class UserController {
 			if(stmt != null) {
 				try {
 					stmt.close();
+					logger.log(Level.WARNING, "please 4");
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+				
 					logger.log(Level.WARNING, e.toString());
 				}
 			}

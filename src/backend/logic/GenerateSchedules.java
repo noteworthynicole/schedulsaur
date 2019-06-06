@@ -123,8 +123,9 @@ public class GenerateSchedules {
 			if(stmt != null) {
 				try {
 					stmt.close();
+					logger.log(Level.WARNING, "please 5");
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+					
 					logger.log(Level.WARNING, e.toString());
 				}
 			}
