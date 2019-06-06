@@ -393,7 +393,7 @@ public class Database {
 	/* ----------------------------------------------------------------------------------- */
 	
 	public static String dbGenerateHelper(Statement stmt, String sql, String parameter) {
-		try {
+		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
 			ResultSet rs = stmt.executeQuery(sql);
 
 				rs.next();
@@ -415,9 +415,8 @@ public class Database {
 	
 	// Get Student by Email
 	public static String[] dbGetStudent(Statement stmt, String email) {
-		String[] user = {"N/A"};
 		String sql = "SELECT * FROM schedulsaurdb.Student WHERE email='" + email + "'";
-		try {
+		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
 			ResultSet rs = stmt.executeQuery(sql);
 			rs.next();
 			return new String[] {rs.getString("id"), rs.getString("name"), rs.getString(STUDENTMAJOR), 
@@ -455,7 +454,7 @@ public class Database {
 	// get Student past classes
 	public static String dbGetStudentPastClasses(Statement stmt, String id) {
 		String sql = "SELECT prevClass from schedulsaurdb.Student where id = " + id + ";";
-		try {
+		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
 			ResultSet rs = stmt.executeQuery(sql);
 			rs.next();
 			return rs.getString(PREVCLASSES);
@@ -488,7 +487,7 @@ public class Database {
 	public static List<TimePreference> dbGetAllTimePrefs(Statement stmt, String studentId) {
 		String sql = "SELECT availNum, name FROM schedulsaurdb.TimePref WHERE student_id = '" + studentId + "';";
 		ArrayList<TimePreference> allPrefs = new ArrayList<>();
-		try {
+		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()) {
 				allPrefs.add(new TimePreference(studentId, rs.getString("availNum"), rs.getString("name")));
@@ -504,7 +503,7 @@ public class Database {
 		String value = "student_id='" + studentId + "', availNum='" + availNum + "', name='" + name + "'";
 		String sql = "UPDATE schedulsaurdb.TimePref SET " + value + " WHERE student_id=" + studentId + " and availNum=" + availNum +  ";";
 		
-		try {
+		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
 			stmt.executeUpdate(sql);
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
@@ -541,7 +540,7 @@ public class Database {
 		String[] block = new String[7];
 		ResultSet rs = null;
 		String sql = "SELECT hours FROM schedulsaurdb.TimeAvail WHERE student_Id='" + studentId + "' and availNum='" + availNum + "';";
-		try {
+		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
 			rs = stmt.executeQuery(sql);
 			int c = 0;
 			while(rs.next()) {
@@ -585,7 +584,7 @@ public class Database {
 	/* ----------------------------------------------------------------------------------- */
 	
 	public static ResultSet dbGetStudentInfoHelper(Statement stmt, int studentID) {
-		try {
+		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
 			String sql = "";
 			sql = "select * from schedulsaurdb.Student where id=\"" + studentID + "\"";
 			return stmt.executeQuery(sql);
@@ -602,7 +601,7 @@ public class Database {
 	// takes in ID, returns Everything (except email and password)
 	public static List<String> dbGetStudentInfo(Statement stmt, int studentID) {
 		List<String> info = new ArrayList<>();
-		try {
+		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
 			ResultSet rs = dbGetStudentInfoHelper(stmt, studentID);
 			if(rs == null) {
 				return info;
@@ -626,7 +625,7 @@ public class Database {
 	// taked in ID, returns just past classes
 	public static String dbGetPastClasses(Statement stmt, int studentID) {
 		String pastClasses = "";
-		try {
+		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
 			ResultSet rs = dbGetStudentInfoHelper(stmt, studentID);
 			if(rs == null) {
 				return pastClasses;
