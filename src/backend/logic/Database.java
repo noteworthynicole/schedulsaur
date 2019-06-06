@@ -429,8 +429,9 @@ public class Database {
 	// Get Student by Email
 	public static String[] dbGetStudent(Statement stmt, String email) {
 		String sql = "SELECT * FROM schedulsaurdb.Student WHERE email='" + email + "'";
+		ResultSet rs = null;
 		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
-			ResultSet rs = stmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 			rs.next();
 			String[] res = {rs.getString("id"), rs.getString("name"), rs.getString(STUDENTMAJOR), 
 								rs.getString(STUDENTMINOR), rs.getString(CATALOGYEAR), 
@@ -440,6 +441,15 @@ public class Database {
 			return res;
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
+		} finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					logger.log(Level.WARNING, e.toString());
+				}
+			}
 		}
 		return new String[] {};
 	}
@@ -468,9 +478,10 @@ public class Database {
 	// get Student past classes
 	public static String dbGetStudentPastClasses(Statement stmt, String id) {
 		String sql = "SELECT prevClass from schedulsaurdb.Student where id = " + id + ";";
+		ResultSet rs = null;
 		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
 			String res;
-			ResultSet rs = stmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 			rs.next();
 			res = rs.getString(PREVCLASSES);
 			rs.close();
@@ -478,6 +489,15 @@ public class Database {
 			
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
+		} finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					logger.log(Level.WARNING, e.toString());
+				}
+			}
 		}
 		return null;
 	}
@@ -503,15 +523,25 @@ public class Database {
 	// GET All TimePrefs
 	public static List<TimePreference> dbGetAllTimePrefs(Statement stmt, String studentId) {
 		String sql = "SELECT availNum, name FROM schedulsaurdb.TimePref WHERE student_id = '" + studentId + "';";
+		ResultSet rs = null;
 		ArrayList<TimePreference> allPrefs = new ArrayList<>();
 		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
-			ResultSet rs = stmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
 				allPrefs.add(new TimePreference(studentId, rs.getString("availNum"), rs.getString("name")));
 			}
 			rs.close();
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
+		} finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					logger.log(Level.WARNING, e.toString());
+				}
+			}
 		}
 		return allPrefs;
 	}
