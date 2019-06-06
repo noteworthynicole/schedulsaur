@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.*;
 import java.util.logging.*;
 
-import ch.qos.logback.classic.net.SMTPAppender;
+
 
 public class Database {
 	
@@ -421,17 +421,17 @@ public class Database {
 				return user;
 			}else {
 				rs.next();
-				String[] fields = {rs.getString("id"), rs.getString("name"), rs.getString("major"), 
-									rs.getString("minor"), rs.getString("cat_year"), 
-									rs.getString("qtpf"), rs.getString("noutt"), rs.getString("email"),
-									rs.getString("password"), rs.getString("prevClass")};
-				return fields;
+				return new String[] {rs.getString("id"), rs.getString("name"), rs.getString(STUDENTMAJOR), 
+									rs.getString(STUDENTMINOR), rs.getString(CATALOGYEAR), 
+									rs.getString("qtpf"), rs.getString(NUMUNITS), rs.getString("email"),
+									rs.getString("password"), rs.getString(PREVCLASSES)};
+
 			}
 			
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
 		}
-		return null;
+		return new String[] {};
 	}
 	
 	// update Student by given fields
@@ -461,7 +461,7 @@ public class Database {
 		try {
 			ResultSet rs = stmt.executeQuery(sql);
 			if(rs == null) {
-				System.out.println("E");
+				
 				return "";
 			}else {
 				rs.next();
@@ -580,7 +580,7 @@ public class Database {
 			rs = stmt.executeQuery(sql);
 			int c = 0;
 			while(rs.next()) {
-				block[c] = rs.getString("hours");
+				block[c] = rs.getString(HOURS);
 				c++;
 			}
 		} catch(SQLException se) {
