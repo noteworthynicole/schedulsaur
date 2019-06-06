@@ -83,8 +83,8 @@ public class UserController {
 		Statement stmt = null;
 		try (Connection conn = DriverManager.getConnection(dbURL,dbUsername,dbPW)){
 			stmt = conn.createStatement();
-			String user_id = Database.dbGenerateStudentId(stmt);
-			user.setId(user_id);
+			String userId = Database.dbGenerateStudentId(stmt);
+			user.setId(userId);
 			Database.dbWriteStudent(stmt, user.getAllFields());
 			stmt.close();
 		} catch(SQLException se) {

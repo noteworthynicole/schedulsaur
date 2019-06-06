@@ -129,13 +129,11 @@ public class User implements Serializable{
 	}
 	
 	public String[] getAllFields() {
-		String[] fields = {id, name, major, minor, catalogYear, planningQuarter, unitsThisQuarter, email, password, previousClasses};
-		return fields;
+		return new String[] {id, name, major, minor, catalogYear, planningQuarter, unitsThisQuarter, email, password, previousClasses};
 	}
 	
 	public String[] getSubsetFields() {
-		String[] fields = {name, major, minor, catalogYear, planningQuarter, unitsThisQuarter};
-		return fields;
+		return new String[] {name, major, minor, catalogYear, planningQuarter, unitsThisQuarter};
 	}
 	
 }

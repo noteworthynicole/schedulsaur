@@ -20,9 +20,9 @@ public class ScheduleController {
 	@CrossOrigin(origins = RESTURI.EXTERNAL_DOMAIN)
 	@GetMapping(RESTURI.GET_SCHEDULES)
 	public Schedule[] getSchedules(@PathVariable String studentId, @PathVariable String availNum) {
-		potentialSchedules = GenerateSchedules.generateSchedules(Integer.valueOf(studentId), Integer.valueOf(availNum));
+		potentialSchedules = GenerateSchedules.generateSchedules();
 		if(potentialSchedules.length == 0) {
-			return null;
+			return new Schedule[] {};
 		}else {
 			if(potentialSchedules.length <= 10) {
 				return potentialSchedules;

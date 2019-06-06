@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -73,8 +74,8 @@ public class BlockController {
 	
 	@CrossOrigin(origins = RESTURI.EXTERNAL_DOMAIN)
 	@GetMapping(RESTURI.GET_ALL_PREFS)
-	public ArrayList<TimePreference> getAllPrefs(@PathVariable String studentId) {
-		ArrayList<TimePreference> preferences = new ArrayList<TimePreference>();
+	public List<TimePreference> getAllPrefs(@PathVariable String studentId) {
+		ArrayList<TimePreference> preferences = new ArrayList<>();
 		Statement stmt = null;
 		try (Connection conn = DriverManager.getConnection(dbURL,dbUsername,dbPW)){
 			stmt = conn.createStatement();
@@ -117,12 +118,11 @@ public class BlockController {
 		Statement stmt = null;
 		try (Connection conn = DriverManager.getConnection(dbURL,dbUsername,dbPW)){
 			stmt = conn.createStatement();
-			String block_id = Database.dbGenerateTimeId(stmt, block.getStudentId());
-			block.setAvailNum(block_id);
-			time.setAvailNum(block_id);
+			String blockId = Database.dbGenerateTimeId(stmt, block.getStudentId());
+			block.setAvailNum(blockId);
+			time.setAvailNum(blockId);
 			Database.dbPostTimePref(stmt, time.getAllFields());
 			Database.dbPostTimeAvail(stmt, block.getStudentId(), block.getAvailNum(), block.toDBFormat());
-			System.out.println((block.getStudentId() + block.getAvailNum()));
 			stmt.close();
 		} catch(SQLException se) {
 			//Handle errors for JDBC

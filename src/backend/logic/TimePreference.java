@@ -12,7 +12,7 @@ public class TimePreference implements Serializable{
 	private String availNum;
 	private String timeName;
 	
-	public TimePreference() {};
+	
 	
 	public TimePreference(String studentId, String availNum, String timeName) {
 		this.studentId = studentId;
@@ -24,7 +24,7 @@ public class TimePreference implements Serializable{
 		return studentId;
 	}
 
-	public void setStudent_id(String studentId) {
+	public void setStudentId(String studentId) {
 		this.studentId = studentId;
 	}
 
@@ -45,8 +45,7 @@ public class TimePreference implements Serializable{
 	}
 	
 	public String[] getAllFields() {
-		String[] fields = {studentId, availNum, timeName};
-		return fields;
+		return new String[] {studentId, availNum, timeName};
 	}
 	
 }

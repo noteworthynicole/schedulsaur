@@ -22,7 +22,7 @@ public final class ScheduleBlock implements Serializable {
    private String name;
    private boolean[][] blocks;
    
-   public ScheduleBlock() {};
+
    
    public ScheduleBlock(String studentId, String availNum, String name, boolean[][] blocks) {
       this.studentId = studentId;
@@ -68,8 +68,7 @@ public boolean[][] getBlocks() {
    }
 
    public String[] getAllFields() {
-	   String[] fields = {studentId, availNum, name};
-	   return fields;
+	   return new String[] {studentId, availNum, name};
    }
 
 /* 

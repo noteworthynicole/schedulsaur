@@ -28,22 +28,18 @@ public class GenerateSchedules {
 	
 	private static int startTime = 7;
 	
-	public static Schedule[] generateSchedules(int studentId, int timeNum){
+	public static Schedule[] generateSchedules(){
 
 		Map<String, Section> hashMapInit = parseDbsCreateSections();
 		//filter with prereqs - need the user's id to get past classes
-//		Prerequisites.filterPrereqs(hashMapInit, studentId);
 		//Create map separated by a list of times
 		Map<DoubleTimes, List<Section>> hashMapTime = classesByTime(hashMapInit);
 		//Sort - keyset -> list 
 		List<DoubleTimes> doubleTimesList1 = sortByKey(hashMapTime);
 		//filter with time availability - need the user's id to get off time
-		System.out.println(doubleTimesList1.size());
-//		filterByTimes(doubleTimesList1, studentId, timeNum);
-//		Collections.shuffle(doubleTimesList1);
-//		doubleTimesList1 = doubleTimesList1.subList(0, 7);
+
 		doubleTimesList1 = doubleTimesList1.subList(0, 12);
-		System.out.println(doubleTimesList1.size());
+
 		//Greedy
 		List<List<DoubleTimes>> doubleTimesList2 = greedySchedule(4, doubleTimesList1);
 		//Getting the different combinations of classes
@@ -60,7 +56,7 @@ public class GenerateSchedules {
 		 * 15 = times
 		 */
 		boolean[][] blocks = new boolean[7][15];
-		System.out.println(doubleTimes.size());
+
 		for(int i=0; i<doubleTimes.size(); i++) {
 			List<ScheduleRow> innerList = new ArrayList<>();
 			for (int j = 0; j < blocks.length; j++) {
