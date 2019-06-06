@@ -70,9 +70,9 @@ class TestSelenium {
 		WebElement desired3 = driver.findElement(By.xpath(desiredBox3));
 		String value3 = desired3.getAttribute(disabled);
 		
-		assertTrue(value.equals(true));
-		assertTrue(value2.equals(true));
-		assertTrue(value3.equals(true));
+		assertTrue(value.equals("true"));
+		assertTrue(value2.equals("true"));
+		assertTrue(value3.equals("true"));
 
 		
 	}
@@ -98,7 +98,7 @@ class TestSelenium {
 		
 		WebElement listElem = driver.findElement(By.xpath(noOptions));
 		String value = listElem.getAttribute(valueAttribute);
-		assertTrue(value.equals(null));
+		assertTrue(value == null);
 		
 	}
 
@@ -115,7 +115,7 @@ class TestSelenium {
 		
 		WebElement listElem = driver.findElement(By.xpath(emptyList));
 		String value = listElem.getAttribute(valueAttribute);
-		assertTrue(value.equals(null));
+		assertTrue(value == null);
 		
 	}
 	
