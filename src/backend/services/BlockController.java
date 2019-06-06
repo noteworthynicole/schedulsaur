@@ -79,7 +79,7 @@ public class BlockController {
 		Statement stmt = null;
 		try (Connection conn = DriverManager.getConnection(dbURL,dbUsername,dbPW)){
 			stmt = conn.createStatement();
-			preferences = Database.dbGetAllTimePrefs(stmt, studentId);
+			preferences = (ArrayList<TimePreference>) Database.dbGetAllTimePrefs(stmt, studentId);
 			stmt.close();
 			return preferences;
 		} catch(SQLException se) {

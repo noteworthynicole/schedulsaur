@@ -12,7 +12,7 @@ public class TimePreference implements Serializable{
 	private String availNum;
 	private String timeName;
 	
-	
+	public TimePreference() {}
 	
 	public TimePreference(String studentId, String availNum, String timeName) {
 		this.studentId = studentId;

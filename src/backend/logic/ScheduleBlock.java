@@ -22,7 +22,7 @@ public final class ScheduleBlock implements Serializable {
    private String name;
    private boolean[][] blocks;
    
-
+   public ScheduleBlock() {};
    
    public ScheduleBlock(String studentId, String availNum, String name, boolean[][] blocks) {
       this.studentId = studentId;
