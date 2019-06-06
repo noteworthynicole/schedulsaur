@@ -411,6 +411,7 @@ public class Database {
 				try {
 					logger.log(Level.WARNING, "please 1");
 					rs.close();
+					logger.log(Level.WARNING, "please 1 again");
 				} catch (SQLException e) {
 					
 					logger.log(Level.WARNING, e.toString());
