@@ -392,14 +392,14 @@ public class Database {
 				// Student Methods
 	/* ----------------------------------------------------------------------------------- */
 	
-	public static String dbGenerateHelper(Statement stmt, String sql) {
+	public static String dbGenerateHelper(Statement stmt, String sql, String parameter) {
 		try {
 			ResultSet rs = stmt.executeQuery(sql);
 			if(rs == null) {
 				return "";
-			}else {
+			} else {
 				rs.next();
-				return rs.getString("nextId");
+				return rs.getString(parameter);
 			}
 			
 		} catch(Exception e) {
@@ -410,15 +410,15 @@ public class Database {
 	
 	// Generate next Student Id
 	public static String dbGenerateStudentId(Statement stmt) {
-		String studentSql = "SELECT COUNT(*)+1 as nextId FROM schedulsaurdb.Student;";
-		return dbGenerateHelper(stmt, studentSql);
+		String studentSql = "SELECT COUNT(*)+1 as nextId FROM schedulsaurdb.Student";
+		return dbGenerateHelper(stmt, studentSql, "nextId");
 	}
 	
 	
 	// Get Student by Email
 	public static String[] dbGetStudent(Statement stmt, String email) {
 		String[] user = {"N/A"};
-		String sql = "SELECT * FROM schedulsaurdb.Student WHERE email='" + email + "';";
+		String sql = "SELECT * FROM schedulsaurdb.Student WHERE email='" + email + "'";
 		try {
 			ResultSet rs = stmt.executeQuery(sql);
 			if(rs == null) {
@@ -465,7 +465,6 @@ public class Database {
 		try {
 			ResultSet rs = stmt.executeQuery(sql);
 			if(rs == null) {
-				
 				return "";
 			}else {
 				rs.next();
@@ -486,24 +485,13 @@ public class Database {
 	// Generate next Time Id
 	public static String dbGenerateTimeId(Statement stmt, String id) {
 		String timeSql = "SELECT COUNT(availNum)+1 as nextId FROM schedulsaurdb.TimePref WHERE student_id = " + id + ";";
-		return dbGenerateHelper(stmt, timeSql);
+		return dbGenerateHelper(stmt, timeSql, "nextId");
 	}
 	
 	// GET TimePref
 	public static String dbGetTimePref(Statement stmt, String studentId, String availNum) {
-		String sql = "SELECT name FROM schedulsaurdb.TimePref WHERE student_id = '" + studentId + "' and availNum = '" + availNum + "';";
-		try {
-			ResultSet rs = stmt.executeQuery(sql);
-			if(rs == null) {
-				return "";
-			}else {
-				rs.next();
-				return rs.getString("name");
-			}
-		} catch(Exception e) {
-			logger.log(Level.WARNING, e.toString());
-		}
-		return null;
+		String timePrefSql = "SELECT name FROM schedulsaurdb.TimePref WHERE student_id = '" + studentId + "' and availNum = '" + availNum + "';";
+		return dbGenerateHelper(stmt, timePrefSql, "name");
 	
 	}
 	
