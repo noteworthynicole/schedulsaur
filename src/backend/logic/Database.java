@@ -395,12 +395,10 @@ public class Database {
 	public static String dbGenerateHelper(Statement stmt, String sql, String parameter) {
 		try {
 			ResultSet rs = stmt.executeQuery(sql);
-			if(rs == null) {
-				return "";
-			} else {
+
 				rs.next();
 				return rs.getString(parameter);
-			}
+			
 			
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
