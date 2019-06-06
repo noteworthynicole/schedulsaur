@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Schedule from './Schedule';
 import ScheduleExpand from './ScheduleExpand';
 import Loader from 'react-loader-spinner';
-import Checkbox from 'react-simple-checkbox';
 import { load, view, select, deselect } from '../../store/actions/scheduleActions';
 import styles from './SchedList.module.css'
 

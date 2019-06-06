@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import logic.Database;
 import logic.User;
@@ -96,6 +99,36 @@ public class UserController {
 		}
 		
 		return user;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@CrossOrigin(origins = RESTURI.EXTERNAL_DOMAIN)
+	@GetMapping(RESTURI.GET_HISTORY) 
+	public ArrayList<String> getHistory(@RequestParam int id) throws JsonMappingException, IOException {
+		Statement stmt = null;
+		String courses = "";
+		ObjectMapper objectMapper = new ObjectMapper();
+		
+		ArrayList<String> returnList = new ArrayList<>();
+		try (Connection conn = DriverManager.getConnection(dbURL,dbUsername,dbPW)){
+			stmt = conn.createStatement();
+			courses = Database.dbGetPastClasses(stmt, id);
+			stmt.close();
+			
+			returnList = objectMapper.readValue(courses, ArrayList.class);
+			
+			return returnList;
+		} catch(SQLException se) {
+			//Handle errors for JDBC
+			logger.log(Level.WARNING, se.toString());
+		} catch(Exception e) {
+			//Handle errors for Class.forName
+			logger.log(Level.WARNING, e.toString());
+		}
+		
+		
+		return returnList;
+		
 	}
 
 }

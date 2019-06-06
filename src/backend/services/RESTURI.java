@@ -23,6 +23,8 @@ public class RESTURI {
 	public static final String GET_SCHEDULES = "/schedules/{studentId}/{availNum}";
 	public static final String GET_NEXT_SCHEDULES = "/schedules";
 	
+	public static final String GET_HISTORY = "/courses";
+	
 	/*
 	* URIs for Schedulsaur
 	*/

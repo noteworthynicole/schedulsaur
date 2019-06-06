@@ -99,7 +99,12 @@ const initState = {
     "CSC/CPE 123",
     "CSC/CPE 108",
     "CSC/CPE 202",
-    "CSC/CPE 203"
+    "CSC/CPE 203",
+    "CSC 225",
+    "CSC/CPE 357",
+    "MATH 141",
+    "MATH 142",
+    "STAT 312"
   ],
 
   desired_courses: ["MATH 143"]
@@ -133,6 +138,9 @@ const courseHistoryReducer = (state = initState, action = null) =>
       case "ADD_DESIRED":
         draft.desired_courses.push(action.courseName);
         break;
+
+      case "INIT":
+        draft.courses_taken = action.courses;
 
       default:
         break;
