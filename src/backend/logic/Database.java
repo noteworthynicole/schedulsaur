@@ -353,7 +353,7 @@ public class Database {
 	public static ResultSet dbGetTimeAvailHelper(Statement stmt, int studentID, int studentAvailNum, String day) {
 		try {
 			String sql = "";
-			sql = "select hours from TimeAvil where student_id=\"" + studentID + "\" and availNum=\"" + studentAvailNum + "\" and day=\"" + day + "\"";
+			sql = "select hours from schedulsaurdb.TimeAvil where student_id=\"" + studentID + "\" and availNum=\"" + studentAvailNum + "\" and day=\"" + day + "\"";
 			return stmt.executeQuery(sql);
 		} catch(SQLException se) {
 			//Handle errors for JDBC
@@ -393,7 +393,7 @@ public class Database {
 	public static ResultSet dbGetStudentInfoHelper(Statement stmt, int studentID) {
 		try {
 			String sql = "";
-			sql = "select * from Student where student_id=\"" + studentID + "\"";
+			sql = "select * from schedulsaurdb.Student where id=\"" + studentID + "\"";
 			return stmt.executeQuery(sql);
 		} catch(SQLException se) {
 			//Handle errors for JDBC
