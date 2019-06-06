@@ -16,7 +16,7 @@ import org.junit.runners.Suite;
 class TestSelenium {
 	String driverDir = "Drivers/chromedriver";
 	String driverProp = "webdriver.chrome.driver";
-	String VAL = "value";
+	String valueAttribute = "value";
 	String disabled = "disabled";
 
 
@@ -36,7 +36,7 @@ class TestSelenium {
 		driver.findElement(By.xpath(dashboardSave)).click();
 		
 		WebElement majorBox = driver.findElement(By.xpath(dashboardMajor));
-		String value = majorBox.getAttribute(VAL);
+		String value = majorBox.getAttribute(valueAttribute);
 
 		assertTrue(value.equals("ComputerScience"));
 		
@@ -97,7 +97,7 @@ class TestSelenium {
 		driver.findElement(By.xpath(confirm)).click();
 		
 		WebElement listElem = driver.findElement(By.xpath(noOptions));
-		String value = listElem.getAttribute(VAL);
+		String value = listElem.getAttribute(valueAttribute);
 		assertTrue(value.equals(null));
 		
 	}
@@ -114,7 +114,7 @@ class TestSelenium {
 		driver.findElement(By.xpath(saveSchedule)).click();
 		
 		WebElement listElem = driver.findElement(By.xpath(emptyList));
-		String value = listElem.getAttribute(VAL);
+		String value = listElem.getAttribute(valueAttribute);
 		assertTrue(value.equals(null));
 		
 	}
