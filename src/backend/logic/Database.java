@@ -392,48 +392,67 @@ public class Database {
 				// Student Methods
 	/* ----------------------------------------------------------------------------------- */
 	
-	public static String dbGenerateHelper(Statement stmt, String sql) {
-		try {
-			ResultSet rs = stmt.executeQuery(sql);
-			if(rs == null) {
-				return "";
-			}else {
+	public static String dbGenerateHelper(Statement stmt, String sql, String parameter) {
+		ResultSet rs = null;
+		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
+			String res = "";
+			rs = stmt.executeQuery(sql);
+
 				rs.next();
-				return rs.getString("nextId");
-			}
+				res = rs.getString(parameter);
+				rs.close();
+				return res;
+				
 			
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
+		} finally {
+			if(rs != null) {
+				try {
+					logger.log(Level.WARNING, "please 1");
+					rs.close();
+					logger.log(Level.WARNING, "please 1 again");
+				} catch (SQLException e) {
+					
+					logger.log(Level.WARNING, e.toString());
+				}
+			}
 		}
 		return null;
 	}
 	
 	// Generate next Student Id
 	public static String dbGenerateStudentId(Statement stmt) {
-		String studentSql = "SELECT COUNT(*)+1 as nextId FROM schedulsaurdb.Student;";
-		return dbGenerateHelper(stmt, studentSql);
+		String studentSql = "SELECT COUNT(*)+1 as nextId FROM schedulsaurdb.Student";
+		return dbGenerateHelper(stmt, studentSql, "nextId");
 	}
 	
 	
 	// Get Student by Email
 	public static String[] dbGetStudent(Statement stmt, String email) {
-		String[] user = {"N/A"};
-		String sql = "SELECT * FROM schedulsaurdb.Student WHERE email='" + email + "';";
-		try {
-			ResultSet rs = stmt.executeQuery(sql);
-			if(rs == null) {
-				return user;
-			}else {
-				rs.next();
-				return new String[] {rs.getString("id"), rs.getString("name"), rs.getString(STUDENTMAJOR), 
-									rs.getString(STUDENTMINOR), rs.getString(CATALOGYEAR), 
-									rs.getString("qtpf"), rs.getString(NUMUNITS), rs.getString("email"),
-									rs.getString("password"), rs.getString(PREVCLASSES)};
-
-			}
-			
+		String sql = "SELECT * FROM schedulsaurdb.Student WHERE email='" + email + "'";
+		ResultSet rs = null;
+		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
+			rs = stmt.executeQuery(sql);
+			rs.next();
+			String[] res = {rs.getString("id"), rs.getString("name"), rs.getString(STUDENTMAJOR), 
+								rs.getString(STUDENTMINOR), rs.getString(CATALOGYEAR), 
+								rs.getString("qtpf"), rs.getString(NUMUNITS), rs.getString("email"),
+								rs.getString("password"), rs.getString(PREVCLASSES)};
+			rs.close();
+			return res;
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
+		} finally {
+			if(rs != null) {
+				try {
+					rs.close();
+					logger.log(Level.WARNING, "please 2");
+				} catch (SQLException e) {
+					
+					logger.log(Level.WARNING, e.toString());
+				}
+			}
 		}
 		return new String[] {};
 	}
@@ -462,18 +481,27 @@ public class Database {
 	// get Student past classes
 	public static String dbGetStudentPastClasses(Statement stmt, String id) {
 		String sql = "SELECT prevClass from schedulsaurdb.Student where id = " + id + ";";
-		try {
-			ResultSet rs = stmt.executeQuery(sql);
-			if(rs == null) {
-				
-				return "";
-			}else {
-				rs.next();
-				return rs.getString(PREVCLASSES);
-			}
+		ResultSet rs = null;
+		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
+			String result;
+			rs = stmt.executeQuery(sql);
+			rs.next();
+			result = rs.getString(PREVCLASSES);
+			rs.close();
+			return result;
 			
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
+		} finally {
+			if(rs != null) {
+				try {
+					logger.log(Level.WARNING, "please 3");
+					rs.close();
+				} catch (SQLException e) {
+					
+					logger.log(Level.WARNING, e.toString());
+				}
+			}
 		}
 		return null;
 	}
@@ -486,42 +514,39 @@ public class Database {
 	// Generate next Time Id
 	public static String dbGenerateTimeId(Statement stmt, String id) {
 		String timeSql = "SELECT COUNT(availNum)+1 as nextId FROM schedulsaurdb.TimePref WHERE student_id = " + id + ";";
-		return dbGenerateHelper(stmt, timeSql);
+		return dbGenerateHelper(stmt, timeSql, "nextId");
 	}
 	
 	// GET TimePref
 	public static String dbGetTimePref(Statement stmt, String studentId, String availNum) {
-		String sql = "SELECT name FROM schedulsaurdb.TimePref WHERE student_id = '" + studentId + "' and availNum = '" + availNum + "';";
-		try {
-			ResultSet rs = stmt.executeQuery(sql);
-			if(rs == null) {
-				return "";
-			}else {
-				rs.next();
-				return rs.getString("name");
-			}
-		} catch(Exception e) {
-			logger.log(Level.WARNING, e.toString());
-		}
-		return null;
+		String timePrefSql = "SELECT name FROM schedulsaurdb.TimePref WHERE student_id = '" + studentId + "' and availNum = '" + availNum + "';";
+		return dbGenerateHelper(stmt, timePrefSql, "name");
 	
 	}
 	
 	// GET All TimePrefs
 	public static List<TimePreference> dbGetAllTimePrefs(Statement stmt, String studentId) {
 		String sql = "SELECT availNum, name FROM schedulsaurdb.TimePref WHERE student_id = '" + studentId + "';";
+		ResultSet rs = null;
 		ArrayList<TimePreference> allPrefs = new ArrayList<>();
-		try {
-			ResultSet rs = stmt.executeQuery(sql);
-			if(rs == null) {
-				return allPrefs;
-			}else {
-				while(rs.next()) {
-					allPrefs.add(new TimePreference(studentId, rs.getString("availNum"), rs.getString("name")));
-				}
+		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
+			rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				allPrefs.add(new TimePreference(studentId, rs.getString("availNum"), rs.getString("name")));
 			}
+			rs.close();
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
+		} finally {
+			if(rs != null) {
+				try {
+					rs.close();
+					logger.log(Level.WARNING, "please 4");
+				} catch (SQLException e) {
+					
+					logger.log(Level.WARNING, e.toString());
+				}
+			}
 		}
 		return allPrefs;
 	}
@@ -531,7 +556,7 @@ public class Database {
 		String value = "student_id='" + studentId + "', availNum='" + availNum + "', name='" + name + "'";
 		String sql = "UPDATE schedulsaurdb.TimePref SET " + value + " WHERE student_id=" + studentId + " and availNum=" + availNum +  ";";
 		
-		try {
+		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
 			stmt.executeUpdate(sql);
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
@@ -568,7 +593,7 @@ public class Database {
 		String[] block = new String[7];
 		ResultSet rs = null;
 		String sql = "SELECT hours FROM schedulsaurdb.TimeAvail WHERE student_Id='" + studentId + "' and availNum='" + availNum + "';";
-		try {
+		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
 			rs = stmt.executeQuery(sql);
 			int c = 0;
 			while(rs.next()) {
@@ -612,7 +637,7 @@ public class Database {
 	/* ----------------------------------------------------------------------------------- */
 	
 	public static ResultSet dbGetStudentInfoHelper(Statement stmt, int studentID) {
-		try {
+		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
 			String sql = "";
 			sql = "select * from schedulsaurdb.Student where id=\"" + studentID + "\"";
 			return stmt.executeQuery(sql);
@@ -629,7 +654,7 @@ public class Database {
 	// takes in ID, returns Everything (except email and password)
 	public static List<String> dbGetStudentInfo(Statement stmt, int studentID) {
 		List<String> info = new ArrayList<>();
-		try {
+		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
 			ResultSet rs = dbGetStudentInfoHelper(stmt, studentID);
 			if(rs == null) {
 				return info;
@@ -653,7 +678,7 @@ public class Database {
 	// taked in ID, returns just past classes
 	public static String dbGetPastClasses(Statement stmt, int studentID) {
 		String pastClasses = "";
-		try {
+		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
 			ResultSet rs = dbGetStudentInfoHelper(stmt, studentID);
 			if(rs == null) {
 				return pastClasses;

@@ -79,7 +79,7 @@ public class BlockController {
 		Statement stmt = null;
 		try (Connection conn = DriverManager.getConnection(dbURL,dbUsername,dbPW)){
 			stmt = conn.createStatement();
-			preferences = Database.dbGetAllTimePrefs(stmt, studentId);
+			preferences = (ArrayList<TimePreference>) Database.dbGetAllTimePrefs(stmt, studentId);
 			stmt.close();
 			return preferences;
 		} catch(SQLException se) {
@@ -130,6 +130,15 @@ public class BlockController {
 		} catch(Exception e) {
 			//Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
+		} finally {
+			if(stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					
+					logger.log(Level.WARNING, e.toString());
+				}
+			}
 		}
 		
 		return block;

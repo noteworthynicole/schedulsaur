@@ -113,12 +113,19 @@ public class GenerateSchedules {
 			stmt = conn.createStatement();
 			result = Database.dbGetStudentTimeAvails(stmt, String.valueOf(studentId), String.valueOf(timeNum));
 			stmt.close();
-		} catch(SQLException se) {
-			//Handle errors for JDBC
-			logger.log(Level.WARNING, se.toString());
 		} catch(Exception e) {
 			//Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
+		} finally {
+			if(stmt != null) {
+				try {
+					logger.log(Level.WARNING, "please 5");
+					stmt.close();
+				} catch (SQLException e) {
+					
+					logger.log(Level.WARNING, e.toString());
+				}
+			}
 		}
 		List<String> timeList = Arrays.asList(result);
 		List<Times> timesAvailable = new ArrayList<>();
