@@ -73,6 +73,15 @@ public class UserController {
 		} catch(Exception e) {
 			//Handle errors for Class.forName
 			logger.log(Level.WARNING, e.toString());
+		} finally {
+			if(stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					logger.log(Level.WARNING, e.toString());
+				}
+			}
 		}
 		
 	}
