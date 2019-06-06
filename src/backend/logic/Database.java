@@ -436,7 +436,7 @@ public class Database {
 	
 	// update Student by given fields
 	public static void dbUpdateStudentFields(Statement stmt, String id, String[] values) {
-		String[] fields = {"name", "major", "minor", "cat_year", "qtpf", "noutt"};
+		String[] fields = {"name", STUDENTMAJOR, STUDENTMINOR, CATALOGYEAR, "qtpf", NUMUNITS};
 		String value = "";
 		int i;
 		StringBuilder bld = new StringBuilder();
@@ -465,7 +465,7 @@ public class Database {
 				return "";
 			}else {
 				rs.next();
-				return rs.getString("prevClass");
+				return rs.getString(PREVCLASSES);
 			}
 			
 		} catch(Exception e) {
@@ -516,9 +516,9 @@ public class Database {
 	}
 	
 	// GET All TimePrefs
-	public static ArrayList<TimePreference> dbGetAllTimePrefs(Statement stmt, String studentId) {
+	public static List<TimePreference> dbGetAllTimePrefs(Statement stmt, String studentId) {
 		String sql = "SELECT availNum, name FROM schedulsaurdb.TimePref WHERE student_id = '" + studentId + "';";
-		ArrayList<TimePreference> allPrefs = new ArrayList<TimePreference>();
+		ArrayList<TimePreference> allPrefs = new ArrayList<>();
 		try {
 			ResultSet rs = stmt.executeQuery(sql);
 			if(rs == null) {
@@ -538,7 +538,7 @@ public class Database {
 	public static void dbPutTimePref(Statement stmt, String studentId, String availNum, String name) {
 		String value = "student_id='" + studentId + "', availNum='" + availNum + "', name='" + name + "'";
 		String sql = "UPDATE schedulsaurdb.TimePref SET " + value + " WHERE student_id=" + studentId + " and availNum=" + availNum +  ";";
-		System.out.println(sql);
+		
 		try {
 			stmt.executeUpdate(sql);
 		} catch(Exception e) {
