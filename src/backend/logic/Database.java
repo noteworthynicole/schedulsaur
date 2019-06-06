@@ -393,9 +393,10 @@ public class Database {
 	/* ----------------------------------------------------------------------------------- */
 	
 	public static String dbGenerateHelper(Statement stmt, String sql, String parameter) {
+		ResultSet rs = null;
 		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
 			String res = "";
-			ResultSet rs = stmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 
 				rs.next();
 				res = rs.getString(parameter);
@@ -405,6 +406,15 @@ public class Database {
 			
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
+		} finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					logger.log(Level.WARNING, e.toString());
+				}
+			}
 		}
 		return null;
 	}
