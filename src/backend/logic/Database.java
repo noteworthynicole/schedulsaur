@@ -419,16 +419,11 @@ public class Database {
 		String sql = "SELECT * FROM schedulsaurdb.Student WHERE email='" + email + "'";
 		try {
 			ResultSet rs = stmt.executeQuery(sql);
-			if(rs == null) {
-				return user;
-			}else {
-				rs.next();
-				return new String[] {rs.getString("id"), rs.getString("name"), rs.getString(STUDENTMAJOR), 
-									rs.getString(STUDENTMINOR), rs.getString(CATALOGYEAR), 
-									rs.getString("qtpf"), rs.getString(NUMUNITS), rs.getString("email"),
-									rs.getString("password"), rs.getString(PREVCLASSES)};
-
-			}
+			rs.next();
+			return new String[] {rs.getString("id"), rs.getString("name"), rs.getString(STUDENTMAJOR), 
+								rs.getString(STUDENTMINOR), rs.getString(CATALOGYEAR), 
+								rs.getString("qtpf"), rs.getString(NUMUNITS), rs.getString("email"),
+								rs.getString("password"), rs.getString(PREVCLASSES)};
 			
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
@@ -462,12 +457,8 @@ public class Database {
 		String sql = "SELECT prevClass from schedulsaurdb.Student where id = " + id + ";";
 		try {
 			ResultSet rs = stmt.executeQuery(sql);
-			if(rs == null) {
-				return "";
-			}else {
-				rs.next();
-				return rs.getString(PREVCLASSES);
-			}
+			rs.next();
+			return rs.getString(PREVCLASSES);
 			
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
@@ -499,12 +490,8 @@ public class Database {
 		ArrayList<TimePreference> allPrefs = new ArrayList<>();
 		try {
 			ResultSet rs = stmt.executeQuery(sql);
-			if(rs == null) {
-				return allPrefs;
-			}else {
-				while(rs.next()) {
-					allPrefs.add(new TimePreference(studentId, rs.getString("availNum"), rs.getString("name")));
-				}
+			while(rs.next()) {
+				allPrefs.add(new TimePreference(studentId, rs.getString("availNum"), rs.getString("name")));
 			}
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
