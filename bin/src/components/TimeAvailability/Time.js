@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import SavedTimes from './SavedTimes';
 import TimeTable from './TimeTable';
 import TimePopup from './TimePopup';
-import { save, clear}  from '../../store/actions/timeActions';
+import { loadTimes, save, clear}  from '../../store/actions/timeActions';
 import styles from './Time.module.css';
 
 /**
@@ -22,7 +22,12 @@ class Time extends Component{
     name: ''
   }
 
-  /**
+  // load saved time preferences
+  componentWillMount() {
+    this.props.loadTimes(this.props.studentId);
+  }
+
+ /**
    * --- Called when user clicks the clear button
   */
   handleClear = () => {
@@ -49,7 +54,11 @@ class Time extends Component{
     // *** need to prevent empty name here
 
     e.preventDefault();
-    this.props.save(this.state.name);    
+    let timeBlock = 
+      this.props.timeTable.map((timeRow) => {
+        return timeRow.available;
+      })
+    this.props.save(this.props.studentId, timeBlock, this.state.name);    
     close()
   }
 
@@ -61,19 +70,13 @@ class Time extends Component{
    * @param {string} type the type of button needed
   */
   getButton = (isViewing, type) => {
-      if(isViewing && type === 'create'){
-
-        // show 'create' button if user is viewing a saved time preference, else hide it
-        return(
-          <button className='green_button' onClick={this.handleClear}>
-            Create New
-          </button>
-        )
-      }else if(type === 'left'){
+     if(type === 'left'){
 
           // show 'clear' button if user is not viewing a saved time preference
           return(
-            <button className='white_button' onClick={this.handleClear}> Clear </button>
+            <button className='white_button' onClick={this.handleClear}> 
+              {(isViewing) ? ('Create New') : ('Clear')}
+            </button>
           )
       }else if(type === 'right'){
 
@@ -106,10 +109,7 @@ class Time extends Component{
               <SavedTimes />
             </div>
           </div>
-          <div align='center' style={{height: '3vw'}}>
-            {this.getButton(storeIsViewing, 'create')}
-          </div>
-        </div>
+       </div>
 
         {/* // Time Selection Table Section */}
 
@@ -143,7 +143,9 @@ class Time extends Component{
  */
 const mapStateToProps = (state, ownProps) => {
   return {
-    storeIsViewing: state.time.isViewing
+    storeIsViewing: state.time.isViewing,
+    studentId: state.student.id,
+    timeTable: state.time.table
   }
 }
 
@@ -155,7 +157,8 @@ const mapStateToProps = (state, ownProps) => {
  */
 const mapDispatchToProps = (dispatch) => {
   return{
-    save: (name) => { dispatch(save(name)) },
+    loadTimes: (studentId) => { dispatch(loadTimes(studentId)) },
+    save: (studentId, timeBlock, name) => { dispatch(save(studentId, timeBlock, name)) },
     clear: () => { dispatch(clear()) }
   }
 }

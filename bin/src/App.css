@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   --schedulsaur_green: #5ea181;
+  --sidebar-grey: rgba(241, 239, 239, 0.918);
   --light_grey: #ececec;
   --middle_grey: #dddddd;
   --other_grey: #b0b0b0;
@@ -12,14 +13,13 @@
   --ge_class: #b3dfb3;
 }
 
-body{
+body {
   overflow: hidden;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
-
 }
 
-.title-container{
+.title-container {
   display: flex;
   flex-flow: column;
   padding: 3%;
@@ -48,7 +48,7 @@ body{
 }
 
 .header {
-  height: 90px;
+  height: 70px;
   width: 100%;
   position: fixed;
   z-index: 1;
@@ -60,13 +60,10 @@ body{
 
 .logo {
   position: absolute;
-  height: 70px;
-  margin-left: 20px;
-  padding-top: 15px;
+  margin-left: 10px;
   color: white;
-  font-size: 55px;
-  font-weight: 420;
-
+  font-size: 50px;
+  font-weight: 450;
 }
 
 .app-body {
@@ -85,62 +82,69 @@ body{
   z-index: 0;
   top: 0;
   left: 0;
-  background-color: var(--schedulsaur_green);
+  background-color: var(--sidebar-grey);
   overflow-x: hidden;
   padding-top: 90px; /* 70 + 35 */
   display: flex;
   flex-direction: column;
+  box-shadow: -2px 0 5px 0 #555;
 }
 
 .dashboard-button {
   outline: none;
   cursor: pointer;
-  height: 30px;
-  background-color: var(--schedulsaur_green);
+  height: 40px;
+  line-height: 40px;
+  background-color: var(--sidebar-grey);
   border: none;
   border-top-width: 50%;
-  margin-bottom: 20px;
-  color: white;
+  margin-bottom: 10px;
+  color: black;
   font-size: 15px;
 }
 
-.dashboard-button:before{    
-  content : "";
+.dashboard-button:after {
+  content: "";
   display: block;
-  margin: 0 auto;
-  height: 18px;
-  width: 80%;  /* or 100px */
-  border-top:1px solid white;
-} 
+  margin-left: 5px;
+  margin-top: -10px;
+  height: 16px;
+  width: 150px; /* or 100px */
+  border-bottom: 1px solid rgb(172, 171, 171);
+}
 
-.dashboard-button:after{   
-  content : "";
-  display: block;
-  margin: 0 auto;
-  height: 18px;
-  width: 80%;  /* or 100px */
-  border-bottom:1px solid white;
-} 
+.dashboard-button:hover {
+  background-color: #98d1b6f3;
+}
 
 .sidebar-button {
   outline: none;
   cursor: pointer;
-  height: 30px;
-  background-color: var(--schedulsaur_green);
-  border: none;
-  border-top-width: 50%;
-  margin-bottom: 15px;
-  margin-top: 15px;
-  color: white;
+  height: 40px;
+  width: 190px;
+  line-height: 40px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  background-color: var(--sidebar-grey);
+  color: black;
   font-size: 15px;
-  font-weight: 530;
+}
+
+.sidebar-button:before {
+  background-color: red;
+  width: 10px;
+  height: 20px;
+}
+
+.sidebar-button:hover {
+  background-color: #98d1b6f3;
 }
 
 .sidebar a {
   /* top right bottom left */
   padding: 0px 8px 35px 16px;
   text-decoration: none;
-  color: #fff;
+  color: rgba(39, 38, 38, 0.836);
   display: block;
 }
 
@@ -155,11 +159,11 @@ body{
 
 .subsubtitle {
   color: black;
-  font-size: 2.0vw;
+  font-size: 2vw;
   font-weight: 550;
 }
 
-.description{
+.description {
   color: black;
   font-size: 1.1vw;
   margin-bottom: 15px;
@@ -219,9 +223,9 @@ body{
   margin: 3px;
 }
 
-.list-button-green:focus{
+.list-button-green:focus {
   background-color: var(--schedulsaur_green);
-  border:none;
+  border: none;
 }
 
 .list-button-green:hover {
@@ -239,7 +243,7 @@ body{
   cursor: pointer;
 }
 
-.list-button-white:focus{
+.list-button-white:focus {
   border: solid 1px var(--other_grey);
   background-color: white;
 }
@@ -262,16 +266,16 @@ body{
   background-color: var(--schedulsaur_green);
 }
 
-.scrollable:hover{
+.scrollable:hover {
   overflow-y: overlay;
 }
 
-.nonscrollable:hover{
+.nonscrollable:hover {
   overflow: hidden;
 }
 
 input {
-  color: var(--dark_grey)
+  color: var(--dark_grey);
 }
 
 input:focus {
@@ -280,13 +284,12 @@ input:focus {
   box-shadow: 0 1px 0 0 var(--schedulsaur_green) !important;
 }
 
-@media only screen and (max-width: 1240px){
-
-  .title{
+@media only screen and (max-width: 1240px) {
+  .title {
     font-size: 350%;
   }
 
-  .title-description{
+  .title-description {
     font-size: 150%;
   }
 
@@ -301,8 +304,7 @@ input:focus {
     height: 22px;
   }
 
-  h6{
+  h6 {
     font-size: 80%;
   }
 }
-

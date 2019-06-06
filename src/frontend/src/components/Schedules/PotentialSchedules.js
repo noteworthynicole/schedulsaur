@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ScheduleList from './ScheduleList';
 import SortFilter from './SortFilter';
-import { save } from '../../store/actions/scheduleActions';
+import { clean, save } from '../../store/actions/scheduleActions';
 import  styles from './MainSched.module.css';
 
 /**
@@ -17,6 +17,10 @@ import  styles from './MainSched.module.css';
  */
 
 class PotentialSchedules extends Component{
+
+    componentWillUnmount(){
+        this.props.clean();
+    }
 
     /**
      * --- Called when user saves a schedule
@@ -36,6 +40,7 @@ class PotentialSchedules extends Component{
                 <div className={styles.list_container}>
                     <h2 className='subtitle' align='center'>Potential Schedules</h2>
                     <ScheduleList  
+                        needsToLoad={true}
                         schedules={storeSchedules} 
                         addCheckBoxes={true} 
                         emptyText={'No Schedules Meet Your Criteria'} 
@@ -46,7 +51,7 @@ class PotentialSchedules extends Component{
 
                 <div className={styles.filter_container}>
                     <SortFilter sorters={storeSorters} filters={storeFilters} />
-                    <button className='green_button' onClick={this.handleSave}>Save Shedule(s)</button>
+                    <button className='green_button' onClick={this.handleSave}>Save Schedule(s)</button>
                 </div>
             </div>
         )
@@ -77,6 +82,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return{
+        clean: () => { dispatch(clean()) },
         save: () => { dispatch(save()) }
     }
 }

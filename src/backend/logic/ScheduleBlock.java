@@ -2,8 +2,6 @@ package logic;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public final class ScheduleBlock implements Serializable {
 	
@@ -19,21 +17,19 @@ public final class ScheduleBlock implements Serializable {
    * true / 1 means the time is open
    * false / 0 means the time is blocked
    */
+   private String studentId;
+   private String availNum;
+   private String name;
    private boolean[][] blocks;
-   private String[] days;
-   private int availNum;
-   private int studentId;
    
-   @JsonCreator
-	public ScheduleBlock(@JsonProperty("studentId")int studentId,
-			@JsonProperty("availNum") int availNum,
-			@JsonProperty("days") String[] days,
-			@JsonProperty("blocks") boolean[][] blocks) {
-		this.studentId = studentId;
-		this.availNum = availNum;
-		this.days = days;
-		this.blocks = blocks;
-	}
+   public ScheduleBlock() {};
+   
+   public ScheduleBlock(String studentId, String availNum, String name, boolean[][] blocks) {
+      this.studentId = studentId;
+      this.availNum = availNum;
+      this.name = name;
+      this.blocks = blocks;
+   }
    
    public ScheduleBlock(boolean[][] blocks) {
 	   this.blocks = blocks;
@@ -42,20 +38,41 @@ public final class ScheduleBlock implements Serializable {
 public boolean[][] getBlocks() {
 	   return blocks;
    }
-   
-   public String[] getDays() {
-	   return days;
+
+   public void setBlocks(boolean[][] blocks) {
+	   this.blocks = blocks;
    }
-   
-   public int getAvailNum() {
+
+   public String getAvailNum() {
 	   return availNum;
    }
-   
-   public int getStudentId() {
+
+   public void setAvailNum(String availNum) {
+	   this.availNum = availNum;
+   }
+
+   public String getStudentId() {
 	   return studentId;
    }
 
-   /* 
+   public void setStudentId(String studentId) {
+	   this.studentId = studentId;
+   }
+   
+   public String getName() {
+	   return name;
+   }
+   
+   public void setName(String name) {
+	   this.name = name;
+   }
+
+   public String[] getAllFields() {
+	   String[] fields = {studentId, availNum, name};
+	   return fields;
+   }
+
+/* 
    * Transfers Boolean[]][] format from FrontEnd
    * to Database format in String[]
    */
@@ -71,6 +88,7 @@ public boolean[][] getBlocks() {
             }
          }
          hours[i] = bld.toString();
+         bld = new StringBuilder();
       }
       return hours;
    }

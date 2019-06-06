@@ -26,6 +26,10 @@
   margin-top: 15px;
 }
 
+.checkBox[type="checkbox"]:not(:checked), [type="checkbox"]:checked{
+  position: absolute !important;
+}
+
 .midSection {
   margin-top: 12px;
 }

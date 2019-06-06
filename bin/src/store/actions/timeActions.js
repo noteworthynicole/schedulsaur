@@ -1,3 +1,20 @@
+import axios from 'axios';
+
+/**
+ * getTimes
+ * 
+ * @desc Get the user's time prefernces from the backend
+ * @param {*} studentId 
+ */
+export const loadTimes = (studentId) => {
+    return (dispatch) => {
+        axios.get(`http://localhost:8080/pref/${studentId}`)
+        .then(response => {
+            dispatch({ type: 'LOAD_TIMES', times: response.data})
+        })
+    }
+}
+
 /**
  * editName
  * 
@@ -21,12 +38,15 @@ export const editName = (id, index) => {
  * @param {*} index index in 'saved' array in timeReducer
  * @param {*} name new name for time preference
  */
-export const saveName = (id, index, name) => {
-    return{
-        type: 'TIME_NAME_SAVE',
-        id: id,
-        index: index,
-        name: name
+export const saveName = (studentId, id, index, name) => {
+
+    return (dispatch) => {
+        axios.put(`http://localhost:8080/pref/${studentId}/${id}/${name}`)
+
+        // need to verify if post was successful (response.status should equal 200)
+        .then(() => {
+            dispatch({ type: 'TIME_NAME_SAVE', id: id, index: index, name: name})
+        })
     }
 }
 
@@ -52,18 +72,15 @@ export const changeAvailable = (row_id, col_id) => {
  * @param {*} id identifier in 'saved' array in timeReducer
  * @param {*} index index in 'saved' array in timeReducer
  */
-export const view = (id, index) => {
+export const view = (studentId, id, index) => {
 
-    // *** need to make async call to database here to save
-    // *** need to make async call to database here to save
+   return (dispatch) => {
+        axios.get(`http://localhost:8080/block/${studentId}/${id}`)
 
-    // *** need to get new table from database
-    // *** need to get new table from database
-
-    return{
-        type: 'TIME_VIEW',
-        id: id,
-        index: index
+        // need to verify if post was successful (response.status should equal 200)
+        .then(response => {
+            dispatch({ type: 'TIME_VIEW', block: response.data, index: index})
+        })
     }
 }
 
@@ -73,17 +90,26 @@ export const view = (id, index) => {
  * @desc Save a new time preference
  * @param {*} name new name for new time preference
  */
-export const save = (name) => {
+export const save = (studentId, timeBlock, name) => {
 
     // *** need to make async call to database here to save
     // *** need to make async call to database here to save
 
     // *** need to get new id from database
     // *** need to get new id from database
+    return (dispatch) => {
+        axios.post("http://localhost:8080/block", 
+            {
+                studentId: studentId,
+                availNum: '',
+                name: name,
+                blocks: timeBlock,
+            })
 
-    return{
-        type: 'TIME_SAVE',
-        name: name
+        // need to verify if post was successful (response.status should equal 200)
+        .then(response => {
+            dispatch({ type: 'TIME_SAVE', timePref: response.data})
+        })
     }
 }
 

@@ -1,7 +1,12 @@
 package logic;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 import java.util.Map.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.*;
 
 /*
@@ -14,19 +19,31 @@ import java.util.stream.*;
 
 public class GenerateSchedules {
 	
+		
+	private static String encryptedPW = "gvznyfoyzhzfi";
+	private static String dbPW = Database.mostSecureEncryptionEver(encryptedPW);
+	private static String dbURL = "jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false";
+	private static String dbUsername = "schedulsaur";
+	private static Logger logger = Logger.getLogger("Database");
+	
 	private static int startTime = 7;
 	
 	public static Schedule[] generateSchedules(int studentId, int timeNum){
 
 		Map<String, Section> hashMapInit = parseDbsCreateSections();
 		//filter with prereqs - need the user's id to get past classes
-		Prerequisites.filterPrereqs(hashMapInit, studentId);
+//		Prerequisites.filterPrereqs(hashMapInit, studentId);
 		//Create map separated by a list of times
 		Map<DoubleTimes, List<Section>> hashMapTime = classesByTime(hashMapInit);
 		//Sort - keyset -> list 
 		List<DoubleTimes> doubleTimesList1 = sortByKey(hashMapTime);
 		//filter with time availability - need the user's id to get off time
-		filterByTimes(doubleTimesList1, studentId, timeNum);
+		System.out.println(doubleTimesList1.size());
+//		filterByTimes(doubleTimesList1, studentId, timeNum);
+//		Collections.shuffle(doubleTimesList1);
+//		doubleTimesList1 = doubleTimesList1.subList(0, 7);
+		doubleTimesList1 = doubleTimesList1.subList(0, 12);
+		System.out.println(doubleTimesList1.size());
 		//Greedy
 		List<List<DoubleTimes>> doubleTimesList2 = greedySchedule(4, doubleTimesList1);
 		//Getting the different combinations of classes
@@ -43,10 +60,11 @@ public class GenerateSchedules {
 		 * 15 = times
 		 */
 		boolean[][] blocks = new boolean[7][15];
+		System.out.println(doubleTimes.size());
 		for(int i=0; i<doubleTimes.size(); i++) {
 			List<ScheduleRow> innerList = new ArrayList<>();
 			for (int j = 0; j < blocks.length; j++) {
-				Arrays.fill(blocks[j], false);
+				Arrays.fill(blocks[j], true);
 			}
 			for(Section sec : doubleTimes.get(i)) {
 				sec.addToScheduleRow(innerList);
@@ -68,7 +86,7 @@ public class GenerateSchedules {
 			int start = sec.getLecTimes().getStartTime().getHour() - startTime;
 			int end = sec.getLecTimes().getEndTime().getHour() - startTime;
 			while(start < end) {
-				blocks[index][start] = true;
+				blocks[index][start] = false;
 				start++;
 			}
 			if (sec.getLab() != null) {
@@ -92,9 +110,21 @@ public class GenerateSchedules {
 	
 	public static List<Times> getBlockedTimes(int studentId, int timeNum){
 		//get the times function
-		Statement stmt = null;
 		//get their actual time availability number, hardcoded for now
-		List<String> timeList = Database.dbGetTimeAvail(stmt, studentId, timeNum);
+		Statement stmt = null;
+		String[] result = null;
+		try (Connection conn = DriverManager.getConnection(dbURL,dbUsername,dbPW)){
+			stmt = conn.createStatement();
+			result = Database.dbGetStudentTimeAvails(stmt, String.valueOf(studentId), String.valueOf(timeNum));
+			stmt.close();
+		} catch(SQLException se) {
+			//Handle errors for JDBC
+			logger.log(Level.WARNING, se.toString());
+		} catch(Exception e) {
+			//Handle errors for Class.forName
+			logger.log(Level.WARNING, e.toString());
+		}
+		List<String> timeList = Arrays.asList(result);
 		List<Times> timesAvailable = new ArrayList<>();
 		for(int i=1; i < timeList.size() - 1; i++){
             char[] charArray = timeList.get(i).toCharArray();

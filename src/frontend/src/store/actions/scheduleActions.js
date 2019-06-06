@@ -1,3 +1,22 @@
+import axios from 'axios';
+
+/**
+ * load
+ * 
+ * @desc Load the schedules only if on the potential schedules page
+ */
+export const load = () => {
+    return (dispatch) => {
+        // pass default student id and avail num since backend does not utilize it
+        axios.get('http://localhost:8080/schedules/1/1', {
+        })
+        .then(response => {
+            // need to verify if post was successful (response.status should equal 200)
+            dispatch({ type: 'SCHEDULE_LOAD', schedules: response.data })
+        })
+    }
+}
+
 /**
  * view
  * 
@@ -79,4 +98,16 @@ export const save = () => {
         type: 'SCHEDULE_SAVE'
     }
 }
+
+/**
+ * clean
+ * 
+ * @desc Reactivate the loader
+ */
+export const clean = () => {
+    return{
+        type: 'CLEAN'
+    }
+}
+
 

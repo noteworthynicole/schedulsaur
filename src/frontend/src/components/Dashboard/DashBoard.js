@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProgressWheel from './ProgressWheel';
-import StudentInfo from './StudentInfo';
+import StudentForm from './StudentForm';
+import { submit } from 'redux-form';
 import { edit, save } from '../../store/actions/studentActions'
 import styles from './Dashboard.module.css';
 
@@ -13,24 +14,6 @@ import styles from './Dashboard.module.css';
 
 class DashBoard extends Component{
 
-    state = {
-        type0: this.props.student.info[0].text,
-        type1: this.props.student.info[1].text,
-        type2: this.props.student.info[2].text,
-        type3: this.props.student.info[3].text,
-        type4: this.props.student.info[4].text
-    }
-
-    /**
-     * --- Called when input text is changing in StudentInfo component 
-    */
-
-    handleChange = (e) => {
-        this.setState({
-            [e.target.id]: e.target.value
-        })
-    }
-
     /**
      * --- Called when edit profile button is clicked
     */
@@ -39,36 +22,28 @@ class DashBoard extends Component{
     }
 
     /**
-     * --- Called when save button is clicked
+     * --- Called when save button is clicked or form is submitted
     */
-    handleSave = () => {
+    handleSave = (values) => {
         if(this.props.student.isEdit===true){
-            this.props.save(
-                this.state.type0,
-                this.state.type1,
-                this.state.type2,
-                this.state.type3,
-                this.state.type4
-            )
-        }
-    }
 
-    /**
-     * --- Creates the student info section of the dashboard
-     */
-    createInfo = () => {
-        let student_info = 
-            this.props.student.info.slice(1).map((element, index) => {
-                return(
-                    <div key={index}>{element.type + ': '}
-                        <StudentInfo id={'type'+index} info={element.text} 
-                                     edit={this.props.student.isEdit}
-                                     handleChange={this.handleChange}
-                        />
-                    </div>
-                )
-        })
-        return (student_info)
+            // repalce values (backend purposes)
+            if(Object.keys(values).length === 0){
+                return (this.props.save(null, null))
+            }else{
+                let newInfo = []
+                this.props.student.info.forEach(function(old){
+                    let new_text = old.text
+                    Object.keys(values).forEach(function(changed_value){
+                        if(changed_value === old.type){
+                            new_text = values[changed_value]
+                        }
+                    })
+                    newInfo.push({type: old.type, text: new_text})
+                })
+                this.props.save(newInfo, this.props.student.id)
+            }
+        }
     }
 
     render(){
@@ -100,7 +75,10 @@ class DashBoard extends Component{
                                 </span>
                             </div>
                             <div className={styles.info}>
-                                {this.createInfo()}
+                                <StudentForm info={student.info} 
+                                    edit={student.isEdit}
+                                    onSubmit={this.handleSave} 
+                                />
                             </div>
                         </div>
                     </div>
@@ -116,7 +94,7 @@ class DashBoard extends Component{
                         <button className='white_button' onClick={this.handleEdit}>
                             {student.editButton}
                         </button>
-                        <button className='green_button' onClick={this.handleSave}>
+                        <button className='green_button' onClick={this.props.submitForm}>
                             Save
                         </button>
                     </div>
@@ -147,10 +125,12 @@ const mapStateToProps = (state, ownProps) => {
  */
 const mapStateToDispatch = (dispatch) => {
     return{
-        save: (tempM, tempC, tempE, tempUT, tempUP) => { dispatch(save(tempM, tempC, tempE, tempUT, tempUP)) },
-        edit: () => { dispatch(edit()) }
+        edit: () => { dispatch(edit()) },
+        submitForm: () => { dispatch(submit('studentForm')) },
+        save: (newInfo, id) => { dispatch(save(newInfo, id)) }
     }
 }
+
 
 // 'connect' allows component to access the state from the store
 

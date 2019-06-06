@@ -14,11 +14,12 @@ import styles from './TimeTable.module.css';
 class TimeTable extends Component{
 
     /**
-     * --- Called when user clicks on a time cell
+     * --- Called when user clicks on a time cell 
+     * --- row and col are inverted in store (backend purposes)
     */
     handleSelect = (e) => {
-        const row_id = e.target.getAttribute('row_id')
-        const col_id = e.target.getAttribute('col_id')
+        const row_id = e.target.getAttribute('col_id')
+        const col_id = e.target.getAttribute('row_id')
         this.props.changeAvailable(row_id, col_id);
     }
 

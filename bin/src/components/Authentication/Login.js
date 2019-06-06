@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { init } from '../../store/actions/studentActions';
 import { NavLink } from 'react-router-dom';
 import styles from './Auth.module.css';
 
@@ -13,8 +15,11 @@ class Login extends Component {
         e.preventDefault()
 
         // *** need to authenticate account here
+        // call init here (send user email and password as props)
+        // handle authentication (prevent routing)
         // *** need to authenticate account here
 
+        this.props.init(this.state.email);
         this.props.history.push('/DashBoard')
     }
 
@@ -55,4 +60,17 @@ class Login extends Component {
     }
 }
 
-export default Login;
+/**
+ * mapStateToDispatch
+ * 
+ * @description maps dispatch to props to allow component to send an action
+ * @param {*} dispatch 
+ */
+const mapDispatchToProps = (dispatch) => {
+    return{
+        init: (email) => { dispatch(init(email)) }
+   }
+}
+
+
+export default connect(null, mapDispatchToProps)(Login);

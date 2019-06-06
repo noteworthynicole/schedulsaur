@@ -40,7 +40,8 @@ class SavedTimes extends Component{
     // *** need to prevent empty name here
 
         e.preventDefault()
-        this.props.saveName(e.target.id, e.target.getAttribute('index'), this.state.tempName)
+        this.props.saveName(this.props.studentId, e.target.id, 
+                            e.target.getAttribute('index'), this.state.tempName)
     }
 
     /**
@@ -54,7 +55,7 @@ class SavedTimes extends Component{
      * --- Called when user clicks to view a saved time preference
     */
     handleView = (e) => {
-        this.props.view(e.target.id, e.target.getAttribute('index'))
+        this.props.view(this.props.studentId, e.target.id, e.target.getAttribute('index'))
     }
 
     /**
@@ -103,7 +104,9 @@ class SavedTimes extends Component{
                 })
             ) : (
             // if user has no saved preferences
-                <div className='center'> You Have No Saved Time Preferences</div>
+                <div style={{marginTop: '5%'}} className='center'> 
+                    You Have No Saved Time Preferences
+                </div>
             )
         return(
             <ul className={styles.time_ul}>
@@ -122,7 +125,8 @@ class SavedTimes extends Component{
  */
 const mapStateToProps = (state, ownProps) => {
     return{
-        storeSavedTimes: state.time.saved
+        storeSavedTimes: state.time.saved,
+        studentId: state.student.id
     }
 }
 
@@ -135,8 +139,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
     return{
         editName: (id, index) => { dispatch(editName(id, index)) },
-        saveName: (id, index, name) => { dispatch(saveName(id, index, name)) },
-        view: (id, index) => { dispatch(view(id, index)) },
+        saveName: (studentId, id, index, name) => { dispatch(saveName(studentId, id, index, name)) },
+        view: (studentId, id, index) => { dispatch(view(studentId, id, index)) },
         del: (id, index) => { dispatch(del(id, index)) }
     }
 }

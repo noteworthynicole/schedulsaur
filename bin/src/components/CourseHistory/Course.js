@@ -54,34 +54,14 @@ export class Course extends Component {
 
   hasTaken = () => {
     const takenCourses = this.props.courseHistory.courses_taken;
-    const desiredCourses = this.props.courseHistory.desired_courses;
 
-    switch (this.props.pageType) {
-      case "Desired":
-        if (desiredCourses.includes(this.props.courseName)) {
-          return true;
-        }
-        if (takenCourses.includes(this.props.courseName)) {
-          return true;
-        }
-        return false;
-
-      case "Completed":
-        if (takenCourses.includes(this.props.courseName)) {
-          return true;
-        }
-        return false;
-
-      default:
-        return false;
+    if (takenCourses.includes(this.props.courseName)) {
+      return true;
     }
   };
 
   isDisabled = () => {
-    if (
-      this.props.courseHistory.courses_taken.includes(this.props.courseName) &&
-      this.props.pageType === "Desired"
-    ) {
+    if (this.hasTaken() && this.props.pageType === "Desired") {
       return true;
     }
     return false;

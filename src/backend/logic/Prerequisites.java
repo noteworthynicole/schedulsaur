@@ -1,9 +1,21 @@
 package logic;
 
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Prerequisites {
+	
+	private static String encryptedPW = "gvznyfoyzhzfi";
+	private static String dbPW = Database.mostSecureEncryptionEver(encryptedPW);
+	private static String dbURL = "jdbc:mysql://schedulsaur-database.coiryrpvj04m.us-west-1.rds.amazonaws.com?useSSL=false";
+	private static String dbUsername = "schedulsaur";
+	private static Logger logger = Logger.getLogger("Database");
+	
 	
 	private Prerequisites() {
 	    throw new IllegalStateException("Utility class");
@@ -12,7 +24,7 @@ public class Prerequisites {
 	public static void filterPrereqs(Map<String, Section> sections, int studentId) {
 		List<Catalog> catalogs = collectCatalogClasses();
 		List<String> classesTaken = getClassesTaken(String.valueOf(studentId));
-		removeClassesTaken(sections, classesTaken);
+		removeClassesTaken(sections, catalogs);
 		replaceBooleanClasses(catalogs, classesTaken);
 		removeIneligbleClasses(catalogs, sections);
 	}
@@ -30,7 +42,19 @@ public class Prerequisites {
 	//Heads up - need to be sure that there aren't any commas, else split by that instead
 	public static List<String> getClassesTaken(String studentId){
 		Statement stmt = null;
-		String pastClass = Database.dbGetPastClasses(stmt, studentId);
+		String pastClass = "";
+		try (Connection conn = DriverManager.getConnection(dbURL,dbUsername,dbPW)){
+			stmt = conn.createStatement();
+			pastClass = Database.dbGetStudentPastClasses(stmt, studentId);
+			stmt.close();
+		} catch(SQLException se) {
+			//Handle errors for JDBC
+			logger.log(Level.WARNING, se.toString());
+		} catch(Exception e) {
+			//Handle errors for Class.forName
+			logger.log(Level.WARNING, e.toString());
+		}
+		
 		return new ArrayList<>(Arrays.asList(pastClass.split("(?<!\\G\\S+)\\s")));
 	}
 	

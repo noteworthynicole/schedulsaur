@@ -34,6 +34,10 @@
   box-shadow: 4px 5px 4px var(--middle_grey);
 }
 
+.login_button:focus {
+  background-color: var(--schedulsaur_green);
+}
+
 .signup_button {
   background-color: white;
   color: var(--schedulsaur_green);
@@ -45,4 +49,8 @@
 .signup_button:hover {
   background-color: white;
   box-shadow: 4px 5px 4px var(--middle_grey);
+}
+
+.signup_button:focus {
+  background-color: white;
 }

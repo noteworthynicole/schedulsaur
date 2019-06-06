@@ -20,86 +20,7 @@ const initState = {
      * @param {Array} times time table for a given schedule
      */
     schedules:[
-        { id: '0',
-          name: 'Schedule 1',
-          classes:[
-            {name:'CSC 300', sec:'LEC', num:'6807', instr:'Sakellarious, N.', open:'22', res:'0', tak:'13', wait:'0', status:'Open', days:'TR', start:'12:00 PM', end:'01:30 PM'},
-            {name:'CSC 300', sec:'LAB', num:'6808', instr:'Sakellarious, N.', open:'22', res:'0', tak:'13', wait:'0', status:'Open', days:'TR', start:'01:40 PM', end:'03:00 PM'},
-            {name:'CSC 309', sec:'LEC', num:'6798', instr:'Falessi, D.', open:'22', res:'0', tak:'13', wait:'0', status:'Open', days:'MWF', start:'10:00 AM', end:'11:00 AM'},
-            {name:'CSC 309', sec:'LAB', num:'6799', instr:'Falessi, D.', open:'22', res:'0', tak:'13', wait:'0', status:'Open', days:'MWF', start:'11:00 AM', end:'12:00 PM'}
-          ],
-          times: [
-              {id:'0', time:'07-08 AM', available: [false, false, false, false, false, false, false]},
-              {id:'1', time:'08-09 AM', available: [false, false, false, false, false, false, false]},
-              {id:'2', time:'09-10 AM', available: [false, false, false, false, false, false, false]},
-              {id:'3', time:'10-11 AM', available: [false, true, false, true, false, true, false]},
-              {id:'4', time:'11-12 AM', available: [false, true, false, true, false, true, false]},
-              {id:'5', time:'12-01 PM', available: [false, false, true, false, true, false, false]},
-              {id:'6', time:'01-02 PM', available: [false, false, true, false, true, false, false]},
-              {id:'7', time:'02-03 PM', available: [false, false, true, false, true, false, false]},
-              {id:'8', time:'03-04 PM', available: [false, false, false, false, false, false, false]},
-              {id:'9', time:'04-05 PM', available: [false, false, false, false, false, false, false]},
-              {id:'10', time:'05-06 PM', available: [false, false, false, false, false, false, false]},
-              {id:'11', time:'05-06 PM', available: [false, false, false, false, false, false, false]},
-              {id:'12', time:'06-07 PM', available: [false, false, false, false, false, false, false]},
-              {id:'13', time:'07-08 PM', available: [false, false, false, false, false, false, false]},
-              {id:'14', time:'08-09 PM', available: [false, false, false, false, false, false, false]}
-          ],
-        },
-
-        { id: '1',
-          name: 'Schedule 2',
-          classes:[
-            {name:'CSC 300', sec:'LEC', num:'6807', instr:'Sakellarious, N.', open:'22', res:'0', tak:'13', wait:'0', status:'Open', days:'TR', start:'12:00 PM', end:'01:30 PM'},
-            {name:'CSC 300', sec:'LAB', num:'6808', instr:'Sakellarious, N.', open:'22', res:'0', tak:'13', wait:'0', status:'Open', days:'TR', start:'01:40 PM', end:'03:00 PM'},
-            {name:'CSC 309', sec:'LEC', num:'6798', instr:'Falessi, D.', open:'22', res:'0', tak:'13', wait:'0', status:'Open', days:'MWF', start:'10:00 AM', end:'11:00 AM'},
-            {name:'CSC 309', sec:'LAB', num:'6799', instr:'Falessi, D.', open:'22', res:'0', tak:'13', wait:'0', status:'Open', days:'MWF', start:'11:00 AM', end:'12:00 PM'}
-          ],
-          times: [
-              {id:'0', time:'07-08 AM', available: [false, false, false, false, false, false, false]},
-              {id:'1', time:'08-09 AM', available: [false, false, false, false, false, false, false]},
-              {id:'2', time:'09-10 AM', available: [false, false, false, false, false, false, false]},
-              {id:'3', time:'10-11 AM', available: [false, true, false, true, false, true, false]},
-              {id:'4', time:'11-12 AM', available: [false, true, false, true, false, true, false]},
-              {id:'5', time:'12-01 PM', available: [false, false, true, false, true, false, false]},
-              {id:'6', time:'01-02 PM', available: [false, false, true, false, true, false, false]},
-              {id:'7', time:'02-03 PM', available: [false, false, true, false, true, false, false]},
-              {id:'8', time:'03-04 PM', available: [false, false, false, false, false, false, false]},
-              {id:'9', time:'04-05 PM', available: [false, false, false, false, false, false, false]},
-              {id:'10', time:'05-06 PM', available: [false, false, false, false, false, false, false]},
-              {id:'11', time:'05-06 PM', available: [false, false, false, false, false, false, false]},
-              {id:'12', time:'06-07 PM', available: [false, false, false, false, false, false, false]},
-              {id:'13', time:'07-08 PM', available: [false, false, false, false, false, false, false]},
-              {id:'14', time:'08-09 PM', available: [false, false, false, false, false, false, false]}
-          ],
-        },
-
-        { id: '2',
-          name: 'Schedule 3',
-          classes:[
-            {name:'CSC 300', sec:'LEC', num:'6807', instr:'Sakellarious, N.', open:'22', res:'0', tak:'13', wait:'0', status:'Open', days:'TR', start:'12:00 PM', end:'01:30 PM'},
-            {name:'CSC 300', sec:'LAB', num:'6808', instr:'Sakellarious, N.', open:'22', res:'0', tak:'13', wait:'0', status:'Open', days:'TR', start:'01:40 PM', end:'03:00 PM'},
-            {name:'CSC 309', sec:'LEC', num:'6798', instr:'Falessi, D.', open:'22', res:'0', tak:'13', wait:'0', status:'Open', days:'MWF', start:'10:00 AM', end:'11:00 AM'},
-            {name:'CSC 309', sec:'LAB', num:'6799', instr:'Falessi, D.', open:'22', res:'0', tak:'13', wait:'0', status:'Open', days:'MWF', start:'11:00 AM', end:'12:00 PM'}
-          ],
-          times: [
-              {id:'0', time:'07-08 AM', available: [false, false, false, false, false, false, false]},
-              {id:'1', time:'08-09 AM', available: [false, false, false, false, false, false, false]},
-              {id:'2', time:'09-10 AM', available: [false, false, false, false, false, false, false]},
-              {id:'3', time:'10-11 AM', available: [false, true, false, true, false, true, false]},
-              {id:'4', time:'11-12 AM', available: [false, true, false, true, false, true, false]},
-              {id:'5', time:'12-01 PM', available: [false, false, true, false, true, false, false]},
-              {id:'6', time:'01-02 PM', available: [false, false, true, false, true, false, false]},
-              {id:'7', time:'02-03 PM', available: [false, false, true, false, true, false, false]},
-              {id:'8', time:'03-04 PM', available: [false, false, false, false, false, false, false]},
-              {id:'9', time:'04-05 PM', available: [false, false, false, false, false, false, false]},
-              {id:'10', time:'05-06 PM', available: [false, false, false, false, false, false, false]},
-              {id:'11', time:'05-06 PM', available: [false, false, false, false, false, false, false]},
-              {id:'12', time:'06-07 PM', available: [false, false, false, false, false, false, false]},
-              {id:'13', time:'07-08 PM', available: [false, false, false, false, false, false, false]},
-              {id:'14', time:'08-09 PM', available: [false, false, false, false, false, false, false]}
-          ],
-        }
+        /* // example of one object in schedules list {id:'0', name:'Schedule 1', classes: [], times: []} */
     ],
 
     /**
@@ -119,11 +40,7 @@ const initState = {
      * @desc Reflects the state of the viewing button
      * @param {String} text either 'View' or 'Collapse'
      */
-    viewing: [
-        {text: 'View'},
-        {text: 'View'},
-        {text: 'View'}
-    ],
+    viewing: [ ],
     
     /**
      * sorters
@@ -161,7 +78,9 @@ const initState = {
     selected: [],
 
     /* // local state of page */
-    isViewing: false
+    isViewing: false,
+
+    loading: true
 }
 
 /*
@@ -218,6 +137,32 @@ const cloneViewing = (viewing) => {
 */
 const scheduleReducer = (state=initState, action=null) => {
     switch(action.type){
+        case 'SCHEDULE_LOAD':
+            let genSchedules = []
+            let genViewing = []
+            action.schedules.forEach((schedule,index) => {
+                genSchedules.push({
+                    id: index.toString(),
+                    name: `Schedule ${index+1}`,
+                    classes: [...schedule.rows],            
+                    times: [
+                        {id:'0', day:'Sun', available: schedule.time.blocks[0]},
+                        {id:'1', day:'Mon', available: schedule.time.blocks[1]},
+                        {id:'2', day:'Tue', available: schedule.time.blocks[2]},
+                        {id:'3', day:'Wed', available: schedule.time.blocks[3]},
+                        {id:'4', day:'Thu', available: schedule.time.blocks[4]},
+                        {id:'5', day:'Fri', available: schedule.time.blocks[5]},
+                        {id:'6', day:'Sat', available: schedule.time.blocks[6]}
+                    ]
+                })
+                genViewing.push( {text: "View"} )
+            }) 
+            return {
+                ...state,
+                schedules: genSchedules,
+                viewing: genViewing,
+                loading: false
+            }
         
         /* // When user is viewing a schedule */
         case 'SCHEDULE_VIEW':
@@ -275,7 +220,14 @@ const scheduleReducer = (state=initState, action=null) => {
                 viewing: newViewing,
                 selected: []
             }
-        default:
+        
+        case 'CLEAN':
+            return{
+                ...state,
+                loading: true
+            }
+
+       default:
             return state;
     }
     return state;

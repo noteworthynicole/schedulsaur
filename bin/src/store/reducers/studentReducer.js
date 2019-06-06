@@ -11,58 +11,78 @@ const initState = {
      * @param {String} ge_percent percent completion of ge courses
      * @param {boolean} isEdit if user is editing their info
      * @param {String} editButton type of button (depends on isEdit)
-     * @param {array} info_types  array of type of information to be presented
      */
 
-    id: '1',
+    id: '',
     info: [
-        {type: 'Name', text: 'John Doe'},
-        {type: 'Major', text: 'Software Engineering'},
-        {type: 'Catalog Year', text: '2017-2019'},
-        {type: 'Expected Graduation', text: 'Spring 2020'},
-        {type: 'Units This Quarter', text: '16'},
-        {type: 'Units Per Quarter', text: '14.5'}
+        {type: 'Name', text: 'N/A'},
+        {type: 'Major', text: 'N/A'},
+        {type: 'Minor', text: 'N/A'},
+        {type: 'Catalog Year', text: 'N/A'},
+        {type: 'Planning Quarter', text: 'N/A'},
+        {type: 'Units This Quarter', text: '0'}
     ],
-    major_percent: '50',
-    support_percent: '75',
-    ge_percent: '10',
+    major_percent: '40',
+    support_percent: '25',
+    ge_percent: '75',
     isEdit: false,
-    editButton: 'Edit Profile',
+    editButton: 'Edit Profile'
 }
+
+/**
+ * cloneInfo
+ * 
+ * @desc Clones the 'info' array to prevent state destruction (when updating)
+ * @param {object} action Object containing the student information
+ */
+const cloneInfo = (action) => {
+    let newInfo = [
+        {type: 'Name', text: action.name},
+        {type: 'Major', text: action.major},
+        {type: 'Minor', text: action.minor},
+        {type: 'Catalog Year', text: action.catalogYear},
+        {type: 'Planning Quarter', text: action.planningQuarter},
+        {type: 'Units This Quarter', text: action.unitsThisQuarter}
+    ]
+    return newInfo
+}
+
 
 /**
  * --- Modifies state according to dispatched action
 */
 const studentReducer = (state=initState, action=null) => {
 
-    /* // When user saves their personal information */
-    if(action.type === 'STUDENT_SAVE'){
-        let newInfo = [
-            {type: 'Name', text: 'John Doe'},
-            {type: 'Major', text: action.major},
-            {type: 'Catalog Year', text: action.catalog},
-            {type: 'Expected Graduation', text: action.expected},
-            {type: 'Units This Quarter', text: action.units_this},
-            {type: 'Units Per Quarter', text: action.units_per}
-        ]
-        return{
-            ...state,
-            info: newInfo,
-            isEdit: !state.isEdit,
-            editButton: 'Edit Profile'
-        }
+    switch(action.type){
 
-    /* // When user edits their personal information */
-    }else if(action.type === 'EDIT_INFO'){
-        const newEditButton = (state.editButton === 'Edit Profile') ? 
-            ('Cancel') : ('Edit Profile')
-        return{
-            ...state,
-            isEdit: !state.isEdit,
-            editButton: newEditButton
-        }
-    } else {
-        return state
+        /* // Initialize student information */
+        case 'STUDENT_INIT':
+            let initInfo = cloneInfo(action.user);
+            return{
+                ...state,
+                id: action.user.id,
+                info: initInfo
+            }
+
+        /* // When user edits their personal information */
+        case 'EDIT_INFO':
+            const newEditButton = (state.editButton === 'Edit Profile') ? 
+                ('Cancel') : ('Edit Profile')
+            return{
+                ...state,
+                isEdit: !state.isEdit,
+                editButton: newEditButton
+            }
+        /* // When user saves their personal information */
+        case 'STUDENT_SAVE':
+            return{
+                ...state,
+                info: action.info,
+                isEdit: !state.isEdit,
+                editButton: 'Edit Profile'
+            }
+        default: 
+            return state;
     }
 }
 

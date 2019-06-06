@@ -2,6 +2,14 @@
  * ScheduleList CSS Module
  */
 
+.loading {
+  display: flex;
+  flex-flow: column;
+  justify-content:center;
+  align-items: center;
+  height: 90%;
+}
+
 .li {
     padding: 10px 15px;
     border-bottom: 1px solid #ccc;
@@ -53,6 +61,10 @@
 
 .box_green[type="checkbox"]+span:not(.lever){
   display: block;
+}
+
+.box_green[type="checkbox"]:not(:checked), [type="checkbox"]:checked{
+  position: relative;
 }
 
 .box_green[type="checkbox"]+span:not(.lever):before, 

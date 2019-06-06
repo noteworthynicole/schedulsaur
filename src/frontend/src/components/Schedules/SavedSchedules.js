@@ -28,6 +28,7 @@ class SavedSchedules extends Component{
                 <div className={styles.list_container}>
                     <h2 className='subtitle' align='center'>Saved Schedules</h2>
                     <ScheduleList  
+                        needsToLoad={false}
                         schedules={storeSavedSchedules} 
                         addCheckBoxes={false}
                         emptyText={'No Saved Schedules'}     
@@ -68,7 +69,7 @@ const mapStateToProps = (state, onwProps) => {
  */
 const mapDispatchToProps = (dispatch) => {
     return{
-        view: (id, index) => { dispatch(view(id, index)) },
+        view: (id, index) => { dispatch(view(id, index)) }
     }
 }
 

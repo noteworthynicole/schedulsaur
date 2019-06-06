@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.*;
 import java.util.logging.*;
 
+import ch.qos.logback.classic.net.SMTPAppender;
+
 public class Database {
 	
 	//for mostSecureEncryptionEver
@@ -238,15 +240,12 @@ public class Database {
 		int i;
 		StringBuilder bld = new StringBuilder();
 		for(i = 0; i < strList.length-1; i++) {
-			bld.append("'");
-			bld.append(strList[i]);
-			bld.append("'");
+			bld.append("'" + strList[i] + "'");
 			bld.append(",");
 		}
 		bld.append(strList[i]);
 		value = bld.toString(); 
-		String sql = "INSERT INTO schedulsaurdb.Student" + " (name, major, minor, cat_year, "
-				+ "qtpf, noutt, email, password, prevclass) value (" + value + ");";
+		String sql = "INSERT INTO schedulsaurdb.Student" + " values (" + value + ");";
 		try {
 			stmt.executeUpdate(sql);
 			sql = "SELECT id FROM schedulsaurdb.Student where email=" + strList[6];
@@ -387,6 +386,236 @@ public class Database {
 		}
 		return avails;
 	}
+	
+	
+	/* ----------------------------------------------------------------------------------- */
+				// Student Methods
+	/* ----------------------------------------------------------------------------------- */
+	
+	// Generate next Student Id
+	public static String dbGenerateStudentId(Statement stmt) {
+		String sql = "SELECT COUNT(*)+1 as nextId FROM schedulsaurdb.Student;";
+		try {
+			ResultSet rs = stmt.executeQuery(sql);
+			if(rs == null) {
+				return "";
+			}else {
+				rs.next();
+				return rs.getString("nextId");
+			}
+			
+		} catch(Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		}
+		return null;
+	}
+	
+	
+	// Get Student by Email
+	public static String[] dbGetStudent(Statement stmt, String email) {
+		String[] user = {"N/A"};
+		String sql = "SELECT * FROM schedulsaurdb.Student WHERE email='" + email + "';";
+		try {
+			ResultSet rs = stmt.executeQuery(sql);
+			if(rs == null) {
+				return user;
+			}else {
+				rs.next();
+				String[] fields = {rs.getString("id"), rs.getString("name"), rs.getString("major"), 
+									rs.getString("minor"), rs.getString("cat_year"), 
+									rs.getString("qtpf"), rs.getString("noutt"), rs.getString("email"),
+									rs.getString("password"), rs.getString("prevClass")};
+				return fields;
+			}
+			
+		} catch(Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		}
+		return null;
+	}
+	
+	// update Student by given fields
+	public static void dbUpdateStudentFields(Statement stmt, String id, String[] values) {
+		String[] fields = {"name", "major", "minor", "cat_year", "qtpf", "noutt"};
+		String value = "";
+		int i;
+		StringBuilder bld = new StringBuilder();
+		for(i = 0; i < fields.length-1; i++) {
+			bld.append("" + fields[i] + "" + "= " +  "'" + values[i] + "'");
+			bld.append(",");
+		}
+		bld.append(fields[i] + "" + "= " + "'" + values[i] + "'");
+		value = bld.toString(); 
+		String sql = "UPDATE schedulsaurdb.Student SET " + value + " WHERE id=" + id + ";";
+		try {
+			stmt.executeUpdate(sql);
+		} catch(Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		}
+	
+	}
+	
+	// get Student past classes
+	public static String dbGetStudentPastClasses(Statement stmt, String id) {
+		String sql = "SELECT prevClass from schedulsaurdb.Student where id = " + id + ";";
+		try {
+			ResultSet rs = stmt.executeQuery(sql);
+			if(rs == null) {
+				System.out.println("E");
+				return "";
+			}else {
+				rs.next();
+				return rs.getString("prevClass");
+			}
+			
+		} catch(Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		}
+		return null;
+	}
+	
+	
+	
+	/* ----------------------------------------------------------------------------------- */
+				// Time Preference Methods
+	/* ----------------------------------------------------------------------------------- */
+	// Generate next Time Id
+	public static String dbGenerateTimeId(Statement stmt, String id) {
+		String sql = "SELECT COUNT(availNum)+1 as nextId FROM schedulsaurdb.TimePref WHERE student_id = " + id + ";";
+		try {
+			ResultSet rs = stmt.executeQuery(sql);
+			if(rs == null) {
+				return "";
+			}else {
+				rs.next();
+				return rs.getString("nextId");
+			}
+			
+		} catch(Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		}
+		return null;
+	}
+	
+	// GET TimePref
+	public static String dbGetTimePref(Statement stmt, String studentId, String availNum) {
+		String sql = "SELECT name FROM schedulsaurdb.TimePref WHERE student_id = '" + studentId + "' and availNum = '" + availNum + "';";
+		try {
+			ResultSet rs = stmt.executeQuery(sql);
+			if(rs == null) {
+				return "";
+			}else {
+				rs.next();
+				return rs.getString("name");
+			}
+		} catch(Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		}
+		return null;
+	
+	}
+	
+	// GET All TimePrefs
+	public static ArrayList<TimePreference> dbGetAllTimePrefs(Statement stmt, String studentId) {
+		String sql = "SELECT availNum, name FROM schedulsaurdb.TimePref WHERE student_id = '" + studentId + "';";
+		ArrayList<TimePreference> allPrefs = new ArrayList<TimePreference>();
+		try {
+			ResultSet rs = stmt.executeQuery(sql);
+			if(rs == null) {
+				return allPrefs;
+			}else {
+				while(rs.next()) {
+					allPrefs.add(new TimePreference(studentId, rs.getString("availNum"), rs.getString("name")));
+				}
+			}
+		} catch(Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		}
+		return allPrefs;
+	}
+	
+	// PUT TimePref
+	public static void dbPutTimePref(Statement stmt, String studentId, String availNum, String name) {
+		String value = "student_id='" + studentId + "', availNum='" + availNum + "', name='" + name + "'";
+		String sql = "UPDATE schedulsaurdb.TimePref SET " + value + " WHERE student_id=" + studentId + " and availNum=" + availNum +  ";";
+		System.out.println(sql);
+		try {
+			stmt.executeUpdate(sql);
+		} catch(Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		}
+
+	}
+	
+	// POST TimePref
+	public static void dbPostTimePref(Statement stmt, String[] strList) {
+		String value = "";
+		int i;
+		StringBuilder bld = new StringBuilder();
+		for(i = 0; i < strList.length-1; i++) {
+			bld.append("'" + strList[i] + "'");
+			bld.append(",");
+		}
+		bld.append("'" + strList[i] + "'");
+		value = bld.toString(); 
+		String sql = "INSERT INTO schedulsaurdb.TimePref" + " values (NULL, " + value + ");";
+		try {
+			stmt.executeUpdate(sql);
+		} catch(Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		}
+	}
+ 
+	
+	/* ----------------------------------------------------------------------------------- */
+				// Time Availability Methods
+	/* ----------------------------------------------------------------------------------- */
+	
+	// GET TimeAvail
+	public static String[] dbGetStudentTimeAvails(Statement stmt, String studentId, String availNum) throws SQLException {
+		String[] block = new String[7];
+		ResultSet rs = null;
+		String sql = "SELECT hours FROM schedulsaurdb.TimeAvail WHERE student_Id='" + studentId + "' and availNum='" + availNum + "';";
+		try {
+			rs = stmt.executeQuery(sql);
+			int c = 0;
+			while(rs.next()) {
+				block[c] = rs.getString("hours");
+				c++;
+			}
+		} catch(SQLException se) {
+			//Handle errors for JDBC
+			logger.log(Level.WARNING, se.toString());
+		} catch(Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		} finally {
+			if(rs!=null) {
+				rs.close();
+			}
+		}
+		return block;
+	}
+	
+	// POST TimeAvail
+	public static void dbPostTimeAvail(Statement stmt, String studentId, String availNum, String[] hours) {
+		String main = "INSERT INTO schedulsaurdb.TimeAvail" + " (student_id, availNum, day, hours) values ";
+		String values = "('" + studentId + "'," + "'" + availNum + "',";
+		String sun =  values + "'Sunday', '" + hours[0] + "'),";
+		String mon =  values + "'Monday', '" + hours[1] + "'),";
+		String tue =  values + "'Tuesday', '" + hours[2] + "'),";
+		String wed =  values + "'Wednesday', '" + hours[3] + "'),";
+		String thu =  values + "'Thursday', '" + hours[4] + "'),";
+		String fri =  values + "'Friday', '" + hours[5] + "'),";
+		String sat =  values + "'Saturday', '" + hours[6] + "')";
+		
+		try {
+			String sql = main + sun + mon + tue + wed + thu + fri + sat;
+			stmt.executeUpdate(sql);
+		} catch(Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		}
+	}
+
 	
 	/* ----------------------------------------------------------------------------------- */
 	

@@ -35,10 +35,12 @@
     justify-content: space-between;
     align-items: center;
     width: 60%;
+    height: 100%;
 }
 
 .selection_content{
     width: 100%;
+    height: 90%;
 }
 
 .table_container{
@@ -46,7 +48,7 @@
     justify-content: center;
     align-items: flex-start;
     width: 100%;
-    height: 35vw;
+    height: 75%;
 }
 
 .button_container{

@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Schedule from './Schedule';
 import ScheduleExpand from './ScheduleExpand';
-import { view, select, deselect } from '../../store/actions/scheduleActions';
+import Loader from 'react-loader-spinner';
+import Checkbox from 'react-simple-checkbox';
+import { load, view, select, deselect } from '../../store/actions/scheduleActions';
 import styles from './SchedList.module.css'
 
 /**
@@ -12,6 +14,12 @@ import styles from './SchedList.module.css'
  */
 
 class ScheduleList extends Component{
+
+    componentDidMount(){
+        if(this.props.storeLoading && this.props.needsToLoad){
+            this.props.load(this.props.pageType);
+        }
+    }
 
     /**
      * --- Called when user views a schedule
@@ -59,7 +67,7 @@ class ScheduleList extends Component{
     showCheckBox = (addCheckBoxes, schedule_id, index) => {
         return(
             addCheckBoxes ? (
-                <label className={styles.check_box}>
+                <label className={styles.green_check_box}>
                     <input type='checkbox' className={styles.box_green} 
                             id={schedule_id} index={index} onClick={this.handleSelect}/>
                     <span></span>
@@ -104,7 +112,8 @@ class ScheduleList extends Component{
     }
 
     render(){
-        const { storeDescriptors, schedules, storeViewing, addCheckBoxes, emptyText } = this.props;
+        const { needsToLoad,storeLoading, storeDescriptors, 
+                schedules, storeViewing, addCheckBoxes, emptyText } = this.props;
 
         const schedulesList = 
             schedules.length ? (
@@ -123,10 +132,21 @@ class ScheduleList extends Component{
             )
 
         return(
-            <div>
-                { schedulesList }
-                <div></div>
-            </div>
+            storeLoading && needsToLoad ? (
+                <div className={styles.loading}>
+                    <Loader
+                        type = "Oval"
+                        color = "#5ea181"
+                        height = "125"
+                        width = "125"
+                    />
+                </div>
+            ) : (
+                <div>
+                    { schedulesList }
+                    <div></div>
+                </div>
+          )
         )
     }
 }
@@ -141,8 +161,9 @@ class ScheduleList extends Component{
  */
 const mapStateToProps = (state, ownProps) => {
     return{
+        storeLoading: state.schedule.loading,
         storeDescriptors: state.schedule.descriptors,
-        storeViewing: state.schedule.viewing,
+        storeViewing: state.schedule.viewing
     }
 }
 
@@ -154,6 +175,7 @@ const mapStateToProps = (state, ownProps) => {
  */
 const mapDispatchToProps = (dispatch) => {
     return{
+        load: () => { (dispatch(load())) },
         view: (id, index) => { dispatch(view(id, index)) },
         select: (id, index) => { dispatch(select(id, index)) },
         deselect: (id, index) => { dispatch(deselect(id, index)) }

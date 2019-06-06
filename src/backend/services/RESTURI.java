@@ -10,9 +10,18 @@ public class RESTURI {
 	
 	public static final String GET_SAMPLE_USER = "/hello";
 	public static final String POST_USER = "/user";
+	public static final String GET_USER = "/user/{email}";
+	public static final String PUT_USER = "/user/update";
 	
 	public static final String GET_SAMPLE_BLOCK = "/avail";
+	public static final String GET_BLOCK = "/block/{studentId}/{availNum}";
 	public static final String POST_BLOCK = "/block";
+	
+	public static final String PUT_PREF = "/pref/{studentId}/{availNum}/{name}";
+	public static final String GET_ALL_PREFS = "/pref/{studentId}";
+	
+	public static final String GET_SCHEDULES = "/schedules/{studentId}/{availNum}";
+	public static final String GET_NEXT_SCHEDULES = "/schedules";
 	
 	/*
 	* URIs for Schedulsaur

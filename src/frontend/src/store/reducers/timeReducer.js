@@ -10,11 +10,7 @@ const initState = {
      * @param {Boolean} isEdit indicates wheter user is editing a time preference
      */
     saved: [
-        {id: '0', name: 'Winter 2018', text: 'Select', isEdit: false},
-        {id: '1', name: 'Summer Quarter', text: 'Select', isEdit: false},
-        {id: '2', name: 'More Sleep', text: 'Select', isEdit: false},
-        {id: '3', name: 'Morning Only', text: 'Select', isEdit: false},
-        {id: '4', name: 'Chem TA Schedule', text: 'Select', isEdit: false},
+        /* // example of one saved time preference object {id: '0', name: 'Winter 2018', text: 'Select', isEdit: false} */
     ],
 
     /**
@@ -27,21 +23,7 @@ const initState = {
      * @param {Boolean} available whether student is available at the specified time
      */
     availability: [
-        {id:'0', time:'07-08 AM', available: [true, true, true, true, true, true, true]},
-        {id:'1', time:'08-09 AM', available: [true, true, true, true, true, true, true]},
-        {id:'2', time:'09-10 AM', available: [false, false, false, false, false, false, false]},
-        {id:'3', time:'10-11 AM', available: [false, false, false, false, false, false, false]},
-        {id:'4', time:'11-12 AM', available: [false, false, false, false, false, false, false]},
-        {id:'5', time:'12-01 PM', available: [false, false, false, false, false, false, false]},
-        {id:'6', time:'01-02 PM', available: [false, false, false, false, false, false, false]},
-        {id:'7', time:'02-03 PM', available: [false, false, false, false, false, false, false]},
-        {id:'8', time:'03-04 PM', available: [false, true, false, true, false, true, false]},
-        {id:'9', time:'04-05 PM', available: [false, true, false, true, false, true, false]},
-        {id:'10', time:'05-06 PM', available: [false, false, true, false, true, false, false]},
-        {id:'11', time:'05-06 PM', available: [false, false, false, false, false, false, false]},
-        {id:'12', time:'06-07 PM', available: [false, false, false, false, false, false, false]},
-        {id:'13', time:'07-08 PM', available: [false, false, false, false, false, false, false]},
-        {id:'14', time:'08-09 PM', available: [true, true, false, true, false, true, true]}
+        /* // example of one row in time table {id:'0', time:'07-08 AM', available: [true, true, true, true, true, true, true]} */
     ],
 
     /**
@@ -49,32 +31,28 @@ const initState = {
      * 
      * @desc Contains time information entered by user when creating time preferences
      * @param {String} id time identifier
-     * @param {String} time specifies the time of day
+     * @param {String} day specifies the day
      * @param {Boolean} available whether student is available at the specified time
      */
+
     table: [
-        {id:'0', time:'07-08 AM', available: [false, false, false, false, false, false, false]},
-        {id:'1', time:'08-09 AM', available: [false, false, false, false, false, false, false]},
-        {id:'2', time:'09-10 AM', available: [false, false, false, false, false, false, false]},
-        {id:'3', time:'10-11 AM', available: [false, false, false, false, false, false, false]},
-        {id:'4', time:'11-12 AM', available: [false, false, false, false, false, false, false]},
-        {id:'5', time:'12-01 PM', available: [false, false, false, false, false, false, false]},
-        {id:'6', time:'01-02 PM', available: [false, false, false, false, false, false, false]},
-        {id:'7', time:'02-03 PM', available: [false, false, false, false, false, false, false]},
-        {id:'8', time:'03-04 PM', available: [false, false, false, false, false, false, false]},
-        {id:'9', time:'04-05 PM', available: [false, false, false, false, false, false, false]},
-        {id:'10', time:'05-06 PM', available: [false, false, false, false, false, false, false]},
-        {id:'11', time:'05-06 PM', available: [false, false, false, false, false, false, false]},
-        {id:'12', time:'06-07 PM', available: [false, false, false, false, false, false, false]},
-        {id:'13', time:'07-08 PM', available: [false, false, false, false, false, false, false]},
-        {id:'14', time:'08-09 PM', available: [false, false, false, false, false, false, false]}
+        {id:'0', day:'Sun', available: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true]},
+        {id:'1', day:'Mon', available: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true]},
+        {id:'2', day:'Tue', available: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true]},
+        {id:'3', day:'Wed', available: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true]},
+        {id:'4', day:'Thu', available: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true]},
+        {id:'5', day:'Fri', available: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true]},
+        {id:'6', day:'Sat', available: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true]},
     ],
 
     // local state of page
     isViewing: false,
 
     // local state of page
-    isCreating: true
+    isCreating: true,
+
+    // local selected time preference id
+    selectedTimeId: ''
 
 }
 
@@ -92,7 +70,7 @@ const cloneTable = (table, empty) => {
         newTable.push({...element})
         newTable[newTable.length-1].available = [...element.available]
         if(empty){
-            newTable[newTable.length-1].available.fill(false)
+            newTable[newTable.length-1].available.fill(true)
         }
     })
     return(newTable)
@@ -127,6 +105,7 @@ const cloneSavedEdit = (saved, id) => {
     saved.forEach(function(element){
         newSaved.push({...element})
         if(element.id === id){
+            console.log("IN")
             newSaved[newSaved.length-1].isEdit = !newSaved[newSaved.length-1].isEdit
         }
     })
@@ -140,9 +119,21 @@ const timeReducer = (state=initState, action=null) => {
 
     switch(action.type){
 
+        case 'LOAD_TIMES':
+            let storedSaved = []
+            action.times.forEach(saved => {
+                storedSaved.push({id: saved.availNum, name: saved.timeName, text: 'Select', isEdit: false})
+            })
+            return{
+                ...state,
+                saved: storedSaved
+            }
+
         /* // When user is editing the Time name */
         case 'TIME_NAME_EDIT':
             let editSaved = cloneSavedEdit(state.saved, action.id)
+            console.log(state.saved)
+            console.log(editSaved)
             return{
                 ...state,
                 saved: editSaved
@@ -173,13 +164,22 @@ const timeReducer = (state=initState, action=null) => {
         case 'TIME_VIEW':
             let viewSaved = cloneSavedDefault(state.saved)
             if(state.saved[action.index].text === 'Select'){
-                let savedTable = cloneTable(state.availability, false)
+                let savedTable = [
+                    {id:'0', day:'Sun', available: action.block.blocks[0]},
+                    {id:'1', day:'Mon', available: action.block.blocks[1]},
+                    {id:'2', day:'Tue', available: action.block.blocks[2]},
+                    {id:'3', day:'Wed', available: action.block.blocks[3]},
+                    {id:'4', day:'Thu', available: action.block.blocks[4]},
+                    {id:'5', day:'Fri', available: action.block.blocks[5]},
+                    {id:'6', day:'Sat', available: action.block.blocks[6]}
+                ]
                 viewSaved[action.index].text = 'Selected'
                 return {
                     ...state,
                     saved: viewSaved,
                     table: savedTable,
-                    isViewing: true
+                    isViewing: true,
+                    selectedTimeId: action.id
                 }
 
             /* // When user doesn't want to view a saved time preference */
@@ -193,21 +193,20 @@ const timeReducer = (state=initState, action=null) => {
                 }
             }
 
-        /* // When user wants to view a saved time preference */
+        /* // When user wants to save a saved time preference */
         case 'TIME_SAVE':
             let newTimeTable = cloneTable(state.table, true)
             let newSaved = cloneSavedDefault(state.saved)
 
             // *** need to get name that user inputs here
             // *** neee to get id from database
-            let newTime = {id: (parseInt(state.saved[state.saved.length-1].id)+1).toString(),
-                           name: action.name, text: 'Select', isEdit: false }
+            let newTime = {id: action.timePref.availNum, name: action.timePref.name, text: 'Select', isEdit: false }
             newSaved.push(newTime)
             return{
                 ...state,
                 saved: newSaved,
                 table: newTimeTable,
-                isViewing: false
+                isViewing: false,
             }
 
         /* // When user clears table */
@@ -224,7 +223,7 @@ const timeReducer = (state=initState, action=null) => {
         /* // When user deletes a time preference */
         case 'TIME_DELETE':
             let newSavedList = state.saved.filter(element => {
-                return element.id !== action.id
+                return element.id !== parseInt(action.id)
             })
             return{
                 ...state,

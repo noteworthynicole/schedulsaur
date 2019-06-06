@@ -10,11 +10,9 @@
   font-size: 15px;
   text-align: center;
 }
-
 .dashboard-button:hover {
   background-color: #7fcfa9;
 }
-
 .dashboard-button:before {
   content: "";
   display: block;
@@ -23,7 +21,6 @@
   width: 80%;
   border-top: 1px solid black;
 }
-
 .help-button {
   outline: none;
   cursor: pointer;
@@ -36,7 +33,6 @@
   font-size: 15px;
   text-align: center;
 }
-
 .help-button:before {
   content: "";
   display: block;
@@ -45,7 +41,6 @@
   width: 80%;
   border-top: 1px solid white;
 }
-
 .dashboard-button:after {
   content: "";
   display: block;
@@ -54,7 +49,6 @@
   width: 80%;
   border-bottom: 1px solid white;
 }
-
 .sidebar-button {
   text-align: center;
   outline: none;
@@ -69,7 +63,6 @@
   font-size: 15px;
   font-weight: 530;
 }
-
 .sidebar-button:hover {
   background-color: #7fcfa9;
 } */

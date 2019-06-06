@@ -1,5 +1,7 @@
 package logic;
 
+import java.util.Arrays;
+
 public class Class {
 
 	private String name;
@@ -28,7 +30,7 @@ public class Class {
 	}
 	
 	public String getClassNum() {
-		return this.name.split(" ")[1].substring(0, 2);
+		return this.name.split("[^\\w']+")[1].substring(0, 2);
 	}
 	
 	public String getEqualName() {
