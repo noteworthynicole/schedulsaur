@@ -117,16 +117,17 @@ public class UserController {
 	@GetMapping(RESTURI.GET_HISTORY) 
 	public List<String> getHistory(@RequestParam int id) throws JsonMappingException, IOException {
 		Statement stmt = null;
+		
 		String courses = "";
 		ObjectMapper objectMapper = new ObjectMapper();
 		
-		ArrayList<String> returnList = new ArrayList<>();
+		List<String> returnList = new ArrayList<>();
 		try (Connection conn = DriverManager.getConnection(dbURL,dbUsername,dbPW)){
 			stmt = conn.createStatement();
 			courses = Database.dbGetPastClasses(stmt, id);
 			stmt.close();
 			
-			returnList = objectMapper.readValue(courses, ArrayList.class);
+			returnList = objectMapper.readValue(courses,  List.class);
 			
 			return returnList;
 		} catch(SQLException se) {
