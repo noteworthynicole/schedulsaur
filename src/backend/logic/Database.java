@@ -392,9 +392,7 @@ public class Database {
 				// Student Methods
 	/* ----------------------------------------------------------------------------------- */
 	
-	// Generate next Student Id
-	public static String dbGenerateStudentId(Statement stmt) {
-		String sql = "SELECT COUNT(*)+1 as nextId FROM schedulsaurdb.Student;";
+	public static String dbGenerateHelper(Statement stmt, String sql) {
 		try {
 			ResultSet rs = stmt.executeQuery(sql);
 			if(rs == null) {
@@ -408,6 +406,12 @@ public class Database {
 			logger.log(Level.WARNING, e.toString());
 		}
 		return null;
+	}
+	
+	// Generate next Student Id
+	public static String dbGenerateStudentId(Statement stmt) {
+		String studentSql = "SELECT COUNT(*)+1 as nextId FROM schedulsaurdb.Student;";
+		return dbGenerateHelper(stmt, studentSql);
 	}
 	
 	
@@ -481,20 +485,8 @@ public class Database {
 	/* ----------------------------------------------------------------------------------- */
 	// Generate next Time Id
 	public static String dbGenerateTimeId(Statement stmt, String id) {
-		String sql = "SELECT COUNT(availNum)+1 as nextId FROM schedulsaurdb.TimePref WHERE student_id = " + id + ";";
-		try {
-			ResultSet rs = stmt.executeQuery(sql);
-			if(rs == null) {
-				return "";
-			}else {
-				rs.next();
-				return rs.getString("nextId");
-			}
-			
-		} catch(Exception e) {
-			logger.log(Level.WARNING, e.toString());
-		}
-		return null;
+		String timeSql = "SELECT COUNT(availNum)+1 as nextId FROM schedulsaurdb.TimePref WHERE student_id = " + id + ";";
+		return dbGenerateHelper(stmt, timeSql);
 	}
 	
 	// GET TimePref
