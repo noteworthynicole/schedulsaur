@@ -135,7 +135,7 @@ public class BlockController {
 				try {
 					stmt.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+					
 					logger.log(Level.WARNING, e.toString());
 				}
 			}

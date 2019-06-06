@@ -482,20 +482,20 @@ public class Database {
 		String sql = "SELECT prevClass from schedulsaurdb.Student where id = " + id + ";";
 		ResultSet rs = null;
 		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
-			String res;
+			String result;
 			rs = stmt.executeQuery(sql);
 			rs.next();
-			res = rs.getString(PREVCLASSES);
+			result = rs.getString(PREVCLASSES);
 			rs.close();
-			return res;
+			return result;
 			
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
 		} finally {
 			if(rs != null) {
 				try {
-					rs.close();
 					logger.log(Level.WARNING, "please 3");
+					rs.close();
 				} catch (SQLException e) {
 					
 					logger.log(Level.WARNING, e.toString());
