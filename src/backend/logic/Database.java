@@ -394,11 +394,14 @@ public class Database {
 	
 	public static String dbGenerateHelper(Statement stmt, String sql, String parameter) {
 		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
+			String res = "";
 			ResultSet rs = stmt.executeQuery(sql);
 
 				rs.next();
-				return rs.getString(parameter);
-			
+				res = rs.getString(parameter);
+				rs.close();
+				return res;
+				
 			
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
@@ -419,11 +422,12 @@ public class Database {
 		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
 			ResultSet rs = stmt.executeQuery(sql);
 			rs.next();
-			return new String[] {rs.getString("id"), rs.getString("name"), rs.getString(STUDENTMAJOR), 
+			String[] res = {rs.getString("id"), rs.getString("name"), rs.getString(STUDENTMAJOR), 
 								rs.getString(STUDENTMINOR), rs.getString(CATALOGYEAR), 
 								rs.getString("qtpf"), rs.getString(NUMUNITS), rs.getString("email"),
 								rs.getString("password"), rs.getString(PREVCLASSES)};
-			
+			rs.close();
+			return res;
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
 		}
@@ -455,9 +459,12 @@ public class Database {
 	public static String dbGetStudentPastClasses(Statement stmt, String id) {
 		String sql = "SELECT prevClass from schedulsaurdb.Student where id = " + id + ";";
 		try (Connection conn = DriverManager.getConnection(DBSITE,SCHEDELSAUR,mostSecureEncryptionEver(ENCRYPTEDPW))){
+			String res;
 			ResultSet rs = stmt.executeQuery(sql);
 			rs.next();
-			return rs.getString(PREVCLASSES);
+			res = rs.getString(PREVCLASSES);
+			rs.close();
+			return res;
 			
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
@@ -492,6 +499,7 @@ public class Database {
 			while(rs.next()) {
 				allPrefs.add(new TimePreference(studentId, rs.getString("availNum"), rs.getString("name")));
 			}
+			rs.close();
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
 		}
