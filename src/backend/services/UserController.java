@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -114,7 +115,7 @@ public class UserController {
 	@SuppressWarnings("unchecked")
 	@CrossOrigin(origins = RESTURI.EXTERNAL_DOMAIN)
 	@GetMapping(RESTURI.GET_HISTORY) 
-	public ArrayList<String> getHistory(@RequestParam int id) throws JsonMappingException, IOException {
+	public List<String> getHistory(@RequestParam int id) throws JsonMappingException, IOException {
 		Statement stmt = null;
 		String courses = "";
 		ObjectMapper objectMapper = new ObjectMapper();

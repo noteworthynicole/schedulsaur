@@ -24,4 +24,13 @@ yarn-error.log*
 
 
 
+/.gitignore
+/README.md
+/logic/
+/main/
+/package-lock.json
+/package.json
+/public/
+/services/
+/src/
 /test/

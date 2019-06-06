@@ -141,6 +141,7 @@ const courseHistoryReducer = (state = initState, action = null) =>
 
       case "INIT":
         draft.courses_taken = action.courses;
+        break;
 
       default:
         break;
