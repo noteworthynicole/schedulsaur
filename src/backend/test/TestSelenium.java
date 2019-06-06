@@ -11,8 +11,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+
 @RunWith(Suite.class)
 class TestSelenium {
+	String driverDir = "Drivers/chromedriver";
+	String driverProp = "webdriver.chrome.driver";
+	String VAL = "value";
+	String disabled = "disabled";
+
 
 	@Test
 	void testSaveDashboard() {
@@ -21,7 +27,7 @@ class TestSelenium {
 		String dashboardInputMajor = "//*[@id=\"type0\"]";
 		String dashboardMajor = "//*[@id=\"root\"]/div/div/div[3]/div/div[1]/div[2]/div/div[2]/div[1]/span";
 		
-		System.setProperty("webdriver.chrome.driver","Drivers/chromedriver");   
+		System.setProperty(driverProp,driverDir);   
 		WebDriver driver = new ChromeDriver();
 		driver.get("localhost:3000/DashBoard");
 		
@@ -30,7 +36,7 @@ class TestSelenium {
 		driver.findElement(By.xpath(dashboardSave)).click();
 		
 		WebElement majorBox = driver.findElement(By.xpath(dashboardMajor));
-		String value = majorBox.getAttribute("value");
+		String value = majorBox.getAttribute(VAL);
 
 		assertTrue(value.equals("ComputerScience"));
 		
@@ -46,7 +52,7 @@ class TestSelenium {
 		String desiredBox2 = "//*[@id=\"root\"]/div/div/div[3]/div/div[1]/div/div/div[1]/div/div/div[6]/div[1]/label/span";
 		String desiredBox3 = "//*[@id=\"root\"]/div/div/div[3]/div/div[1]/div/div/div[1]/div/div/div[2]/div[1]/label/span";
 		
-		System.setProperty("webdriver.chrome.driver","test/chromedriver");   
+		System.setProperty(driverProp,driverDir);   
 		WebDriver driver = new ChromeDriver();
 		driver.get("localhost:3000/CourseHistory");
 		
@@ -56,13 +62,13 @@ class TestSelenium {
 		driver.findElement(By.xpath(desiredCourses)).click();
 		
 		WebElement desired = driver.findElement(By.xpath(desiredBox));
-		String value = desired.getAttribute("disabled");
+		String value = desired.getAttribute(disabled);
 		
 		WebElement desired2 = driver.findElement(By.xpath(desiredBox2));
-		String value2 = desired.getAttribute("disabled");
+		String value2 = desired2.getAttribute(disabled);
 
 		WebElement desired3 = driver.findElement(By.xpath(desiredBox3));
-		String value3 = desired.getAttribute("disabled");
+		String value3 = desired3.getAttribute(disabled);
 		
 		assertTrue(value.equals(true));
 		assertTrue(value2.equals(true));
@@ -80,7 +86,7 @@ class TestSelenium {
 		String confirm = "//*[@id=\"root\"]/div/div/div[3]/div/div[2]/div[2]/div[2]/div/div/form/button";
 		String noOptions = "//*[@id=\"root\"]/div/div/div[3]/div/div[1]/div/div/ul";
 		
-		System.setProperty("webdriver.chrome.driver","Drivers/chromedriver");   
+		System.setProperty(driverProp,driverDir);   
 		WebDriver driver = new ChromeDriver();
 		driver.get("localhost:3000/TimeAvailability");
 		
@@ -91,7 +97,7 @@ class TestSelenium {
 		driver.findElement(By.xpath(confirm)).click();
 		
 		WebElement listElem = driver.findElement(By.xpath(noOptions));
-		String value = listElem.getAttribute("value");
+		String value = listElem.getAttribute(VAL);
 		assertTrue(value.equals(null));
 		
 	}
@@ -101,14 +107,14 @@ class TestSelenium {
 		String saveSchedule = "//*[@id=\"root\"]/div/div/div[3]/div/div[2]/button";
 		String emptyList = "//*[@id=\"root\"]/div/div/div[3]/div/div[1]/div/div[1]";
 		
-		System.setProperty("webdriver.chrome.driver","Drivers/chromedriver");   
+		System.setProperty(driverProp,driverDir);   
 		WebDriver driver = new ChromeDriver();
 		driver.get("localhost:3000/CreateSchedules");
 		
 		driver.findElement(By.xpath(saveSchedule)).click();
 		
 		WebElement listElem = driver.findElement(By.xpath(emptyList));
-		String value = listElem.getAttribute("value");
+		String value = listElem.getAttribute(VAL);
 		assertTrue(value.equals(null));
 		
 	}
